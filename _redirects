@@ -1,0 +1,29 @@
+# Netlify Redirects Configuration for AEB Digital Website
+
+# Clean URL redirects - remove .html extension
+/blog           /subpages/blog.html           200
+/kontakt        /subpages/kontakt.html        200
+/o-nas          /subpages/o-nas.html          200
+/portfolio      /subpages/portfolio.html      200
+/sluzby         /subpages/sluzby.html         200
+
+# Blog article redirects
+/ecommerce-trendy-2025              /subpages/ecommerce-trendy-2025.html              200
+/javascript-techniky-2025           /subpages/javascript-techniky-2025.html           200
+/react-trendy-2025                  /subpages/react-trendy-2025.html                  200
+/seo-strategia-2025                 /subpages/seo-strategia-2025.html                 200
+/ux-dizajn-prirucka                 /subpages/ux-dizajn-prirucka.html                 200
+/web-optimalizacia-rychlost         /subpages/web-optimalizacia-rychlost.html         200
+
+# Legacy .html URLs redirect to clean URLs (301 permanent redirect)
+/subpages/blog.html                 /blog                   301
+/subpages/kontakt.html              /kontakt                301
+/subpages/o-nas.html                /o-nas                  301
+/subpages/portfolio.html            /portfolio              301
+/subpages/sluzby.html               /sluzby                 301
+
+# API endpoint for contact form
+/api/contact    /.netlify/functions/contact   200
+
+# 404 - Not Found (optional custom 404 page)
+/*              /index.html                   404
