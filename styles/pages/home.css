@@ -204,16 +204,10 @@
 
 .gallery-columns {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 0;
-    max-width: 1600px;
+    max-width: 1800px;
     margin: 0 auto;
-}
-
-.gallery-column {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
 }
 
 .gallery-item {
@@ -1128,10 +1122,6 @@
 
     .gallery-columns {
         grid-template-columns: 1fr;
-        gap: 0;
-    }
-
-    .gallery-column {
         gap: 0;
     }
 
