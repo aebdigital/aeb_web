@@ -39,8 +39,31 @@ exports.handler = async (event, context) => {
     const data = JSON.parse(event.body);
     const { name, email, message } = data;
 
+    // Extract phone, budget, and subject from message if included
+    let cleanMessage = message;
+    let phone = '';
+    let budget = '';
+    let subject = '';
+
+    // Parse the message to extract additional fields
+    const phoneMatch = message.match(/Telefón:\s*(.+)/);
+    const budgetMatch = message.match(/Rozpočet:\s*(.+)/);
+    const subjectMatch = message.match(/Typ projektu:\s*(.+)/);
+
+    if (phoneMatch) phone = phoneMatch[1].trim();
+    if (budgetMatch) budget = budgetMatch[1].trim();
+    if (subjectMatch) subject = subjectMatch[1].trim();
+
+    // Remove the extracted fields from the message
+    cleanMessage = message
+      .replace(/\n\nTelefón:.*/, '')
+      .replace(/Telefón:.*\n?/, '')
+      .replace(/Rozpočet:.*\n?/, '')
+      .replace(/Typ projektu:.*\n?/, '')
+      .trim();
+
     // Validate required fields
-    if (!name || !email || !message) {
+    if (!name || !email || !cleanMessage) {
       return {
         statusCode: 400,
         headers,
@@ -109,7 +132,7 @@ IP adresa: ${event.headers['x-forwarded-for'] || event.headers['client-ip'] || '
   <meta charset="UTF-8">
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
       line-height: 1.6;
       color: #ffffff;
       background-color: #16171A;
@@ -128,6 +151,7 @@ IP adresa: ${event.headers['x-forwarded-for'] || event.headers['client-ip'] || '
       font-weight: 700;
       margin-bottom: 30px;
       text-align: center;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
     }
     .form-container {
       background-color: #212327;
@@ -143,7 +167,8 @@ IP adresa: ${event.headers['x-forwarded-for'] || event.headers['client-ip'] || '
       font-weight: 600;
       color: #ffffff;
       margin-bottom: 8px;
-      font-size: 14px;
+      font-size: 12px;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
     }
     .value {
       background-color: #383a3c;
@@ -151,6 +176,8 @@ IP adresa: ${event.headers['x-forwarded-for'] || event.headers['client-ip'] || '
       border-radius: 10px;
       color: #ffffff;
       border: 0.5px solid #555555;
+      font-size: 14px;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
     }
     .value a {
       color: #00997d;
@@ -164,6 +191,8 @@ IP adresa: ${event.headers['x-forwarded-for'] || event.headers['client-ip'] || '
       border: 0.5px solid #555555;
       min-height: 100px;
       white-space: pre-wrap;
+      font-size: 14px;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
     }
     .footer {
       margin-top: 30px;
@@ -172,6 +201,7 @@ IP adresa: ${event.headers['x-forwarded-for'] || event.headers['client-ip'] || '
       font-size: 12px;
       color: #888888;
       text-align: center;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
     }
   </style>
 </head>
@@ -187,9 +217,21 @@ IP adresa: ${event.headers['x-forwarded-for'] || event.headers['client-ip'] || '
         <div class="label">Email *</div>
         <div class="value"><a href="mailto:${email}">${email}</a></div>
       </div>
+      ${phone ? `<div class="form-group">
+        <div class="label">Telefón</div>
+        <div class="value">${phone}</div>
+      </div>` : ''}
+      ${subject ? `<div class="form-group">
+        <div class="label">Typ projektu *</div>
+        <div class="value">${subject}</div>
+      </div>` : ''}
+      ${budget ? `<div class="form-group">
+        <div class="label">Rozpočet</div>
+        <div class="value">${budget}</div>
+      </div>` : ''}
       <div class="form-group">
         <div class="label">Správa *</div>
-        <div class="message-box">${message.replace(/\n/g, '<br>')}</div>
+        <div class="message-box">${cleanMessage.replace(/\n/g, '<br>')}</div>
       </div>
       <div class="footer">
         <p>Odoslané z: ${event.headers.referer || 'Unknown'}<br>
