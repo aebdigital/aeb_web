@@ -286,28 +286,58 @@ class FooterComponent {
     // Newsletter form handling
     initNewsletterForm() {
         const newsletterForm = document.querySelector('.newsletter-form');
-        
+
         if (newsletterForm) {
-            newsletterForm.addEventListener('submit', function(e) {
+            newsletterForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
-                
-                const email = this.querySelector('input[type="email"]').value;
-                
+
+                const emailInput = this.querySelector('input[type="email"]');
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const email = emailInput.value.trim();
+
                 if (!email) {
                     alert('Prosím zadajte váš email.');
                     return;
                 }
-                
+
                 // Email validation
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailRegex.test(email)) {
                     alert('Prosím zadajte platný email.');
                     return;
                 }
-                
-                // Simulate subscription (replace with actual API call)
-                alert('Ďakujeme za prihlásenie do newslettra!');
-                this.reset();
+
+                // Show loading state
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Odosiela sa...';
+                submitBtn.disabled = true;
+
+                try {
+                    // Submit to Netlify serverless function
+                    const response = await fetch('/api/newsletter', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ email: email })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok && data.success) {
+                        alert('✅ ' + (data.message || 'Ďakujeme za prihlásenie do newslettra!'));
+                        newsletterForm.reset();
+                    } else {
+                        alert('❌ ' + (data.error || 'Nastala chyba pri odosielaní.'));
+                    }
+                } catch (error) {
+                    console.error('Newsletter subscription error:', error);
+                    alert('❌ Nastala chyba pri odosielaní. Skúste to prosím neskôr.');
+                } finally {
+                    // Reset button state
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
             });
         }
     }
