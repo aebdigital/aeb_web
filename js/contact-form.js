@@ -9,7 +9,7 @@ const CONTACT_FORM_SECTION = `
                 <div class="contact-text">
                     <h2 class="heading-section">Máte nápad? Poďme na to!</h2>
                     <p>Máte projekt v hlave? Napíšte nám a my vám vytvoríme riešenie presne na mieru s bezplatnou konzultáciou.</p>
-                    
+
                     <div class="contact-person-box">
                         <div class="contact-person-avatar">
                             <img src="AEB LOGO.png" alt="Peter Bobák" class="person-photo">
@@ -21,7 +21,7 @@ const CONTACT_FORM_SECTION = `
                         </div>
                     </div>
                 </div>
-                
+
                 <form id="contact-form" class="contact-form">
                     <div class="form-group">
                         <label for="name">Meno *</label>

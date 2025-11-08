@@ -108,41 +108,96 @@ IP adresa: ${event.headers['x-forwarded-for'] || event.headers['client-ip'] || '
 <head>
   <meta charset="UTF-8">
   <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-    .header { background-color: #00997d; color: white; padding: 20px; text-align: center; }
-    .content { background-color: #f9f9f9; padding: 20px; border: 1px solid #ddd; }
-    .field { margin-bottom: 15px; }
-    .label { font-weight: bold; color: #00997d; }
-    .value { margin-top: 5px; }
-    .message-box { background-color: white; padding: 15px; border-left: 4px solid #00997d; margin-top: 10px; }
-    .footer { margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #666; }
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      line-height: 1.6;
+      color: #ffffff;
+      background: #16171A;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .heading {
+      color: #ffffff;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      text-align: center;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .form-container {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .label {
+      display: block;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .value {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 12px 16px;
+      border-radius: 10px;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .value a {
+      color: #00997d;
+      text-decoration: none;
+    }
+    .message-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 10px;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      min-height: 100px;
+      white-space: pre-wrap;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .footer {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6);
+      text-align: center;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="header">
-      <h2>Nová správa z kontaktného formulára</h2>
-      <p>AEB Digital Website</p>
-    </div>
-    <div class="content">
-      <div class="field">
-        <div class="label">Meno:</div>
+    <h2 class="heading">Nová správa z kontaktného formulára</h2>
+    <div class="form-container">
+      <div class="form-group">
+        <div class="label">Meno *</div>
         <div class="value">${name}</div>
       </div>
-      <div class="field">
-        <div class="label">Email:</div>
+      <div class="form-group">
+        <div class="label">Email *</div>
         <div class="value"><a href="mailto:${email}">${email}</a></div>
       </div>
-      <div class="field">
-        <div class="label">Správa:</div>
+      <div class="form-group">
+        <div class="label">Správa *</div>
         <div class="message-box">${message.replace(/\n/g, '<br>')}</div>
       </div>
       <div class="footer">
-        <p><strong>Metadata:</strong></p>
         <p>Odoslané z: ${event.headers.referer || 'Unknown'}<br>
-        IP adresa: ${event.headers['x-forwarded-for'] || event.headers['client-ip'] || 'Unknown'}<br>
-        Čas: ${new Date().toLocaleString('sk-SK', { timeZone: 'Europe/Bratislava' })}</p>
+        IP: ${event.headers['x-forwarded-for'] || event.headers['client-ip'] || 'Unknown'}<br>
+        ${new Date().toLocaleString('sk-SK', { timeZone: 'Europe/Bratislava' })}</p>
       </div>
     </div>
   </div>
