@@ -120,6 +120,7 @@ IP adresa: ${event.headers['x-forwarded-for'] || event.headers['client-ip'] || '
       max-width: 600px;
       margin: 0 auto;
       background-color: #16171A;
+      padding: 40px 20px;
     }
     .heading {
       color: #00997d;
@@ -130,9 +131,9 @@ IP adresa: ${event.headers['x-forwarded-for'] || event.headers['client-ip'] || '
     }
     .form-container {
       background-color: #212327;
-      padding: 30px;
+      padding: 40px;
       border-radius: 20px;
-      border: 1px solid #ffffff;
+      border: 0.5px solid #555555;
     }
     .form-group {
       margin-bottom: 20px;
@@ -149,7 +150,7 @@ IP adresa: ${event.headers['x-forwarded-for'] || event.headers['client-ip'] || '
       padding: 12px 16px;
       border-radius: 10px;
       color: #ffffff;
-      border: 1px solid #ffffff;
+      border: 0.5px solid #555555;
     }
     .value a {
       color: #00997d;
@@ -160,7 +161,7 @@ IP adresa: ${event.headers['x-forwarded-for'] || event.headers['client-ip'] || '
       padding: 15px;
       border-radius: 10px;
       color: #ffffff;
-      border: 1px solid #ffffff;
+      border: 0.5px solid #555555;
       min-height: 100px;
       white-space: pre-wrap;
     }
