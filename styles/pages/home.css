@@ -184,7 +184,7 @@
 /* Portfolio Gallery Section */
 .portfolio-gallery-section {
     padding: 120px 0;
-    background-color: #f9f9f9;
+    background-color: #000000;
     position: relative;
     overflow: visible;
     z-index: 10;
@@ -195,7 +195,7 @@
     margin-bottom: 60px;
     font-size: 3rem;
     font-weight: 800;
-    color: var(--black);
+    color: #ffffff;
 }
 
 .gallery-container {
@@ -206,7 +206,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0;
-    max-width: 1800px;
+    max-width: 2200px;
     margin: 0 auto;
 }
 
