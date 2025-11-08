@@ -74,13 +74,13 @@ This guide will help you set up the SMTP2GO email service for the AEB Digital co
 - **Value**: Your SMTP2GO API key (from Step 3 above)
 - **Scopes**: Check "All scopes"
 
-#### Variable 2: SMTP2GO_SENDER
-- **Key**: `SMTP2GO_SENDER`
+#### Variable 2: SMTP2GO_FROM_EMAIL
+- **Key**: `SMTP2GO_FROM_EMAIL`
 - **Value**: Your verified sender email (e.g., `noreply@aebdigital.sk`)
 - **Scopes**: Check "All scopes"
 
-#### Variable 3: CONTACT_EMAIL
-- **Key**: `CONTACT_EMAIL`
+#### Variable 3: BUSINESS_EMAIL
+- **Key**: `BUSINESS_EMAIL`
 - **Value**: Email address to receive contact form submissions (e.g., `info@aebdigital.sk`)
 - **Scopes**: Check "All scopes"
 
@@ -130,7 +130,7 @@ This guide will help you set up the SMTP2GO email service for the AEB Digital co
 **Solution**:
 - Environment variables are not set correctly in Netlify
 - Go to Netlify → Site settings → Environment variables
-- Verify all three variables are added: `SMTP2GO_API_KEY`, `SMTP2GO_SENDER`, `CONTACT_EMAIL`
+- Verify all three variables are added: `SMTP2GO_API_KEY`, `SMTP2GO_FROM_EMAIL`, `BUSINESS_EMAIL`
 - Redeploy the site after adding variables
 
 ### Issue: "Chyba pri odosielaní emailu" (Error sending email)
@@ -138,13 +138,13 @@ This guide will help you set up the SMTP2GO email service for the AEB Digital co
 **Solution**:
 - Check that sender email is verified in SMTP2GO
 - Go to SMTP2GO → Settings → Senders
-- Ensure the email in `SMTP2GO_SENDER` has status "Verified"
+- Ensure the email in `SMTP2GO_FROM_EMAIL` has status "Verified"
 
 ### Issue: Email not arriving
 
 **Solution**:
 - Check spam/junk folder
-- Verify `CONTACT_EMAIL` is correct
+- Verify `BUSINESS_EMAIL` is correct
 - Check SMTP2GO dashboard → Activity → Email Logs for delivery status
 
 ### Issue: API Key invalid
@@ -174,7 +174,7 @@ This guide will help you set up the SMTP2GO email service for the AEB Digital co
 
 If you're using a custom domain (e.g., `aebdigital.sk`):
 
-1. Update `SMTP2GO_SENDER` to use your domain (e.g., `noreply@aebdigital.sk`)
+1. Update `SMTP2GO_FROM_EMAIL` to use your domain (e.g., `noreply@aebdigital.sk`)
 2. Verify sender email in SMTP2GO using DNS verification
 3. Add TXT record to your domain's DNS settings as instructed by SMTP2GO
 

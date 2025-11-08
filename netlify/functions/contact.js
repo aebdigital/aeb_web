@@ -4,8 +4,8 @@
  *
  * Environment Variables Required:
  * - SMTP2GO_API_KEY: Your SMTP2GO API key
- * - SMTP2GO_SENDER: Sender email address (must be verified in SMTP2GO)
- * - CONTACT_EMAIL: Email address to receive contact form submissions
+ * - SMTP2GO_FROM_EMAIL: Sender email address (must be verified in SMTP2GO)
+ * - BUSINESS_EMAIL: Email address to receive contact form submissions
  */
 
 exports.handler = async (event, context) => {
@@ -66,8 +66,8 @@ exports.handler = async (event, context) => {
 
     // Get environment variables
     const SMTP2GO_API_KEY = process.env.SMTP2GO_API_KEY;
-    const SMTP2GO_SENDER = process.env.SMTP2GO_SENDER;
-    const CONTACT_EMAIL = process.env.CONTACT_EMAIL || process.env.SMTP2GO_SENDER;
+    const SMTP2GO_FROM_EMAIL = process.env.SMTP2GO_FROM_EMAIL;
+    const BUSINESS_EMAIL = process.env.BUSINESS_EMAIL || process.env.SMTP2GO_FROM_EMAIL;
 
     // Check if API key is configured
     if (!SMTP2GO_API_KEY) {
@@ -85,8 +85,8 @@ exports.handler = async (event, context) => {
     // Prepare email payload for SMTP2GO API
     const emailPayload = {
       api_key: SMTP2GO_API_KEY,
-      to: [CONTACT_EMAIL],
-      sender: SMTP2GO_SENDER,
+      to: [BUSINESS_EMAIL],
+      sender: SMTP2GO_FROM_EMAIL,
       subject: `Nová správa z kontaktného formulára - ${name}`,
       text_body: `
 Nová správa z kontaktného formulára AEB Digital
