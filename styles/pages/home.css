@@ -187,6 +187,7 @@
     background-color: #f9f9f9;
     position: relative;
     overflow: visible;
+    z-index: 10;
 }
 
 .portfolio-gallery-section .heading-section {
@@ -527,6 +528,7 @@
     padding: 0;
     background-color: var(--white);
     position: relative;
+    z-index: 1;
 }
 
 .service-section {
