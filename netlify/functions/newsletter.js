@@ -104,37 +104,81 @@ IP adresa: ${event.headers['x-forwarded-for'] || event.headers['client-ip'] || '
 <head>
   <meta charset="UTF-8">
   <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-    .header { background-color: #00997d; color: white; padding: 20px; text-align: center; }
-    .content { background-color: #f9f9f9; padding: 20px; border: 1px solid #ddd; }
-    .field { margin-bottom: 15px; }
-    .label { font-weight: bold; color: #00997d; }
-    .value { margin-top: 5px; font-size: 18px; }
-    .email-box { background-color: white; padding: 15px; border-left: 4px solid #00997d; margin-top: 10px; }
-    .footer { margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #666; }
-    .icon { font-size: 48px; margin-bottom: 10px; }
+    body {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      line-height: 1.6;
+      color: #ffffff;
+      background-color: #16171A;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #16171A;
+      padding: 40px 20px;
+    }
+    .heading {
+      color: #00997d;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 30px;
+      text-align: center;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    }
+    .form-container {
+      background-color: #212327;
+      padding: 40px;
+      border-radius: 20px;
+      border: 0.5px solid #555555;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .label {
+      display: block;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 8px;
+      font-size: 12px;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    }
+    .value {
+      background-color: #383a3c;
+      padding: 12px 16px;
+      border-radius: 10px;
+      color: #ffffff;
+      border: 0.5px solid #555555;
+      font-size: 14px;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    }
+    .value a {
+      color: #00997d;
+      text-decoration: none;
+    }
+    .footer {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #383a3c;
+      font-size: 12px;
+      color: #888888;
+      text-align: center;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="header">
-      <div class="icon">📧</div>
-      <h2>Nový odber newslettra</h2>
-      <p>AEB Digital Website</p>
-    </div>
-    <div class="content">
-      <div class="field">
-        <div class="label">Nový odberateľ:</div>
-        <div class="email-box">
-          <div class="value"><a href="mailto:${email}">${email}</a></div>
-        </div>
+    <h2 class="heading">Nový odber newslettra</h2>
+    <div class="form-container">
+      <div class="form-group">
+        <div class="label">Email *</div>
+        <div class="value"><a href="mailto:${email}">${email}</a></div>
       </div>
       <div class="footer">
-        <p><strong>Metadata:</strong></p>
         <p>Odoslané z: ${event.headers.referer || 'Unknown'}<br>
-        IP adresa: ${event.headers['x-forwarded-for'] || event.headers['client-ip'] || 'Unknown'}<br>
-        Čas: ${new Date().toLocaleString('sk-SK', { timeZone: 'Europe/Bratislava' })}</p>
+        IP: ${event.headers['x-forwarded-for'] || event.headers['client-ip'] || 'Unknown'}<br>
+        ${new Date().toLocaleString('sk-SK', { timeZone: 'Europe/Bratislava' })}</p>
       </div>
     </div>
   </div>
