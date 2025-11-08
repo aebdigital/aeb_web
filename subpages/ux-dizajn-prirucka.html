@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="sk" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Ako vytvoriť používateľsky prívetivý dizajn - Kompletný UX/UI guide | AEB Digital</title>
+    <meta name="description" content="Kompletný sprievodca UX/UI dizajnom. Naučte sa základy user experience, wireframingu, prototypovania a accessibility. Praktické tipy pre lepší používateľský zážitok.">
+    <meta name="keywords" content="UX dizajn, UI design, user experience, wireframing, prototypovanie, accessibility, používateľský zážitok, dizajn princípy, UX research">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://aebdigital.sk/blog/ux-dizajn-prirucka">
+    
+    <!-- Robots Meta Tags -->
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:locale" content="sk_SK">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Ako vytvoriť používateľsky prívetivý dizajn">
+    <meta property="og:description" content="Kompletný sprievodca UX/UI dizajnom s praktickými tipmi a best practices.">
+    <meta property="og:url" content="https://aebdigital.sk/blog/ux-dizajn-prirucka">
+    <meta property="og:site_name" content="AEB Digital">
+    <meta property="og:image" content="https://aebdigital.sk/techstack/apps-figma-icon-2048x2048-ctjj5ab7.png">
+    
+    <!-- Article Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Ako vytvoriť používateľsky prívetivý dizajn",
+        "description": "UX dizajn je kľúčový pre úspech každej webovej stránky. Naučte sa základné princípy, ktoré ulahodia vašim používateľom",
+        "image": "https://aebdigital.sk/techstack/apps-figma-icon-2048x2048-ctjj5ab7.png",
+        "author": {
+            "@type": "Organization",
+            "name": "AEB Digital"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "AEB Digital",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://aebdigital.sk/techstack/aeb_whiteonblack_final.png"
+            }
+        },
+        "datePublished": "2025-01-12",
+        "dateModified": "2025-01-12"
+    }
+    </script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles/base.css?v=1759157669">
+    <link rel="stylesheet" href="../styles/components/header.css?v=1759157669">
+    <link rel="stylesheet" href="../styles/components/footer.css?v=1759157669">
+    <link rel="stylesheet" href="../styles/pages/blog.css?v=1759157669">
+    <link rel="stylesheet" href="../styles/components/contact-form.css?v=1759157669">
+    <link rel="stylesheet" href="../styles/components/faq.css?v=1759157669">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../sources/techstack/aeb_whiteonblack_final.png" type="image/png">
+    
+    <style>
+    .article-header {
+        padding: 120px 0 60px 0;
+        background: linear-gradient(135deg, #8B5CF6, #06B6D4);
+        color: white;
+        text-align: center;
+    }
+    .article-meta {
+        margin-bottom: 20px;
+        opacity: 0.9;
+    }
+    .article-title {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        font-weight: 800;
+    }
+    .article-excerpt {
+        font-size: 1.3rem;
+        opacity: 0.9;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .article-content {
+        padding: 60px 0;
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.8;
+    }
+    .article-content h2 {
+        color: var(--black);
+        margin: 40px 0 20px 0;
+        font-size: 2rem;
+    }
+    .article-content h3 {
+        color: var(--black);
+        margin: 30px 0 15px 0;
+        font-size: 1.5rem;
+    }
+    .article-content p {
+        margin-bottom: 20px;
+        color: #333;
+    }
+    .article-content ul {
+        margin: 20px 0;
+        padding-left: 30px;
+    }
+    .article-content li {
+        margin-bottom: 10px;
+        color: #333;
+    }
+    .highlight-box {
+        background: #f8fafc;
+        border-left: 4px solid var(--accent-teal);
+        padding: 20px;
+        margin: 25px 0;
+        border-radius: 0 8px 8px 0;
+    }
+    .highlight-box h4 {
+        margin-top: 0;
+        color: var(--accent-teal);
+        font-size: 1.2rem;
+    }
+    .back-to-blog {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--accent-teal);
+        text-decoration: none;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+    .ux-process-step {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        border-left: 4px solid #8B5CF6;
+    }
+    .ux-process-step h4 {
+        color: #8B5CF6;
+        margin: 0 0 15px 0;
+        font-size: 1.3rem;
+    }
+    @media (max-width: 767px) {
+        .article-title {
+            font-size: 2.2rem;
+        }
+        .article-excerpt {
+            font-size: 1.1rem;
+        }
+        .article-content {
+            padding: 40px 0;
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Header will be injected by JavaScript -->
+
+    <!-- Main Content -->
+    <main>
+        <!-- Article Header -->
+        <section class="article-header">
+            <div class="container">
+                <div class="article-meta">
+                    <span>12. január 2025</span> • <span>AEB Digital</span> • <span>Dizajn</span>
+                </div>
+                <h1 class="article-title">Ako vytvoriť používateľsky prívetivý dizajn</h1>
+                <p class="article-excerpt">
+                    UX dizajn je kľúčový pre úspech každej webovej stránky. Naučte sa základné princípy, ktoré ulahodia vašim používateľom a zvýšia konverzie.
+                </p>
+            </div>
+        </section>
+
+        <!-- Article Content -->
+        <section class="article-section">
+            <div class="container">
+                <div class="article-content">
+                    <a href="https://aebdigital.sk/blog" class="back-to-blog">
+                        Späť na blog
+                    </a>
+
+                    <p>V dnešnej digitálnej ére je používateľský zážitok (UX) rozhodujúcim faktorom úspechu akejkolvek webovej stránky alebo aplikácie. Dobrý UX dizajn dokáže zvýšiť konverzie, zlepšiť spokojnosť používateľov a vybudovať silnú značku. V tomto kompletnom sprievodcovi sa dozviete, ako vytvoriť skutočne používateľsky prívetivý dizajn.</p>
+
+                    <h2>Čo je UX dizajn a prečo je dôležitý?</h2>
+                    <p>User Experience (UX) dizajn je proces navrhovania produktov, ktoré poskytujú zmysluplný a relevantný zážitok používateľom. Zahŕňa celý proces získavania a integrácie produktu, vrátane aspektov brandingu, dizajnu, použiteľnosti a funkcionality.</p>
+
+                    <div class="highlight-box">
+                        <h4>Kľúčové štatistiky o UX:</h4>
+                        <ul>
+                            <li>88% používateľov sa nevracia na web s zlým UX</li>
+                            <li>Každý euro investovaný do UX prinesie návratnosť 100 eur</li>
+                            <li>94% prvých dojmov súvisí s dizajnom</li>
+                            <li>57% používateľov neodporučí podnik so slabým mobilným dizajnom</li>
+                        </ul>
+                    </div>
+
+                    <h2>Základné princípy UX dizajnu</h2>
+                    
+                    <h3>1. Používateľ je na prvom mieste</h3>
+                    <p>Každé rozhodnutie v dizajne by malo byť vedené potrebami a očakávaniami používateľov. Nie je to o tom, čo sa páči vám alebo vašej spoločnosti, ale o tom, čo funguje pre vašu cieľovú skupinu.</p>
+
+                    <h3>2. Konzistentnosť je kľúč</h3>
+                    <p>Konzistentný dizajn vytvára predvídateľnú skúsenosť. Používatelia by mali vedieť, čo očakávať a ako sa pohybovať vo vašom rozhraní bez toho, aby sa museli učiť nové konvencie na každej stránke.</p>
+
+                    <h3>3. Jednoduchost nad zložitosťou</h3>
+                    <p>Jednoduchý dizajn nie je primitívny dizajn. Je to dizajn, ktorý odstráni všetky nepotrebné elementy a sústredí sa na to podstatné. Platí pravidlo: menej je viac.</p>
+
+                    <h3>4. Spätná väzba pre používateľa</h3>
+                    <p>Používatelia potrebujú vedieť, čo sa deje. Každá akcia by mala mať jasný výsledok alebo potvrdenie, či už je to loading indikátor, notifikácia alebo zmena stavu.</p>
+
+                    <h2>UX dizajn proces krok za krokom</h2>
+
+                    <div class="ux-process-step">
+                        <h4>1. Research a analýza používateľov</h4>
+                        <p>Pred akýmkoľvek dizajnovaním musíte pochopiť svojich používateľov. Vytvorte user personas, analyzujte user journey a identifikujte pain points.</p>
+                        <p><strong>Nástroje:</strong> Google Analytics, Hotjar, používateľské dotazníky, interiévy</p>
+                    </div>
+
+                    <div class="ux-process-step">
+                        <h4>2. Informačná architektúra</h4>
+                        <p>Organizujte obsah a funkcionality logickým spôsobom. Vytvorte sitemap a definujte, ako budú informácie štruktúrované a prepojené.</p>
+                        <p><strong>Techniky:</strong> Card sorting, tree testing, content audit</p>
+                    </div>
+
+                    <div class="ux-process-step">
+                        <h4>3. Wireframing</h4>
+                        <p>Wireframy sú základné skice rozloženia stránky bez vizuálnych detailov. Pomáhajú zamerať sa na funkcionalitu a štruktúru pred dizajnom.</p>
+                        <p><strong>Nástroje:</strong> Figma, Sketch, Balsamiq, dokonca aj papier a ceruzka</p>
+                    </div>
+
+                    <div class="ux-process-step">
+                        <h4>4. Prototypovanie</h4>
+                        <p>Vytvorte interaktívny prototyp, ktorý umožní testovanie funkcionalít pred finálnou implementáciou. Prototypy šetria čas a peniaze.</p>
+                        <p><strong>Typy prototypov:</strong> Low-fidelity (jednoduchý), High-fidelity (detailný), interaktívny</p>
+                    </div>
+
+                    <div class="ux-process-step">
+                        <h4>5. Testovanie a iterácia</h4>
+                        <p>Testujte dizajn so skutočnými používateľmi. Zbierajte feedback a iteratívne vylepšujte dizajn na základe pozorovaní.</p>
+                        <p><strong>Metódy testovania:</strong> A/B testing, usability testing, 5-second test</p>
+                    </div>
+
+                    <h2>UI dizajn - vizuálna stránka</h2>
+                    <p>Zatiaľ čo UX sa zaoberá celkovou skúsenosťou, UI (User Interface) dizajn sa sústreďuje na vizuálne a interaktívne elementy:</p>
+
+                    <h3>Typography</h3>
+                    <p>Správna typografia zlepšuje čitateľnosť a hierarchiu informácií. Používajte maximálne 2-3 fonty a vytvorte jasný typografický systém s definovanými veľkosťami pre nadpisy, text a odkazy.</p>
+
+                    <h3>Farby a kontrast</h3>
+                    <p>Farby by mali podporovať značku a zároveň zabezpečovať dobrú čitateľnosť. WCAG guidelines odporúčajú minimálny kontrast 4.5:1 pre normálny text a 3:1 pre veľký text.</p>
+
+                    <h3>Spacing a layout</h3>
+                    <p>Konzistentné spacing vytvára vizuálny rytmus. Používajte grid systém a definujte jednotky spacingu (napr. 8px baseline grid).</p>
+
+                    <h2>Accessibility - dizajn pre všetkých</h2>
+                    <p>Accessible dizajn nie je len etickou povinnosťou, ale aj právnou požiadavkou v mnohých krajinách. Navyše, accessibility features často zlepšujú UX pre všetkých používateľov.</p>
+
+                    <div class="highlight-box">
+                        <h4>Kľúčové princípy accessibility:</h4>
+                        <ul>
+                            <li><strong>Perceivable:</strong> Informácie musia byť prezentovateľné spôsobom, ktorý môžu používatelia vnímať</li>
+                            <li><strong>Operable:</strong> Komponenty UI musia byť ovládateľné</li>
+                            <li><strong>Understandable:</strong> Informácie a ovládanie UI musia byť zrozumiteľné</li>
+                            <li><strong>Robust:</strong> Obsah musí byť dostatočně robustný na interpretáciu rôznymi user agents</li>
+                        </ul>
+                    </div>
+
+                    <h3>Praktické tipy pre accessibility:</h3>
+                    <ul>
+                        <li>Používajte alt texty pre obrázky</li>
+                        <li>Zabezpečte dobrý farebný kontrast</li>
+                        <li>Implementujte keyboard navigáciu</li>
+                        <li>Používajte semantic HTML</li>
+                        <li>Testujte so screen readermi</li>
+                        <li>Nepredkladajte sa len na farbu pre rozlíšenie informácií</li>
+                    </ul>
+
+                    <h2>Mobilný UX - mobile-first prístup</h2>
+                    <p>Viac ako 60% webového trafficu pochádza z mobilných zariadení. Mobile-first prístup znamená navrhovanie najprv pre najmenšie obrazovky a následné rozširovanie pre väčšie.</p>
+
+                    <h3>Kľúčové princípy mobilného UX:</h3>
+                    <ul>
+                        <li><strong>Touch-friendly elementy:</strong> Minimálna veľkosť 44px pre tapnuteľné elementy</li>
+                        <li><strong>Jednoduchá navigácia:</strong> Hamburger menu, bottom navigation</li>
+                        <li><strong>Optimalizácia rýchlosti:</strong> Mobilní používatelia sú menej trpezliví</li>
+                        <li><strong>Thumb zone:</strong> Umiestňovanie dôležitých elementov do dohľadu palca</li>
+                    </ul>
+
+                    <h2>UX Writing - sila slov</h2>
+                    <p>UX writing je disciplína, ktorá sa zaoberá textom v digitálnych produktoch. Dobré UX writing môže dramaticky zlepšiť používateľskú skúsenosť.</p>
+
+                    <div class="highlight-box">
+                        <h4>Princípy dobrého UX writingu:</h4>
+                        <ul>
+                            <li><strong>Jasnosť:</strong> Používajte jednoduchý, zrozumiteľný jazyk</li>
+                            <li><strong>Stručnosť:</strong> Povedzte viac s menším počtom slov</li>
+                            <li><strong>Užitočnosť:</strong> Text by mal pomáhať používateľom dosiahnuť ich cieľ</li>
+                            <li><strong>Konzistentnosť:</strong> Používajte jednotnú terminológiu</li>
+                        </ul>
+                    </div>
+
+                    <h2>Meranie úspechu UX</h2>
+                    <p>UX nie je len o pocitoch - dá sa merať. Tu sú kľúčové metriky:</p>
+
+                    <h3>Kvantitatívne metriky:</h3>
+                    <ul>
+                        <li><strong>Task success rate:</strong> Podiel používateľov, ktorí úspešne dokončili úlohu</li>
+                        <li><strong>Time on task:</strong> Ako dlho trvá dokončenie úlohy</li>
+                        <li><strong>Error rate:</strong> Počet chýb pri vykonávaní úlohy</li>
+                        <li><strong>Conversion rate:</strong> Podiel návštevníkov, ktorí vykonajú požadovanú akciu</li>
+                    </ul>
+
+                    <h3>Kvalitatívne metriky:</h3>
+                    <ul>
+                        <li><strong>System Usability Scale (SUS):</strong> Štandardizovaný dotazník</li>
+                        <li><strong>Net Promoter Score (NPS):</strong> Ochota odporučiť produkt</li>
+                        <li><strong>User satisfaction:</strong> Celková spokojnosť s produktom</li>
+                    </ul>
+
+                    <h2>Nástroje pre UX dizajnérov</h2>
+
+                    <h3>Research nástroje:</h3>
+                    <ul>
+                        <li><strong>Google Analytics:</strong> Analýza správania používateľov</li>
+                        <li><strong>Hotjar:</strong> Heatmapy a session recordings</li>
+                        <li><strong>UsabilityHub:</strong> Rýchle používateľské testy</li>
+                        <li><strong>Typeform/Google Forms:</strong> Používateľské dotazníky</li>
+                    </ul>
+
+                    <h3>Dizajn nástroje:</h3>
+                    <ul>
+                        <li><strong>Figma:</strong> Kolaboratívny dizajn nástroj (najpoužívanejší)</li>
+                        <li><strong>Sketch:</strong> Mac-only dizajn nástroj</li>
+                        <li><strong>Adobe XD:</strong> Adobe's UX/UI dizajn platforma</li>
+                        <li><strong>InVision:</strong> Prototypovanie a kolaborácia</li>
+                    </ul>
+
+                    <h3>Testing nástroje:</h3>
+                    <ul>
+                        <li><strong>Maze:</strong> Remote usability testing</li>
+                        <li><strong>UserTesting:</strong> Živé používateľské testy</li>
+                        <li><strong>Optimizely:</strong> A/B testing platforma</li>
+                    </ul>
+
+                    <h2>Bežné UX chyby, ktorým sa vyhnúť</h2>
+
+                    <h3>1. Dizajnovanie pre seba</h3>
+                    <p>Najčastejšia chyba je predpokladanie, že to, co sa páči vám, sa bude páčiť aj vašim používateľom. Vždy testujte so skutočnými používateľmi.</p>
+
+                    <h3>2. Ignorovanie mobilných používateľov</h3>
+                    <p>Mobilný dizajn nie je len zmenšená verzia desktop verzie. Vyžaduje si špecifický prístup a optimalizáciu.</p>
+
+                    <h3>3. Príliš veľa možností</h3>
+                    <p>Hick's Law hovorí, že čím viac možností máte, tým dlhšie trvá rozhodnutie. Zjednodušte voľby pre používateľov.</p>
+
+                    <h3>4. Nekonzistentný dizajn</h3>
+                    <p>Nekonzistentnosť mate používateľov a núti ich učiť sa nové pattern na každej stránke.</p>
+
+                    <h3>5. Slabý onboarding</h3>
+                    <p>Prvý dojem je rozhodujúci. Investujte do kvalitného onboarding procesu, ktorý ukáže value vášho produktu.</p>
+
+                    <h2>Budúcnosť UX dizajnu</h2>
+                    <p>UX dizajn sa neustále vyvíja. Tu sú trendy, ktoré ovplyvnia budúcnosť:</p>
+
+                    <ul>
+                        <li><strong>AI a Machine Learning:</strong> Personalizácia používateľských zážitkov</li>
+                        <li><strong>Voice UI:</strong> Interakcia hlasovými asistentmi</li>
+                        <li><strong>AR/VR:</strong> Immersívne používateľské zážitky</li>
+                        <li><strong>Ethical Design:</strong> Zodpovedný prístup k dizajnu</li>
+                        <li><strong>Design Systems:</strong> Škálovateľné dizajn frameworky</li>
+                        <li><strong>Micro-interactions:</strong> Jemné animácie zlepšujúce UX</li>
+                    </ul>
+
+                    <h2>Záver</h2>
+                    <p>Používateľsky prívetivý dizajn nie je luxus - je to nutnosť. V konkurenčnom digitálnom prostredí môže dobrý UX rozhodnúť o úspechu alebo neúspechu vášho produktu. Kľúč je v pochopení vašich používateľov, iteratívnom dizajne a neustálom testovaní.</p>
+
+                    <p>Zapamätajte si: dobrý UX dizajn je neviditeľný. Používatelia si ho nevšimnú, pretože všetko funguje tak, ako očakávajú. To je znak skutočne úspešného dizajnu.</p>
+
+                    <div class="highlight-box">
+                        <h4>Kľúčové body na zapamätanie:</h4>
+                        <ul>
+                            <li>Používateľ je vždy na prvom mieste</li>
+                            <li>Testujte skoro a často</li>
+                            <li>Jednoduchost je sophistikovanosť</li>
+                            <li>Consistency vytvára trust</li>
+                            <li>Accessibility benefits everyone</li>
+                            <li>Merajte úspech pomocou dát</li>
+                        </ul>
+                    </div>
+
+                    <p><strong>Potrebujete pomoc s UX dizajnom vašej webovej stránky?</strong> Náš tím v AEB Digital má bohaté skúsenosti s vytváraním používateľsky prívetivých dizajnov, ktoré konvertujú návštevníkov na zákazníkov. <a href="https://aebdigital.sk/kontakt" style="color: var(--accent-teal);">Kontaktujte nás</a> pre bezplatnú UX audit vašej stránky.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer will be injected by JavaScript -->
+
+    <!-- Lenis Smooth Scrolling -->
+    <!-- GSAP and ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Lenis Smooth Scrolling -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    
+    <!-- Scripts -->
+    <script src="../js/components/footer.js?v=1759092853"></script>
+    <script src="../js/main.js?v=1759092853"></script>
+</body>
+</html>

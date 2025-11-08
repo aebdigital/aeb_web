@@ -1,0 +1,165 @@
+/* Portfolio Page Styles */
+
+/* Portfolio Apple Style Section */
+.portfolio-apple-style {
+    padding: 0 0 var(--spacing-xl) 0;
+    background: var(--white);
+}
+
+.portfolio-content {
+    max-width: 100%;
+}
+
+.portfolio-gallery {
+    margin-bottom: var(--spacing-xl);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    padding: 0 5px;
+    margin: 0;
+}
+
+.portfolio-item-apple {
+    position: relative;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.portfolio-item-apple a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+.portfolio-item-apple img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left top;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item-apple:hover img {
+    transform: scale(1.05);
+}
+
+/* FAQ Section */
+.faq-section {
+    padding: var(--spacing-xl) 0;
+    background: var(--light-gray);
+}
+
+.faq-section .heading-section {
+    text-align: left;
+    color: var(--black);
+    margin-bottom: var(--spacing-lg);
+}
+
+.faq-grid {
+    max-width: 70%;
+    margin: 0;
+}
+
+.faq-item {
+    background: transparent;
+    margin-bottom: var(--spacing-md);
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.faq-question h3 {
+    font-size: 1.3rem;
+    color: var(--black);
+    margin: 0;
+    text-align: left;
+}
+
+.faq-toggle {
+    font-size: 1.5rem;
+    color: var(--black);
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-toggle {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    opacity: 1;
+    padding: var(--spacing-sm) 0 var(--spacing-md) 0;
+}
+
+.faq-answer p {
+    color: var(--gray-medium);
+    line-height: 1.6;
+    margin: 0;
+    text-align: left;
+}
+
+/* Contact Form Section - Portfolio Page */
+.contact-form-section {
+    padding: var(--spacing-xl) 0;
+    background: #16171A;
+    color: var(--white);
+}
+
+/* Mobile Responsive */
+@media (max-width: 767px) {
+    .portfolio-gallery {
+        margin-bottom: 0;
+    }
+    
+    .portfolio-grid {
+        grid-template-columns: repeat(1, 1fr);
+        margin: 0 auto;
+        padding: 0;
+        width: 90vw;
+    }
+    
+    .faq-grid {
+        max-width: 100%;
+    }
+    
+    .faq-question h3 {
+        font-size: 1.1rem;
+    }
+    
+    /* Disable hover zoom on mobile */
+    .portfolio-item-apple:hover img {
+        transform: none;
+    }
+    
+    /* Position portfolio images to left on mobile */
+    .portfolio-item-apple img {
+        object-position: left top;
+    }
+    
+    /* 6th portfolio item centered on mobile */
+    .portfolio-item-apple:nth-child(6) img {
+        object-position: center top;
+    }
+}

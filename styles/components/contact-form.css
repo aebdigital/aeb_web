@@ -1,0 +1,248 @@
+/* Contact Form Component Styles */
+
+/* Contact Form Section */
+.contact-form-section {
+    padding: var(--spacing-xl) 0;
+    background: #16171A;
+    color: var(--white);
+}
+
+.contact-form-section .heading-section {
+    color: var(--white);
+    margin-bottom: var(--spacing-lg);
+    text-align: left;
+}
+
+.contact-form-section .contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    align-items: start;
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    align-items: start;
+}
+
+.contact-text {
+    padding-right: var(--spacing-md);
+}
+
+.contact-text h2 {
+    color: var(--white);
+    margin-bottom: var(--spacing-md);
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.contact-text p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+
+/* Contact Person Box */
+.contact-person-box {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: var(--spacing-md);
+    backdrop-filter: blur(10px);
+    margin-top: var(--spacing-lg);
+}
+
+.contact-person-avatar {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.person-photo {
+    display: none;
+}
+
+.contact-person-avatar::before {
+    content: '\f007';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 400;
+    font-size: 24px;
+    color: #666;
+}
+
+.contact-person-info {
+    flex: 1;
+}
+
+.contact-person-info h4 {
+    color: var(--white);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.contact-person-info p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin: 0 0 8px 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.contact-person-info a {
+    color: var(--accent-teal);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Montserrat', Arial, sans-serif;
+    transition: color 0.3s ease;
+}
+
+.contact-person-info a:hover {
+    color: #1DA69A;
+    text-decoration: underline;
+}
+
+.contact-form {
+    background: rgba(255, 255, 255, 0.05);
+    padding: var(--spacing-lg);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    color: var(--white);
+    font-weight: 600;
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    font-size: 1rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-teal);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.contact-form select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23ffffff' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    padding-right: 35px;
+}
+
+.contact-form select:focus {
+    border-color: var(--accent-teal);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+
+/* Process Steps (for contact page) */
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.step {
+    text-align: center;
+    padding: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.step h4 {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-xs);
+    color: var(--white);
+}
+
+.step p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Mobile Responsive */
+@media (max-width: 767px) {
+    .contact-form-section {
+        padding: 80px 0;
+    }
+    
+    .contact-form-section .contact-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .contact-text {
+        padding-right: 0;
+    }
+    
+    .process-steps {
+        grid-template-columns: 1fr;
+    }
+    
+    .step {
+        text-align: left;
+    }
+    
+    .contact-form-section .heading-section {
+        font-size: 2.5rem;
+    }
+    
+    .contact-form {
+        padding: 20px;
+    }
+}

@@ -1,0 +1,628 @@
+/* About Page Styles */
+
+/* About Content Section */
+.about-content-modern {
+    padding: var(--spacing-md) 0;
+    background: var(--white);
+}
+
+.about-layout {
+    max-width: 100%;
+}
+
+/* Story Section */
+.story-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.story-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.story-content.reverse {
+    direction: rtl;
+}
+
+.story-content.reverse > * {
+    direction: ltr;
+}
+
+.story-text {
+    padding: 0;
+}
+
+.story-label {
+    display: inline-block;
+    background: var(--accent-teal);
+    color: var(--white);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+}
+
+.story-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--black);
+    line-height: 1.3;
+}
+
+.lead-text {
+    font-size: 1.2rem;
+    color: var(--gray-medium);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.story-text p {
+    color: var(--gray-medium);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.story-image {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.story-image:hover {
+    transform: translateY(-5px);
+}
+
+.story-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+/* Team Section */
+.team-section {
+    padding: var(--spacing-xl) 0;
+    background: var(--light-gray);
+}
+
+.team-section .heading-section {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.team-member {
+    background: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.team-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto var(--spacing-md);
+    overflow: hidden;
+}
+
+.team-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-member h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-xs);
+    color: var(--black);
+}
+
+.team-role {
+    color: var(--accent-teal);
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+}
+
+.team-member p {
+    color: var(--gray-medium);
+    line-height: 1.6;
+}
+
+/* Values Section */
+.values-section {
+    padding: var(--spacing-xl) 0;
+    background: var(--white);
+}
+
+.values-section .heading-section {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.values-grid {
+    padding: 100px 0;
+    background: #16171A;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+.values-grid::before {
+    content: 'AEBDIGITAL • AEBDIGITAL • AEBDIGITAL • AEBDIGITAL • AEBDIGITAL • ';
+    position: absolute;
+    top: 30%;
+    left: 0;
+    transform: translateY(-50%);
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 15vw;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.6);
+    text-stroke: 2px rgba(255, 255, 255, 0.6);
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    opacity: 0.5;
+    animation: values-text-slide 30s linear infinite;
+    width: 100%;
+}
+
+.values-grid::after {
+    content: 'AEBDIGITAL • AEBDIGITAL • AEBDIGITAL • AEBDIGITAL • AEBDIGITAL • ';
+    position: absolute;
+    top: 70%;
+    left: 0;
+    transform: translateY(-50%);
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 15vw;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.6);
+    text-stroke: 2px rgba(255, 255, 255, 0.6);
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    opacity: 0.5;
+    animation: values-text-slide-reverse 25s linear infinite;
+    width: 100%;
+}
+
+@keyframes values-text-slide {
+    0% {
+        transform: translateY(-50%) translateX(0%);
+    }
+    100% {
+        transform: translateY(-50%) translateX(-100%);
+    }
+}
+
+@keyframes values-text-slide-reverse {
+    0% {
+        transform: translateY(-50%) translateX(-100%);
+    }
+    100% {
+        transform: translateY(-50%) translateX(0%);
+    }
+}
+
+.values-grid .container {
+    position: relative;
+    z-index: 2;
+}
+
+.values-grid-inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    position: relative;
+    z-index: 2;
+}
+
+.value-card {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.value-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-teal);
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 2rem;
+}
+
+.value-card h3 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--accent-teal);
+    margin-bottom: var(--spacing-sm);
+}
+
+.value-card p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* Tech Circle Styles */
+.tech-circle {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tech-center {
+    position: absolute;
+    z-index: 10;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.center-logo {
+    width: 80px;
+    height: auto;
+}
+
+.tech-orbit {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid rgba(29, 166, 154, 0.2);
+}
+
+.orbit-1 {
+    width: 250px;
+    height: 250px;
+    animation: rotate 20s linear infinite;
+}
+
+.orbit-2 {
+    width: 350px;
+    height: 350px;
+    animation: rotate 30s linear infinite reverse;
+}
+
+.tech-node {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.tech-node:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.tech-node img {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+}
+
+.orbit-1 .tech-node:nth-child(1) {
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.orbit-1 .tech-node:nth-child(2) {
+    top: 50%;
+    right: -30px;
+    transform: translateY(-50%);
+}
+
+.orbit-1 .tech-node:nth-child(3) {
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.orbit-2 .tech-node:nth-child(1) {
+    top: -30px;
+    left: 25%;
+    transform: translateX(-50%);
+}
+
+.orbit-2 .tech-node:nth-child(2) {
+    top: -30px;
+    right: 25%;
+    transform: translateX(50%);
+}
+
+.orbit-2 .tech-node:nth-child(3) {
+    top: 50%;
+    left: -30px;
+    transform: translateY(-50%);
+}
+
+.orbit-2 .tech-node:nth-child(4) {
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Tech Showcase */
+.tech-showcase {
+    padding: var(--spacing-xl) 0;
+    background: var(--white);
+    text-align: center;
+}
+
+.tech-header {
+    margin-bottom: var(--spacing-xl);
+}
+
+.tech-header .section-label {
+    display: inline-block;
+    background: var(--accent-teal);
+    color: var(--white);
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+}
+
+.tech-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0;
+}
+
+.tech-visual {
+    margin: var(--spacing-xl) 0;
+    display: flex;
+    justify-content: center;
+}
+
+.tech-categories-modern {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.tech-category-card {
+    background: var(--light-gray);
+    padding: var(--spacing-lg);
+    border-radius: 20px;
+    text-align: left;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tech-category-card:hover {
+    transform: translateY(-5px);
+    background: var(--white);
+    border-color: var(--accent-teal);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.tech-category-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.tech-category-card h3 i {
+    color: var(--accent-teal);
+    font-size: 1.2rem;
+}
+
+.tech-category-card p {
+    color: var(--gray-medium);
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Company Stats */
+.company-stats {
+    padding: var(--spacing-xl) 0;
+    background: #16171A;
+    color: var(--white);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.stat-box {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.stat-box:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--accent-teal);
+    margin-bottom: var(--spacing-sm);
+}
+
+.stat-label {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Contact Form Section - About Page */
+.contact-form-section {
+    padding: var(--spacing-xl) 0;
+    background: var(--light-gray);
+}
+
+/* Mobile Responsive */
+@media (max-width: 767px) {
+    .story-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .story-content.reverse {
+        direction: ltr;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-text {
+        text-align: left;
+    }
+    
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* First two story images positioned left on mobile */
+    .story-content:nth-child(1) .story-image img,
+    .story-content:nth-child(2) .story-image img {
+        object-position: left center;
+    }
+    
+    .team-member {
+        text-align: left;
+    }
+    
+    .team-photo {
+        margin: 0 0 var(--spacing-md) 0;
+    }
+    
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .value-card {
+        text-align: left;
+    }
+    
+    .value-icon {
+        margin: 0 0 var(--spacing-md) 0;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .values-grid::before,
+    .values-grid::after {
+        font-size: 75vw;
+    }
+    
+    .tech-category-card {
+        padding: 20px;
+    }
+    
+    .tech-circle {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .orbit-1 {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .orbit-2 {
+        width: 240px;
+        height: 240px;
+    }
+    
+    .tech-center {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .center-logo {
+        width: 50px;
+    }
+    
+    .tech-node {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .tech-node img {
+        width: 24px;
+        height: 24px;
+    }
+}

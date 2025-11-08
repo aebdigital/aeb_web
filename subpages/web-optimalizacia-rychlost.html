@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="sk" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Ako optimalizovať rýchlosť načítania webu v roku 2025 | AEB Digital Blog</title>
+    <meta name="description" content="Kompletný guide pre optimalizáciu výkonu webových stránok. Core Web Vitals, lazy loading, CDN, image optimization a pokročilé techniky pre rýchlejší web.">
+    <meta name="keywords" content="optimalizácia webu, rýchlosť načítania, Core Web Vitals, lazy loading, CDN, image optimization, web performance, PageSpeed Insights, LCP, FID, CLS">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://aebdigital.sk/blog/web-optimalizacia-rychlost">
+    
+    <!-- Robots Meta Tags -->
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:locale" content="sk_SK">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Ako optimalizovať rýchlosť načítania webu v roku 2025">
+    <meta property="og:description" content="Rýchlosť načítania je kritická pre používateľskú skúsenosť. Pozrite si praktické tipy na optimalizáciu výkonu webových stránok.">
+    <meta property="og:url" content="https://aebdigital.sk/blog/web-optimalizacia-rychlost">
+    <meta property="og:site_name" content="AEB Digital">
+    <meta property="og:image" content="https://aebdigital.sk/techstack/HTML5_logo_and_wordmark.svg.png">
+    
+    <!-- Article Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Ako optimalizovať rýchlosť načítania webu v roku 2025",
+        "description": "Rýchlosť načítania je kritická pre používateľskú skúsenosť. Pozrite si praktické tipy na optimalizáciu výkonu",
+        "image": "https://aebdigital.sk/techstack/HTML5_logo_and_wordmark.svg.png",
+        "author": {
+            "@type": "Organization",
+            "name": "AEB Digital"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "AEB Digital",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://aebdigital.sk/techstack/aeb_whiteonblack_final.png"
+            }
+        },
+        "datePublished": "2025-01-03",
+        "dateModified": "2025-01-03"
+    }
+    </script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles/base.css?v=1759157669">
+    <link rel="stylesheet" href="../styles/components/header.css?v=1759157669">
+    <link rel="stylesheet" href="../styles/components/footer.css?v=1759157669">
+    <link rel="stylesheet" href="../styles/pages/blog.css?v=1759157669">
+    <link rel="stylesheet" href="../styles/components/contact-form.css?v=1759157669">
+    <link rel="stylesheet" href="../styles/components/faq.css?v=1759157669">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../sources/techstack/aeb_whiteonblack_final.png" type="image/png">
+    
+    <style>
+    .article-header {
+        padding: 120px 0 60px 0;
+        background: linear-gradient(135deg, #E34F26, #F16529);
+        color: white;
+        text-align: center;
+    }
+    .article-meta {
+        margin-bottom: 20px;
+        opacity: 0.9;
+    }
+    .article-title {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        font-weight: 800;
+    }
+    .article-excerpt {
+        font-size: 1.3rem;
+        opacity: 0.9;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .article-content {
+        padding: 60px 0;
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.8;
+    }
+    .article-content h2 {
+        color: var(--black);
+        margin: 40px 0 20px 0;
+        font-size: 2rem;
+    }
+    .article-content h3 {
+        color: var(--black);
+        margin: 30px 0 15px 0;
+        font-size: 1.5rem;
+    }
+    .article-content p {
+        margin-bottom: 20px;
+        color: #333;
+    }
+    .article-content ul {
+        margin: 20px 0;
+        padding-left: 30px;
+    }
+    .article-content li {
+        margin-bottom: 10px;
+        color: #333;
+    }
+    .code-block {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+        font-family: 'Courier New', monospace;
+        overflow-x: auto;
+    }
+    .back-to-blog {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--accent-teal);
+        text-decoration: none;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+    @media (max-width: 767px) {
+        .article-title {
+            font-size: 2.2rem;
+        }
+        .article-excerpt {
+            font-size: 1.1rem;
+        }
+        .article-content {
+            padding: 40px 0;
+        }
+        /* Prevent code blocks from causing horizontal scroll */
+        pre {
+            max-width: 100%;
+            overflow-x: auto;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+        code {
+            word-wrap: break-word;
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Header will be injected by JavaScript -->
+
+    <!-- Main Content -->
+    <main>
+        <!-- Article Header -->
+        <article class="blog-article">
+            <section class="article-header">
+                <div class="container">
+                    <div class="article-meta">
+                        <span class="article-category">Vývoj</span>
+                        <span class="article-date">3. január 2025</span>
+                        <span class="article-author">AEB Digital</span>
+                    </div>
+                    <h1 class="article-title">Ako optimalizovať rýchlosť načítania webu v roku 2025</h1>
+                    
+                </div>
+            </section>
+
+            <div class="article-content">
+                <div class="container">
+                    <div class="article-body">
+                        
+                        <!-- Introduction -->
+                        <section class="content-section">
+                            <p class="lead">Rýchlosť načítania webových stránok je dnes kritickým faktorom úspechu. Používatelia opúšťajú stránky, ktoré sa načítajú dlhšie ako 3 sekundy, a Google penalizuje pomalé weby v vyhľadávaní. Naučte sa, ako optimalizovať výkon vašej stránky.</p>
+                            
+                            <p>V roku 2025 je optimalizácia výkonu webu ešte dôležitejšia než kedykoľvek predtým. S rastúcimi očakávaniami používateľov a stále prísnejšími algoritmami vyhľadávačov je potrebné pristupovať k optimalizácii systematicky a s využitím najnovších techník.</p>
+                        </section>
+
+                        <!-- Core Web Vitals -->
+                        <section class="content-section">
+                            <h2>1. Core Web Vitals - základ optimalizácie</h2>
+                            
+                            <p>Google Core Web Vitals sú tri kľúčové metriky, ktoré merajú používateľskú skúsenosť:</p>
+                            
+                            <h3>Largest Contentful Paint (LCP)</h3>
+                            <ul>
+                                <li><strong>Cieľ:</strong> Pod 2,5 sekundy</li>
+                                <li><strong>Meria:</strong> Čas načítania najväčšieho obsahu na stránke</li>
+                                <li><strong>Optimalizácia:</strong> Preload kritických zdrojov, optimalizácia obrázkov</li>
+                            </ul>
+                            
+                            <pre><code>&lt;link rel="preload" href="hero-image.jpg" as="image"&gt;
+&lt;img src="hero-image.webp" alt="Hero" loading="eager" 
+     fetchpriority="high" width="800" height="600"&gt;</code></pre>
+                            
+                            <h3>First Input Delay (FID)</h3>
+                            <ul>
+                                <li><strong>Cieľ:</strong> Pod 100 milisekúnd</li>
+                                <li><strong>Meria:</strong> Čas medzi prvou interakciou a odpoveďou</li>
+                                <li><strong>Optimalizácia:</strong> Redukcia JavaScript, code splitting</li>
+                            </ul>
+                            
+                            <h3>Cumulative Layout Shift (CLS)</h3>
+                            <ul>
+                                <li><strong>Cieľ:</strong> Pod 0,1</li>
+                                <li><strong>Miera:</strong> Neočakávané pohyby obsahu</li>
+                                <li><strong>Optimalizácia:</strong> Rezervácia miesta pre obrázky a reklamy</li>
+                            </ul>
+                            
+                            <pre><code>/* CSS rezervácia miesta */
+.image-placeholder {
+  width: 800px;
+  height: 600px;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}</code></pre>
+                        </section>
+
+                        <!-- Image Optimization -->
+                        <section class="content-section">
+                            <h2>2. Optimalizácia obrázkov</h2>
+                            
+                            <h3>Moderné formáty obrázkov</h3>
+                            <p>Používajte efektívne formáty ako WebP a AVIF:</p>
+                            
+                            <pre><code>&lt;picture&gt;
+  &lt;source srcset="image.avif" type="image/avif"&gt;
+  &lt;source srcset="image.webp" type="image/webp"&gt;
+  &lt;img src="image.jpg" alt="Fallback obrázok" 
+       width="800" height="600" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                            
+                            <h3>Responsive images</h3>
+                            <pre><code>&lt;img srcset="small.jpg 400w, medium.jpg 800w, large.jpg 1200w"
+     sizes="(max-width: 400px) 400px, 
+            (max-width: 800px) 800px, 1200px"
+     src="medium.jpg" alt="Responzívny obrázok"&gt;</code></pre>
+                            
+                            <h3>Lazy loading</h3>
+                            <pre><code>const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      img.src = img.dataset.src;
+      img.classList.remove('lazy');
+      observer.unobserve(img);
+    }
+  });
+});
+
+document.querySelectorAll('img[data-src]').forEach(img => {
+  observer.observe(img);
+});</code></pre>
+                        </section>
+
+                        <!-- CSS Optimization -->
+                        <section class="content-section">
+                            <h2>3. CSS optimalizácia</h2>
+                            
+                            <h3>Critical CSS</h3>
+                            <p>Inline kritické CSS pre above-the-fold obsah:</p>
+                            
+                            <pre><code>&lt;style&gt;
+/* Critical CSS pre hero sekciu */
+.hero {
+  height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+&lt;/style&gt;
+
+&lt;link rel="preload" href="styles.css" as="style" 
+      onload="this.onload=null;this.rel='stylesheet'"&gt;</code></pre>
+                            
+                            <h3>CSS containment</h3>
+                            <pre><code>.card {
+  contain: layout style paint;
+}
+
+.sidebar {
+  contain: layout;
+}</code></pre>
+                            
+                            <h3>Efektívne selektory</h3>
+                            <pre><code>/* Zlé - príliš špecifické */
+.header .nav ul li a.active { }
+
+/* Dobré - jednoduché */
+.nav-link.active { }</code></pre>
+                        </section>
+
+                        <!-- JavaScript Optimization -->
+                        <section class="content-section">
+                            <h2>4. JavaScript optimalizácia</h2>
+                            
+                            <h3>Code splitting</h3>
+                            <pre><code>// Dynamic import
+const loadModule = async () => {
+  const { heavyFunction } = await import('./heavy-module.js');
+  return heavyFunction();
+};
+
+// React lazy loading
+const HeavyComponent = lazy(() => import('./HeavyComponent'));</code></pre>
+                            
+                            <h3>Tree shaking</h3>
+                            <pre><code>// webpack.config.js
+module.exports = {
+  optimization: {
+    usedExports: true,
+    sideEffects: false
+  }
+};</code></pre>
+                            
+                            <h3>Service Worker pre caching</h3>
+                            <pre><code>// sw.js
+const CACHE_NAME = 'v1';
+const urlsToCache = ['/css/style.css', '/js/script.js'];
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => response || fetch(event.request))
+  );
+});</code></pre>
+                        </section>
+
+                        <!-- Resource Hints -->
+                        <section class="content-section">
+                            <h2>5. Resource hints</h2>
+                            
+                            <h3>DNS prefetch</h3>
+                            <pre><code>&lt;link rel="dns-prefetch" href="//fonts.googleapis.com"&gt;
+&lt;link rel="dns-prefetch" href="//api.example.com"&gt;</code></pre>
+                            
+                            <h3>Preconnect</h3>
+                            <pre><code>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</code></pre>
+                            
+                            <h3>Prefetch a preload</h3>
+                            <pre><code>&lt;!-- Preload kritických zdrojov --&gt;
+&lt;link rel="preload" href="critical.css" as="style"&gt;
+&lt;link rel="preload" href="hero.woff2" as="font" type="font/woff2" crossorigin&gt;
+
+&lt;!-- Prefetch pre ďalšie stránky --&gt;
+&lt;link rel="prefetch" href="next-page.html"&gt;</code></pre>
+                        </section>
+
+                        <!-- CDN and Caching -->
+                        <section class="content-section">
+                            <h2>6. CDN a caching stratégie</h2>
+                            
+                            <h3>HTTP cache headers</h3>
+                            <pre><code># .htaccess
+&lt;IfModule mod_expires.c&gt;
+  ExpiresActive on
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType text/html "access plus 1 hour"
+&lt;/IfModule&gt;</code></pre>
+                            
+                            <h3>ETag optimalizácia</h3>
+                            <pre><code># Odstránenie ETag pre statické súbory
+FileETag None</code></pre>
+                            
+                            <h3>Gzip kompresácia</h3>
+                            <pre><code>&lt;IfModule mod_deflate.c&gt;
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE application/javascript
+&lt;/IfModule&gt;</code></pre>
+                        </section>
+
+                        <!-- Database Optimization -->
+                        <section class="content-section">
+                            <h2>7. Optimalizácia databázy</h2>
+                            
+                            <h3>Indexovanie</h3>
+                            <pre><code>-- SQL indexy pre rýchle vyhľadávanie
+CREATE INDEX idx_user_email ON users(email);
+CREATE INDEX idx_post_published ON posts(published_at, status);</code></pre>
+                            
+                            <h3>Query optimalizácia</h3>
+                            <pre><code>-- Zlé - N+1 problém
+SELECT * FROM posts;
+-- Pre každý post: SELECT * FROM users WHERE id = ?
+
+-- Dobré - JOIN
+SELECT p.*, u.name FROM posts p 
+JOIN users u ON p.user_id = u.id;</code></pre>
+                            
+                            <h3>Connection pooling</h3>
+                            <pre><code>// Node.js example
+const mysql = require('mysql2');
+const pool = mysql.createPool({
+  connectionLimit: 10,
+  host: 'localhost',
+  user: 'user',
+  password: 'password',
+  database: 'mydb'
+});</code></pre>
+                        </section>
+
+                        <!-- Monitoring -->
+                        <section class="content-section">
+                            <h2>8. Monitoring a meranie</h2>
+                            
+                            <h3>Web Vitals monitoring</h3>
+                            <pre><code>import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals';
+
+function sendToAnalytics({name, delta, value, id}) {
+  gtag('event', name, {
+    event_category: 'Web Vitals',
+    event_label: id,
+    value: Math.round(name === 'CLS' ? delta * 1000 : delta),
+    non_interaction: true,
+  });
+}
+
+getCLS(sendToAnalytics);
+getFID(sendToAnalytics);
+getFCP(sendToAnalytics);
+getLCP(sendToAnalytics);
+getTTFB(sendToAnalytics);</code></pre>
+                            
+                            <h3>Performance Observer</h3>
+                            <pre><code>const observer = new PerformanceObserver((list) => {
+  list.getEntries().forEach((entry) => {
+    if (entry.entryType === 'navigation') {
+      console.log('DOMContentLoaded:', entry.domContentLoadedEventEnd - entry.domContentLoadedEventStart);
+    }
+  });
+});
+
+observer.observe({entryTypes: ['navigation', 'resource']});</code></pre>
+                        </section>
+
+                        <!-- Tools and Testing -->
+                        <section class="content-section">
+                            <h2>9. Nástroje pre testovanie</h2>
+                            
+                            <h3>Automatizované testovanie</h3>
+                            <pre><code>// Lighthouse CI
+module.exports = {
+  ci: {
+    collect: {
+      numberOfRuns: 3,
+      url: ['http://localhost:3000']
+    },
+    assert: {
+      assertions: {
+        'categories:performance': ['error', {minScore: 0.9}],
+        'categories:accessibility': ['error', {minScore: 0.9}],
+      }
+    }
+  }
+};</code></pre>
+                            
+                            <h3>Užitočné nástroje</h3>
+                            <ul>
+                                <li><strong>PageSpeed Insights</strong> - Google analýza výkonu</li>
+                                <li><strong>GTmetrix</strong> - Detailné metriky a odporúčania</li>
+                                <li><strong>WebPageTest</strong> - Pokročilé testovanie</li>
+                                <li><strong>Chrome DevTools</strong> - Lighthouse a Performance panel</li>
+                                <li><strong>Pingdom</strong> - Monitoring dostupnosti</li>
+                            </ul>
+                        </section>
+
+                        <!-- Implementation Checklist -->
+                        <section class="content-section">
+                            <h2>10. Implementačný checklist</h2>
+                            
+                            <div class="checklist">
+                                <h3>Základná optimalizácia</h3>
+                                <ul class="checklist-items">
+                                    <li>✅ Optimalizácia obrázkov (WebP, lazy loading)</li>
+                                    <li>✅ Minimalizácia CSS/JS súborov</li>
+                                    <li>✅ Gzip kompresácia</li>
+                                    <li>✅ Browser caching</li>
+                                    <li>✅ CDN implementácia</li>
+                                </ul>
+                                
+                                <h3>Pokročilá optimalizácia</h3>
+                                <ul class="checklist-items">
+                                    <li>✅ Critical CSS inline</li>
+                                    <li>✅ Code splitting</li>
+                                    <li>✅ Service Worker</li>
+                                    <li>✅ Resource hints (preload, prefetch)</li>
+                                    <li>✅ Database optimalizácia</li>
+                                </ul>
+                                
+                                <h3>Monitoring</h3>
+                                <ul class="checklist-items">
+                                    <li>✅ Core Web Vitals tracking</li>
+                                    <li>✅ Performance budgets</li>
+                                    <li>✅ Automatizované testovanie</li>
+                                    <li>✅ Real User Monitoring (RUM)</li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <!-- Conclusion -->
+                        <section class="content-section">
+                            <h2>Záver</h2>
+                            
+                            <p>Optimalizácia rýchlosti webových stránok je kontinuálny proces, ktorý vyžaduje systematický prístup. Začnite s najväčšími problémami, ktoré identifikujete pomocou nástrojov ako PageSpeed Insights, a postupne implementujte pokročilejšie techniky.</p>
+                            
+                            <div class="key-points">
+                                <h3>🔑 Kľúčové body</h3>
+                                <ul>
+                                    <li><strong>Merajte pred optimalizáciou</strong> - použite nástroje pre baseline</li>
+                                    <li><strong>Prioritizujte Core Web Vitals</strong> - LCP, FID, CLS sú kritické</li>
+                                    <li><strong>Optimalizujte obrázky</strong> - často najväčší performance bottleneck</li>
+                                    <li><strong>Implementujte caching</strong> - browser aj server-side</li>
+                                    <li><strong>Monitorujte kontinuálne</strong> - performance sa môže zhoršiť</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="tip-box">
+                                <h3>💡 Pro tip</h3>
+                                <p>Nastavte si performance budget - napríklad maximálne 2MB pre desktop a 1MB pre mobile. Každá nová funkcia musí spĺňať tieto limity, alebo musíte optimalizovať existujúci kód.</p>
+                            </div>
+                        </section>
+
+                        <!-- Call to Action -->
+                        <section class="cta-section">
+                            <div class="cta-content">
+                                <h2>Potrebujete pomoc s optimalizáciou výkonu?</h2>
+                                <p>Náš tím expertov vám pomôže identifikovať bottlenecky a implementovať efektívne riešenia pre maximálnu rýchlosť vašej stránky.</p>
+                                
+                                <div class="cta-buttons">
+                                    <a href="https://aebdigital.sk/kontakt" class="btn btn-primary">Bezplatná analýza</a>
+                                    <a href="https://aebdigital.sk/sluzby" class="btn btn-secondary">Naše služby</a>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Footer will be injected by JavaScript -->
+
+    <!-- Lenis Smooth Scrolling -->
+    <!-- GSAP and ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Lenis Smooth Scrolling -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    
+    <!-- Scripts -->
+    <script src="../js/components/footer.js?v=1759092853"></script>
+    <script src="../js/components/contact-form.js?v=1759092853"></script>
+    <script src="../js/components/faq.js?v=1759092853"></script>
+    <script src="../js/main.js?v=1759092853"></script>
+</body>
+</html>

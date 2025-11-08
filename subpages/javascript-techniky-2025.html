@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="sk" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Moderné JavaScript techniky pre vývojárov v roku 2025 | AEB Digital Blog</title>
+    <meta name="description" content="Objavte najnovšie JavaScript techniky a best practices pre rok 2025. ES2024 features, async/await patterns, TypeScript, performance optimalizácia a moderné frameworky.">
+    <meta name="keywords" content="JavaScript 2025, ES2024, async await, TypeScript, JavaScript performance, modern JavaScript, web development, frontend techniky, JavaScript best practices">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://aebdigital.sk/blog/javascript-techniky-2025">
+    
+    <!-- Robots Meta Tags -->
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:locale" content="sk_SK">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Moderné JavaScript techniky pre vývojárov v roku 2025">
+    <meta property="og:description" content="Objavte najnovšie JavaScript techniky a best practices pre rok 2025. ES2024 features, async/await patterns a moderné frameworky.">
+    <meta property="og:url" content="https://aebdigital.sk/blog/javascript-techniky-2025">
+    <meta property="og:site_name" content="AEB Digital">
+    <meta property="og:image" content="https://aebdigital.sk/techstack/JavaScript-Logo-scaled-e1750439290173.png">
+    
+    <!-- Article Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Moderné JavaScript techniky pre vývojárov v roku 2025",
+        "description": "JavaScript sa neustále vyvíja. Naučte sa najnovšie techniky a best practices pre moderný vývoj webových aplikácií",
+        "image": "https://aebdigital.sk/techstack/JavaScript-Logo-scaled-e1750439290173.png",
+        "author": {
+            "@type": "Organization",
+            "name": "AEB Digital"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "AEB Digital",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://aebdigital.sk/techstack/aeb_whiteonblack_final.png"
+            }
+        },
+        "datePublished": "2025-01-05",
+        "dateModified": "2025-01-05"
+    }
+    </script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles/base.css?v=1759157669">
+    <link rel="stylesheet" href="../styles/components/header.css?v=1759157669">
+    <link rel="stylesheet" href="../styles/components/footer.css?v=1759157669">
+    <link rel="stylesheet" href="../styles/pages/blog.css?v=1759157669">
+    <link rel="stylesheet" href="../styles/components/contact-form.css?v=1759157669">
+    <link rel="stylesheet" href="../styles/components/faq.css?v=1759157669">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../sources/techstack/aeb_whiteonblack_final.png" type="image/png">
+    
+    <style>
+    .article-header {
+        padding: 120px 0 60px 0;
+        background: linear-gradient(135deg, #F7DF1E, #000000);
+        color: white;
+        text-align: center;
+    }
+    .article-meta {
+        margin-bottom: 20px;
+        opacity: 0.9;
+    }
+    .article-title {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        font-weight: 800;
+    }
+    .article-excerpt {
+        font-size: 1.3rem;
+        opacity: 0.9;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .article-content {
+        padding: 60px 0;
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.8;
+    }
+    .article-content h2 {
+        color: var(--black);
+        margin: 40px 0 20px 0;
+        font-size: 2rem;
+    }
+    .article-content h3 {
+        color: var(--black);
+        margin: 30px 0 15px 0;
+        font-size: 1.5rem;
+    }
+    .article-content p {
+        margin-bottom: 20px;
+        color: #333;
+    }
+    .article-content ul {
+        margin: 20px 0;
+        padding-left: 30px;
+    }
+    .article-content li {
+        margin-bottom: 10px;
+        color: #333;
+    }
+    .code-block {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+        font-family: 'Courier New', monospace;
+        overflow-x: auto;
+    }
+    .back-to-blog {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--accent-teal);
+        text-decoration: none;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+    @media (max-width: 767px) {
+        .article-title {
+            font-size: 2.2rem;
+        }
+        .article-excerpt {
+            font-size: 1.1rem;
+        }
+        .article-content {
+            padding: 40px 0;
+        }
+        /* Prevent code blocks from causing horizontal scroll */
+        pre {
+            max-width: 100%;
+            overflow-x: auto;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+        code {
+            word-wrap: break-word;
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Header will be injected by JavaScript -->
+
+    <!-- Main Content -->
+    <main>
+        <!-- Article Header -->
+        <article class="blog-article">
+            <section class="article-header">
+                <div class="container">
+                    <div class="article-meta">
+                        <span class="article-category">Technológie</span>
+                        <span class="article-date">5. január 2025</span>
+                        <span class="article-author">AEB Digital</span>
+                    </div>
+                    <h1 class="article-title">Moderné JavaScript techniky pre vývojárov v roku 2025</h1>
+                    
+                </div>
+            </section>
+
+            <div class="article-content">
+                <div class="container">
+                    <div class="article-body">
+                        
+                        <!-- Introduction -->
+                        <section class="content-section">
+                            <p class="lead">JavaScript pokračuje vo svojej evolúcii a rok 2025 prináša nové možnosti, ktoré menia spôsob, akým vyvíjame webové aplikácie. Od nových ES2024 funkcionalít až po pokročilé asynchronné patterny - pozrite si najvýznamnejšie trendy a techniky.</p>
+                            
+                            <p>Moderný JavaScript development si vyžaduje neustále vzdelávanie a adaptáciu na nové technológie. V tomto článku si prejdeme najdôležitejšie techniky, ktoré by mal poznať každý JavaScript vývojár v roku 2025.</p>
+                        </section>
+
+                        <!-- ES2024 Features -->
+                        <section class="content-section">
+                            <h2>1. ES2024 Nové funkcionality</h2>
+                            
+                            <h3>Array.fromAsync()</h3>
+                            <p>Nová metóda, ktorá umožňuje vytvorenie poľa z asynchronného iterátora:</p>
+                            <pre><code>const asyncIterable = {
+  async *[Symbol.asyncIterator]() {
+    for (let i = 0; i < 3; i++) {
+      yield Promise.resolve(i);
+                            </code></pre>
+                            
+                            <h3>Object.groupBy() a Map.groupBy()</h3>
+                            <p>Efektívne grupovanie objektov:</p>
+                            <pre><code>const products = [
+  { category: 'electronics', name: 'laptop' },
+  { category: 'books', name: 'javascript guide' },
+  { category: 'electronics', name: 'smartphone' }
+];
+
+const grouped = Object.groupBy(products, item => item.category);
+// { electronics: [...], books: [...] }</code></pre>
+                        </section>
+
+                        <!-- Async Patterns -->
+                        <section class="content-section">
+                            <h2>2. Pokročilé asynchronné patterny</h2>
+                            
+                            <h3>Top-level await</h3>
+                            <p>Používanie await na najvyššej úrovni modulov:</p>
+                            <pre><code>// config.js
+const response = await fetch('/api/config');
+export const config = await response.json();
+
+// main.js
+import { config } from './config.js';
+console.log(config); // Už pripravený</code></pre>
+                            
+                            <h3>AbortController pre lepšie riadenie</h3>
+                            <p>Pokročilé riadenie asynchronných operácií:</p>
+                            <pre><code>const controller = new AbortController();
+const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+try {
+  const response = await fetch('/api/data', {
+    signal: controller.signal
+  });
+  clearTimeout(timeoutId);
+  return await response.json();
+} catch (error) {
+  if (error.name === 'AbortError') {
+    console.log('Request was aborted');
+  }
+}</code></pre>
+                        </section>
+
+                        <!-- Performance Optimization -->
+                        <section class="content-section">
+                            <h2>3. Performance optimalizácia</h2>
+                            
+                            <h3>Web Workers pre ťažké operácie</h3>
+                            <p>Využitie Web Workers pre výpočtovo náročné úlohy:</p>
+                            <pre><code>// worker.js
+self.onmessage = function(e) {
+  const { numbers } = e.data;
+  const result = numbers.reduce((sum, num) => sum + num, 0);
+  self.postMessage(result);
+};
+
+// main.js
+const worker = new Worker('worker.js');
+worker.postMessage({ numbers: [1, 2, 3, 4, 5] });
+worker.onmessage = (e) => console.log('Result:', e.data);</code></pre>
+                            
+                            <h3>Intersection Observer API</h3>
+                            <p>Efektívne sledovanie viditeľnosti elementov:</p>
+                            <pre><code>const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Lazy load obsah
+      entry.target.src = entry.target.dataset.src;
+      observer.unobserve(entry.target);
+    }
+  });
+});
+
+document.querySelectorAll('img[data-src]').forEach(img => {
+  observer.observe(img);
+});</code></pre>
+                        </section>
+
+                        <!-- TypeScript Integration -->
+                        <section class="content-section">
+                            <h2>4. TypeScript integrácia</h2>
+                            
+                            <h3>Utility Types</h3>
+                            <p>Pokročilé TypeScript utility types pre lepšiu type safety:</p>
+                            <pre><code>interface User {
+  id: number;
+  name: string;
+  email: string;
+  isActive: boolean;
+}
+
+// Partial pre updaty
+type UserUpdate = Partial&lt;User&gt;;
+
+// Pick pre špecifické vlastnosti
+type UserSummary = Pick&lt;User, 'id' | 'name'&gt;;
+
+// Record pre mapovania
+type UserRoles = Record&lt;string, User&gt;;</code></pre>
+                            
+                            <h3>Template Literal Types</h3>
+                            <pre><code>type EventNames = 'click' | 'scroll' | 'mousemove';
+type EventHandlers = `on${Capitalize&lt;EventNames&gt;}`;
+// 'onClick' | 'onScroll' | 'onMousemove'</code></pre>
+                        </section>
+
+                        <!-- Module Federation -->
+                        <section class="content-section">
+                            <h2>5. Module Federation</h2>
+                            
+                            <p>Zdieľanie kódu medzi aplikáciami pomocou webpack Module Federation:</p>
+                            <pre><code>// webpack.config.js
+const ModuleFederationPlugin = require('@module-federation/webpack');
+
+module.exports = {
+  plugins: [
+    new ModuleFederationPlugin({
+      name: 'shell',
+      remotes: {
+        mfApp: 'mfApp@http://localhost:3001/remoteEntry.js',
+      },
+    }),
+  ],
+};</code></pre>
+                        </section>
+
+                        <!-- Testing Strategies -->
+                        <section class="content-section">
+                            <h2>6. Moderné testovanie</h2>
+                            
+                            <h3>Vitest pre rýchle unit testy</h3>
+                            <pre><code>import { describe, it, expect } from 'vitest';
+
+describe('Calculator', () => {
+  it('should add numbers correctly', () => {
+    expect(add(2, 3)).toBe(5);
+  });
+  
+  it('should handle async operations', async () => {
+    const result = await fetchData();
+    expect(result).toMatchObject({ status: 'success' });
+  });
+});</code></pre>
+                            
+                            <h3>Playwright pre E2E testing</h3>
+                            <pre><code>import { test, expect } from '@playwright/test';
+
+test('user can login', async ({ page }) => {
+  await page.goto('/login');
+  await page.fill('[data-testid=email]', 'user@example.com');
+  await page.fill('[data-testid=password]', 'password');
+  await page.click('[data-testid=login-button]');
+  
+  await expect(page).toHaveURL('/dashboard');
+});</code></pre>
+                        </section>
+
+                        <!-- State Management -->
+                        <section class="content-section">
+                            <h2>7. Moderný state management</h2>
+                            
+                            <h3>Zustand pre jednoduchý state</h3>
+                            <pre><code>import { create } from 'zustand';
+
+const useStore = create((set) => ({
+  count: 0,
+  increment: () => set((state) => ({ count: state.count + 1 })),
+  decrement: () => set((state) => ({ count: state.count - 1 })),
+}));</code></pre>
+                            
+                            <h3>Jotai pre atomický state</h3>
+                            <pre><code>import { atom, useAtom } from 'jotai';
+
+const countAtom = atom(0);
+const doubledAtom = atom(get => get(countAtom) * 2);
+
+function Counter() {
+  const [count, setCount] = useAtom(countAtom);
+  const [doubled] = useAtom(doubledAtom);
+  
+  return (
+    &lt;div&gt;
+      Count: {count}, Doubled: {doubled}
+      &lt;button onClick={() => setCount(c => c + 1)}&gt;+&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+                        </section>
+
+                        <!-- Security Best Practices -->
+                        <section class="content-section">
+                            <h2>8. Bezpečnostné best practices</h2>
+                            
+                            <h3>Content Security Policy</h3>
+                            <pre><code>// CSP header
+Content-Security-Policy: default-src 'self'; 
+  script-src 'self' 'unsafe-inline' https://trusted-cdn.com;
+  style-src 'self' 'unsafe-inline';
+  img-src 'self' data: https:;</code></pre>
+                            
+                            <h3>Input sanitization</h3>
+                            <pre><code>import DOMPurify from 'dompurify';
+
+function sanitizeInput(userInput) {
+  return DOMPurify.sanitize(userInput, {
+    ALLOWED_TAGS: ['p', 'br', 'strong', 'em'],
+    ALLOWED_ATTR: []
+  });
+}</code></pre>
+                        </section>
+
+                        <!-- Build Tools -->
+                        <section class="content-section">
+                            <h2>9. Moderné build nástroje</h2>
+                            
+                            <h3>Vite pre rýchly development</h3>
+                            <pre><code>// vite.config.js
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          utils: ['lodash', 'date-fns']
+        }
+      }
+    }
+  }
+});</code></pre>
+                            
+                            <h3>SWC pre rýchlu kompiláciu</h3>
+                            <pre><code>// .swcrc
+{
+  "jsc": {
+    "target": "es2022",
+    "parser": {
+      "syntax": "typescript",
+      "tsx": true
+    }
+  }
+}</code></pre>
+                        </section>
+
+                        <!-- Monitoring and Analytics -->
+                        <section class="content-section">
+                            <h2>10. Monitoring a analytics</h2>
+                            
+                            <h3>Core Web Vitals monitoring</h3>
+                            <pre><code>import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals';
+
+function sendToAnalytics({name, delta, id}) {
+  // Poslať metriky na server
+  fetch('/analytics', {
+    method: 'POST',
+    body: JSON.stringify({metric: name, value: delta, id})
+  });
+}
+
+getCLS(sendToAnalytics);
+getFID(sendToAnalytics);
+getFCP(sendToAnalytics);
+getLCP(sendToAnalytics);
+getTTFB(sendToAnalytics);</code></pre>
+                        </section>
+
+                        <!-- Conclusion -->
+                        <section class="content-section">
+                            <h2>Záver</h2>
+                            
+                            <p>JavaScript ekosystém sa neustále vyvíja a rok 2025 prináša mnoho zaujímavých možností. Kľúčom k úspechu je:</p>
+                            
+                            <ul>
+                                <li><strong>Postupné osvojovanie nových funkcionalít</strong> - začnite s jednoduchými ES2024 features</li>
+                                <li><strong>Zameranie na performance</strong> - používajte Web Workers a optimalizujte kritické cesty</li>
+                                <li><strong>Type safety</strong> - integrácia TypeScript do vašich projektov</li>
+                                <li><strong>Moderné nástroje</strong> - Vite, SWC a nové testing frameworky</li>
+                                <li><strong>Bezpečnosť</strong> - implementácia CSP a input sanitization</li>
+                            </ul>
+                            
+                            <div class="tip-box">
+                                <h3>💡 Tip od expertov</h3>
+                                <p>Nezačínajte všetko naraz. Vyberte si 2-3 techniky, ktoré sú pre váš projekt najrelevantnejšie, a postupne ich implementujte. JavaScript komunita je veľmi aktívna, takže sledujte najnovšie trendy, ale buďte selektívni.</p>
+                            </div>
+                        </section>
+
+                        <!-- Call to Action -->
+                        <section class="cta-section">
+                            <div class="cta-content">
+                                <h2>Potrebujete pomoc s modernými JavaScript projektmi?</h2>
+                                <p>Náš tím expertov vám pomôže implementovať najnovšie technológie a optimalizovať váš kód pre maximálny výkon.</p>
+                                
+                                <div class="cta-buttons">
+                                    <a href="https://aebdigital.sk/kontakt" class="btn btn-primary">Kontaktujte nás</a>
+                                    <a href="https://aebdigital.sk/portfolio" class="btn btn-secondary">Pozrite naše projekty</a>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Footer will be injected by JavaScript -->
+
+    <!-- Lenis Smooth Scrolling -->
+    <!-- GSAP and ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Lenis Smooth Scrolling -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    
+    <!-- Scripts -->
+    <script src="../js/components/footer.js?v=1759092853"></script>
+    <script src="../js/components/contact-form.js?v=1759092853"></script>
+    <script src="../js/components/faq.js?v=1759092853"></script>
+    <script src="../js/main.js?v=1759092853"></script>
+</body>
+</html>

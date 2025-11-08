@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="sk" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>5 krokov k úspešnej SEO stratégii v roku 2025 | AEB Digital Blog</title>
+    <meta name="description" content="Kompletný guide pre SEO stratégiu v roku 2025. Keyword research, technické SEO, content stratégia, Core Web Vitals a analytics. Praktické tipy od expertov.">
+    <meta name="keywords" content="SEO stratégia 2025, keyword research, technické SEO, content marketing, Google algoritmus, Core Web Vitals, SEO audit, vyhľadávače">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://aebdigital.sk/blog/seo-strategia-2025">
+    
+    <!-- Robots Meta Tags -->
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:locale" content="sk_SK">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="5 krokov k úspešnej SEO stratégii v roku 2025">
+    <meta property="og:description" content="Kompletný guide pre SEO stratégiu v roku 2025 s praktickými tipmi a best practices.">
+    <meta property="og:url" content="https://aebdigital.sk/blog/seo-strategia-2025">
+    <meta property="og:site_name" content="AEB Digital">
+    <meta property="og:image" content="https://aebdigital.sk/techstack/1f4ac.svg">
+    
+    <!-- Article Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "5 krokov k úspešnej SEO stratégii v roku 2025",
+        "description": "SEO optimalizácia je základom každej digitálnej stratégie. Pozrite si praktické kroky pre zlepšenie viditeľnosti",
+        "image": "https://aebdigital.sk/techstack/1f4ac.svg",
+        "author": {
+            "@type": "Organization",
+            "name": "AEB Digital"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "AEB Digital",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://aebdigital.sk/techstack/aeb_whiteonblack_final.png"
+            }
+        },
+        "datePublished": "2025-01-10",
+        "dateModified": "2025-01-10"
+    }
+    </script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles/base.css?v=1759157669">
+    <link rel="stylesheet" href="../styles/components/header.css?v=1759157669">
+    <link rel="stylesheet" href="../styles/components/footer.css?v=1759157669">
+    <link rel="stylesheet" href="../styles/pages/blog.css?v=1759157669">
+    <link rel="stylesheet" href="../styles/components/contact-form.css?v=1759157669">
+    <link rel="stylesheet" href="../styles/components/faq.css?v=1759157669">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../sources/techstack/aeb_whiteonblack_final.png" type="image/png">
+    
+    <style>
+    .article-header {
+        padding: 120px 0 60px 0;
+        background: linear-gradient(135deg, #10B981, #059669);
+        color: white;
+        text-align: center;
+    }
+    .article-meta {
+        margin-bottom: 20px;
+        opacity: 0.9;
+    }
+    .article-title {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        font-weight: 800;
+    }
+    .article-excerpt {
+        font-size: 1.3rem;
+        opacity: 0.9;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .article-content {
+        padding: 60px 0;
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.8;
+    }
+    .article-content h2 {
+        color: var(--black);
+        margin: 40px 0 20px 0;
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .article-content h3 {
+        color: var(--black);
+        margin: 30px 0 15px 0;
+        font-size: 1.5rem;
+    }
+    .article-content p {
+        margin-bottom: 20px;
+        color: #333;
+    }
+    .article-content ul {
+        margin: 20px 0;
+        padding-left: 30px;
+    }
+    .article-content li {
+        margin-bottom: 10px;
+        color: #333;
+    }
+    .step-number {
+        background: #10B981;
+        color: white;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 1.2rem;
+    }
+    .seo-tip {
+        background: #f0f9ff;
+        border-left: 4px solid #0ea5e9;
+        padding: 20px;
+        margin: 25px 0;
+        border-radius: 0 8px 8px 0;
+    }
+    .seo-tip h4 {
+        margin-top: 0;
+        color: #0ea5e9;
+        font-size: 1.2rem;
+    }
+    .tools-list {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        margin: 20px 0;
+    }
+    .tools-list h4 {
+        color: #10B981;
+        margin-top: 0;
+    }
+    .back-to-blog {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--accent-teal);
+        text-decoration: none;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+    @media (max-width: 767px) {
+        .article-title {
+            font-size: 2.2rem;
+        }
+        .article-excerpt {
+            font-size: 1.1rem;
+        }
+        .article-content {
+            padding: 40px 0;
+        }
+        .article-content h2 {
+            flex-direction: column;
+            text-align: center;
+            gap: 10px;
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Header will be injected by JavaScript -->
+
+    <!-- Main Content -->
+    <main>
+        <!-- Article Header -->
+        <section class="article-header">
+            <div class="container">
+                <div class="article-meta">
+                    <span>10. január 2025</span> • <span>AEB Digital</span> • <span>Marketing</span>
+                </div>
+                <h1 class="article-title">5 krokov k úspešnej SEO stratégii</h1>
+                <p class="article-excerpt">
+                    SEO optimalizácia je základom každej digitálnej stratégie. Pozrite si praktické kroky pre zlepšenie viditeľnosti vo vyhľadávačoch v roku 2025.
+                </p>
+            </div>
+        </section>
+
+        <!-- Article Content -->
+        <section class="article-section">
+            <div class="container">
+                <div class="article-content">
+                    <a href="https://aebdigital.sk/blog" class="back-to-blog">
+                        Späť na blog
+                    </a>
+
+                    <p>V roku 2025 sa SEO stratégia stáva ešte komplexnejšou a dôležitejšou než kedykoľvek predtým. Google's algoritmus sa neustále vyvíja, pričom kladie čoraz väčší dôraz na používateľskú skúsenosť, kvalitný obsah a technické aspekty webových stránok. V tomto kompletnom sprievodcovi sa dozviete, ako vybudovať SEO stratégiu, ktorá prináša dlhodobé výsledky.</p>
+
+                    <div class="seo-tip">
+                        <h4>💡 Prečo je SEO stále dôležité?</h4>
+                        <p>93% všetkých online zážitkov začína vo vyhľadávači. Stránky na prvej pozícii v Google dostanú priemerne 28.5% všetkých klikov. SEO nie je len o traffic - je o kvalitnom trafficu, ktorý konvertuje.</p>
+                    </div>
+
+                    <h2><span class="step-number">1</span>SEO Audit a analýza súčasného stavu</h2>
+                    <p>Pred akoukoľvek optimalizáciou musíte pochopiť, kde aktuálne stojíte. Kompletný SEO audit odhalí silné stránky, problémy a príležitosti vašej webovej stránky.</p>
+
+                    <h3>Technický audit</h3>
+                    <p>Technické SEO je základom všetkého. Ak vaša stránka nie je technicky v poriadku, ostatné optimalizácie nebudú efektívne.</p>
+
+                    <ul>
+                        <li><strong>Core Web Vitals:</strong> Largest Contentful Paint (LCP), First Input Delay (FID), Cumulative Layout Shift (CLS)</li>
+                        <li><strong>Rýchlosť načítania:</strong> Cieľ pod 3 sekundy pre desktop, pod 2 sekundy pre mobil</li>
+                        <li><strong>Mobile-friendliness:</strong> Responsive dizajn a mobilná použiteľnosť</li>
+                        <li><strong>HTTPS:</strong> Bezpečnostné certifikáty sú štandard</li>
+                        <li><strong>XML sitemap:</strong> Správne indexovanie obsahu</li>
+                        <li><strong>Robots.txt:</strong> Kontrola prístupnosti pre crawlery</li>
+                    </ul>
+
+                    <div class="tools-list">
+                        <h4>🔧 Nástroje pre technický audit:</h4>
+                        <ul>
+                            <li><strong>Google PageSpeed Insights</strong> - Core Web Vitals</li>
+                            <li><strong>Google Search Console</strong> - Chyby a warnings</li>
+                            <li><strong>Screaming Frog</strong> - Komplexný technický crawl</li>
+                            <li><strong>GTmetrix</strong> - Detailná analýza rýchlosti</li>
+                            <li><strong>Ahrefs Site Audit</strong> - All-in-one technické SEO</li>
+                        </ul>
+                    </div>
+
+                    <h3>Content audit</h3>
+                    <p>Analyzujte existujúci obsah z pohľadu kvality, relevantnosti a výkonnosti:</p>
+                    <ul>
+                        <li>Identifikujte top performing stránky</li>
+                        <li>Nájdite thin content alebo duplicitný obsah</li>
+                        <li>Analyzujte keyword cannibalization</li>
+                        <li>Preskúmajte user engagement metriky</li>
+                    </ul>
+
+                    <h2><span class="step-number">2</span>Keyword Research a stratégia obsahu</h2>
+                    <p>Keyword research v roku 2025 nie je len o hľadaní kľúčových slov s vysokým search volume. Je to o pochopení search intent a user journey vašej cieľovej skupiny.</p>
+
+                    <h3>Moderný prístup ku keyword research</h3>
+                    <p>Google's algoritmus sa zameriava na kontext a intent, nie len na exact match keywords. Sústredíte sa na:</p>
+
+                    <ul>
+                        <li><strong>Topic clusters:</strong> Vytvárajte obsah okolo hlavných tém, nie jednotlivých keywords</li>
+                        <li><strong>Search intent:</strong> Informational, navigational, commercial, transactional</li>
+                        <li><strong>Long-tail keywords:</strong> Špecifické frázy s vyššou konverziou</li>
+                        <li><strong>Semantic keywords:</strong> Súvisacie a synonymá</li>
+                        <li><strong>Voice search optimization:</strong> Conversational queries</li>
+                    </ul>
+
+                    <div class="seo-tip">
+                        <h4>🎯 People Also Ask optimization</h4>
+                        <p>Využívajte "People Also Ask" sekciu v Google pre identifikáciu related questions. Tieto otázky môžu byť základom pre FAQ sekcie alebo nové články.</p>
+                    </div>
+
+                    <h3>Competitor analýza</h3>
+                    <p>Analyzujte konkurenčné stránky, ktoré sa já dobre pre vaše target keywords:</p>
+                    <ul>
+                        <li>Aké keywords používajú?</li>
+                        <li>Aká je štruktúra ich obsahu?</li>
+                        <li>Aké backlinky majú?</li>
+                        <li>Aké content gaps môžete zaplniť lepšie?</li>
+                    </ul>
+
+                    <div class="tools-list">
+                        <h4>🔍 Keyword research nástroje:</h4>
+                        <ul>
+                            <li><strong>Google Keyword Planner</strong> - Základné keyword data</li>
+                            <li><strong>Ahrefs Keywords Explorer</strong> - Pokročilá analýza</li>
+                            <li><strong>SEMrush</strong> - Competitor analysis</li>
+                            <li><strong>AnswerThePublic</strong> - Question-based keywords</li>
+                            <li><strong>Ubersuggest</strong> - Free alternative</li>
+                        </ul>
+                    </div>
+
+                    <h2><span class="step-number">3</span>On-Page SEO optimalizácia</h2>
+                    <p>On-page SEO v roku 2025 je o vytváraní obsahu, ktorý nie len obsahuje správne keywords, ale skutočne pomáha používateľom vyriešiť ich problémy.</p>
+
+                    <h3>Title tags a meta descriptions</h3>
+                    <p>Stále sú dôležité pre CTR (click-through rate) vo vyhľadávačoch:</p>
+                    <ul>
+                        <li><strong>Title tag:</strong> 50-60 znakov, primary keyword na začiatku</li>
+                        <li><strong>Meta description:</strong> 150-160 znakov, call-to-action</li>
+                        <li><strong>Jedinečnosť:</strong> Každá stránka unique title a description</li>
+                        <li><strong>Brand inclusion:</strong> Zahrňte názov značky pre recognition</li>
+                    </ul>
+
+                    <h3>Header structure (H1-H6)</h3>
+                    <p>Správne použitie header tagov pomáha Google pochopiť štruktúru vášho obsahu:</p>
+                    <ul>
+                        <li><strong>H1:</strong> Jeden na stránku, obsahuje primary keyword</li>
+                        <li><strong>H2-H6:</strong> Logická hierachia, secondary keywords</li>
+                        <li><strong>Featured snippets:</strong> Štruktúrovaný obsah pre position zero</li>
+                    </ul>
+
+                    <h3>Content optimalizácia</h3>
+                    <p>Kvalitný obsah je kráľom, ale musí byť aj optimalizovaný pre vyhľadávače:</p>
+
+                    <ul>
+                        <li><strong>E-A-T:</strong> Expertise, Authoritativeness, Trustworthiness</li>
+                        <li><strong>Word count:</strong> Min. 1000 slov pre competitive keywords</li>
+                        <li><strong>Internal linking:</strong> Logické prepojenie súvisiacich stránok</li>
+                        <li><strong>External linking:</strong> Odkazy na autoritatívne zdroje</li>
+                        <li><strong>Images optimization:</strong> Alt tags, file names, compression</li>
+                    </ul>
+
+                    <div class="seo-tip">
+                        <h4>📝 Content quality signals</h4>
+                        <p>Google hodnotí content quality na základe user signals: time on page, bounce rate, return visitors, social shares. Vytvárajte obsah, ktorý používatelia skutočne čítajú a zdieľajú.</p>
+                    </div>
+
+                    <h3>Schema markup</h3>
+                    <p>Structured data pomáhajú Google lepšie pochopiť váš obsah:</p>
+                    <ul>
+                        <li><strong>Article schema:</strong> Pre blog posts a články</li>
+                        <li><strong>FAQ schema:</strong> Pre FAQ sekcie</li>
+                        <li><strong>Product schema:</strong> Pre e-commerce stránky</li>
+                        <li><strong>Local business schema:</strong> Pre miestne podniky</li>
+                        <li><strong>Review schema:</strong> Pre hodnotenia a recenzie</li>
+                    </ul>
+
+                    <h2><span class="step-number">4</span>Technické SEO a Core Web Vitals</h2>
+                    <p>V roku 2025 sú technické aspekty SEO kritické pre úspech. Google oficiálne používa Page Experience ako ranking factor.</p>
+
+                    <h3>Core Web Vitals optimalizácia</h3>
+                    <p>Tri kľúčové metriky, ktoré ovplyvňujú ranking:</p>
+
+                    <ul>
+                        <li><strong>Largest Contentful Paint (LCP):</strong> Pod 2.5 sekundy
+                            <ul>
+                                <li>Optimalizujte server response time</li>
+                                <li>Použite CDN</li>
+                                <li>Optimalizujte images a fonts</li>
+                            </ul>
+                        </li>
+                        <li><strong>First Input Delay (FID):</strong> Pod 100 millisekúnd
+                            <ul>
+                                <li>Minimalizujte JavaScript execution time</li>
+                                <li>Použite code splitting</li>
+                                <li>Optimalizujte third-party scripts</li>
+                            </ul>
+                        </li>
+                        <li><strong>Cumulative Layout Shift (CLS):</strong> Pod 0.1
+                            <ul>
+                                <li>Definujte size attributes pre images a videos</li>
+                                <li>Rezervujte miesto pre ads</li>
+                                <li>Používajte font-display: swap</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3>Mobile-first indexing</h3>
+                    <p>Google primárne indexuje mobilnú verziu vašej stránky:</p>
+                    <ul>
+                        <li><strong>Responsive design:</strong> Jedna URL pre všetky zariadenia</li>
+                        <li><strong>Mobile usability:</strong> Touch-friendly navigation</li>
+                        <li><strong>Page speed mobile:</strong> Optimalizácia pre pomalé pripojenia</li>
+                        <li><strong>Content parity:</strong> Rovnaký obsah na mobile aj desktop</li>
+                    </ul>
+
+                    <h3>Crawlability a indexability</h3>
+                    <p>Zabezpečte, aby Google mohol nájsť a indexovať váš obsah:</p>
+                    <ul>
+                        <li><strong>XML sitemap:</strong> Aktuálny a complete</li>
+                        <li><strong>Robots.txt:</strong> Correct directives</li>
+                        <li><strong>Internal linking:</strong> Všetky dôležité stránky dostupné cez odkazy</li>
+                        <li><strong>URL structure:</strong> Clean a SEO-friendly URLs</li>
+                        <li><strong>Breadcrumbs:</strong> Navigation a context</li>
+                    </ul>
+
+                    <h2><span class="step-number">5</span>Link Building a off-page SEO</h2>
+                    <p>Backlinky zostávajú jedným z najdôležitejších ranking factors. V roku 2025 sa však sústredíte na kvalitu nad kvantitou.</p>
+
+                    <h3>Moderné link building stratégie</h3>
+
+                    <h4>1. Content-driven link building</h4>
+                    <p>Vytvárajte obsah, ktorý si prirodzene zaslúži odkazy:</p>
+                    <ul>
+                        <li><strong>Research studies:</strong> Originálne dáta a insights</li>
+                        <li><strong>Tools a resources:</strong> Užitočné nástroje pre vašu industry</li>
+                        <li><strong>Infographics:</strong> Vizuálne atraktívny obsah</li>
+                        <li><strong>Expert roundups:</strong> Názory expertov na aktuálne témy</li>
+                    </ul>
+
+                    <h4>2. Digital PR</h4>
+                    <p>Budovanie brand awareness a získavanie high-quality links:</p>
+                    <ul>
+                        <li><strong>HARO (Help A Reporter Out):</strong> Expert commentary</li>
+                        <li><strong>Guest posting:</strong> Na relevant a autoritatívnych stránkach</li>
+                        <li><strong>Podcast appearances:</strong> Industry podcasts</li>
+                        <li><strong>Speaking engagements:</strong> Konferencie a webináre</li>
+                    </ul>
+
+                    <h4>3. Relationship building</h4>
+                    <p>Dlhodobé vzťahy s influencermi a industry leaders:</p>
+                    <ul>
+                        <li><strong>Social media engagement:</strong> Aktívna účasť v diskusiách</li>
+                        <li><strong>Industry events:</strong> Networking a partnerships</li>
+                        <li><strong>Collaboration:</strong> Joint projects a co-marketing</li>
+                    </ul>
+
+                    <div class="seo-tip">
+                        <h4>⚠️ Link building no-no v roku 2025</h4>
+                        <ul>
+                            <li>Private Blog Networks (PBNs)</li>
+                            <li>Kúpovanie lacných backlinkov</li>
+                            <li>Reciprocal link schemes</li>
+                            <li>Directory spam</li>
+                            <li>Comment spam</li>
+                        </ul>
+                    </div>
+
+                    <h3>Local SEO (pre lokálne podniky)</h3>
+                    <p>Ak máte fyzickú prevádzku, local SEO je kritické:</p>
+                    <ul>
+                        <li><strong>Google Business Profile:</strong> Complete a optimalizovaný profil</li>
+                        <li><strong>Local citations:</strong> NAP (Name, Address, Phone) consistency</li>
+                        <li><strong>Customer reviews:</strong> Aktívne získavanie a management</li>
+                        <li><strong>Local keywords:</strong> "služba + mesto"</li>
+                        <li><strong>Local backlinks:</strong> Od local businesses a organizations</li>
+                    </ul>
+
+                    <h2>Analytics a meranie úspechu</h2>
+                    <p>SEO bez merania je plytvaním. Nastavte si správne tracking a KPIs:</p>
+
+                    <h3>Kľúčové SEO metriky</h3>
+                    <ul>
+                        <li><strong>Organic traffic:</strong> Growth a quality</li>
+                        <li><strong>Keyword rankings:</strong> Top 10 positions pre target keywords</li>
+                        <li><strong>Click-through rate (CTR):</strong> Zo SERPs</li>
+                        <li><strong>Conversion rate:</strong> Z organic trafficu</li>
+                        <li><strong>Page loading speed:</strong> Core Web Vitals</li>
+                        <li><strong>Backlink profile:</strong> Domain authority a quality</li>
+                    </ul>
+
+                    <div class="tools-list">
+                        <h4>📊 Analytics nástroje:</h4>
+                        <ul>
+                            <li><strong>Google Analytics 4</strong> - Traffic a behavior analysis</li>
+                            <li><strong>Google Search Console</strong> - Search performance</li>
+                            <li><strong>Ahrefs</strong> - Backlinks a keyword tracking</li>
+                            <li><strong>SEMrush</strong> - Competitor analysis</li>
+                            <li><strong>Screaming Frog</strong> - Technical SEO monitoring</li>
+                        </ul>
+                    </div>
+
+                    <h2>SEO trendy pre rok 2025</h2>
+                    <p>Zostaňte napred pred konkurenciou poznaním najnovších trendov:</p>
+
+                    <h3>1. AI a machine learning</h3>
+                    <p>Google používa AI pre lepšie pochopenie search intent. Optimalizujte pre user intent, nie len keywords.</p>
+
+                    <h3>2. Voice search optimization</h3>
+                    <p>30% searches bude voice-based do roku 2025. Optimalizujte pre conversational queries a long-tail keywords.</p>
+
+                    <h3>3. Video SEO</h3>
+                    <p>Video obsah dominuje. Optimalizujte video titles, descriptions a vytvárajte video transcripts.</p>
+
+                    <h3>4. Core Web Vitals evolution</h3>
+                    <p>Google bude pridávať nové user experience signals. Sledujte official announcements.</p>
+
+                    <h3>5. E-A-T pre všetky niches</h3>
+                    <p>Expertise, Authoritativeness a Trustworthiness sa rozširujú aj mimo YMYL (Your Money Your Life) topics.</p>
+
+                    <h2>Časový harmonogram SEO stratégie</h2>
+
+                    <h3>Mesiac 1-2: Foundation</h3>
+                    <ul>
+                        <li>Kompletný SEO audit</li>
+                        <li>Keyword research a competitor analysis</li>
+                        <li>Technické SEO fixes</li>
+                        <li>Analytics setup</li>
+                    </ul>
+
+                    <h3>Mesiac 3-6: Content a On-Page</h3>
+                    <ul>
+                        <li>Content strategy implementation</li>
+                        <li>On-page optimization</li>
+                        <li>Internal linking structure</li>
+                        <li>Schema markup implementation</li>
+                    </ul>
+
+                    <h3>Mesiac 6-12: Authority Building</h3>
+                    <ul>
+                        <li>Link building campaigns</li>
+                        <li>Content promotion</li>
+                        <li>Digital PR activities</li>
+                        <li>Continuous optimization</li>
+                    </ul>
+
+                    <h2>Záver</h2>
+                    <p>SEO stratégia pre rok 2025 vyžaduje holistický prístup, ktorý kombinuje technickú excelentnosť, kvalitný obsah a silné off-page signály. Kľúč je v consistency a long-term thinking. SEO nie je quick fix - je to investícia do dlhodobého úspechu vášho business.</p>
+
+                    <p>Zapamätajte si: Google chce poskytovať najlepšie possible results pre svojich používateľov. Ak sa sústredte na vytvorenie skutočne užitočného obsahu a skvelej user experience, algoritmus bude na vašej strane.</p>
+
+                    <div class="seo-tip">
+                        <h4>🎯 Kľúčové takeaways:</h4>
+                        <ul>
+                            <li>Technické SEO je foundation - bez neho nič nefunguje</li>
+                            <li>Content quality beats keyword density</li>
+                            <li>User experience je ranking factor</li>
+                            <li>Backlinks quality over quantity</li>
+                            <li>Mobile-first je must</li>
+                            <li>Analytics a continuous improvement</li>
+                        </ul>
+                    </div>
+
+                    <p><strong>Potrebujete pomoc s implementáciou SEO stratégie?</strong> Náš tím v AEB Digital má skúsenosti s komplexnými SEO projektmi pre rôzne odvetvia. <a href="https://aebdigital.sk/kontakt" style="color: var(--accent-teal);">Kontaktujte nás</a> pre bezplatný SEO audit a konzultáciu.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer will be injected by JavaScript -->
+
+    <!-- Lenis Smooth Scrolling -->
+    <!-- GSAP and ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Lenis Smooth Scrolling -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    
+    <!-- Scripts -->
+    <script src="../js/components/footer.js?v=1759092853"></script>
+    <script src="../js/main.js?v=1759092853"></script>
+</body>
+</html>

@@ -1,0 +1,391 @@
+/* Services Page Styles */
+
+/* Individual Service Sections */
+.service-section {
+    padding: var(--spacing-xl) 0;
+    background: var(--white);
+}
+
+/* Service 1: Webové stránky - Blue */
+.service-section:nth-child(2) {
+    background: var(--accent-teal);
+    color: var(--white);
+}
+
+.service-section:nth-child(2) .service-text h2,
+.service-section:nth-child(2) .service-text p,
+.service-section:nth-child(2) .service-item span {
+    color: var(--white);
+}
+
+.service-section:nth-child(2) .service-number {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.service-section:nth-child(2) .btn {
+    background-color: var(--white);
+    color: #000000;
+    border: 2px solid var(--white);
+}
+
+.service-section:nth-child(2) .btn:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #000000;
+}
+
+/* Service 2: Webové aplikácie - Black */
+.service-section:nth-child(3) {
+    background: #000000;
+    color: var(--white);
+}
+
+.service-section:nth-child(3) .service-text h2,
+.service-section:nth-child(3) .service-text p,
+.service-section:nth-child(3) .service-item span {
+    color: var(--white);
+}
+
+.service-section:nth-child(3) .service-number {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.service-section:nth-child(3) .btn {
+    background-color: var(--white);
+    color: #000000;
+    border: 2px solid var(--white);
+}
+
+.service-section:nth-child(3) .btn:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #000000;
+}
+
+/* Service 3: E-shopy - White */
+.service-section:nth-child(4) {
+    background: #ffffff;
+    color: #000000;
+}
+
+.service-section:nth-child(4) .service-text h2,
+.service-section:nth-child(4) .service-text p,
+.service-section:nth-child(4) .service-item span {
+    color: #000000;
+}
+
+.service-section:nth-child(4) .service-number {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.service-section:nth-child(4) .btn {
+    background-color: #000000;
+    color: #ffffff;
+    border: 2px solid #000000;
+}
+
+.service-section:nth-child(4) .btn:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #ffffff;
+}
+
+/* Service 4: Digital Marketing - Red */
+.service-section:nth-child(5) {
+    background: #dc3545;
+    color: var(--white);
+}
+
+.service-section:nth-child(5) .service-text h2,
+.service-section:nth-child(5) .service-text p,
+.service-section:nth-child(5) .service-item span {
+    color: var(--white);
+}
+
+.service-section:nth-child(5) .service-number {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.service-section:nth-child(5) .btn {
+    background-color: var(--white);
+    color: #000000;
+    border: 2px solid var(--white);
+}
+
+.service-section:nth-child(5) .btn:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #000000;
+}
+
+/* Service 5: UI/UX Dizajn - Yellow */
+.service-section:nth-child(6) {
+    background: #ffd700;
+    color: #000000;
+}
+
+.service-section:nth-child(6) .service-text h2,
+.service-section:nth-child(6) .service-text p,
+.service-section:nth-child(6) .service-item span {
+    color: #000000;
+}
+
+.service-section:nth-child(6) .service-number {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.service-section:nth-child(6) .btn {
+    background-color: #000000;
+    color: #ffffff;
+    border: 2px solid #000000;
+}
+
+.service-section:nth-child(6) .btn:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #ffffff;
+}
+
+.service-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+}
+
+.service-section.reverse .service-content {
+    direction: rtl;
+}
+
+.service-section.reverse .service-content > * {
+    direction: ltr;
+}
+
+.service-text {
+    padding: 0;
+}
+
+.service-text h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.2;
+}
+
+.service-text p {
+    font-size: 1.1rem;
+    color: var(--gray-medium);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.6;
+}
+
+.service-list {
+    margin-bottom: var(--spacing-lg);
+}
+
+.service-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xs);
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.service-item:last-child {
+    border-bottom: none;
+}
+
+.service-number {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--gray-medium);
+    min-width: 30px;
+}
+
+.service-item span:last-child {
+    font-size: 1rem;
+    color: var(--black);
+    font-weight: 500;
+}
+
+.service-image {
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.service-image:hover {
+    transform: translateY(-5px);
+}
+
+.service-image img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
+.service-section:nth-child(6) .service-image img {
+    object-position: left;
+}
+
+/* Process Section */
+.process-section {
+    padding: 100px 0;
+    background: #16171A;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+.process-section::before {
+    content: 'AEBDIGITAL • AEBDIGITAL • AEBDIGITAL • AEBDIGITAL • AEBDIGITAL • ';
+    position: absolute;
+    top: 30%;
+    left: 0;
+    transform: translateY(-50%);
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 15vw;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.6);
+    text-stroke: 2px rgba(255, 255, 255, 0.6);
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    opacity: 0.5;
+    animation: process-text-slide 30s linear infinite;
+    width: 100%;
+}
+
+.process-section::after {
+    content: 'AEBDIGITAL • AEBDIGITAL • AEBDIGITAL • AEBDIGITAL • AEBDIGITAL • ';
+    position: absolute;
+    top: 70%;
+    left: 0;
+    transform: translateY(-50%);
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 15vw;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.6);
+    text-stroke: 2px rgba(255, 255, 255, 0.6);
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    opacity: 0.5;
+    animation: process-text-slide-reverse 25s linear infinite;
+    width: 100%;
+}
+
+.process-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.process-section .heading-section {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    color: var(--white);
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    position: relative;
+    z-index: 2;
+}
+
+.process-step {
+    background: rgba(255, 255, 255, 0.05);
+    padding: var(--spacing-lg);
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.process-step:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: var(--accent-teal);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 auto var(--spacing-md);
+}
+
+@keyframes process-text-slide {
+    0% {
+        transform: translateY(-50%) translateX(0%);
+    }
+    100% {
+        transform: translateY(-50%) translateX(-100%);
+    }
+}
+
+@keyframes process-text-slide-reverse {
+    0% {
+        transform: translateY(-50%) translateX(-100%);
+    }
+    100% {
+        transform: translateY(-50%) translateX(0%);
+    }
+}
+
+.process-step h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--white);
+}
+
+.process-step p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+}
+
+/* Mobile Responsive */
+@media (max-width: 767px) {
+    .service-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .service-section.reverse .service-content {
+        direction: ltr;
+    }
+    
+    .service-text {
+        order: 2;
+    }
+    
+    .service-image {
+        order: 1;
+    }
+    
+    .service-text h2 {
+        font-size: 2rem;
+    }
+    
+    .service-image img {
+        height: 300px;
+    }
+    
+    .process-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .process-section::before,
+    .process-section::after {
+        font-size: 75vw;
+    }
+}
