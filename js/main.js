@@ -314,7 +314,8 @@ function initPortfolio() {
         img.onload = function() {
             item.classList.add('loaded');
         };
-        img.src = item.style.backgroundImage.slice(5, -2); // Extract URL from background-image
+        const bgImage = item.querySelector('.gallery-bg-image');
+        img.src = bgImage ? bgImage.src : ''; // Get URL from img tag
         
         // Add click analytics (if needed)
         item.addEventListener('click', function() {
