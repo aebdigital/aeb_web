@@ -128,6 +128,16 @@ body {
     transform: translateY(-3px);
 }
 
+.btn-red {
+    background: #E53E3E;
+    color: var(--white);
+}
+
+.btn-red:hover {
+    background: #C53030;
+    transform: translateY(-3px);
+}
+
 /* Page Header - Simple header for subpages */
 .page-header {
     padding: 120px 0 60px;

@@ -75,8 +75,8 @@ const GLOBAL_HEADER = `
                     </ul>
                     
                     <!-- CTA Button -->
-                    <a href="/kontakt" class="btn btn-primary desktop-only">Kontaktujte nás</a>
-                    
+                    <a href="/kontakt" class="btn btn-red desktop-only">Kontaktujte nás</a>
+
                     <!-- Mobile Menu Toggle -->
                     <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
                         <span></span>
@@ -86,7 +86,7 @@ const GLOBAL_HEADER = `
                 </nav>
             </div>
         </div>
-        
+
         <!-- Mobile Menu -->
         <div class="mobile-menu">
             <div class="mobile-menu-header">
@@ -111,7 +111,7 @@ const GLOBAL_HEADER = `
             </div>
             <div class="mobile-menu-footer">
                 <div class="mobile-menu-footer-content">
-                    <a href="/kontakt" class="btn btn-primary mobile-cta">Kontaktujte nás</a>
+                    <a href="/kontakt" class="btn btn-red mobile-cta">Kontaktujte nás</a>
                 </div>
             </div>
         </div>
