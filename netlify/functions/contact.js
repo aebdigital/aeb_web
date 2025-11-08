@@ -109,31 +109,30 @@ IP adresa: ${event.headers['x-forwarded-for'] || event.headers['client-ip'] || '
   <meta charset="UTF-8">
   <style>
     body {
-      font-family: 'Montserrat', Arial, sans-serif;
+      font-family: Arial, sans-serif;
       line-height: 1.6;
       color: #ffffff;
-      background: #16171A;
+      background-color: #16171A;
       margin: 0;
       padding: 40px 20px;
     }
     .container {
       max-width: 600px;
       margin: 0 auto;
+      background-color: #16171A;
     }
     .heading {
-      color: #ffffff;
-      font-size: 2rem;
+      color: #00997d;
+      font-size: 28px;
       font-weight: 700;
       margin-bottom: 30px;
       text-align: center;
-      font-family: 'Montserrat', Arial, sans-serif;
     }
     .form-container {
-      background: rgba(255, 255, 255, 0.05);
+      background-color: #212327;
       padding: 30px;
       border-radius: 20px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid #ffffff;
     }
     .form-group {
       margin-bottom: 20px;
@@ -143,37 +142,34 @@ IP adresa: ${event.headers['x-forwarded-for'] || event.headers['client-ip'] || '
       font-weight: 600;
       color: #ffffff;
       margin-bottom: 8px;
-      font-size: 0.95rem;
-      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 14px;
     }
     .value {
-      background: rgba(255, 255, 255, 0.1);
+      background-color: #383a3c;
       padding: 12px 16px;
       border-radius: 10px;
       color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      font-family: 'Montserrat', Arial, sans-serif;
+      border: 1px solid #ffffff;
     }
     .value a {
       color: #00997d;
       text-decoration: none;
     }
     .message-box {
-      background: rgba(255, 255, 255, 0.1);
+      background-color: #383a3c;
       padding: 15px;
       border-radius: 10px;
       color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid #ffffff;
       min-height: 100px;
       white-space: pre-wrap;
-      font-family: 'Montserrat', Arial, sans-serif;
     }
     .footer {
       margin-top: 30px;
       padding-top: 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 1px solid #383a3c;
       font-size: 12px;
-      color: rgba(255, 255, 255, 0.6);
+      color: #888888;
       text-align: center;
     }
   </style>
