@@ -129,12 +129,12 @@ body {
 }
 
 .btn-red {
-    background: #E53E3E;
+    background: #005ffa;
     color: var(--white);
 }
 
 .btn-red:hover {
-    background: #C53030;
+    background: #0047b8;
     transform: translateY(-3px);
 }
 
