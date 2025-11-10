@@ -158,17 +158,18 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Listen for SPA page changes
     document.addEventListener('pageLoaded', function(e) {
-        // Reinitialize components after SPA navigation
-        initGlobalComponents();
+        // Only reinitialize essential components (avoid duplicating header/footer)
         initMobileMenu();
         initPortfolio();
         initScrollEffects();
         initPortfolioFiltering();
         initPortfolioCarousel();
-        initGalleryHoverEffect();
         
         // Scroll to top smoothly
         lenis.scrollTo(0);
+        
+        // Reinitialize GSAP animations for new content
+        initGSAPAnimations();
     });
 });
 

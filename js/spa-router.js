@@ -87,6 +87,7 @@ class SPARouter {
             
             this.contentContainer.innerHTML = newContent.main;
             this.updateHead(newContent.head);
+            this.loadCSS(newContent.css);
             
             if (pushState) {
                 history.pushState({ path }, '', path);
@@ -123,13 +124,19 @@ class SPARouter {
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
         
+        // Extract CSS links that need to be added
+        const cssLinks = Array.from(doc.querySelectorAll('link[rel="stylesheet"]'))
+            .map(link => link.href)
+            .filter(href => !document.querySelector(`link[href="${href}"]`));
+        
         return {
             main: doc.querySelector('main')?.innerHTML || '',
             head: {
                 title: doc.querySelector('title')?.textContent || '',
                 metaDescription: doc.querySelector('meta[name="description"]')?.content || '',
                 metaKeywords: doc.querySelector('meta[name="keywords"]')?.content || ''
-            }
+            },
+            css: cssLinks
         };
     }
 
@@ -147,6 +154,17 @@ class SPARouter {
         if (metaKeywords && headData.metaKeywords) {
             metaKeywords.content = headData.metaKeywords;
         }
+    }
+
+    loadCSS(cssLinks) {
+        cssLinks.forEach(href => {
+            if (!document.querySelector(`link[href="${href}"]`)) {
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = href;
+                document.head.appendChild(link);
+            }
+        });
     }
 
     async transitionOut() {
@@ -168,15 +186,23 @@ class SPARouter {
     }
 
     reinitializeJS() {
-        if (window.initContactForm) {
-            window.initContactForm();
+        // Clear existing components to prevent duplicates
+        this.clearExistingComponents();
+        
+        // Only initialize components if they exist on the new page
+        const hasContactForm = this.contentContainer.querySelector('.contact-form-component, [data-contact-form]');
+        const hasFAQ = this.contentContainer.querySelector('.faq-component, .faq-item');
+        const hasGallery = this.contentContainer.querySelector('.gallery-container');
+        
+        if (hasContactForm && window.ContactFormComponent) {
+            new window.ContactFormComponent().inject();
         }
         
-        if (window.initFAQ) {
-            window.initFAQ();
+        if (hasFAQ && window.FAQComponent) {
+            new window.FAQComponent().inject();
         }
         
-        if (window.initGalleryHoverEffect) {
+        if (hasGallery && window.initGalleryHoverEffect) {
             window.initGalleryHoverEffect();
         }
         
@@ -186,6 +212,24 @@ class SPARouter {
             detail: { path: this.currentPath } 
         });
         document.dispatchEvent(event);
+    }
+
+    clearExistingComponents() {
+        // Remove existing contact forms and FAQs that might be duplicated
+        const existingContactForms = document.querySelectorAll('.contact-form-component:not([data-spa-preserved])');
+        const existingFAQs = document.querySelectorAll('.faq-component:not([data-spa-preserved])');
+        
+        existingContactForms.forEach(form => {
+            if (!this.contentContainer.contains(form)) {
+                form.remove();
+            }
+        });
+        
+        existingFAQs.forEach(faq => {
+            if (!this.contentContainer.contains(faq)) {
+                faq.remove();
+            }
+        });
     }
 
     reinitializeGSAP() {
