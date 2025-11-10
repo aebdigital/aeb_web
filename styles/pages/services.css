@@ -158,11 +158,13 @@
     direction: ltr;
 }
 
-.service-text {
+.services-page-section .service-text {
     padding: 0;
+    display: block !important;
+    flex: none !important;
 }
 
-.service-text h2 {
+.services-page-section .service-text h2 {
     font-size: 3rem;
     font-weight: 700;
     color: var(--black);
@@ -170,7 +172,7 @@
     line-height: 1.2;
 }
 
-.service-text p {
+.services-page-section .service-text p {
     font-size: 1.1rem;
     color: var(--gray-medium);
     margin-bottom: var(--spacing-lg);
@@ -366,15 +368,17 @@
         direction: ltr;
     }
     
-    .service-text {
+    .services-page-section .service-text {
         order: 2;
+        display: block !important;
+        flex: none !important;
     }
     
     .service-image {
         order: 1;
     }
     
-    .service-text h2 {
+    .services-page-section .service-text h2 {
         font-size: 2rem;
     }
     
