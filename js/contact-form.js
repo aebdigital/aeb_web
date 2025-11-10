@@ -12,11 +12,11 @@ const CONTACT_FORM_SECTION = `
 
                     <div class="contact-person-box">
                         <div class="contact-person-avatar">
-                            <img src="AEB LOGO.png" alt="Peter Bobák" class="person-photo">
+                            <img src="AEB LOGO.png" alt="Peter Samuel Bobák" class="person-photo">
                         </div>
                         <div class="contact-person-info">
-                            <h4>Peter Bobák</h4>
-                            <p>CEO</p>
+                            <h4>Peter Samuel Bobák</h4>
+                            <p>Konateľ</p>
                             <a href="tel:+421908507131">+421 908 507 131</a>
                         </div>
                     </div>
