@@ -80,14 +80,22 @@ class SPARouter {
         this.isTransitioning = true;
         
         try {
-            await this.transitionOut();
+            // Start loading page content and transition out in parallel
+            const [html] = await Promise.all([
+                this.fetchPage(path),
+                this.transitionOut()
+            ]);
             
-            const html = await this.fetchPage(path);
             const newContent = this.extractContent(html);
+            
+            // Load CSS first, then content
+            this.loadCSS(newContent.css);
+            
+            // Wait for CSS to load before showing content
+            await this.waitForCSS();
             
             this.contentContainer.innerHTML = newContent.main;
             this.updateHead(newContent.head);
-            this.loadCSS(newContent.css);
             
             if (pushState) {
                 history.pushState({ path }, '', path);
@@ -162,8 +170,17 @@ class SPARouter {
                 const link = document.createElement('link');
                 link.rel = 'stylesheet';
                 link.href = href;
+                link.setAttribute('data-spa-css', 'true');
                 document.head.appendChild(link);
             }
+        });
+    }
+
+
+    async waitForCSS() {
+        return new Promise(resolve => {
+            // Wait a short time for CSS to load and apply
+            setTimeout(resolve, 100);
         });
     }
 

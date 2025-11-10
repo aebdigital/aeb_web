@@ -1,142 +1,144 @@
 /* Services Page Styles */
 
-/* Individual Service Sections */
-.service-section {
+/* Services Page Sections - No conflicts with homepage .service-section */
+.services-page-section {
     padding: var(--spacing-xl) 0;
     background: var(--white);
+    position: relative;
+    z-index: 1;
 }
 
 /* Service 1: Webové stránky - Blue */
-.service-section:nth-child(2) {
+.services-page-section:nth-child(2) {
     background: var(--accent-teal);
     color: var(--white);
 }
 
-.service-section:nth-child(2) .service-text h2,
-.service-section:nth-child(2) .service-text p,
-.service-section:nth-child(2) .service-item span {
+.services-page-section:nth-child(2) .service-text h2,
+.services-page-section:nth-child(2) .service-text p,
+.services-page-section:nth-child(2) .service-item span {
     color: var(--white);
 }
 
-.service-section:nth-child(2) .service-number {
+.services-page-section:nth-child(2) .service-number {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.service-section:nth-child(2) .btn {
+.services-page-section:nth-child(2) .btn {
     background-color: var(--white);
     color: #000000;
     border: 2px solid var(--white);
 }
 
-.service-section:nth-child(2) .btn:hover {
+.services-page-section:nth-child(2) .btn:hover {
     background-color: rgba(255, 255, 255, 0.9);
     color: #000000;
 }
 
 /* Service 2: Webové aplikácie - Black */
-.service-section:nth-child(3) {
+.services-page-section:nth-child(3) {
     background: #000000;
     color: var(--white);
 }
 
-.service-section:nth-child(3) .service-text h2,
-.service-section:nth-child(3) .service-text p,
-.service-section:nth-child(3) .service-item span {
+.services-page-section:nth-child(3) .service-text h2,
+.services-page-section:nth-child(3) .service-text p,
+.services-page-section:nth-child(3) .service-item span {
     color: var(--white);
 }
 
-.service-section:nth-child(3) .service-number {
+.services-page-section:nth-child(3) .service-number {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.service-section:nth-child(3) .btn {
+.services-page-section:nth-child(3) .btn {
     background-color: var(--white);
     color: #000000;
     border: 2px solid var(--white);
 }
 
-.service-section:nth-child(3) .btn:hover {
+.services-page-section:nth-child(3) .btn:hover {
     background-color: rgba(255, 255, 255, 0.9);
     color: #000000;
 }
 
 /* Service 3: E-shopy - White */
-.service-section:nth-child(4) {
+.services-page-section:nth-child(4) {
     background: #ffffff;
     color: #000000;
 }
 
-.service-section:nth-child(4) .service-text h2,
-.service-section:nth-child(4) .service-text p,
-.service-section:nth-child(4) .service-item span {
+.services-page-section:nth-child(4) .service-text h2,
+.services-page-section:nth-child(4) .service-text p,
+.services-page-section:nth-child(4) .service-item span {
     color: #000000;
 }
 
-.service-section:nth-child(4) .service-number {
+.services-page-section:nth-child(4) .service-number {
     color: rgba(0, 0, 0, 0.7);
 }
 
-.service-section:nth-child(4) .btn {
+.services-page-section:nth-child(4) .btn {
     background-color: #000000;
     color: #ffffff;
     border: 2px solid #000000;
 }
 
-.service-section:nth-child(4) .btn:hover {
+.services-page-section:nth-child(4) .btn:hover {
     background-color: rgba(0, 0, 0, 0.9);
     color: #ffffff;
 }
 
 /* Service 4: Digital Marketing - Red */
-.service-section:nth-child(5) {
+.services-page-section:nth-child(5) {
     background: #dc3545;
     color: var(--white);
 }
 
-.service-section:nth-child(5) .service-text h2,
-.service-section:nth-child(5) .service-text p,
-.service-section:nth-child(5) .service-item span {
+.services-page-section:nth-child(5) .service-text h2,
+.services-page-section:nth-child(5) .service-text p,
+.services-page-section:nth-child(5) .service-item span {
     color: var(--white);
 }
 
-.service-section:nth-child(5) .service-number {
+.services-page-section:nth-child(5) .service-number {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.service-section:nth-child(5) .btn {
+.services-page-section:nth-child(5) .btn {
     background-color: var(--white);
     color: #000000;
     border: 2px solid var(--white);
 }
 
-.service-section:nth-child(5) .btn:hover {
+.services-page-section:nth-child(5) .btn:hover {
     background-color: rgba(255, 255, 255, 0.9);
     color: #000000;
 }
 
 /* Service 5: UI/UX Dizajn - Yellow */
-.service-section:nth-child(6) {
+.services-page-section:nth-child(6) {
     background: #ffd700;
     color: #000000;
 }
 
-.service-section:nth-child(6) .service-text h2,
-.service-section:nth-child(6) .service-text p,
-.service-section:nth-child(6) .service-item span {
+.services-page-section:nth-child(6) .service-text h2,
+.services-page-section:nth-child(6) .service-text p,
+.services-page-section:nth-child(6) .service-item span {
     color: #000000;
 }
 
-.service-section:nth-child(6) .service-number {
+.services-page-section:nth-child(6) .service-number {
     color: rgba(0, 0, 0, 0.7);
 }
 
-.service-section:nth-child(6) .btn {
+.services-page-section:nth-child(6) .btn {
     background-color: #000000;
     color: #ffffff;
     border: 2px solid #000000;
 }
 
-.service-section:nth-child(6) .btn:hover {
+.services-page-section:nth-child(6) .btn:hover {
     background-color: rgba(0, 0, 0, 0.9);
     color: #ffffff;
 }
@@ -148,11 +150,11 @@
     align-items: center;
 }
 
-.service-section.reverse .service-content {
+.services-page-section.reverse .service-content {
     direction: rtl;
 }
 
-.service-section.reverse .service-content > * {
+.services-page-section.reverse .service-content > * {
     direction: ltr;
 }
 
@@ -221,7 +223,7 @@
     object-fit: cover;
 }
 
-.service-section:nth-child(6) .service-image img {
+.services-page-section:nth-child(6) .service-image img {
     object-position: left;
 }
 
@@ -360,7 +362,7 @@
         gap: var(--spacing-lg);
     }
     
-    .service-section.reverse .service-content {
+    .services-page-section.reverse .service-content {
         direction: ltr;
     }
     
