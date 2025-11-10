@@ -856,80 +856,6 @@
     text-decoration: underline;
 }
 
-/* Contact Form Section */
-.contact-form-section {
-    padding: var(--spacing-xl) 0;
-    background: #16171A;
-    color: var(--white);
-}
-
-.contact-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-xl);
-    align-items: start;
-}
-
-.contact-text {
-    padding-right: var(--spacing-md);
-}
-
-.contact-text h2 {
-    color: var(--white);
-    margin-bottom: var(--spacing-md);
-}
-
-.contact-text p {
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: var(--spacing-md);
-    line-height: 1.6;
-}
-
-.contact-form {
-    background: rgba(255, 255, 255, 0.05);
-    padding: var(--spacing-lg);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.form-group {
-    margin-bottom: var(--spacing-md);
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: var(--spacing-xs);
-    color: var(--white);
-    font-weight: 600;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: var(--spacing-sm);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--white);
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--accent-teal);
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-}
-
 /* Mobile Responsive */
 @media (max-width: 1024px) {
     .portfolio-carousel-track {
@@ -1079,10 +1005,6 @@
     
     .contact-card {
         padding: 20px;
-    }
-    
-    .contact-content {
-        grid-template-columns: 1fr;
     }
     
     .portfolio-carousel-track {
