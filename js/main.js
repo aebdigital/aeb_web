@@ -121,11 +121,6 @@ const GLOBAL_HEADER = `
 
 // Initialize global components and functionality
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize SPA Router
-    if (window.SPARouter) {
-        window.spaRouter = new SPARouter();
-    }
-    
     // Inject global header and footer on all pages
     initGlobalComponents();
     
@@ -156,21 +151,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize smooth page scrolling
     initSmoothPageScrolling();
     
-    // Listen for SPA page changes
-    document.addEventListener('pageLoaded', function(e) {
-        // Only reinitialize essential components (avoid duplicating header/footer)
-        initMobileMenu();
-        initPortfolio();
-        initScrollEffects();
-        initPortfolioFiltering();
-        initPortfolioCarousel();
-        
-        // Scroll to top smoothly
-        lenis.scrollTo(0);
-        
-        // Reinitialize GSAP animations for new content
-        initGSAPAnimations();
-    });
 });
 
 // Global components injection
