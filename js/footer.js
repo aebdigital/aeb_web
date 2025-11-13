@@ -90,10 +90,9 @@ const GLOBAL_FOOTER = `
             <span class="privacy-popup-close">&times;</span>
             <h2>Ochrana osobných údajov</h2>
             <div class="privacy-content">
-                <p><strong>Peter Samuel Bobák</strong><br>
-                Andreja Mráza 3161/15, 821 03 Bratislava – mestská časť<br>
-                Ružinov, Slovenská republika<br>
-                IČO: 56157207, DIČ: 1129453677<br>
+                <p><strong>AEB Digital s. r. o.</strong><br>
+                IČO: 57 307 709<br>
+                Konateľ: Peter Samuel Bobák<br>
                 E-mail: peter@aebdig.com<br>
                 Tel.: +421 908 507 131</p>
 
@@ -102,7 +101,7 @@ const GLOBAL_FOOTER = `
                 <hr>
 
                 <h3>I. Kontaktný formulár</h3>
-                <p>Na stránke www.aebdigital.com prevádzkujeme kontaktný formulár na dvoch samostatných stránkach, ktorého účelom je umožniť vám:</p>
+                <p>Na stránke www.aebdigital.sk prevádzkujeme kontaktný formulár na dvoch samostatných stránkach, ktorého účelom je umožniť vám:</p>
                 <ul>
                     <li>Položiť otázku k našim produktom a službám</li>
                     <li>Požiadať o cenovú ponuku</li>
