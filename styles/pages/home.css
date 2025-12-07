@@ -883,10 +883,10 @@
     
     .hero {
         flex-direction: column;
-        height: 90vh;
+        min-height: 100vh; /* Changed from auto/90vh to ensure full view */
+        height: auto; /* Allow expansion */
         padding-top: 100px;
         padding-bottom: 50px;
-        min-height: auto;
         justify-content: flex-start;
         align-items: center;
     }

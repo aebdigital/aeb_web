@@ -280,11 +280,152 @@
     font-size: 1rem;
 }
 
-/* Tech Showcase */
-.tech-showcase {
-    padding: var(--spacing-xl) 0;
-    background: rgb(22, 23, 26);
-    text-align: center;
+/* Tech Circle Animation */
+.tech-circle {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tech-center {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 0 30px rgba(2, 93, 255, 0.3);
+}
+
+.center-logo {
+    width: 80px;
+    height: auto;
+}
+
+.tech-orbit {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: orbit-rotate linear infinite;
+}
+
+.orbit-1 {
+    width: 300px;
+    height: 300px;
+    animation-duration: 20s;
+}
+
+.orbit-2 {
+    width: 500px;
+    height: 500px;
+    animation-duration: 30s;
+    animation-direction: reverse;
+}
+
+@keyframes orbit-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.tech-node {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: node-rotate linear infinite;
+    /* Adjust positioning relative to orbit center */
+    top: 50%;
+    left: 50%;
+    margin-left: -30px;
+    margin-top: -30px;
+}
+
+/* Orbit 1 Nodes (3 items) */
+.orbit-1 .tech-node:nth-child(1) { transform: rotate(0deg) translateX(150px) rotate(0deg); animation-duration: 20s; animation-direction: reverse; }
+.orbit-1 .tech-node:nth-child(2) { transform: rotate(120deg) translateX(150px) rotate(-120deg); animation-duration: 20s; animation-direction: reverse; }
+.orbit-1 .tech-node:nth-child(3) { transform: rotate(240deg) translateX(150px) rotate(-240deg); animation-duration: 20s; animation-direction: reverse; }
+
+/* Orbit 2 Nodes (4 items) */
+.orbit-2 .tech-node:nth-child(1) { transform: rotate(0deg) translateX(250px) rotate(0deg); animation-duration: 30s; animation-direction: normal; }
+.orbit-2 .tech-node:nth-child(2) { transform: rotate(90deg) translateX(250px) rotate(-90deg); animation-duration: 30s; animation-direction: normal; }
+.orbit-2 .tech-node:nth-child(3) { transform: rotate(180deg) translateX(250px) rotate(-180deg); animation-duration: 30s; animation-direction: normal; }
+.orbit-2 .tech-node:nth-child(4) { transform: rotate(270deg) translateX(250px) rotate(-270deg); animation-duration: 30s; animation-direction: normal; }
+
+@keyframes node-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+/* Fix for node counter-rotation to keep images upright */
+.orbit-1 .tech-node img, .orbit-2 .tech-node img {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+}
+
+/* Tech Categories Styles (restored from read_file but checking just in case) */
+/* ... existing styles ... */
+
+/* Mobile Responsive for Tech Circle */
+@media (max-width: 767px) {
+    .tech-circle {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .orbit-1 {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .orbit-2 {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .tech-center {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .center-logo {
+        width: 50px;
+    }
+    
+    .tech-node {
+        width: 40px;
+        height: 40px;
+        margin-left: -20px;
+        margin-top: -20px;
+    }
+    
+    .orbit-1 .tech-node:nth-child(1) { transform: rotate(0deg) translateX(90px) rotate(0deg); }
+    .orbit-1 .tech-node:nth-child(2) { transform: rotate(120deg) translateX(90px) rotate(-120deg); }
+    .orbit-1 .tech-node:nth-child(3) { transform: rotate(240deg) translateX(90px) rotate(-240deg); }
+    
+    .orbit-2 .tech-node:nth-child(1) { transform: rotate(0deg) translateX(140px) rotate(0deg); }
+    .orbit-2 .tech-node:nth-child(2) { transform: rotate(90deg) translateX(140px) rotate(-90deg); }
+    .orbit-2 .tech-node:nth-child(3) { transform: rotate(180deg) translateX(140px) rotate(-180deg); }
+    .orbit-2 .tech-node:nth-child(4) { transform: rotate(270deg) translateX(140px) rotate(-270deg); }
+    
+    .orbit-1 .tech-node img, .orbit-2 .tech-node img {
+        width: 20px;
+        height: 20px;
+    }
 }
 
 .tech-header {
