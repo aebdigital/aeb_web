@@ -59,8 +59,8 @@ const GLOBAL_FOOTER = `
                             <p>&copy; 2025 AEB Digital</p>
                         </div>
                         <div class="footer-legal">
-                            <a href="/ochrana-osobnych-udajov">Ochrana súkromia</a>
-                            <a href="/ochrana-osobnych-udajov">GDPR</a>
+                            <a href="subpages/ochrana-osobnych-udajov.html">Ochrana súkromia</a>
+                            <a href="subpages/ochrana-osobnych-udajov.html">GDPR</a>
                             <a href="#" id="cookie-settings-footer" class="cookie-settings-icon" title="Nastavenia cookies">
                                 <i class="fas fa-cookie-bite"></i> Cookies
                             </a>
@@ -241,7 +241,7 @@ class FooterComponent {
             footerHTML = footerHTML
                 .replace(/src="sources\/footimg\.png"/g, 'src="../sources/footimg.png"')
                 .replace(/href="\/"/g, 'href="../"')
-                .replace(/href="\/ochrana-osobnych-udajov"/g, 'href="../subpages/ochrana-osobnych-udajov.html"');
+                .replace(/href="subpages\/ochrana-osobnych-udajov\.html"/g, 'href="../subpages/ochrana-osobnych-udajov.html"');
         }
         
         // Remove existing footer and floating nav if they exist
