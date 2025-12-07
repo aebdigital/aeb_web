@@ -304,12 +304,13 @@
     justify-content: center;
     z-index: 10;
     box-shadow: 0 0 30px rgba(2, 93, 255, 0.3);
+    color: var(--black); /* Make text black */
+    font-size: 2rem; /* Adjust font size */
+    font-weight: bold; /* Make it bold */
+    font-family: var(--font-headings); /* Apply Anton font */
 }
 
-.center-logo {
-    width: 80px;
-    height: auto;
-}
+/* .center-logo styles removed as it's no longer an image */
 
 .tech-orbit {
     position: absolute;
