@@ -81,10 +81,16 @@ class ContactFormComponent {
     constructor() {
         this.isSubpage = window.location.pathname.includes('/subpages/');
         this.isContactPage = window.location.pathname.includes('kontakt.html');
+        this.isPrivacyPage = window.location.pathname.includes('ochrana-osobnych-udajov');
     }
 
     // Inject contact form into the page
     inject() {
+        // Don't inject on privacy policy page
+        if (this.isPrivacyPage) {
+            return;
+        }
+
         let contactHTML = CONTACT_FORM_SECTION;
 
         // Adjust paths for subpages

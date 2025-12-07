@@ -173,12 +173,13 @@ const FAQ_SECTION = `
 class FAQComponent {
     constructor() {
         this.isContactPage = window.location.pathname.includes('kontakt.html');
+        this.isPrivacyPage = window.location.pathname.includes('ochrana-osobnych-udajov');
     }
 
     // Inject FAQ section into the page
     inject() {
-        if (this.isContactPage) {
-            return; // Don't inject FAQ on contact page
+        if (this.isContactPage || this.isPrivacyPage) {
+            return; // Don't inject FAQ on contact page or privacy page
         }
 
         // On other pages, find the contact form section and insert FAQ before it
