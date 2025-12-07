@@ -3,7 +3,7 @@
 /* Portfolio Apple Style Section */
 .portfolio-apple-style {
     padding: 0 0 var(--spacing-xl) 0;
-    background: var(--white);
+    background: rgb(22, 23, 26);
 }
 
 .portfolio-content {
@@ -14,19 +14,23 @@
     margin-bottom: var(--spacing-xl);
 }
 
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 5px;
-    padding: 0 5px;
-    margin: 0;
+#infinite-grid-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh; /* Adjust as needed */
+    overflow: hidden;
+    cursor: grab;
+    user-select: none;
+    background-image: radial-gradient(circle at center, rgba(255,255,255,0.2) 1px, transparent 1px);
+    background-size: 50px 50px;
 }
 
-.portfolio-item-apple {
-    position: relative;
+#infinite-grid-container .portfolio-item-apple {
+    position: absolute;
     aspect-ratio: 16/10;
     overflow: hidden;
     cursor: pointer;
+    transition: opacity 0.3s ease;
 }
 
 .portfolio-item-apple a {
@@ -132,34 +136,35 @@
     .portfolio-gallery {
         margin-bottom: 0;
     }
-    
-    .portfolio-grid {
-        grid-template-columns: repeat(1, 1fr);
-        margin: 0 auto;
-        padding: 0;
-        width: 90vw;
+
+    #infinite-grid-container {
+        height: auto !important;
+        overflow: visible;
+        cursor: default;
+        background: none;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
     }
-    
+
+    #infinite-grid-container .portfolio-item-apple {
+        position: relative !important;
+        transform: none !important;
+        width: 100% !important;
+        height: 25vh !important;
+        aspect-ratio: auto;
+    }
+
+    #infinite-grid-container .portfolio-item-apple img {
+        object-position: center top;
+    }
+
     .faq-grid {
         max-width: 100%;
     }
-    
+
     .faq-question h3 {
         font-size: 1.1rem;
-    }
-    
-    /* Disable hover zoom on mobile */
-    .portfolio-item-apple:hover img {
-        transform: none;
-    }
-    
-    /* Position portfolio images to left on mobile */
-    .portfolio-item-apple img {
-        object-position: left top;
-    }
-    
-    /* 6th portfolio item centered on mobile */
-    .portfolio-item-apple:nth-child(6) img {
-        object-position: center top;
     }
 }

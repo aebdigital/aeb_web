@@ -80,24 +80,32 @@ const CONTACT_FORM_SECTION = `
 class ContactFormComponent {
     constructor() {
         this.isSubpage = window.location.pathname.includes('/subpages/');
+        this.isContactPage = window.location.pathname.includes('kontakt.html');
     }
 
     // Inject contact form into the page
     inject() {
-        // Always inject contact form on all pages, before footer
-        const footer = document.querySelector('footer');
-        if (footer) {
-            let contactHTML = CONTACT_FORM_SECTION;
-            
-            // Adjust paths for subpages
-            if (this.isSubpage) {
-                contactHTML = contactHTML.replace(/src="AEB LOGO.png"/g, 'src="../AEB LOGO.png"');
+        let contactHTML = CONTACT_FORM_SECTION;
+
+        // Adjust paths for subpages
+        if (this.isSubpage) {
+            contactHTML = contactHTML.replace(/src="AEB LOGO.png"/g, 'src="../AEB LOGO.png"');
+        }
+
+        if (this.isContactPage) {
+            // On contact page, insert after contact-info-section
+            const contactInfoSection = document.querySelector('.contact-info-section');
+            if (contactInfoSection) {
+                contactInfoSection.insertAdjacentHTML('afterend', contactHTML);
+                this.init();
             }
-            
-            footer.insertAdjacentHTML('beforebegin', contactHTML);
-            
-            // Initialize contact form functionality after injection
-            this.init();
+        } else {
+            // On other pages, inject before footer
+            const footer = document.querySelector('footer');
+            if (footer) {
+                footer.insertAdjacentHTML('beforebegin', contactHTML);
+                this.init();
+            }
         }
     }
 

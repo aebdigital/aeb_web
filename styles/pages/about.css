@@ -3,7 +3,7 @@
 /* About Content Section */
 .about-content-modern {
     padding: var(--spacing-md) 0;
-    background: var(--white);
+    background: rgb(22, 23, 26);
 }
 
 .about-layout {
@@ -49,27 +49,27 @@
 .story-text h2 {
     font-size: 2.5rem;
     margin-bottom: var(--spacing-md);
-    color: var(--black);
+    color: var(--white);
     line-height: 1.3;
 }
 
 .lead-text {
     font-size: 1.2rem;
-    color: var(--gray-medium);
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: var(--spacing-md);
     line-height: 1.6;
     font-weight: 500;
 }
 
 .story-text p {
-    color: var(--gray-medium);
+    color: rgba(255, 255, 255, 0.8);
     margin-bottom: var(--spacing-md);
     line-height: 1.6;
     font-size: 1rem;
 }
 
 .story-image {
-    border-radius: 20px;
+    border-radius: 0;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
@@ -172,7 +172,7 @@
     top: 30%;
     left: 0;
     transform: translateY(-50%);
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: 'Manrope', Arial, sans-serif;
     font-size: 15vw;
     font-weight: 900;
     color: transparent;
@@ -193,7 +193,7 @@
     top: 70%;
     left: 0;
     transform: translateY(-50%);
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: 'Manrope', Arial, sans-serif;
     font-size: 15vw;
     font-weight: 900;
     color: transparent;
@@ -280,133 +280,10 @@
     font-size: 1rem;
 }
 
-/* Tech Circle Styles */
-.tech-circle {
-    position: relative;
-    width: 400px;
-    height: 400px;
-    margin: 0 auto;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.tech-center {
-    position: absolute;
-    z-index: 10;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: var(--white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.center-logo {
-    width: 80px;
-    height: auto;
-}
-
-.tech-orbit {
-    position: absolute;
-    border-radius: 50%;
-    border: 2px solid rgba(29, 166, 154, 0.2);
-}
-
-.orbit-1 {
-    width: 250px;
-    height: 250px;
-    animation: rotate 20s linear infinite;
-}
-
-.orbit-2 {
-    width: 350px;
-    height: 350px;
-    animation: rotate 30s linear infinite reverse;
-}
-
-.tech-node {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    background: var(--white);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.tech-node:hover {
-    transform: scale(1.1);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-.tech-node img {
-    width: 35px;
-    height: 35px;
-    object-fit: contain;
-}
-
-.orbit-1 .tech-node:nth-child(1) {
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.orbit-1 .tech-node:nth-child(2) {
-    top: 50%;
-    right: -30px;
-    transform: translateY(-50%);
-}
-
-.orbit-1 .tech-node:nth-child(3) {
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.orbit-2 .tech-node:nth-child(1) {
-    top: -30px;
-    left: 25%;
-    transform: translateX(-50%);
-}
-
-.orbit-2 .tech-node:nth-child(2) {
-    top: -30px;
-    right: 25%;
-    transform: translateX(50%);
-}
-
-.orbit-2 .tech-node:nth-child(3) {
-    top: 50%;
-    left: -30px;
-    transform: translateY(-50%);
-}
-
-.orbit-2 .tech-node:nth-child(4) {
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 /* Tech Showcase */
 .tech-showcase {
     padding: var(--spacing-xl) 0;
-    background: var(--white);
+    background: rgb(22, 23, 26);
     text-align: center;
 }
 
@@ -428,7 +305,7 @@
 .tech-header h2 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--black);
+    color: var(--white);
     margin: 0;
 }
 
@@ -446,26 +323,26 @@
 }
 
 .tech-category-card {
-    background: var(--light-gray);
+    background: rgba(255, 255, 255, 0.05);
     padding: var(--spacing-lg);
     border-radius: 20px;
     text-align: left;
     transition: all 0.3s ease;
-    border: 2px solid transparent;
+    border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .tech-category-card:hover {
     transform: translateY(-5px);
-    background: var(--white);
+    background: rgba(255, 255, 255, 0.1);
     border-color: var(--accent-teal);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
 .tech-category-card h3 {
     font-size: 1.3rem;
     font-weight: 700;
-    color: var(--black);
+    color: var(--white);
     margin-bottom: var(--spacing-sm);
     display: flex;
     align-items: center;
@@ -478,7 +355,7 @@
 }
 
 .tech-category-card p {
-    color: var(--gray-medium);
+    color: rgba(255, 255, 255, 0.8);
     line-height: 1.6;
     margin: 0;
     font-size: 0.95rem;
@@ -590,39 +467,5 @@
     
     .tech-category-card {
         padding: 20px;
-    }
-    
-    .tech-circle {
-        width: 280px;
-        height: 280px;
-    }
-    
-    .orbit-1 {
-        width: 180px;
-        height: 180px;
-    }
-    
-    .orbit-2 {
-        width: 240px;
-        height: 240px;
-    }
-    
-    .tech-center {
-        width: 80px;
-        height: 80px;
-    }
-    
-    .center-logo {
-        width: 50px;
-    }
-    
-    .tech-node {
-        width: 40px;
-        height: 40px;
-    }
-    
-    .tech-node img {
-        width: 24px;
-        height: 24px;
     }
 }

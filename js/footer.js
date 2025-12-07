@@ -8,7 +8,7 @@ const GLOBAL_FOOTER = `
                 <div class="footer-content">
                     <div class="footer-main">
                         <div class="footer-brand">
-                            <img src="sources/techstack/aeb_whiteonblack_final.png" alt="AEB Digital Logo" class="footer-logo">
+                            <h3 class="footer-logo-text">AEB DIGITAL</h3>
                             <p>Tvoríme digitálne riešenia pre váš úspech. Moderné webové stránky, aplikácie a marketing na mieru.</p>
                             
                             <div class="footer-social">
@@ -50,14 +50,6 @@ const GLOBAL_FOOTER = `
                                     <li><a href="tel:+421917422245">+421 917 422 245</a></li>
                                     <li>Bratislava, Slovensko</li>
                                 </ul>
-                                
-                                <div class="footer-newsletter">
-                                    <h5>Newsletter</h5>
-                                    <form class="newsletter-form">
-                                        <input type="email" placeholder="Váš email">
-                                        <button type="submit">Prihlásiť</button>
-                                    </form>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -67,8 +59,8 @@ const GLOBAL_FOOTER = `
                             <p>&copy; 2025 AEB Digital</p>
                         </div>
                         <div class="footer-legal">
-                            <a href="#" id="privacy-link">Ochrana súkromia</a>
-                            <a href="#" id="gdpr-link">GDPR</a>
+                            <a href="/ochrana-osobnych-udajov">Ochrana súkromia</a>
+                            <a href="/ochrana-osobnych-udajov">GDPR</a>
                             <a href="#" id="cookie-settings-footer" class="cookie-settings-icon" title="Nastavenia cookies">
                                 <i class="fas fa-cookie-bite"></i> Cookies
                             </a>
@@ -247,9 +239,9 @@ class FooterComponent {
         // Adjust paths for subpages (only images need adjustment, links use absolute paths)
         if (this.isSubpage) {
             footerHTML = footerHTML
-                .replace(/src="sources\/techstack\//g, 'src="../sources/techstack/')
                 .replace(/src="sources\/footimg\.png"/g, 'src="../sources/footimg.png"')
-                .replace(/href="\/"/g, 'href="../"');
+                .replace(/href="\/"/g, 'href="../"')
+                .replace(/href="\/ochrana-osobnych-udajov"/g, 'href="../subpages/ochrana-osobnych-udajov.html"');
         }
         
         // Remove existing footer and floating nav if they exist
@@ -278,67 +270,7 @@ class FooterComponent {
 
     // Initialize footer functionality
     init() {
-        this.initNewsletterForm();
         this.initFloatingNav();
-    }
-
-    // Newsletter form handling
-    initNewsletterForm() {
-        const newsletterForm = document.querySelector('.newsletter-form');
-
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-
-                const emailInput = this.querySelector('input[type="email"]');
-                const submitBtn = this.querySelector('button[type="submit"]');
-                const email = emailInput.value.trim();
-
-                if (!email) {
-                    alert('Prosím zadajte váš email.');
-                    return;
-                }
-
-                // Email validation
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    alert('Prosím zadajte platný email.');
-                    return;
-                }
-
-                // Show loading state
-                const originalText = submitBtn.textContent;
-                submitBtn.textContent = 'Odosiela sa...';
-                submitBtn.disabled = true;
-
-                try {
-                    // Submit to Netlify serverless function
-                    const response = await fetch('/api/newsletter', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ email: email })
-                    });
-
-                    const data = await response.json();
-
-                    if (response.ok && data.success) {
-                        alert('✅ ' + (data.message || 'Ďakujeme za prihlásenie do newslettra!'));
-                        newsletterForm.reset();
-                    } else {
-                        alert('❌ ' + (data.error || 'Nastala chyba pri odosielaní.'));
-                    }
-                } catch (error) {
-                    console.error('Newsletter subscription error:', error);
-                    alert('❌ Nastala chyba pri odosielaní. Skúste to prosím neskôr.');
-                } finally {
-                    // Reset button state
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                }
-            });
-        }
     }
 
     // Floating navigation functionality

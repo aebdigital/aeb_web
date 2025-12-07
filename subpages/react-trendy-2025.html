@@ -52,7 +52,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -71,7 +71,7 @@
     <style>
     .article-header {
         padding: 120px 0 60px 0;
-        background: linear-gradient(135deg, #61DAFB, #21232A);
+        background: rgb(22, 23, 26);
         color: white;
         text-align: center;
     }
@@ -90,42 +90,18 @@
         max-width: 800px;
         margin: 0 auto;
     }
-    .article-content {
-        padding: 60px 0;
-        max-width: 800px;
-        margin: 0 auto;
-        line-height: 1.8;
-    }
-    .article-content h2 {
-        color: var(--black);
-        margin: 40px 0 20px 0;
-        font-size: 2rem;
-    }
-    .article-content h3 {
-        color: var(--black);
-        margin: 30px 0 15px 0;
-        font-size: 1.5rem;
-    }
-    .article-content p {
-        margin-bottom: 20px;
-        color: #333;
-    }
-    .article-content ul {
-        margin: 20px 0;
-        padding-left: 30px;
-    }
-    .article-content li {
-        margin-bottom: 10px;
-        color: #333;
+    .article-wrapper {
+        background: rgb(22, 23, 26);
     }
     .code-block {
-        background: #f8f9fa;
-        border: 1px solid #e9ecef;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 8px;
         padding: 20px;
         margin: 20px 0;
         font-family: 'Courier New', monospace;
         overflow-x: auto;
+        color: rgba(255, 255, 255, 0.8);
     }
     .back-to-blog {
         display: inline-flex;
@@ -142,9 +118,6 @@
         }
         .article-excerpt {
             font-size: 1.1rem;
-        }
-        .article-content {
-            padding: 40px 0;
         }
     }
     </style>
@@ -169,9 +142,11 @@
         </section>
 
         <!-- Article Content -->
-        <section class="article-section">
-            <div class="container">
-                <div class="article-content">
+        <div class="article-page-layout">
+            <div class="article-main-content">
+                <section class="article-section">
+                    <div class="container">
+                        <div class="article-content">
                     <a href="https://aebdigital.sk/blog" class="back-to-blog">
                         Späť na blog
                     </a>
@@ -235,6 +210,28 @@ async function BlogPost({ id }) {
                 </div>
             </div>
         </section>
+            </div><!-- Close .article-main-content -->
+            <!-- Blog Recommendations Section -->
+            <aside class="blog-recommendations">
+                <h3>Ďalšie články</h3>
+                <div class="recommendation-list">
+                    <div class="recommendation-item">
+                        <a href="seo-strategia-2025.html">
+                            <img src="../sources/techstack/1f4ac.svg" alt="5 krokov k úspešnej SEO stratégii v roku 2025">
+                            <h4>5 krokov k úspešnej SEO stratégii v roku 2025</h4>
+                            <p class="recommendation-meta">10. január 2025 • AEB Digital</p>
+                        </a>
+                    </div>
+                    <div class="recommendation-item">
+                        <a href="javascript-techniky-2025.html">
+                            <img src="../sources/techstack/JavaScript-Logo-scaled-e1750439290173.png" alt="Moderné JavaScript techniky pre vývojárov v roku 2025">
+                            <h4>Moderné JavaScript techniky pre vývojárov v roku 2025</h4>
+                            <p class="recommendation-meta">5. január 2025 • AEB Digital</p>
+                        </a>
+                    </div>
+                </div>
+            </aside>
+        </div><!-- Close .article-page-layout -->
     </main>
 
     <!-- Footer will be injected by JavaScript -->

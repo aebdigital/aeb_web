@@ -34,14 +34,13 @@
 .contact-form-section .contact-text h2 {
     color: var(--white) !important;
     margin-bottom: var(--spacing-md);
-    font-family: 'Montserrat', Arial, sans-serif;
 }
 
 .contact-form-section .contact-text p {
     color: rgba(255, 255, 255, 0.8) !important;
     margin-bottom: var(--spacing-md);
     line-height: 1.6;
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: 'Manrope', Arial, sans-serif;
 }
 
 /* Contact Person Box */
@@ -90,14 +89,14 @@
     font-size: 1.2rem;
     font-weight: 700;
     margin: 0 0 4px 0;
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: 'Manrope', Arial, sans-serif;
 }
 
 .contact-person-info p {
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.9rem;
-    margin: 0 0 8px 0;
-    font-family: 'Montserrat', Arial, sans-serif;
+    margin: 0 0 5px 0 !important;
+    font-family: 'Manrope', Arial, sans-serif;
 }
 
 .contact-person-info a {
@@ -105,7 +104,7 @@
     text-decoration: none;
     font-size: 1rem;
     font-weight: 600;
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: 'Manrope', Arial, sans-serif;
     transition: color 0.3s ease;
 }
 
@@ -131,7 +130,7 @@
     margin-bottom: var(--spacing-xs);
     color: var(--white);
     font-weight: 600;
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: 'Manrope', Arial, sans-serif;
 }
 
 .form-group input,
@@ -144,7 +143,7 @@
     background: rgba(255, 255, 255, 0.1);
     color: var(--white);
     font-size: 1rem;
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: 'Manrope', Arial, sans-serif;
     transition: all 0.3s ease;
 }
 
@@ -179,7 +178,7 @@
 .form-group input::placeholder,
 .form-group textarea::placeholder {
     color: rgba(255, 255, 255, 0.6);
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: 'Manrope', Arial, sans-serif;
 }
 
 /* Form Messages (Success/Error) */
@@ -188,7 +187,7 @@
     padding: var(--spacing-md);
     margin-bottom: var(--spacing-md);
     border-radius: 10px;
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: 'Manrope', Arial, sans-serif;
     font-size: 0.95rem;
     line-height: 1.5;
     animation: slideDown 0.3s ease-out;
@@ -236,6 +235,26 @@
     }
 }
 
+/* Contact Form Submit Button - Match Header Button Style */
+.contact-form button[type="submit"],
+.contact-form .btn-primary {
+    padding: 12px 24px !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    font-family: 'Manrope', Arial, sans-serif !important;
+    border-radius: 0 !important;
+    background: var(--accent-teal) !important;
+    color: var(--white) !important;
+    border: none !important;
+    transition: all 0.3s ease !important;
+}
+
+.contact-form button[type="submit"]:hover,
+.contact-form .btn-primary:hover {
+    background: #1DA69A !important;
+    transform: translateY(-3px) !important;
+}
+
 /* Button Loading State */
 .contact-form button[type="submit"].loading {
     opacity: 0.8;
@@ -281,34 +300,44 @@
     .contact-form-section {
         padding: 80px 0;
     }
-    
+
     .contact-form-section .contact-content {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-lg);
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: unset !important;
+        gap: var(--spacing-lg) !important;
     }
-    
+
     .contact-content {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-lg);
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: unset !important;
+        gap: var(--spacing-lg) !important;
     }
-    
+
     .contact-text {
         padding-right: 0;
+        width: 100%;
     }
-    
+
+    .contact-form {
+        width: 100%;
+        padding: 18px !important;
+    }
+
+    .contact-form-section .contact-form {
+        padding: 18px !important;
+    }
+
     .process-steps {
         grid-template-columns: 1fr;
     }
-    
+
     .step {
         text-align: left;
     }
-    
+
     .contact-form-section .heading-section {
         font-size: 2.5rem;
-    }
-    
-    .contact-form {
-        padding: 20px;
     }
 }

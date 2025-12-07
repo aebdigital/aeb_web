@@ -175,18 +175,16 @@ class FAQComponent {
         this.isContactPage = window.location.pathname.includes('kontakt.html');
     }
 
-    // Inject FAQ section into the page (but not on contact page)
+    // Inject FAQ section into the page
     inject() {
         if (this.isContactPage) {
             return; // Don't inject FAQ on contact page
         }
 
-        // Find the contact form section and insert FAQ before it
+        // On other pages, find the contact form section and insert FAQ before it
         const contactSection = document.querySelector('#contact');
         if (contactSection) {
             contactSection.insertAdjacentHTML('beforebegin', FAQ_SECTION);
-            
-            // Initialize FAQ functionality after injection
             this.init();
         }
     }

@@ -39,7 +39,15 @@
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
-    
+
+    <!-- Privacy Policy Page -->
+    <url>
+        <loc>https://aebdigital.sk/ochrana-osobnych-udajov</loc>
+        <lastmod>2025-12-07</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
     <!-- Blog Page -->
     <url>
         <loc>https://aebdigital.sk/blog</loc>

@@ -2,12 +2,12 @@
 
 .faq-section {
     padding: var(--spacing-xl) 0;
-    background: var(--light-gray);
+    background: rgb(22, 23, 26);
 }
 
 .faq-section .heading-section {
     text-align: left;
-    color: var(--black);
+    color: var(--white);
     margin-bottom: var(--spacing-lg);
     background: none;
     -webkit-background-clip: unset;
@@ -44,6 +44,8 @@
     font-size: 1.2rem;
     font-weight: 400;
     line-height: 1.4;
+    font-family: var(--font-primary);
+    text-transform: none;
 }
 
 .faq-contact-box .btn {
@@ -59,7 +61,7 @@
     border: none;
     box-shadow: none;
     padding: 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .faq-question {
@@ -72,24 +74,26 @@
 }
 
 .faq-question:hover {
-    background: rgba(29, 166, 154, 0.05);
+    background: rgba(2, 93, 255, 0.1);
     padding-left: var(--spacing-sm);
     border-radius: 8px;
 }
 
 .faq-question h3 {
     font-size: 1.3rem;
-    color: var(--black);
+    color: var(--white);
     margin: 0;
     text-align: left;
     font-weight: 600;
     flex: 1;
     line-height: 1.4;
+    font-family: var(--font-primary);
+    text-transform: none;
 }
 
 .faq-toggle {
     font-size: 1.5rem;
-    color: var(--black);
+    color: var(--white);
     font-weight: bold;
     transition: transform 0.3s ease, color 0.3s ease;
     margin-left: var(--spacing-md);
@@ -116,7 +120,7 @@
 }
 
 .faq-answer p {
-    color: var(--gray-medium);
+    color: rgba(255, 255, 255, 0.8);
     line-height: 1.7;
     margin: 0;
     text-align: left;

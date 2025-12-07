@@ -52,7 +52,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -71,7 +71,7 @@
     <style>
     .article-header {
         padding: 120px 0 60px 0;
-        background: linear-gradient(135deg, #10B981, #059669);
+        background: rgb(22, 23, 26);
         color: white;
         text-align: center;
     }
@@ -90,36 +90,8 @@
         max-width: 800px;
         margin: 0 auto;
     }
-    .article-content {
-        padding: 60px 0;
-        max-width: 800px;
-        margin: 0 auto;
-        line-height: 1.8;
-    }
-    .article-content h2 {
-        color: var(--black);
-        margin: 40px 0 20px 0;
-        font-size: 2rem;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-    .article-content h3 {
-        color: var(--black);
-        margin: 30px 0 15px 0;
-        font-size: 1.5rem;
-    }
-    .article-content p {
-        margin-bottom: 20px;
-        color: #333;
-    }
-    .article-content ul {
-        margin: 20px 0;
-        padding-left: 30px;
-    }
-    .article-content li {
-        margin-bottom: 10px;
-        color: #333;
+    .article-wrapper {
+        background: rgb(22, 23, 26);
     }
     .step-number {
         background: #10B981;
@@ -134,7 +106,7 @@
         font-size: 1.2rem;
     }
     .seo-tip {
-        background: #f0f9ff;
+        background: rgba(14, 165, 233, 0.1);
         border-left: 4px solid #0ea5e9;
         padding: 20px;
         margin: 25px 0;
@@ -146,10 +118,10 @@
         font-size: 1.2rem;
     }
     .tools-list {
-        background: white;
+        background: rgba(255, 255, 255, 0.05);
         padding: 20px;
         border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         margin: 20px 0;
     }
     .tools-list h4 {
@@ -171,9 +143,6 @@
         }
         .article-excerpt {
             font-size: 1.1rem;
-        }
-        .article-content {
-            padding: 40px 0;
         }
         .article-content h2 {
             flex-direction: column;
@@ -203,9 +172,11 @@
         </section>
 
         <!-- Article Content -->
-        <section class="article-section">
-            <div class="container">
-                <div class="article-content">
+        <div class="article-page-layout">
+            <div class="article-main-content">
+                <section class="article-section">
+                    <div class="container">
+                        <div class="article-content">
                     <a href="https://aebdigital.sk/blog" class="back-to-blog">
                         Späť na blog
                     </a>
@@ -527,6 +498,27 @@
                 </div>
             </div>
         </section>
+            </div><!-- Close .article-main-content -->
+                        <!-- Blog Recommendations Section -->
+                        <aside class="blog-recommendations">
+                            <h3>Ďalšie články</h3>
+                            <div class="recommendation-list">
+                                <div class="recommendation-item">
+                                    <a href="web-optimalizacia-rychlost.html">
+                                        <img src="../sources/techstack/HTML5_logo_and_wordmark.svg.png" alt="Ako optimalizovať rýchlosť načítania webu v roku 2025">
+                                        <h4>Ako optimalizovať rýchlosť načítania webu v roku 2025</h4>
+                                        <p class="recommendation-meta">3. január 2025 • AEB Digital</p>
+                                    </a>
+                                </div>
+                                <div class="recommendation-item">
+                                    <a href="ecommerce-trendy-2025.html">
+                                        <img src="../sources/techstack/shopify-bag-icon-symbol-logo-701751695132537nenecmhs0u-removebg-preview-e1750440978862.png" alt="Trendy v e-commerce pre rok 2025">
+                                        <h4>Trendy v e-commerce pre rok 2025</h4>
+                                        <p class="recommendation-meta">8. január 2025 • AEB Digital</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </aside>        </div><!-- Close .article-page-layout -->
     </main>
 
     <!-- Footer will be injected by JavaScript -->

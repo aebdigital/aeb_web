@@ -16,13 +16,6 @@ const lenis = new Lenis({
     infinite: false,
 });
 
-function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-}
-
-requestAnimationFrame(raf);
-
 // Connect Lenis to GSAP ScrollTrigger
 lenis.on('scroll', ScrollTrigger.update);
 
@@ -31,6 +24,17 @@ gsap.ticker.add((time) => {
 });
 
 gsap.ticker.lagSmoothing(0);
+
+// Pause animations when page is not visible
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        gsap.ticker.remove((time) => lenis.raf(time * 1000));
+        lenis.stop();
+    } else {
+        gsap.ticker.add((time) => lenis.raf(time * 1000));
+        lenis.start();
+    }
+});
 
 // Dynamic script loader function
 function loadScript(src, callback) {
@@ -60,9 +64,7 @@ const GLOBAL_HEADER = `
             <div class="header-content">
                 <!-- Logo -->
                 <div class="logo-container">
-                    <a href="/">
-                        <img src="sources/AEB LOGO.png" alt="AEB Digital Logo" class="logo">
-                    </a>
+                    <a href="/" class="logo">AEB DIGITAL</a>
                 </div>
                 
                 <!-- Navigation -->
@@ -92,9 +94,7 @@ const GLOBAL_HEADER = `
             <div class="mobile-menu-header">
                 <div class="mobile-menu-header-content">
                     <div class="mobile-logo">
-                        <a href="/">
-                            <img src="sources/AEB LOGO.png" alt="AEB Digital Logo" class="logo">
-                        </a>
+                        <a href="/">AEB DIGITAL</a>
                     </div>
                     <button class="mobile-menu-close" aria-label="Close mobile menu">
                         <span>&times;</span>
@@ -107,12 +107,8 @@ const GLOBAL_HEADER = `
                     <li><a href="/sluzby">Služby</a></li>
                     <li><a href="/o-nas">O nás</a></li>
                     <li><a href="/blog">Blog</a></li>
+                    <li><a href="/kontakt">Kontakt</a></li>
                 </ul>
-            </div>
-            <div class="mobile-menu-footer">
-                <div class="mobile-menu-footer-content">
-                    <a href="/kontakt" class="btn btn-red mobile-cta">Kontaktujte nás</a>
-                </div>
             </div>
         </div>
     </header>
@@ -138,12 +134,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize scroll effects
     initScrollEffects();
-    
-    // Initialize portfolio filtering
-    initPortfolioFiltering();
-    
-    // Initialize portfolio carousel
-    initPortfolioCarousel();
     
     // Handle hash scrolling on page load
     initHashScrolling();
@@ -328,42 +318,7 @@ function initPortfolio() {
 
 // Enhanced scroll effects
 function initScrollEffects() {
-    // Header scroll effect
-    const header = document.querySelector('.header');
-    let lastScrollY = window.scrollY;
-    let ticking = false;
-    
-    function updateHeader() {
-        const currentScrollY = window.scrollY;
-        
-        // Add scrolled class for background change
-        if (currentScrollY > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-        
-        // Hide header when scrolling down, show when scrolling up
-        if (currentScrollY > lastScrollY && currentScrollY > 150) {
-            // Scrolling down - hide header
-            header.classList.add('hidden');
-        } else if (currentScrollY < lastScrollY || currentScrollY <= 150) {
-            // Scrolling up or near top - show header
-            header.classList.remove('hidden');
-        }
-        
-        lastScrollY = currentScrollY;
-        ticking = false;
-    }
-    
-    function onScroll() {
-        if (!ticking) {
-            requestAnimationFrame(updateHeader);
-            ticking = true;
-        }
-    }
-    
-    window.addEventListener('scroll', onScroll, { passive: true });
+    // Header scroll effect - REMOVED toggle/hide effects
     
     // Smooth reveal animations for elements
     const observerOptions = {
@@ -404,111 +359,6 @@ const optimizedScrollListener = debounce(function() {
 
 window.addEventListener('scroll', optimizedScrollListener);
 
-
-// Portfolio Filtering
-function initPortfolioFiltering() {
-    const filterButtons = document.querySelectorAll('.filter-tab, .filter-btn');
-    const portfolioItems = document.querySelectorAll('.portfolio-item-apple');
-    
-    if (filterButtons.length === 0 || portfolioItems.length === 0) return;
-    
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const filter = this.getAttribute('data-filter');
-            
-            // Update active button
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Filter portfolio items
-            portfolioItems.forEach(item => {
-                const category = item.getAttribute('data-category');
-                
-                if (filter === 'all' || category === filter) {
-                    item.style.display = 'block';
-                    item.style.animation = 'fadeInUp 0.6s ease forwards';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
-    });
-}
-
-// Portfolio Carousel Functionality
-function initPortfolioCarousel() {
-    const carouselTrack = document.querySelector('.portfolio-carousel-track');
-    const leftArrow = document.querySelector('.carousel-arrow-left');
-    const rightArrow = document.querySelector('.carousel-arrow-right');
-    
-    if (!carouselTrack || !leftArrow || !rightArrow) return;
-    
-    let currentOffset = 0; // Start at position 0
-    const slideDistance = 30; // Move by 30vw for faster navigation
-    const maxOffset = 200; // Maximum offset to see all photos (300vw - 100vw viewport)
-    
-    function updateCarousel() {
-        carouselTrack.style.transform = `translateX(-${currentOffset}vw)`;
-        
-        // Update arrow states
-        leftArrow.style.opacity = currentOffset > 0 ? '1' : '0.5';
-        rightArrow.style.opacity = currentOffset < maxOffset ? '1' : '0.5';
-    }
-    
-    // Right arrow - move forward
-    rightArrow.addEventListener('click', function() {
-        if (currentOffset < maxOffset) {
-            currentOffset += slideDistance;
-            updateCarousel();
-        }
-    });
-    
-    // Left arrow - move backward
-    leftArrow.addEventListener('click', function() {
-        if (currentOffset > 0) {
-            currentOffset -= slideDistance;
-            updateCarousel();
-        }
-    });
-    
-    // Initialize carousel state
-    updateCarousel();
-    
-    // Touch/swipe support for mobile
-    let startX = 0;
-    let isDragging = false;
-    
-    carouselTrack.addEventListener('touchstart', function(e) {
-        startX = e.touches[0].clientX;
-        isDragging = true;
-    });
-    
-    carouselTrack.addEventListener('touchmove', function(e) {
-        if (!isDragging) return;
-        e.preventDefault();
-    });
-    
-    carouselTrack.addEventListener('touchend', function(e) {
-        if (!isDragging) return;
-        
-        const endX = e.changedTouches[0].clientX;
-        const diff = startX - endX;
-        
-        if (Math.abs(diff) > 50) { // Minimum swipe distance
-            if (diff > 0 && currentOffset < maxOffset) {
-                // Swiped left - move right
-                currentOffset += slideDistance;
-                updateCarousel();
-            } else if (diff < 0 && currentOffset > 0) {
-                // Swiped right - move left
-                currentOffset -= slideDistance;
-                updateCarousel();
-            }
-        }
-        
-        isDragging = false;
-    });
-}
 
 // Hash scrolling functionality with Lenis
 function initHashScrolling() {
@@ -609,29 +459,8 @@ function initGSAPAnimations() {
     }
 
     // 2. SCROLL ANIMATIONS
-    
-    // Generic section animations
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => {
-        gsap.fromTo(section, 
-            { 
-                opacity: 0, 
-                y: 30 
-            },
-            {
-                opacity: 1, 
-                y: 0, 
-                duration: 0.8,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top 80%',
-                    end: 'bottom 20%',
-                    toggleActions: 'play none none none' // Don't reverse on scroll up
-                }
-            }
-        );
-    });
+
+    // Generic section animations - REMOVED to prevent white gaps
 
     // Portfolio items animation
     const portfolioItems = document.querySelectorAll('.portfolio-item, .portfolio-item-carousel, .portfolio-item-apple');
@@ -654,28 +483,6 @@ function initGSAPAnimations() {
                     toggleActions: 'play none none none' // Don't reverse on scroll up
                 },
                 delay: index * 0.05 // Reduce stagger delay
-            }
-        );
-    });
-
-    // Service sections animation (excluding sticky service sections)
-    const serviceCards = document.querySelectorAll('.contact-card');
-    serviceCards.forEach(card => {
-        gsap.fromTo(card, 
-            { 
-                opacity: 0, 
-                x: -50 
-            },
-            {
-                opacity: 1, 
-                x: 0, 
-                duration: 0.8,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top 85%',
-                    toggleActions: 'play none none none' // Don't reverse on scroll up
-                }
             }
         );
     });
@@ -777,131 +584,99 @@ function initSmoothPageScrolling() {
     document.body.style.scrollBehavior = 'auto';
 }
 
-// Gallery hover effect with cursor-following image
-function initGalleryHoverEffect() {
-    const galleryContainer = document.querySelector('.gallery-container');
-    const floatingImage = document.querySelector('.gallery-floating-image');
+// Custom cursor for gallery items
+function initGalleryCustomCursor() {
     const galleryItems = document.querySelectorAll('.gallery-item');
 
-    if (!galleryContainer || !floatingImage || galleryItems.length === 0) return;
+    if (galleryItems.length === 0) return;
 
     // Skip on mobile devices
     if (isMobileDevice()) {
         return;
     }
 
-    let currentImage = null;
-    let isHovering = false;
-    let lastX = 0;
-    let lastY = 0;
-    let moveThreshold = 50; // Distance moved before jiggle triggers
-    let totalDistance = 0;
-    let jiggleTimeout = null;
+    // Create custom cursor element
+    const customCursor = document.createElement('div');
+    customCursor.className = 'gallery-custom-cursor';
+    customCursor.innerHTML = `
+        <div class="gallery-custom-cursor-inner">
+            <div class="gallery-custom-cursor-text">VIAC</div>
+            <span class="corner corner-tl"></span>
+            <span class="corner corner-tr"></span>
+            <span class="corner corner-bl"></span>
+            <span class="corner corner-br"></span>
+        </div>
+    `;
+    document.body.appendChild(customCursor);
 
-    // Track mouse movement within gallery container
-    galleryContainer.addEventListener('mousemove', function(e) {
-        if (isHovering && currentImage) {
-            // Position image to the right of cursor, vertically centered with cursor
-            const offsetX = 30; // 30px to the right
-            const imageHeight = 350; // Height of the floating image
+    // Track cursor position
+    let cursorX = 0;
+    let cursorY = 0;
 
-            const x = e.clientX + offsetX;
-            const y = e.clientY - (imageHeight / 2); // Center vertically with cursor
-
-            floatingImage.style.left = x + 'px';
-            floatingImage.style.top = y + 'px';
-
-            // Calculate distance moved
-            if (lastX !== 0 && lastY !== 0) {
-                const dx = e.clientX - lastX;
-                const dy = e.clientY - lastY;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                totalDistance += distance;
-
-                // Trigger jiggle if moved enough
-                if (totalDistance > moveThreshold) {
-                    floatingImage.classList.add('jiggling');
-                    totalDistance = 0;
-
-                    // Remove jiggle class after animation
-                    clearTimeout(jiggleTimeout);
-                    jiggleTimeout = setTimeout(() => {
-                        floatingImage.classList.remove('jiggling');
-                    }, 300);
-                }
-            }
-
-            lastX = e.clientX;
-            lastY = e.clientY;
-        }
-    });
-
-    // Add hover listeners to each gallery item
+    // Show/hide cursor on gallery item hover
     galleryItems.forEach(item => {
-        item.addEventListener('mouseenter', function(e) {
-            const imageUrl = this.getAttribute('data-image');
-
-            if (imageUrl) {
-                // Check if we're switching images
-                const isSwitching = currentImage && currentImage !== imageUrl;
-
-                if (isSwitching) {
-                    // Add changing class for zoom out effect
-                    floatingImage.classList.add('changing');
-
-                    // Wait for zoom out, then change image and zoom in
-                    setTimeout(() => {
-                        currentImage = imageUrl;
-                        floatingImage.style.backgroundImage = `url('${imageUrl}')`;
-                        floatingImage.classList.remove('changing');
-                    }, 200); // Half of the transition duration
-                } else {
-                    // First time showing or same image
-                    currentImage = imageUrl;
-                    floatingImage.style.backgroundImage = `url('${imageUrl}')`;
-                }
-
-                isHovering = true;
-
-                // Show the floating image and position it
-                floatingImage.classList.add('active');
-
-                // Initial position - to the right, vertically centered
-                const offsetX = 30;
-                const imageHeight = 350;
-                floatingImage.style.left = (e.clientX + offsetX) + 'px';
-                floatingImage.style.top = (e.clientY - (imageHeight / 2)) + 'px';
-            }
+        item.addEventListener('mouseenter', function() {
+            customCursor.classList.add('active');
         });
 
         item.addEventListener('mouseleave', function() {
-            currentImage = null;
-            isHovering = false;
-            lastX = 0;
-            lastY = 0;
-            totalDistance = 0;
+            customCursor.classList.remove('active');
+        });
 
-            // Hide the floating image with zoom out effect
-            floatingImage.classList.remove('active');
-            floatingImage.classList.remove('changing');
-            floatingImage.classList.remove('jiggling');
+        item.addEventListener('mousemove', function(e) {
+            cursorX = e.clientX;
+            cursorY = e.clientY;
+            customCursor.style.left = cursorX + 'px';
+            customCursor.style.top = cursorY + 'px';
         });
     });
+}
 
-    // Hide floating image when leaving the container
-    galleryContainer.addEventListener('mouseleave', function() {
-        currentImage = null;
-        isHovering = false;
-        lastX = 0;
-        lastY = 0;
-        totalDistance = 0;
-        floatingImage.classList.remove('active');
-        floatingImage.classList.remove('jiggling');
+// Service Images Zoom Effect
+function initServiceImageZoom() {
+    const serviceImages = gsap.utils.toArray('.service-image');
+
+    serviceImages.forEach((imageContainer) => {
+        const img = imageContainer.querySelector('img');
+
+        // Create scroll trigger for zoom effect
+        ScrollTrigger.create({
+            trigger: imageContainer,
+            start: 'top bottom', // When image enters viewport from bottom
+            end: 'top top',      // Until it reaches the top (becomes sticky)
+            scrub: true,
+            onUpdate: (self) => {
+                // Zoom from 1.7 to 1.0 as it scrolls up (stronger zoom effect)
+                const scale = 1.7 - (self.progress * 0.7);
+                gsap.set(img, { scale: scale });
+            }
+        });
+    });
+}
+
+// Hero Video Parallax Effect
+function initHeroParallax() {
+    const heroVideo = document.querySelector('.hero-video');
+
+    if (!heroVideo) return;
+
+    // Add parallax effect to video
+    gsap.to(heroVideo, {
+        yPercent: 30,
+        ease: 'none',
+        scrollTrigger: {
+            trigger: '.hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true
+        }
     });
 }
 
 // Initialize gallery hover effect when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     // Add to existing initialization
-    initGalleryHoverEffect();
+    initGalleryCustomCursor();
+    initServiceImageZoom();
+    initHeroParallax();
 });
