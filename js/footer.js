@@ -48,7 +48,7 @@ const GLOBAL_FOOTER = `
                                     <li><a href="mailto:alexander@aebdig.com">alexander@aebdig.com</a></li>
                                     <li><a href="tel:+421908507131">+421 908 507 131</a></li>
                                     <li><a href="tel:+421917422245">+421 917 422 245</a></li>
-                                    <li>Bratislava, Slovensko</li>
+                                    <li>Bottova 5, 811 09 Bratislava</li>
                                 </ul>
                             </div>
                         </div>
