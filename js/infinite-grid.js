@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { link: 'https://www.trubela.sk/', image: '../sources/aeb-portfolio/60.jpg', alt: 'Web projekt 6' },
         { link: 'https://www.veskolfarm.sk/', image: '../sources/aeb-portfolio/70.jpg', alt: 'Web projekt 7' },
         { link: 'https://www.lemino.sk/', image: '../sources/aeb-portfolio/80.jpg', alt: 'Web projekt 8' },
-        { link: 'https://www.instalatherm.sk/', image: '../sources/aeb-portfolio/100.jpg', alt: 'Web projekt 10' },
+        { link: 'https://www.instalatherm.sk/', image: '../sources/aeb-portfolio/instala.jpg', alt: 'Web projekt 10' },
         { link: 'https://www.kreslimesivankou.sk/', image: '../sources/aeb-portfolio/110.jpg', alt: 'Web projekt 11' },
         { link: 'https://www.autocentrumbb.sk/', image: '../sources/aeb-portfolio/120.jpg', alt: 'Web projekt 12' },
         { link: 'https://www.pemavzt.sk/', image: '../sources/aeb-portfolio/130.jpg', alt: 'Web projekt 13' },
