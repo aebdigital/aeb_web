@@ -68,6 +68,8 @@ const CONTACT_FORM_SECTION = `
                         <label for="message">Popis projektu *</label>
                         <textarea id="message" name="message" rows="5" placeholder="Opíšte svoj projekt, ciele a požiadavky..." required></textarea>
                     </div>
+
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAACGYZibBgl0bkqM2" style="margin-bottom: 20px;"></div>
                     
                     <button type="submit" class="btn btn-primary">Odoslať správu</button>
                 </form>
@@ -103,6 +105,7 @@ class ContactFormComponent {
             const contactInfoSection = document.querySelector('.contact-info-section');
             if (contactInfoSection) {
                 contactInfoSection.insertAdjacentHTML('afterend', contactHTML);
+                this.loadTurnstile();
                 this.init();
             }
         } else {
@@ -110,8 +113,28 @@ class ContactFormComponent {
             const footer = document.querySelector('footer');
             if (footer) {
                 footer.insertAdjacentHTML('beforebegin', contactHTML);
+                this.loadTurnstile();
                 this.init();
             }
+        }
+    }
+
+    loadTurnstile() {
+        if (window.turnstile) {
+            // If Turnstile is already loaded, explicitly render the widget
+            try {
+                window.turnstile.render('.cf-turnstile', {
+                    sitekey: '0x4AAAAAACGYZibBgl0bkqM2'
+                });
+            } catch (e) {
+                console.warn('Turnstile render failed:', e);
+            }
+        } else if (!document.querySelector('script[src*="turnstile/v0/api.js"]')) {
+            const script = document.createElement('script');
+            script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+            script.async = true;
+            script.defer = true;
+            document.head.appendChild(script);
         }
     }
 
@@ -139,6 +162,7 @@ class ContactFormComponent {
                 const phone = formData.get('phone');
                 const budget = formData.get('budget');
                 const message = formData.get('message');
+                const turnstileToken = formData.get('cf-turnstile-response');
 
                 // Basic form validation
                 if (!name || !email || !subject || !message) {
@@ -150,6 +174,12 @@ class ContactFormComponent {
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailRegex.test(email)) {
                     showMessage('Prosím zadajte platný email.', 'error');
+                    return;
+                }
+
+                // Turnstile validation
+                if (!turnstileToken) {
+                    showMessage('Prosím, potvrďte, že nie ste robot.', 'error');
                     return;
                 }
 
@@ -174,7 +204,8 @@ class ContactFormComponent {
                 const payload = {
                     name: name,
                     email: email,
-                    message: fullMessage
+                    message: fullMessage,
+                    turnstileToken: turnstileToken
                 };
 
                 try {
@@ -192,12 +223,15 @@ class ContactFormComponent {
                     if (response.ok && data.success) {
                         showMessage(data.message || 'Ďakujeme! Vaša správa bola úspešne odoslaná.', 'success');
                         contactForm.reset();
+                        if (window.turnstile) window.turnstile.reset();
                     } else {
                         showMessage(data.error || 'Nastala chyba pri odosielaní správy.', 'error');
+                        if (window.turnstile) window.turnstile.reset();
                     }
                 } catch (error) {
                     console.error('Error:', error);
                     showMessage('❌ Nastala chyba pri odosielaní správy. Skúste to prosím neskôr alebo nás kontaktujte telefonicky na +421 908 507 131.', 'error');
+                    if (window.turnstile) window.turnstile.reset();
                 } finally {
                     // Reset button state
                     submitBtn.innerHTML = originalText;

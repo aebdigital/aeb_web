@@ -37,7 +37,31 @@ exports.handler = async (event, context) => {
   try {
     // Parse form data
     const data = JSON.parse(event.body);
-    const { name, email, message } = data;
+    const { name, email, message, turnstileToken } = data;
+
+    // Verify Turnstile Token
+    if (!turnstileToken) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({
+          error: 'Chýba CAPTCHA overenie.',
+          details: 'Turnstile token is missing.'
+        })
+      };
+    }
+
+    const isHuman = await verifyTurnstile(turnstileToken);
+    if (!isHuman) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({
+          error: 'Neúspešné CAPTCHA overenie. Skúste to prosím znova.',
+          details: 'Turnstile verification failed.'
+        })
+      };
+    }
 
     // Extract phone, budget, and subject from message if included
     let cleanMessage = message;
@@ -293,3 +317,47 @@ IP adresa: ${event.headers['x-forwarded-for'] || event.headers['client-ip'] || '
     };
   }
 };
+
+/**
+ * Verify Cloudflare Turnstile Token
+ * @param {string} token - The token from the client
+ * @returns {Promise<boolean>} - True if verified, false otherwise
+ */
+async function verifyTurnstile(token) {
+  const secretKey = process.env.TURNSTILE_SECRET_KEY;
+  
+  if (!secretKey) {
+    console.error('TURNSTILE_SECRET_KEY not configured');
+    // Open fail for configuration error, or fail closed? 
+    // Usually fail open if you want to receive emails even if config is broken, 
+    // but better to log error. Let's return true to avoid blocking valid users if dev forgot key, 
+    // OR return false to force security.
+    // Given the user is setting this up, let's assume they want it to work.
+    // But if the key is missing, verification will definitely fail at Cloudflare end if we sent undefined.
+    return true; // Fail open (allow) if key is missing to prevent total breakage, but log error.
+  }
+
+  try {
+    const formData = new URLSearchParams();
+    formData.append('secret', secretKey);
+    formData.append('response', token);
+
+    const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      body: formData
+    });
+
+    const data = await response.json();
+    
+    if (!data.success) {
+      console.warn('Turnstile verification failed:', data);
+    }
+
+    return data.success;
+  } catch (error) {
+    console.error('Turnstile verification error:', error);
+    // Fail open in case of network error to Cloudflare? 
+    // Or fail closed. Let's fail closed to stop bots if Cloudflare is down (rare).
+    return false; 
+  }
+}

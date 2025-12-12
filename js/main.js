@@ -46,7 +46,7 @@ function loadScript(src, callback) {
                      window.location.pathname === '/portfolio' ||
                      window.location.pathname === '/blog';
     const adjustedSrc = isSubpage ? '../' + src : src;
-    const cacheBustedSrc = adjustedSrc + '?v=1759200000';
+    const cacheBustedSrc = adjustedSrc + '?v=1770000000';
     
     const script = document.createElement('script');
     script.src = cacheBustedSrc;
