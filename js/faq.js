@@ -187,6 +187,7 @@ class FAQComponent {
         if (contactSection) {
             contactSection.insertAdjacentHTML('beforebegin', FAQ_SECTION);
             this.init();
+            if (window.initButtonAnimations) window.initButtonAnimations();
         }
     }
 

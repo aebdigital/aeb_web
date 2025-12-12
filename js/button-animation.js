@@ -1,18 +1,23 @@
 // Button Text Slide Animation
 // Automatically converts all buttons to have sliding text animation on hover
 
-document.addEventListener('DOMContentLoaded', function() {
+// Define global function to initialize animations
+window.initButtonAnimations = function() {
     // Find all buttons
     const buttons = document.querySelectorAll('.btn');
 
     buttons.forEach(button => {
-        // Skip if already converted
+        // Skip if already converted or if it's a form submit button that might lose event listeners if we mess with it too much
+        // Actually, replacing textContent is fine, it doesn't remove listeners on the button itself.
         if (button.querySelector('.btn-text-container')) {
             return;
         }
 
         // Get original text
         const originalText = button.textContent.trim();
+        
+        // Skip if empty (e.g. icon buttons)
+        if (!originalText) return;
 
         // Clear button content
         button.textContent = '';
@@ -36,4 +41,9 @@ document.addEventListener('DOMContentLoaded', function() {
         container.appendChild(textHidden);
         button.appendChild(container);
     });
+};
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', function() {
+    window.initButtonAnimations();
 });

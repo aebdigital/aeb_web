@@ -107,6 +107,7 @@ class ContactFormComponent {
                 contactInfoSection.insertAdjacentHTML('afterend', contactHTML);
                 this.loadTurnstile();
                 this.init();
+                if (window.initButtonAnimations) window.initButtonAnimations();
             }
         } else {
             // On other pages, inject before footer
@@ -115,6 +116,7 @@ class ContactFormComponent {
                 footer.insertAdjacentHTML('beforebegin', contactHTML);
                 this.loadTurnstile();
                 this.init();
+                if (window.initButtonAnimations) window.initButtonAnimations();
             }
         }
     }
