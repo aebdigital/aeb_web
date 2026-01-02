@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
         { link: 'https://www.pemavzt.sk/', image: '../sources/aeb-portfolio/130.jpg', alt: 'Web projekt 13' },
         { link: 'https://penelcom.sk/', image: '../sources/aeb-portfolio/140.jpg', alt: 'Web projekt 14' },
         { link: 'https://mlresult.sk/', image: '../sources/aeb-portfolio/150.jpg', alt: 'Web projekt 15' },
+        { link: 'https://atelierkusa.sk/', image: '../sources/aeb-portfolio/atelierkusa.jpg', alt: 'Ateliér Kúsa' },
+        { link: 'https://nataliyakashyk.sk/', image: '../sources/aeb-portfolio/kashyk.jpg', alt: 'Nataliya Kashyk' },
+        { link: 'https://top-interier.sk/', image: '../sources/aeb-portfolio/topinterier.jpg', alt: 'Top Interiér' },
     ];
 
     const container = document.getElementById('infinite-grid-container');
@@ -155,6 +158,12 @@ document.addEventListener('DOMContentLoaded', () => {
         lastMousePos.x = e.clientX;
         lastMousePos.y = e.clientY;
         velocity = { x: 0, y: 0 };
+
+        // Hide the drag prompt
+        const dragPrompt = document.getElementById('drag-prompt');
+        if (dragPrompt) {
+            dragPrompt.classList.add('hidden');
+        }
     }
 
     function onMouseMove(e) {

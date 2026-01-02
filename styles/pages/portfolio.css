@@ -25,6 +25,61 @@
     background-size: 50px 50px;
 }
 
+/* Drag Prompt */
+.drag-prompt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.drag-prompt.hidden {
+    opacity: 0;
+}
+
+.drag-prompt-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 30px 40px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.drag-hand-icon {
+    font-size: 2.5rem;
+    color: var(--white);
+    animation: dragHint 1.5s ease-in-out infinite;
+}
+
+@keyframes dragHint {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-15px);
+    }
+    75% {
+        transform: translateX(15px);
+    }
+}
+
+.drag-prompt-text {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
 #infinite-grid-container .portfolio-item-apple {
     position: absolute;
     aspect-ratio: 16/10;
@@ -135,6 +190,11 @@
 @media (max-width: 767px) {
     .portfolio-gallery {
         margin-bottom: 0;
+    }
+
+    /* Hide drag prompt on mobile */
+    .drag-prompt {
+        display: none;
     }
 
     #infinite-grid-container {
