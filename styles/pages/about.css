@@ -448,6 +448,7 @@
 
 .tech-header {
     margin-bottom: var(--spacing-xl);
+    text-align: center;
 }
 
 .tech-header .section-label {

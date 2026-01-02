@@ -56,8 +56,16 @@
 .services-page-section:nth-child(5) .btn,
 .services-page-section:nth-child(6) .btn {
     background-color: var(--white);
-    color: #000000;
+    color: #000000 !important;
     border: 2px solid var(--white);
+}
+
+.services-page-section:nth-child(2) .btn span,
+.services-page-section:nth-child(3) .btn span,
+.services-page-section:nth-child(4) .btn span,
+.services-page-section:nth-child(5) .btn span,
+.services-page-section:nth-child(6) .btn span {
+    color: #000000 !important;
 }
 
 .services-page-section:nth-child(2) .btn:hover,
@@ -66,7 +74,15 @@
 .services-page-section:nth-child(5) .btn:hover,
 .services-page-section:nth-child(6) .btn:hover {
     background-color: rgba(255, 255, 255, 0.9);
-    color: #000000;
+    color: #000000 !important;
+}
+
+.services-page-section:nth-child(2) .btn:hover span,
+.services-page-section:nth-child(3) .btn:hover span,
+.services-page-section:nth-child(4) .btn:hover span,
+.services-page-section:nth-child(5) .btn:hover span,
+.services-page-section:nth-child(6) .btn:hover span {
+    color: #000000 !important;
 }
 
 .service-content {
