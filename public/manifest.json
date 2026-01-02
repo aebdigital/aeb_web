@@ -1,0 +1,27 @@
+{
+  "name": "AEB Digital - Tvorba webových stránok",
+  "short_name": "AEB Digital",
+  "description": "Profesionálna tvorba webových stránok, e-shopov a webových aplikácií v Bratislave. 120+ úspešných projektov.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#16171a",
+  "theme_color": "#025DFF",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/sources/favicon-aeb.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/sources/favicon-aeb.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "lang": "sk",
+  "dir": "ltr"
+}
