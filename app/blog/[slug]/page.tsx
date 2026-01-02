@@ -186,7 +186,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       {/* Article Content and Recommendations */}
       <div className="article-page-layout bg-custom-bg py-20">
-        <div className="container max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="container max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="article-main-content lg:col-span-2 prose prose-invert max-w-none">
             <div dangerouslySetInnerHTML={{ __html: post.content }} />
           </div>
@@ -196,7 +196,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <div className="lg:sticky lg:top-24">
               <h3 className="text-2xl font-bold mb-6 text-white">Ďalšie články</h3>
               <div className="recommendation-list space-y-8">
-                {recommendations.map((rec, index) => (
+                {recommendations && recommendations.map((rec, index) => (
                   <div key={index} className="recommendation-item p-4 bg-white/[0.05] rounded-xl border border-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.1]">
                     <Link href={`/blog/${rec.slug}`}>
                       <Image src={rec.imageSrc} alt={rec.imageAlt} width={100} height={60} objectFit="cover" className="rounded-md mb-3" />
