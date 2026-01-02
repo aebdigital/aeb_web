@@ -1,24 +1,32 @@
 "use client";
 
-import { useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const LenisContext = createContext<Lenis | null>(null);
+
+export function useLenis() {
+  return useContext(LenisContext);
+}
+
 export function LenisProvider({ children }: { children: React.ReactNode }) {
+  const [lenis, setLenis] = useState<Lenis | null>(null);
+
   useEffect(() => {
-    const lenis = new Lenis({
+    const lenisInstance = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      // All other options removed due to type errors and reliance on defaults
     });
+    setLenis(lenisInstance);
 
-    lenis.on('scroll', ScrollTrigger.update);
+    lenisInstance.on('scroll', ScrollTrigger.update);
 
     const raf = (time: number) => {
-      lenis.raf(time * 1000);
+      lenisInstance.raf(time * 1000);
     };
 
     gsap.ticker.add(raf);
@@ -27,10 +35,10 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     const handleVisibilityChange = () => {
       if (document.hidden) {
         gsap.ticker.remove(raf);
-        lenis.stop();
+        lenisInstance.stop();
       } else {
         gsap.ticker.add(raf);
-        lenis.start();
+        lenisInstance.start();
       }
     };
 
@@ -39,9 +47,14 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     return () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       gsap.ticker.remove(raf);
-      lenis.destroy();
+      lenisInstance.destroy();
+      setLenis(null);
     };
   }, []);
 
-  return <>{children}</>;
+  return (
+    <LenisContext.Provider value={lenis}>
+      {children}
+    </LenisContext.Provider>
+  );
 }

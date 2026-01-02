@@ -2,19 +2,20 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useLenis } from "@/components/LenisProvider";
 
 export default function Template({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-
-  // Scroll to top on page change
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  const lenis = useLenis();
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#000000' }}>
-      <AnimatePresence mode="wait">
+      <AnimatePresence
+        mode="wait"
+        onExitComplete={() => {
+          lenis?.scrollTo(0, { immediate: true });
+        }}
+      >
         <motion.div
           key={pathname}
           initial={{ opacity: 0 }}
