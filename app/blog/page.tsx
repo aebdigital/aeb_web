@@ -41,7 +41,7 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     slug: "react-trendy-2025",
-    imageSrc: "/sources/techstack/React-icon.svg.png",
+    imageSrc: "/sources/techstack/React-icon.svg.webp",
     imageAlt: "React 2025 trendy",
     category: "Technológie",
     date: "15. január 2025",
@@ -51,7 +51,7 @@ const blogPosts: BlogPost[] = [
   },
   {
     slug: "ux-dizajn-prirucka",
-    imageSrc: "/sources/techstack/apps-figma-icon-2048x2048-ctjj5ab7.png",
+    imageSrc: "/sources/techstack/apps-figma-icon-2048x2048-ctjj5ab7.webp",
     imageAlt: "UI/UX dizajn",
     category: "Dizajn",
     date: "12. január 2025",
@@ -71,7 +71,7 @@ const blogPosts: BlogPost[] = [
   },
   {
     slug: "ecommerce-trendy-2025",
-    imageSrc: "/sources/techstack/shopify-bag-icon-symbol-logo-701751695132537nenecmhs0u-removebg-preview-e1750440978862.png",
+    imageSrc: "/sources/techstack/shopify-bag-icon-symbol-logo-701751695132537nenecmhs0u-removebg-preview-e1750440978862.webp",
     imageAlt: "E-commerce",
     category: "E-commerce",
     date: "8. január 2025",
@@ -81,7 +81,7 @@ const blogPosts: BlogPost[] = [
   },
   {
     slug: "javascript-techniky-2025",
-    imageSrc: "/sources/techstack/JavaScript-Logo-scaled-e1750439290173.png",
+    imageSrc: "/sources/techstack/JavaScript-Logo-scaled-e1750439290173.webp",
     imageAlt: "JavaScript",
     category: "Technológie",
     date: "5. január 2025",
@@ -91,7 +91,7 @@ const blogPosts: BlogPost[] = [
   },
   {
     slug: "web-optimalizacia-rychlost",
-    imageSrc: "/sources/techstack/HTML5_logo_and_wordmark.svg.png",
+    imageSrc: "/sources/techstack/HTML5_logo_and_wordmark.svg.webp",
     imageAlt: "Webové stránky",
     category: "Vývoj",
     date: "3. január 2025",
@@ -131,14 +131,14 @@ export default function BlogPage() {
       <BackgroundTextAnimation />
 
       {/* Page Header */}
-      <section className="page-header py-32 bg-custom-bg text-white">
+      <section className="page-header py-32 text-white relative z-10">
         <div className="container">
           <h1 className="page-title">Blog</h1>
         </div>
       </section>
 
       {/* Blog Section */}
-      <section className="blog-section py-20 bg-custom-bg">
+      <section className="blog-section py-20 relative z-10">
         <div className="container">
           <div className="blog-content">
             <div className="blog-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -79,7 +79,7 @@ export function FAQSection() {
   };
 
   return (
-    <section className="faq-section py-20 bg-custom-bg text-white">
+    <section className="faq-section py-20 text-white relative z-40">
       <div className="container">
         <h2 className="heading-section text-left mb-12">Často kladené otázky</h2>
         <div className="faq-layout grid grid-cols-1 lg:grid-cols-3 gap-8">

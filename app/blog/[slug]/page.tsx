@@ -170,7 +170,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <BackgroundTextAnimation />
 
       {/* Article Header - Centered */}
-      <section className="article-header py-20 bg-custom-bg text-white">
+      <section className="article-header py-20 text-white relative z-10">
         <div className="container max-w-4xl mx-auto text-center">
           <div className="article-meta text-gray-light text-sm mb-4">
             <span>{post.metadata.datePublished}</span> • <span>{post.metadata.author}</span> • <span>{post.metadata.category}</span>
@@ -185,7 +185,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </section>
 
       {/* Article Content and Recommendations */}
-      <div className="article-page-layout bg-custom-bg py-20">
+      <div className="article-page-layout py-20 relative z-10">
         <div className="container max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="article-main-content lg:col-span-2 prose prose-invert max-w-none">
             <div dangerouslySetInnerHTML={{ __html: post.content }} />
@@ -215,6 +215,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <FAQSection />
       <ContactForm />
       <Footer />
+      {/* Large AEB Digital Image below Footer */}
+      <div className="relative z-40 w-full h-[400px] pointer-events-none hidden lg:block">
+        <Image src="/sources/footimg_copy-removebg-preview.png" alt="AEB DIGITAL" width={1920} height={400} className="object-contain w-full h-full" />
+      </div>
     </>
   );
 }

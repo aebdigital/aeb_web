@@ -55,7 +55,7 @@ export default function Home() {
 
     const isMobileDevice = () => {
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-             window.innerWidth <= 768;
+        window.innerWidth <= 768;
     };
 
     if (isMobileDevice()) {
@@ -67,131 +67,131 @@ export default function Home() {
     // Hero title animation
     const heroTitle = document.querySelector('.hero h1, .heading-large');
     if (heroTitle) {
-        gsap.fromTo(heroTitle,
-            {
-                opacity: 0,
-                y: 50
-            },
-            {
-                opacity: 1,
-                y: 0,
-                duration: 0.9,
-                ease: "power2.out",
-                delay: 0.2
-            }
-        );
+      gsap.fromTo(heroTitle,
+        {
+          opacity: 0,
+          y: 50
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: "power2.out",
+          delay: 0.2
+        }
+      );
     }
 
     // Hero subtitle animation
     const heroSubtitle = document.querySelector('.hero .subheading, .subheading');
     if (heroSubtitle) {
-        gsap.fromTo(heroSubtitle,
-            {
-                opacity: 0,
-                scale: 0.8
-            },
-            {
-                opacity: 1,
-                scale: 1,
-                duration: 0.8,
-                ease: "back.out(1.7)",
-                delay: 0.6
-            }
-        );
+      gsap.fromTo(heroSubtitle,
+        {
+          opacity: 0,
+          scale: 0.8
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          ease: "back.out(1.7)",
+          delay: 0.6
+        }
+      );
     }
 
     // Hero buttons animation
     const heroButtons = document.querySelectorAll('.hero-buttons .btn');
     if (heroButtons.length > 0) {
-        gsap.fromTo(heroButtons,
-            {
-                opacity: 0,
-                scale: 0.8
-            },
-            {
-                opacity: 1,
-                scale: 1,
-                duration: 0.8,
-                ease: "back.out(1.7)",
-                stagger: 0.2,
-                delay: 0.8
-            }
-        );
+      gsap.fromTo(heroButtons,
+        {
+          opacity: 0,
+          scale: 0.8
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          ease: "back.out(1.7)",
+          stagger: 0.2,
+          delay: 0.8
+        }
+      );
     }
 
     // Photo sliders section animation (immediate load)
     const photoSlidersSection = document.querySelector('.photo-sliders');
     if (photoSlidersSection) {
-        gsap.fromTo(photoSlidersSection,
-            {
-                opacity: 0,
-                y: 50
-            },
-            {
-                opacity: 1,
-                y: 0,
-                duration: 1.0,
-                ease: "power2.out",
-                delay: 1.2 // Load after hero animations complete
-            }
-        );
+      gsap.fromTo(photoSlidersSection,
+        {
+          opacity: 0,
+          y: 50
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.0,
+          ease: "power2.out",
+          delay: 1.2 // Load after hero animations complete
+        }
+      );
     }
 
     // Background sliders animation (if present)
     const bgSliders = document.querySelectorAll('.hero-slider');
     bgSliders.forEach((slider, index) => {
-        gsap.fromTo(slider,
-            {
-                opacity: 0,
-                y: 100
-            },
-            {
-                opacity: 1,
-                y: 0,
-                duration: 1.2,
-                ease: "power2.out",
-                delay: 0.3 + (index * 0.2)
-            }
-        );
+      gsap.fromTo(slider,
+        {
+          opacity: 0,
+          y: 100
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power2.out",
+          delay: 0.3 + (index * 0.2)
+        }
+      );
     });
 
     // Text reveal animations
     const headings = document.querySelectorAll('h1, h2, h3');
     headings.forEach(heading => {
-        // Skip hero headings and service-main h2 elements
-        if (!heading.closest('.hero') && !heading.closest('.service-main')) {
-            gsap.fromTo(heading,
-                {
-                    opacity: 0,
-                    y: 30
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.6,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: heading,
-                        start: 'top 90%',
-                        toggleActions: 'play none none none' // Don't reverse on scroll up
-                    }
-                }
-            );
-        }
+      // Skip hero headings and service-main h2 elements
+      if (!heading.closest('.hero') && !heading.closest('.service-main')) {
+        gsap.fromTo(heading,
+          {
+            opacity: 0,
+            y: 30
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: heading,
+              start: 'top 90%',
+              toggleActions: 'play none none none' // Don't reverse on scroll up
+            }
+          }
+        );
+      }
     });
 
     // Hero Video Parallax Effect
     const heroVideo = document.querySelector('.hero-video');
     if (heroVideo) {
       gsap.to(heroVideo, {
-          yPercent: 30,
-          ease: 'none',
-          scrollTrigger: {
-              trigger: '.hero',
-              start: 'top top',
-              end: 'bottom top',
-              scrub: true
-          }
+        yPercent: 30,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true
+        }
       });
     }
 
@@ -199,41 +199,41 @@ export default function Home() {
     // Portfolio items animation
     const portfolioItems = document.querySelectorAll('.portfolio-item, .portfolio-item-carousel, .portfolio-item-apple');
     portfolioItems.forEach((item, index) => {
-        gsap.fromTo(item,
-            {
-                opacity: 0,
-                scale: 0.8,
-                y: 20
-            },
-            {
-                opacity: 1,
-                scale: 1,
-                y: 0,
-                duration: 0.6,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: item,
-                    start: 'top 95%', // Trigger earlier to reduce delay
-                    toggleActions: 'play none none none' // Don't reverse on scroll up
-                },
-                delay: index * 0.05 // Reduce stagger delay
-            }
-        );
+      gsap.fromTo(item,
+        {
+          opacity: 0,
+          scale: 0.8,
+          y: 20
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 95%', // Trigger earlier to reduce delay
+            toggleActions: 'play none none none' // Don't reverse on scroll up
+          },
+          delay: index * 0.05 // Reduce stagger delay
+        }
+      );
     });
 
     // CTA button hover animations
     const ctaButtons = document.querySelectorAll('.btn, .cta-btn');
     ctaButtons.forEach(button => {
-        const tl = gsap.timeline({ paused: true });
+      const tl = gsap.timeline({ paused: true });
 
-        tl.to(button, {
-            scale: 1.05,
-            duration: 0.3,
-            ease: "power2.out"
-        });
+      tl.to(button, {
+        scale: 1.05,
+        duration: 0.3,
+        ease: "power2.out"
+      });
 
-        button.addEventListener('mouseenter', () => tl.play());
-        button.addEventListener('mouseleave', () => tl.reverse());
+      button.addEventListener('mouseenter', () => tl.play());
+      button.addEventListener('mouseleave', () => tl.reverse());
     });
 
     // Service Images Zoom Effect
@@ -285,76 +285,76 @@ export default function Home() {
 
 
   const clientLogos = [
-    { src: "/sources/client-logos/0d14c38b-9028-49c2-af84-09a9ef8e4d90.png", alt: "Client Logo" },
-    { src: "/sources/client-logos/7648e5eb-8716-4f13-bacc-d24e9d2fcf31-removebg-preview.png", alt: "Client Logo" },
-    { src: "/sources/client-logos/heatcooltech.png", alt: "Heat Cool Tech" },
+    { src: "/sources/client-logos/0d14c38b-9028-49c2-af84-09a9ef8e4d90.webp", alt: "Client Logo" },
+    { src: "/sources/client-logos/7648e5eb-8716-4f13-bacc-d24e9d2fcf31-removebg-preview.webp", alt: "Client Logo" },
+    { src: "/sources/client-logos/heatcooltech.webp", alt: "Heat Cool Tech" },
     { src: "/sources/client-logos/image.svg", alt: "Client Logo" },
     { src: "/sources/client-logos/instalatherm.svg", alt: "Instalatherm" },
-    { src: "/sources/client-logos/lemino.png", alt: "Lemino" },
-    { src: "/sources/client-logos/log-new__1_-removebg-preview.png", alt: "Client Logo" },
-    { src: "/sources/client-logos/logo (1).png", alt: "Client Logo" },
-    { src: "/sources/client-logos/logo (2).png", alt: "Client Logo" },
-    { src: "/sources/client-logos/logo bez pozadia.png", alt: "Client Logo" },
-    { src: "/sources/client-logos/logo.png", alt: "Client Logo" },
-    { src: "/sources/client-logos/logo1.png", alt: "Client Logo" },
-    { src: "/sources/client-logos/logo2 (1).png", alt: "Client Logo" },
-    { src: "/sources/client-logos/logo2.png", alt: "Client Logo" },
+    { src: "/sources/client-logos/lemino.webp", alt: "Lemino" },
+    { src: "/sources/client-logos/log-new__1_-removebg-preview.webp", alt: "Client Logo" },
+    { src: "/sources/client-logos/logo (1).webp", alt: "Client Logo" },
+    { src: "/sources/client-logos/logo (2).webp", alt: "Client Logo" },
+    { src: "/sources/client-logos/logo bez pozadia.webp", alt: "Client Logo" },
+    { src: "/sources/client-logos/logo.webp", alt: "Client Logo" },
+    { src: "/sources/client-logos/logo1.webp", alt: "Client Logo" },
+    { src: "/sources/client-logos/logo2 (1).webp", alt: "Client Logo" },
+    { src: "/sources/client-logos/logo2.webp", alt: "Client Logo" },
     { src: "/sources/client-logos/logoRENT-CvoT_R4r.svg", alt: "Client Logo" },
-    { src: "/sources/client-logos/output-onlinepngtools.png", alt: "Client Logo" },
-    { src: "/sources/client-logos/whole.png", alt: "Client Logo" },
+    { src: "/sources/client-logos/output-onlinepngtools.webp", alt: "Client Logo" },
+    { src: "/sources/client-logos/whole.webp", alt: "Client Logo" },
   ];
 
   const portfolioItems = [
     {
-      imgSrc: "/sources/aeb-portfolio/kovosklo.jpg",
+      imgSrc: "/sources/aeb-portfolio/kovosklo.webp",
       alt: "Kovovýroba",
       category: "Kovovýroba",
       subheading: "Moderné webové riešenia pre kovovýrobné firmy",
     },
     {
-      imgSrc: "/sources/aeb-portfolio/stolarstvo.jpg",
+      imgSrc: "/sources/aeb-portfolio/stolarstvo.webp",
       alt: "Stolárstvo",
       category: "Stolárstvo",
       subheading: "Prezentujte svoje stolárske výrobky online",
     },
     {
-      imgSrc: "/sources/aeb-portfolio/50.jpg",
+      imgSrc: "/sources/aeb-portfolio/raving.sk.webp",
       alt: "Stavebníctvo",
       category: "Stavebníctvo",
       subheading: "Profesionálne weby pre stavebné spoločnosti",
     },
     {
-      imgSrc: "/sources/aeb-portfolio/110.jpg",
+      imgSrc: "/sources/aeb-portfolio/110.webp",
       alt: "Zdravotníctvo",
       category: "Zdravotníctvo",
       subheading: "Digitálne riešenia pre zdravotnícke zariadenia",
     },
     {
-      imgSrc: "/sources/aeb-portfolio/120.jpg",
+      imgSrc: "/sources/aeb-portfolio/120.webp",
       alt: "Autobazáre",
       category: "Autobazáre",
       subheading: "E-shopy a katalógy pre predaj vozidiel",
     },
     {
-      imgSrc: "/sources/aeb-portfolio/70.jpg",
+      imgSrc: "/sources/aeb-portfolio/70.webp",
       alt: "Poľnohospodárstvo",
       category: "Poľnohospodárstvo",
       subheading: "Webové stránky pre poľnohospodárske firmy",
     },
     {
-      imgSrc: "/sources/aeb-portfolio/lerent.jpg",
+      imgSrc: "/sources/aeb-portfolio/lerent.webp",
       alt: "Autopožičovne",
       category: "Autopožičovne",
       subheading: "Rezervačné systémy a prezentácie vozidiel",
     },
     {
-      imgSrc: "/sources/aeb-portfolio/10.jpg",
+      imgSrc: "/sources/aeb-portfolio/10.webp",
       alt: "Fashion",
       category: "Fashion",
       subheading: "E-commerce riešenia pre módny priemysel",
     },
     {
-      imgSrc: "/sources/aeb-portfolio/Screenshot 2025-12-05 at 19.20.50.png",
+      imgSrc: "/sources/aeb-portfolio/Screenshot 2025-12-05 at 19.20.50.webp",
       alt: "Advokátske kancelárie",
       category: "Advokátske kancelárie",
       subheading: "Profesionálne weby pre právnické služby",
@@ -365,23 +365,23 @@ export default function Home() {
     <>
       {/* Custom Cursor */}
       <div
-          className={`gallery-custom-cursor fixed pointer-events-none z-[9999] transition-opacity duration-300 ${activeCursor === 'gallery' ? 'opacity-100' : 'opacity-0'}`}
-          style={{ left: cursorPos.x, top: cursorPos.y, width: '120px', height: '60px' }}
+        className={`gallery-custom-cursor fixed pointer-events-none z-[9999] transition-opacity duration-300 ${activeCursor === 'gallery' ? 'opacity-100' : 'opacity-0'}`}
+        style={{ left: cursorPos.x, top: cursorPos.y, width: '120px', height: '60px' }}
       >
-          <div className={`gallery-custom-cursor-inner relative w-full h-full flex items-center justify-center transition-all duration-300 ${activeCursor === 'gallery' ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`}>
-              <div className="corner corner-tl absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-white"></div>
-              <div className="corner corner-tr absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-white"></div>
-              <div className="corner corner-bl absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-white"></div>
-              <div className="corner corner-br absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-white"></div>
-              <span className="text-white font-bold tracking-widest text-xl font-[family-name:var(--font-manrope)]">VIAC</span>
-          </div>
+        <div className={`gallery-custom-cursor-inner relative w-full h-full flex items-center justify-center transition-all duration-300 ${activeCursor === 'gallery' ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`}>
+          <div className="corner corner-tl absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-white"></div>
+          <div className="corner corner-tr absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-white"></div>
+          <div className="corner corner-bl absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-white"></div>
+          <div className="corner corner-br absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-white"></div>
+          <span className="text-white font-bold tracking-widest text-xl font-[family-name:var(--font-manrope)]">VIAC</span>
+        </div>
       </div>
 
-      <section id="home" className="hero relative h-screen flex items-center justify-start overflow-hidden">
-        <video className="hero-video absolute top-0 left-0 w-full h-full object-cover brightness-60" autoPlay muted loop playsInline>
+      <section id="home" className="hero relative z-10 h-screen flex items-center justify-start overflow-hidden">
+        <video className="hero-video absolute top-0 left-0 w-full h-full object-cover brightness-60" autoPlay muted loop playsInline poster="/sources/hero-poster.jpg">
           <source src="/sources/1851190-uhd_3840_2160_25fps.mp4" type="video/mp4" />
         </video>
-        
+
         {/* Top Shadow Overlay */}
         <div className="absolute inset-x-0 top-0 h-[300px] bg-gradient-to-b from-black/90 to-transparent z-20 pointer-events-none"></div>
 
@@ -429,16 +429,16 @@ export default function Home() {
       </section>
 
       {/* Portfolio Gallery Section */}
-      <section id="portfolio" className="portfolio-gallery-section relative z-40 pt-8 pb-20 bg-black">
+      <section id="portfolio" className="portfolio-gallery-section relative z-40 pt-8 pb-20">
         <div className="container">
           <h2 className="heading-section text-left mb-12">Pracovali sme so všetkými</h2>
 
           <div className="gallery-container">
             <div className="gallery-columns grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {portfolioItems.map((item, index) => (
-                <Link 
-                  href="/portfolio" 
-                  className="gallery-item relative block overflow-hidden rounded-lg group h-[240px] md:h-[300px] cursor-none" 
+                <Link
+                  href="/portfolio"
+                  className="gallery-item relative block overflow-hidden rounded-lg group h-[240px] md:h-[300px] cursor-none"
                   key={index}
                   onMouseEnter={() => setActiveCursor('gallery')}
                   onMouseLeave={() => setActiveCursor(null)}
@@ -457,7 +457,7 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="services-two-column relative z-40 pt-0 pb-20 bg-custom-bg">
+      <section id="services" className="services-two-column relative z-40 pt-0 pb-20">
         {/* Desktop Layout */}
         <div className="w-full hidden lg:flex lg:flex-row">
           <div className="service-text-column flex-1 flex flex-col">
@@ -516,14 +516,14 @@ export default function Home() {
           </div>
           <div className="service-images-column flex-1 flex flex-col">
             {[
-              { src: "/sources/web-design.jpg", alt: "Web Development" },
-              { src: "/sources/services/aplikacie.jpg", alt: "Web Applications" },
-              { src: "/sources/Gemini_Generated_Image_lxz7dglxz7dglxz7.png", alt: "E-commerce" },
-              { src: "/sources/social-media.jpg", alt: "Social Media Marketing" },
-              { src: "/sources/email-market.jpg", alt: "Email Marketing" },
+              { src: "/sources/web-design.webp", alt: "Web Development" },
+              { src: "/sources/services/aplikacie.webp", alt: "Web Applications" },
+              { src: "/sources/Gemini_Generated_Image_lxz7dglxz7dglxz7.webp", alt: "E-commerce" },
+              { src: "/sources/social-media.webp", alt: "Social Media Marketing" },
+              { src: "/sources/email-market.webp", alt: "Email Marketing" },
             ].map((image, index) => (
               <div className="service-image" key={index}>
-                <img src={image.src} alt={image.alt} />
+                <Image src={image.src} alt={image.alt} fill className="object-cover" />
               </div>
             ))}
           </div>
@@ -537,35 +537,35 @@ export default function Home() {
               description: "Tvoríme moderné, responzívne webové stránky optimalizované pre všetky zariadenia. Naše weby sú rýchle, SEO optimalizované a navrhnuté s ohľadom na používateľskú skúsenosť.",
               features: ["Responzívny dizajn", "SEO optimalizácia", "Rýchle načítanie", "Moderné technológie"],
               link: "#contact",
-              image: { src: "/sources/web-design.jpg", alt: "Web Development" }
+              image: { src: "/sources/web-design.webp", alt: "Web Development" }
             },
             {
               title: "Aplikácie",
               description: "Vyvíjame pokročilé webové aplikácie s modernou funkcionalitou. Používame najnovšie technológie ako React, Node.js a TypeScript pre vytvorenie robustných riešení.",
               features: ["React & Vue.js", "Node.js backend", "Real-time funkcionalita", "API integrácie"],
               link: "#contact",
-              image: { src: "/sources/services/aplikacie.jpg", alt: "Web Applications" }
+              image: { src: "/sources/services/aplikacie.webp", alt: "Web Applications" }
             },
             {
               title: "E-shopy",
               description: "Vytvárame komplexné e-commerce riešenia, ktoré zvýšia vaše predaje. Od dizajnu po platobné brány a správu objednávok - všetko na jednom mieste.",
               features: ["WooCommerce & Shopify", "Platobné brány", "Správa skladov", "Analytics a reporting"],
               link: "#contact",
-              image: { src: "/sources/Gemini_Generated_Image_lxz7dglxz7dglxz7.png", alt: "E-commerce" }
+              image: { src: "/sources/Gemini_Generated_Image_lxz7dglxz7dglxz7.webp", alt: "E-commerce" }
             },
             {
               title: "Social Media",
               description: "Pomáhame vašej značke rásť online. Spravujeme sociálne médiá, vytvárame obsah a realizujeme reklamné kampane, ktoré prinášajú výsledky.",
               features: ["Správa sociálnych médií", "Instagram & Facebook kampane", "Tvorba obsahu", "Influencer marketing"],
               link: "#contact",
-              image: { src: "/sources/social-media.jpg", alt: "Social Media Marketing" }
+              image: { src: "/sources/social-media.webp", alt: "Social Media Marketing" }
             },
             {
               title: "Email Marketing",
               description: "Vytvárame efektívne email kampane, ktoré budujú vzťahy s vašimi zákazníkmi a zvyšujú konverzie. Od newslettrov po automatizované sekvencie.",
               features: ["Newsletter kampane", "Email automatizácia", "A/B testovanie", "Analytics a reporting"],
               link: "#contact",
-              image: { src: "/sources/email-market.jpg", alt: "Email Marketing" }
+              image: { src: "/sources/email-market.webp", alt: "Email Marketing" }
             },
           ].map((service, index) => (
             <div key={index} className="mb-12">
@@ -599,7 +599,7 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="stats-section relative z-40 py-40 bg-custom-bg overflow-hidden">
+      <section className="stats-section relative z-40 py-40 overflow-hidden">
         <div className="container relative z-10">
           <div className="stats-grid grid grid-cols-1 md:grid-cols-3 gap-0 text-center">
             <div className="stat-box stat-box-animate backdrop-blur-sm bg-white/5 p-8 rounded-none border border-white/10 hover:-translate-y-1 transition-transform duration-300">
@@ -616,7 +616,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-            </section>
-          </>
-        );
-      }
+      </section>
+    </>
+  );
+}

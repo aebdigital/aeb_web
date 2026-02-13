@@ -13,6 +13,7 @@ export function ContactForm() {
     budget: '',
     message: '',
     turnstileToken: '',
+    website: '', // Honeypot field
   });
 
   const [loading, setLoading] = useState(false);
@@ -47,7 +48,7 @@ export function ContactForm() {
     setLoading(true);
     setFormMessage({ text: '', type: '' });
 
-    const { name, email, subject, message, phone, budget, turnstileToken } = formData;
+    const { name, email, subject, message, phone, budget, turnstileToken, website } = formData;
 
     // Basic form validation
     if (!name || !email || !subject || !message) {
@@ -81,6 +82,7 @@ export function ContactForm() {
       email: email,
       message: fullMessage,
       turnstileToken: turnstileToken,
+      website: website, // Include honeypot in payload
     };
 
     try {
@@ -104,6 +106,7 @@ export function ContactForm() {
           budget: '',
           message: '',
           turnstileToken: '',
+          website: '',
         });
         // Reset turnstile here if needed, but the component might handle it
       } else {
@@ -118,7 +121,7 @@ export function ContactForm() {
   };
 
   return (
-    <section id="contact" className="contact-form-section py-20 bg-custom-bg">
+    <section id="contact" className="contact-form-section py-20 relative z-40">
       <div className="container">
         <div className="contact-content grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div className="contact-text">
@@ -135,6 +138,19 @@ export function ContactForm() {
           </div>
 
           <form id="contact-form" className="contact-form bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-[20px]" onSubmit={handleSubmit}>
+            {/* Honeypot Field - Invisible to users, visible to bots */}
+            <div className="hidden absolute opacity-0 -z-10 h-0 w-0 overflow-hidden">
+              <label htmlFor="website">Webstránka</label>
+              <input
+                type="text"
+                id="website"
+                name="website"
+                value={formData.website}
+                onChange={handleChange}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
             <div className="form-group mb-4">
               <label htmlFor="name" className="block text-white text-sm font-bold mb-2">Meno *</label>
               <input

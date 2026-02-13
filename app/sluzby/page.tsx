@@ -41,7 +41,7 @@ interface ServiceItemProps {
 
 function ServiceSection({ id, title, description, features, imageSrc, imageAlt, reverse = false }: ServiceItemProps) {
   return (
-    <section id={id} className={`services-page-section bg-custom-bg ${reverse ? 'reverse' : ''}`}>
+    <section id={id} className={`services-page-section ${reverse ? 'reverse' : ''}`}>
       {/* Desktop Layout */}
       <div className={`hidden lg:flex ${reverse ? 'flex-row-reverse' : 'flex-row'} min-h-screen`}>
         {/* Text Column */}
@@ -128,7 +128,7 @@ function ProcessSection() {
   ];
 
   return (
-    <section className="process-section py-20 bg-custom-bg text-white relative overflow-hidden">
+    <section className="process-section py-20 text-white relative overflow-hidden">
       <div className="container relative z-10">
         <h2 className="heading-section text-center mb-12">Náš proces</h2>
 
@@ -154,7 +154,7 @@ export default function ServicesPage() {
       <BackgroundTextAnimation />
 
       {/* Page Header */}
-      <section className="page-header py-32 bg-custom-bg text-white">
+      <section className="page-header py-32 text-white">
         <div className="container">
           <h1 className="page-title">Naše služby</h1>
         </div>
@@ -165,7 +165,7 @@ export default function ServicesPage() {
         title="Webové stránky"
         description="Tvoríme moderné, responzívne webové stránky optimalizované pre všetky zariadenia. Naše weby sú rýchle, SEO optimalizované a navrhnuté s ohľadom na používateľskú skúsenosť."
         features={["Responzívny dizajn", "SEO optimalizácia", "Rýchle načítanie", "CMS systém", "Technická podpora", "SSL certifikáty", "Hosting a domény", "Google Analytics"]}
-        imageSrc="/sources/web-design.jpg"
+        imageSrc="/sources/web-design.webp"
         imageAlt="Webové stránky"
       />
 
@@ -174,7 +174,7 @@ export default function ServicesPage() {
         title="Webové aplikácie"
         description="Vyvíjame pokročilé webové aplikácie s modernou funkcionalitou. Používame najnovšie technológie ako React, Node.js a TypeScript pre vytvorenie robustných riešení."
         features={["React & Vue.js", "Node.js backend", "Real-time funkcionalita", "API integrácie", "Škálovateľnosť", "Progressive Web Apps", "Databázy & Cloud", "Automatizácia"]}
-        imageSrc="/sources/services/aplikacie.jpg"
+        imageSrc="/sources/services/aplikacie.webp"
         imageAlt="Webové aplikácie"
         reverse
       />
@@ -184,7 +184,7 @@ export default function ServicesPage() {
         title="E-shopy"
         description="Vytvárame komplexné e-commerce riešenia, ktoré zvýšia vaše predaje. Od dizajnu po platobné brány a správu objednávok - všetko na jednom mieste."
         features={["WooCommerce & Shopify", "Platobné brány", "Správa skladov", "Analytics a reporting", "Mobilná optimalizácia", "Inventory management", "Multi-channel predaj", "Email marketing integrácia"]}
-        imageSrc="/sources/Gemini_Generated_Image_lxz7dglxz7dglxz7.png"
+        imageSrc="/sources/Gemini_Generated_Image_lxz7dglxz7dglxz7.webp"
         imageAlt="E-shopy"
       />
 
@@ -193,7 +193,7 @@ export default function ServicesPage() {
         title="Digital Marketing"
         description="Pomáhame vašej značke rásť online. Spravujeme sociálne médiá, vytvárame obsah a realizujeme reklamné kampane, ktoré prinášajú výsledky."
         features={["Správa sociálnych médií", "Google Ads & Facebook Ads", "Tvorba obsahu", "Email marketing", "SEO optimalizácia", "Influencer marketing", "Conversion optimization", "Marketing automation"]}
-        imageSrc="/sources/social-media.jpg"
+        imageSrc="/sources/social-media.webp"
         imageAlt="Digital Marketing"
         reverse
       />
@@ -203,7 +203,7 @@ export default function ServicesPage() {
         title="Email Marketing"
         description="Vytvárame efektívne email kampane, ktoré budujú vzťahy s vašimi zákazníkmi a zvyšujú konverzie. Od newslettrov po automatizované sekvencie."
         features={["Newsletter kampane", "Email automatizácia", "A/B testovanie", "Analytics a reporting", "Personalizácia obsahu", "Drip kampane", "Lead nurturing", "ROI optimalizácia"]}
-        imageSrc="/sources/email-market.jpg"
+        imageSrc="/sources/email-market.webp"
         imageAlt="Email Marketing"
       />
 

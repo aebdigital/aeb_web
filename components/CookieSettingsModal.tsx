@@ -33,11 +33,11 @@ export function CookieSettingsModal() {
   return (
     <div
       id="cookie-settings-modal"
-      className="cookie-settings-modal fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-[1000] overflow-y-auto p-4"
+      className="cookie-settings-modal fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-[1000] overflow-y-auto p-4"
       onClick={() => setShowSettings(false)}
     >
       <div
-        className="cookie-settings-content bg-dark-gray text-white p-8 rounded-lg shadow-2xl max-w-2xl w-full relative max-h-[90vh]"
+        className="cookie-settings-content bg-black text-white p-8 rounded-lg shadow-2xl max-w-2xl w-full relative max-h-[90vh] border border-white/10"
         onClick={(e) => e.stopPropagation()}
       >
         <button

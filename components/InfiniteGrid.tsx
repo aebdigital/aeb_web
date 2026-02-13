@@ -21,27 +21,29 @@ interface Tile {
 }
 
 const portfolioItemsData: PortfolioItem[] = [
-  { link: 'https://kovo-sklo.sk/', image: '/sources/aeb-portfolio/kovosklo.jpg', alt: 'Kovo Sklo' },
-  { link: 'https://lerent.sk/', image: '/sources/aeb-portfolio/lerent.jpg', alt: 'Lerent' },
-  { link: 'https://legispro.sk/', image: '/sources/aeb-portfolio/Screenshot 2025-12-05 at 19.20.50.png', alt: 'Legispro' },
-  { link: 'https://falat.sk/', image: '/sources/aeb-portfolio/stolarstvo.jpg', alt: 'Falat' },
-  { link: 'https://zmrdwear.sk/', image: '/sources/aeb-portfolio/10.jpg', alt: 'Web projekt 1' },
-  { link: 'https://www.tristanstudio.sk/', image: '/sources/aeb-portfolio/20.jpg', alt: 'Web projekt 2' },
-  { link: 'https://campro.sk/', image: '/sources/aeb-portfolio/30.jpg', alt: 'Web projekt 3' },
-  { link: 'https://www.rssp.sk/', image: '/sources/aeb-portfolio/40.jpg', alt: 'Web projekt 4' },
-  { link: 'https://www.benstavbs.sk/', image: '/sources/aeb-portfolio/50.jpg', alt: 'Web projekt 5' },
-  { link: 'https://www.trubela.sk/', image: '/sources/aeb-portfolio/60.jpg', alt: 'Web projekt 6' },
-  { link: 'https://www.veskolfarm.sk/', image: '/sources/aeb-portfolio/70.jpg', alt: 'Web projekt 7' },
-  { link: 'https://www.lemino.sk/', image: '/sources/aeb-portfolio/80.jpg', alt: 'Web projekt 8' },
-  { link: 'https://www.instalatherm.sk/', image: '/sources/aeb-portfolio/instala.jpg', alt: 'Web projekt 10' },
-  { link: 'https://www.kreslimesivankou.sk/', image: '/sources/aeb-portfolio/110.jpg', alt: 'Web projekt 11' },
-  { link: 'https://www.autocentrumbb.sk/', image: '/sources/aeb-portfolio/120.jpg', alt: 'Web projekt 12' },
-  { link: 'https://www.pemavzt.sk/', image: '/sources/aeb-portfolio/130.jpg', alt: 'Web projekt 13' },
-  { link: 'https://penelcom.sk/', image: '/sources/aeb-portfolio/140.jpg', alt: 'Web projekt 14' },
-  { link: 'https://mlresult.sk/', image: '/sources/aeb-portfolio/150.jpg', alt: 'Web projekt 15' },
-  { link: 'https://atelierkusa.sk/', image: '/sources/aeb-portfolio/atelierkusa.jpg', alt: 'Ateliér Kúsa' },
-  { link: 'https://nataliyakashyk.sk/', image: '/sources/aeb-portfolio/kashyk.jpg', alt: 'Nataliya Kashyk' },
-  { link: 'https://top-interier.sk/', image: '/sources/aeb-portfolio/topinterier.jpg', alt: 'Top Interiér' },
+  { link: 'https://kovo-sklo.sk/', image: '/sources/aeb-portfolio/kovosklo.webp', alt: 'Kovo Sklo' },
+  { link: 'https://lerent.sk/', image: '/sources/aeb-portfolio/lerent.webp', alt: 'Lerent' },
+  { link: 'https://legispro.sk/', image: '/sources/aeb-portfolio/Screenshot 2025-12-05 at 19.20.50.webp', alt: 'Legispro' },
+  { link: 'https://falat.sk/', image: '/sources/aeb-portfolio/stolarstvo.webp', alt: 'Falat' },
+  { link: 'https://zmrdwear.sk/', image: '/sources/aeb-portfolio/10.webp', alt: 'Web projekt 1' },
+  { link: 'https://www.tristanstudio.sk/', image: '/sources/aeb-portfolio/20.webp', alt: 'Web projekt 2' },
+  { link: 'https://campro.sk/', image: '/sources/aeb-portfolio/30.webp', alt: 'Web projekt 3' },
+  { link: 'https://www.rssp.sk/', image: '/sources/aeb-portfolio/40.webp', alt: 'Web projekt 4' },
+  { link: 'https://www.veskolfarm.sk/', image: '/sources/aeb-portfolio/70.webp', alt: 'Web projekt 7' },
+  { link: 'https://www.lemino.sk/', image: '/sources/aeb-portfolio/80.webp', alt: 'Web projekt 8' },
+  { link: 'https://www.instalatherm.sk/', image: '/sources/aeb-portfolio/instala.webp', alt: 'Web projekt 10' },
+  { link: 'https://www.kreslimesivankou.sk/', image: '/sources/aeb-portfolio/110.webp', alt: 'Web projekt 11' },
+  { link: 'https://www.autocentrumbb.sk/', image: '/sources/aeb-portfolio/120.webp', alt: 'Web projekt 12' },
+  { link: 'https://www.pemavzt.sk/', image: '/sources/aeb-portfolio/130.webp', alt: 'Web projekt 13' },
+  { link: 'https://penelcom.sk/', image: '/sources/aeb-portfolio/140.webp', alt: 'Web projekt 14' },
+  { link: 'https://mlresult.sk/', image: '/sources/aeb-portfolio/150.webp', alt: 'Web projekt 15' },
+  { link: 'https://atelierkusa.sk/', image: '/sources/aeb-portfolio/atelierkusa.webp', alt: 'Ateliér Kúsa' },
+  { link: 'https://nataliyakashyk.sk/', image: '/sources/aeb-portfolio/kashyk.webp', alt: 'Nataliya Kashyk' },
+  { link: 'https://top-interier.sk/', image: '/sources/aeb-portfolio/topinterier.webp', alt: 'Top Interiér' },
+  { link: 'https://autocentrummaxi.cz/', image: '/sources/aeb-portfolio/autocentrummaxi.cz.webp', alt: 'Autocentrum Maxi' },
+  { link: 'https://holz-haus.sk/', image: '/sources/aeb-portfolio/holzhaus.sk.webp', alt: 'Holzhaus' },
+  { link: 'https://raving.sk/', image: '/sources/aeb-portfolio/raving.sk.webp', alt: 'Raving' },
+  { link: 'https://wens.sk/', image: '/sources/aeb-portfolio/wens.sk.webp', alt: 'Wens' },
 ];
 
 const itemWidth = 300;
@@ -63,10 +65,10 @@ export function InfiniteGrid() {
   const [renderedTiles, setRenderedTiles] = useState<Tile[]>([]);
 
   const getMatrixItem = useCallback((row: number, col: number): PortfolioItem => {
-    const numCols = 5; // Adjust number of columns for variety in the infinite grid
     const totalItems = portfolioItemsData.length;
-    // Use Math.abs and modulo to loop through items for the infinite effect
-    const index = (Math.abs(row * numCols + col)) % totalItems;
+    // Coordinate-based hashing using prime multipliers to create a unique staggered pattern
+    const hash = Math.abs((row * 739) + (col * 491));
+    const index = hash % totalItems;
     return portfolioItemsData[index];
   }, []);
 
@@ -122,7 +124,7 @@ export function InfiniteGrid() {
       const y = tile.gridIndex.row * (itemHeight + gap) + gridOffset.current.y;
 
       const isOutside = x < -itemWidth - (buffer * (itemWidth + gap)) || x > clientWidth + (buffer * (itemWidth + gap)) ||
-                        y < -itemHeight - (buffer * (itemHeight + gap)) || y > clientHeight + (buffer * (itemHeight + gap));
+        y < -itemHeight - (buffer * (itemHeight + gap)) || y > clientHeight + (buffer * (itemHeight + gap));
 
       if (isOutside && tile.element) {
         // Here we just remove it from our internal Map, React will handle DOM removal
@@ -150,7 +152,7 @@ export function InfiniteGrid() {
         }
       }
     }
-    
+
     // Update React state to reflect changes in tilesRef
     setRenderedTiles(Array.from(tilesRef.current.values()));
 
@@ -174,7 +176,7 @@ export function InfiniteGrid() {
     });
 
     if (isDragging.current || Math.abs(velocity.current.x) > 0.1 || Math.abs(velocity.current.y) > 0.1) {
-        updateTiles();
+      updateTiles();
     }
     animationFrameRef.current = requestAnimationFrame(animate);
   }, [updateTiles]);
@@ -189,7 +191,7 @@ export function InfiniteGrid() {
     // Hide the drag prompt with fade out
     const dragPrompt = document.getElementById('drag-prompt');
     if (dragPrompt) {
-        dragPrompt.style.opacity = '0';
+      dragPrompt.style.opacity = '0';
     }
   }, []);
 
@@ -274,7 +276,7 @@ export function InfiniteGrid() {
     <div
       ref={containerRef}
       id="infinite-grid-container"
-      className="relative w-full h-[800px] overflow-hidden" // Adjust height as needed
+      className="relative w-full h-[960px] overflow-hidden" // Adjust height as needed
     >
       {renderedTiles.map(tile => {
         const itemData = getMatrixItem(tile.gridIndex.row, tile.gridIndex.col);
@@ -284,13 +286,13 @@ export function InfiniteGrid() {
             className="portfolio-item-apple absolute top-0 left-0"
             style={{ width: itemWidth, height: itemHeight }}
             ref={el => {
-                // Attach ref to the actual DOM element for direct manipulation
-                if (el) {
-                    const existingTile = tilesRef.current.get(tile.id);
-                    if (existingTile) {
-                        existingTile.element = el;
-                    }
+              // Attach ref to the actual DOM element for direct manipulation
+              if (el) {
+                const existingTile = tilesRef.current.get(tile.id);
+                if (existingTile) {
+                  existingTile.element = el;
                 }
+              }
             }}
           >
             <a href={itemData.link} target="_blank" rel="noopener noreferrer" className="block w-full h-full">

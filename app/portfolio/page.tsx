@@ -29,24 +29,16 @@ export default function PortfolioPage() {
   return (
     <>
       {/* Page Header */}
-      <section className="page-header py-32 bg-custom-bg text-white relative">
+      <section className="page-header py-32 text-white relative">
         <div className="container">
           <h1 className="page-title">Naše portfólio</h1>
         </div>
-        {/* Gradient Overlay */}
-        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black to-transparent"></div>
       </section>
 
       {/* Portfolio Section */}
-      <section 
-        className="portfolio-apple-style py-5 bg-black relative overflow-hidden"
-        style={{
-          backgroundImage: 'radial-gradient(circle, #333 1px, transparent 1px)',
-          backgroundSize: '20px 20px',
-          backgroundPosition: '0 0'
-        }}
+      <section
+        className="portfolio-apple-style py-5 relative overflow-hidden"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)] pointer-events-none z-0"></div>
         <div className="portfolio-content relative z-10">
           {/* Portfolio Gallery */}
           <div className="portfolio-gallery relative">

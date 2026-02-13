@@ -9,7 +9,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
   const lenis = useLenis();
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#000000' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'transparent' }}>
       <AnimatePresence
         mode="wait"
         onExitComplete={() => {

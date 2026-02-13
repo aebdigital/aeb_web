@@ -8,6 +8,7 @@ import { PrivacyPopup } from "@/components/PrivacyPopup";
 import { CookieBanner } from "@/components/CookieBanner";
 import { CookieSettingsModal } from "@/components/CookieSettingsModal";
 import { PageSections } from "@/components/PageSections";
+import { StarryBackground } from "@/components/StarryBackground";
 import Script from "next/script";
 
 // Viewport configuration (separate from metadata in Next.js 14+)
@@ -334,6 +335,7 @@ export default function RootLayout({
       <body className="antialiased">
         <LenisProvider>
           <CookieConsentProvider>
+            <StarryBackground />
             <Header />
             <main>{children}</main>
             <PageSections />

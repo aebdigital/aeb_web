@@ -5,7 +5,7 @@ import { FaEnvelope, FaHandshake, FaTools } from 'react-icons/fa'; // Import spe
 
 export function ContactInfoSection() {
   return (
-    <section className="contact-info-section py-20 bg-custom-bg relative z-40">
+    <section className="contact-info-section py-20 relative z-40">
       <div className="container">
         <h2 className="heading-section text-center mb-12">Kontakt</h2>
 

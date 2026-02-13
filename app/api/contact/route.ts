@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 // Utility function to verify Cloudflare Turnstile token
-async function verifyTurnstile(token: string): Promise<boolean> {
+async function verifyTurnstile(token: string, ip?: string): Promise<boolean> {
   const secretKey = process.env.TURNSTILE_SECRET_KEY;
 
   if (!secretKey) {
@@ -16,6 +16,9 @@ async function verifyTurnstile(token: string): Promise<boolean> {
     const formData = new URLSearchParams();
     formData.append('secret', secretKey);
     formData.append('response', token);
+    if (ip) {
+      formData.append('remoteip', ip);
+    }
 
     const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
       method: 'POST',
@@ -50,7 +53,20 @@ export async function POST(request: NextRequest) {
 
   try {
     const data = await request.json();
-    const { name, email, message, turnstileToken } = data;
+    const { name, email, message, turnstileToken, website } = data;
+
+    // Honeypot check: If the hidden field 'website' is filled, it's a bot.
+    if (website && website.length > 0) {
+      console.warn(`Honeypot triggered. Bot detected. IP: ${request.headers.get('x-forwarded-for') || request.headers.get('client-ip')}`);
+      // Return a fake success response to fool the bot
+      return NextResponse.json(
+        {
+          success: true,
+          message: 'Ďakujeme! Vaša správa bola úspešne odoslaná.',
+        },
+        { status: 200, headers }
+      );
+    }
 
     // Verify Turnstile Token
     if (!turnstileToken) {
@@ -63,7 +79,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const isHuman = await verifyTurnstile(turnstileToken);
+    const ip = request.headers.get('x-forwarded-for') || request.headers.get('client-ip') || undefined;
+    const isHuman = await verifyTurnstile(turnstileToken, ip);
     if (!isHuman) {
       return NextResponse.json(
         {
