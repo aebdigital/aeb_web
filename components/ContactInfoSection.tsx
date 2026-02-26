@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { FaEnvelope, FaHandshake, FaTools } from 'react-icons/fa'; // Import specific icons
+import { FaEnvelope, FaHandshake, FaTools } from 'react-icons/fa';
 
 export function ContactInfoSection() {
   return (
@@ -14,13 +14,13 @@ export function ContactInfoSection() {
             <div className="contact-icon">
               <FaEnvelope />
             </div>
-            <h3 className="text-xl font-semibold mb-4 text-white">Všeobecné informácie</h3>
+            <h3 className="text-xl font-semibold mb-4 text-white">Allgemeine Informationen</h3>
             <div className="contact-item mb-2">
-              <strong className="block text-white mb-1">Email:</strong>
+              <strong className="block text-white mb-1">E-Mail:</strong>
               <a href="mailto:peter@aebdig.com" className="text-gray-light hover:text-accent-teal ml-2">peter@aebdig.com</a>
             </div>
             <div className="contact-item">
-              <strong className="block text-white mb-1">Telefón:</strong>
+              <strong className="block text-white mb-1">Telefon:</strong>
               <a href="tel:+421908507131" className="text-gray-light hover:text-accent-teal ml-2">+421 908 507 131</a>
             </div>
           </div>
@@ -29,13 +29,13 @@ export function ContactInfoSection() {
             <div className="contact-icon">
               <FaHandshake />
             </div>
-            <h3 className="text-xl font-semibold mb-4 text-white">Obchodné oddelenie</h3>
+            <h3 className="text-xl font-semibold mb-4 text-white">Vertriebsabteilung</h3>
             <div className="contact-item mb-2">
-              <strong className="block text-white mb-1">Email:</strong>
+              <strong className="block text-white mb-1">E-Mail:</strong>
               <a href="mailto:alexander@aebdig.com" className="text-gray-light hover:text-accent-teal ml-2">alexander@aebdig.com</a>
             </div>
             <div className="contact-item">
-              <strong className="block text-white mb-1">Telefón:</strong>
+              <strong className="block text-white mb-1">Telefon:</strong>
               <a href="tel:+421917422245" className="text-gray-light hover:text-accent-teal ml-2">+421 917 422 245</a>
             </div>
           </div>
@@ -44,13 +44,13 @@ export function ContactInfoSection() {
             <div className="contact-icon">
               <FaTools />
             </div>
-            <h3 className="text-xl font-semibold mb-4 text-white">Technická podpora</h3>
+            <h3 className="text-xl font-semibold mb-4 text-white">Technischer Support</h3>
             <div className="contact-item mb-2">
-              <strong className="block text-white mb-1">Email:</strong>
+              <strong className="block text-white mb-1">E-Mail:</strong>
               <a href="mailto:peter@aebdig.com" className="text-gray-light hover:text-accent-teal ml-2">peter@aebdig.com</a>
             </div>
             <div className="contact-item">
-              <strong className="block text-white mb-1">Telefón:</strong>
+              <strong className="block text-white mb-1">Telefon:</strong>
               <a href="tel:+421908507131" className="text-gray-light hover:text-accent-teal ml-2">+421 908 507 131</a>
             </div>
           </div>

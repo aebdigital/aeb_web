@@ -3,24 +3,24 @@
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaGithub, FaHome, FaBriefcase, FaCogs, FaUsers, FaBlog, FaEnvelope, FaCookieBite } from 'react-icons/fa';
 import Image from "next/image";
-import { useCookieConsent } from './CookieConsentProvider'; // Import the hook
+import { useCookieConsent } from './CookieConsentProvider';
 
 export function Footer() {
-  const { setShowSettings } = useCookieConsent(); // Use the hook
+  const { setShowSettings } = useCookieConsent();
 
   const handleCookieSettingsClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    setShowSettings(true); // Open the cookie settings modal
+    setShowSettings(true);
   };
 
   return (
     <footer className="footer text-white pt-12 pb-20 relative z-40 overflow-hidden">
-      {/* Placeholder for gradient if any */}              <div className="container relative z-10">
+      <div className="container relative z-10">
         <div className="footer-content grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="footer-main md:col-span-1">
             <div className="footer-brand mb-6">
               <h3 className="footer-logo-text text-4xl font-bold mb-2">AEB DIGITAL</h3>
-              <p className="text-gray-light text-base mb-6 max-w-sm">Tvoríme digitálne riešenia pre váš úspech. Moderné webové stránky, aplikácie a marketing na mieru.</p>
+              <p className="text-gray-light text-base mb-6 max-w-sm">Wir entwickeln digitale Lösungen für Ihren Erfolg. Moderne Websites, Anwendungen und maßgeschneidertes Marketing.</p>
 
               <div className="footer-social flex space-x-4 text-2xl">
                 <div className="w-10 h-10 rounded-full bg-[#222222] flex items-center justify-center">
@@ -41,23 +41,23 @@ export function Footer() {
 
           <div className="footer-links grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:col-span-3">
             <div className="footer-column">
-              <h4 className="text-xl">Spoločnosť</h4>
+              <h4 className="text-xl">Unternehmen</h4>
               <ul>
-                <li className="mb-2"><Link href="/o-nas" className="text-gray-light hover:text-primary-purple transition-colors text-base">O nás</Link></li>
-                <li className="mb-2"><Link href="/portfolio" className="text-gray-light hover:text-primary-purple transition-colors text-base">Portfólio</Link></li>
-                <li className="mb-2"><Link href="/kontakt" className="text-gray-light hover:text-primary-purple transition-colors text-base">Kontakt</Link></li>
+                <li className="mb-2"><Link href="/about" className="text-gray-light hover:text-primary-purple transition-colors text-base">Über uns</Link></li>
+                <li className="mb-2"><Link href="/portfolio" className="text-gray-light hover:text-primary-purple transition-colors text-base">Portfolio</Link></li>
+                <li className="mb-2"><Link href="/contact" className="text-gray-light hover:text-primary-purple transition-colors text-base">Kontakt</Link></li>
                 <li className="mb-2"><Link href="/blog" className="text-gray-light hover:text-primary-purple transition-colors text-base">Blog</Link></li>
               </ul>
             </div>
 
             <div className="footer-column">
-              <h4 className="text-xl">Služby</h4>
+              <h4 className="text-xl">Dienstleistungen</h4>
               <ul>
-                <li className="mb-2"><Link href="/sluzby#webove-stranky" className="text-gray-light hover:text-primary-purple transition-colors text-base">Webové stránky</Link></li>
-                <li className="mb-2"><Link href="/sluzby#webove-aplikacie" className="text-gray-light hover:text-primary-purple transition-colors text-base">Webové aplikácie</Link></li>
-                <li className="mb-2"><Link href="/sluzby#e-shopy" className="text-gray-light hover:text-primary-purple transition-colors text-base">E-shopy</Link></li>
-                <li className="mb-2"><Link href="/sluzby#digital-marketing" className="text-gray-light hover:text-primary-purple transition-colors text-base">Digital Marketing</Link></li>
-                <li className="mb-2"><Link href="/sluzby#email-marketing" className="text-gray-light hover:text-primary-purple transition-colors text-base">Email Marketing</Link></li>
+                <li className="mb-2"><Link href="/services#websites" className="text-gray-light hover:text-primary-purple transition-colors text-base">Websites</Link></li>
+                <li className="mb-2"><Link href="/services#web-applications" className="text-gray-light hover:text-primary-purple transition-colors text-base">Webanwendungen</Link></li>
+                <li className="mb-2"><Link href="/services#e-shops" className="text-gray-light hover:text-primary-purple transition-colors text-base">E-Shops</Link></li>
+                <li className="mb-2"><Link href="/services#digital-marketing" className="text-gray-light hover:text-primary-purple transition-colors text-base">Digitales Marketing</Link></li>
+                <li className="mb-2"><Link href="/services#email-marketing" className="text-gray-light hover:text-primary-purple transition-colors text-base">E-Mail-Marketing</Link></li>
               </ul>
             </div>
 
@@ -79,11 +79,13 @@ export function Footer() {
             <p className="text-base">&copy; 2025 AEB Digital</p>
           </div>
           <div className="footer-legal flex space-x-4">
-            <Link href="/ochrana-osobnych-udajov" className="text-gray-light hover:text-primary-purple transition-colors text-base">Ochrana súkromia</Link>
-            <a href="#" id="cookie-settings-footer" className="cookie-settings-icon text-gray-light hover:text-primary-purple transition-colors flex items-center text-base" title="Nastavenia cookies" onClick={handleCookieSettingsClick}>
+            <Link href="/privacy-policy" className="text-gray-light hover:text-primary-purple transition-colors text-base">Datenschutz</Link>
+            <a href="#" id="cookie-settings-footer" className="cookie-settings-icon text-gray-light hover:text-primary-purple transition-colors flex items-center text-base" title="Cookie Einstellungen" onClick={handleCookieSettingsClick}>
               <FaCookieBite className="mr-1" /> Cookies
             </a>
           </div>
         </div>
-      </div>            </footer>);
+      </div>
+    </footer>
+  );
 }

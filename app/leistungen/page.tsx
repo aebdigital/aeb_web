@@ -4,27 +4,27 @@ import { BackgroundTextAnimation } from "@/components/BackgroundTextAnimation";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Služby - Tvorba webov, e-shopov, aplikácií | AEB Digital Bratislava",
-  description: "Kompletné digitálne služby v Bratislave: tvorba webových stránok od 500€, e-shopy na mieru, webové aplikácie, digital marketing, SEO optimalizácia, UI/UX dizajn. Bezplatná konzultácia!",
+  title: "Leistungen - Webseiten, E-Shops, Anwendungen | AEB Digital",
+  description: "Umfassende digitale Dienstleistungen: Erstellung von Webseiten ab 500€, maßgeschneiderte E-Shops, Webanwendungen, Digital Marketing, SEO-Optimierung, UI/UX Design. Kostenlose Beratung!",
   keywords: [
-    "tvorba webových stránok",
-    "web dizajn služby",
-    "e-shop tvorba Slovensko",
-    "webové aplikácie na mieru",
-    "SEO optimalizácia",
-    "digital marketing",
-    "UI/UX dizajn",
-    "responzívny web dizajn",
-    "WordPress weby",
-    "React vývoj",
+    "Webseiten erstellen",
+    "Webdesign Dienstleistungen",
+    "E-Shop Erstellung Österreich",
+    "maßgeschneiderte Webanwendungen",
+    "SEO-Optimierung",
+    "Digital Marketing",
+    "UI/UX Design",
+    "responsives Webdesign",
+    "WordPress Webseiten",
+    "React Entwicklung",
   ],
   alternates: {
-    canonical: "https://aebdigital.sk/sluzby",
+    canonical: "https://aebdigital.at/leistungen",
   },
   openGraph: {
-    title: "Služby - Tvorba webov, e-shopov, aplikácií | AEB Digital",
-    description: "Kompletné digitálne služby v Bratislave: webové stránky, e-shopy, aplikácie, marketing. Bezplatná konzultácia!",
-    url: "https://aebdigital.sk/sluzby",
+    title: "Leistungen - Webseiten, E-Shops, Anwendungen | AEB Digital",
+    description: "Umfassende digitale Dienstleistungen: Webseiten, E-Shops, Anwendungen, Marketing. Kostenlose Beratung!",
+    url: "https://aebdigital.at/leistungen",
     type: "website",
   },
 };
@@ -59,7 +59,7 @@ function ServiceSection({ id, title, description, features, imageSrc, imageAlt, 
               ))}
             </div>
 
-            <Link href="/kontakt" className="btn btn-primary">Získať ponuku</Link>
+            <Link href="/kontakt" className="btn btn-primary">Angebot anfordern</Link>
           </div>
         </div>
         {/* Image Column - 50vw, touching edge */}
@@ -86,7 +86,7 @@ function ServiceSection({ id, title, description, features, imageSrc, imageAlt, 
             ))}
           </div>
 
-          <Link href="/kontakt" className="btn btn-primary">Získať ponuku</Link>
+          <Link href="/kontakt" className="btn btn-primary">Angebot anfordern</Link>
         </div>
       </div>
     </section>
@@ -97,40 +97,40 @@ function ProcessSection() {
   const processSteps = [
     {
       step: 1,
-      title: "Konzultácia",
-      description: "Počas prvého stretnutia si spoločne definujeme vaše potreby a ciele projektu."
+      title: "Beratung",
+      description: "Beim ersten Gespräch definieren wir gemeinsam Ihre Bedürfnisse und Projektziele."
     },
     {
       step: 2,
-      title: "Návrh",
-      description: "Vytvoríme detailný návrh riešenia a cenovu ponuku prispôsobenú vášmu rozpočtu."
+      title: "Entwurf",
+      description: "Wir erstellen einen detaillierten Lösungsentwurf und ein Angebot, das auf Ihr Budget zugeschnitten ist."
     },
     {
       step: 3,
-      title: "Vývoj",
-      description: "Realizujeme projekt pomocou najnovších technológií a najlepších praktík."
+      title: "Entwicklung",
+      description: "Wir realisieren das Projekt mit den neuesten Technologien und Best Practices."
     },
     {
       step: 4,
-      title: "Testovanie",
-      description: "Dôkladne testujeme všetku funkcionalitu a optimalizujeme výkon riešenia."
+      title: "Testing",
+      description: "Wir testen gründlich alle Funktionalitäten und optimieren die Leistung der Lösung."
     },
     {
       step: 5,
-      title: "Spustenie",
-      description: "Spúšťame projekt do ostrého prevádzky a zabezpečujeme hladký prechod."
+      title: "Launch",
+      description: "Wir starten das Projekt im Live-Betrieb und sorgen für einen reibungslosen Übergang."
     },
     {
       step: 6,
-      title: "Podpora",
-      description: "Poskytujeme technickú podporu a údržbu pre dlhodobý úspech projektu."
+      title: "Support",
+      description: "Wir bieten technischen Support und Wartung für den langfristigen Erfolg Ihres Projekts."
     },
   ];
 
   return (
     <section className="process-section py-20 text-white relative overflow-hidden">
       <div className="container relative z-10">
-        <h2 className="heading-section text-center mb-12">Náš proces</h2>
+        <h2 className="heading-section text-center mb-12">Unser Prozess</h2>
 
         <div className="process-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {processSteps.map((step, index) => (
@@ -156,43 +156,43 @@ export default function ServicesPage() {
       {/* Page Header */}
       <section className="page-header py-32 text-white">
         <div className="container">
-          <h1 className="page-title">Naše služby</h1>
+          <h1 className="page-title">Unsere Leistungen</h1>
         </div>
       </section>
 
       <ServiceSection
-        id="webove-stranky"
-        title="Webové stránky"
-        description="Tvoríme moderné, responzívne webové stránky optimalizované pre všetky zariadenia. Naše weby sú rýchle, SEO optimalizované a navrhnuté s ohľadom na používateľskú skúsenosť."
-        features={["Responzívny dizajn", "SEO optimalizácia", "Rýchle načítanie", "CMS systém", "Technická podpora", "SSL certifikáty", "Hosting a domény", "Google Analytics"]}
+        id="webseiten"
+        title="Webseiten"
+        description="Wir erstellen moderne, responsive Webseiten, optimiert für alle Geräte. Unsere Webseiten sind schnell, SEO-optimiert und mit Fokus auf Benutzererfahrung gestaltet."
+        features={["Responsives Design", "SEO-Optimierung", "Schnelle Ladezeiten", "CMS-System", "Technischer Support", "SSL-Zertifikate", "Hosting und Domains", "Google Analytics"]}
         imageSrc="/sources/web-design.webp"
-        imageAlt="Webové stránky"
+        imageAlt="Webseiten"
       />
 
       <ServiceSection
-        id="webove-aplikacie"
-        title="Webové aplikácie"
-        description="Vyvíjame pokročilé webové aplikácie s modernou funkcionalitou. Používame najnovšie technológie ako React, Node.js a TypeScript pre vytvorenie robustných riešení."
-        features={["React & Vue.js", "Node.js backend", "Real-time funkcionalita", "API integrácie", "Škálovateľnosť", "Progressive Web Apps", "Databázy & Cloud", "Automatizácia"]}
+        id="webanwendungen"
+        title="Webanwendungen"
+        description="Wir entwickeln fortgeschrittene Webanwendungen mit moderner Funktionalität. Wir nutzen die neuesten Technologien wie React, Node.js und TypeScript für robuste Lösungen."
+        features={["React & Vue.js", "Node.js Backend", "Echtzeit-Funktionalität", "API-Integrationen", "Skalierbarkeit", "Progressive Web Apps", "Datenbanken & Cloud", "Automatisierung"]}
         imageSrc="/sources/services/aplikacie.webp"
-        imageAlt="Webové aplikácie"
+        imageAlt="Webanwendungen"
         reverse
       />
 
       <ServiceSection
-        id="e-shopy"
-        title="E-shopy"
-        description="Vytvárame komplexné e-commerce riešenia, ktoré zvýšia vaše predaje. Od dizajnu po platobné brány a správu objednávok - všetko na jednom mieste."
-        features={["WooCommerce & Shopify", "Platobné brány", "Správa skladov", "Analytics a reporting", "Mobilná optimalizácia", "Inventory management", "Multi-channel predaj", "Email marketing integrácia"]}
+        id="e-shops"
+        title="E-Shops"
+        description="Wir erstellen umfassende E-Commerce-Lösungen, die Ihren Umsatz steigern. Vom Design über Zahlungsgateways bis zur Bestellverwaltung - alles an einem Ort."
+        features={["WooCommerce & Shopify", "Zahlungsgateways", "Lagerverwaltung", "Analytics und Reporting", "Mobile Optimierung", "Inventory Management", "Multi-Channel-Verkauf", "E-Mail-Marketing-Integration"]}
         imageSrc="/sources/Gemini_Generated_Image_lxz7dglxz7dglxz7.webp"
-        imageAlt="E-shopy"
+        imageAlt="E-Shops"
       />
 
       <ServiceSection
         id="digital-marketing"
         title="Digital Marketing"
-        description="Pomáhame vašej značke rásť online. Spravujeme sociálne médiá, vytvárame obsah a realizujeme reklamné kampane, ktoré prinášajú výsledky."
-        features={["Správa sociálnych médií", "Google Ads & Facebook Ads", "Tvorba obsahu", "Email marketing", "SEO optimalizácia", "Influencer marketing", "Conversion optimization", "Marketing automation"]}
+        description="Wir helfen Ihrer Marke, online zu wachsen. Wir verwalten Social Media, erstellen Inhalte und führen Werbekampagnen durch, die Ergebnisse liefern."
+        features={["Social-Media-Management", "Google Ads & Facebook Ads", "Content-Erstellung", "E-Mail-Marketing", "SEO-Optimierung", "Influencer Marketing", "Conversion-Optimierung", "Marketing-Automatisierung"]}
         imageSrc="/sources/social-media.webp"
         imageAlt="Digital Marketing"
         reverse
@@ -201,8 +201,8 @@ export default function ServicesPage() {
       <ServiceSection
         id="email-marketing"
         title="Email Marketing"
-        description="Vytvárame efektívne email kampane, ktoré budujú vzťahy s vašimi zákazníkmi a zvyšujú konverzie. Od newslettrov po automatizované sekvencie."
-        features={["Newsletter kampane", "Email automatizácia", "A/B testovanie", "Analytics a reporting", "Personalizácia obsahu", "Drip kampane", "Lead nurturing", "ROI optimalizácia"]}
+        description="Wir erstellen effektive E-Mail-Kampagnen, die Beziehungen zu Ihren Kunden aufbauen und Conversions steigern. Von Newslettern bis zu automatisierten Sequenzen."
+        features={["Newsletter-Kampagnen", "E-Mail-Automatisierung", "A/B-Testing", "Analytics und Reporting", "Content-Personalisierung", "Drip-Kampagnen", "Lead Nurturing", "ROI-Optimierung"]}
         imageSrc="/sources/email-market.webp"
         imageAlt="Email Marketing"
       />

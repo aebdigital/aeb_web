@@ -84,17 +84,17 @@ export function Header() {
                 <ul className="nav-menu flex space-x-6">
                   <li>
                     <Link href="/portfolio" className={`text-xl text-white nav-link-underline transition-colors ${isActive('/portfolio') ? 'active' : ''}`}>
-                      Portfólio
+                      Portfolio
                     </Link>
                   </li>
                   <li>
-                    <Link href="/sluzby" className={`text-xl text-white nav-link-underline transition-colors ${isActive('/sluzby') ? 'active' : ''}`}>
-                      Služby
+                    <Link href="/services" className={`text-xl text-white nav-link-underline transition-colors ${isActive('/services') ? 'active' : ''}`}>
+                      Dienstleistungen
                     </Link>
                   </li>
                   <li>
-                    <Link href="/o-nas" className={`text-xl text-white nav-link-underline transition-colors ${isActive('/o-nas') ? 'active' : ''}`}>
-                      O nás
+                    <Link href="/about" className={`text-xl text-white nav-link-underline transition-colors ${isActive('/about') ? 'active' : ''}`}>
+                      Über uns
                     </Link>
                   </li>
                   <li>
@@ -107,12 +107,12 @@ export function Header() {
             </div>
 
             <div className="hidden md:flex items-center space-x-6">
-              <LanguageSwitcher currentLang="sk" />
+              <LanguageSwitcher currentLang="de" />
               {/* CTA Button (Desktop) */}
-              <Link href="/kontakt" className="btn btn-secondary">
+              <Link href="/contact" className="btn btn-secondary">
                 <span className="btn-text-container">
-                  <span className="btn-text btn-text-visible">Kontaktujte nás</span>
-                  <span className="btn-text btn-text-hidden">VIAC</span>
+                  <span className="btn-text btn-text-visible">Kontakt</span>
+                  <span className="btn-text btn-text-hidden">MEHR</span>
                 </span>
               </Link>
             </div>
@@ -174,17 +174,17 @@ export function Header() {
           <ul className="flex flex-col">
             <li className="border-b border-white/10">
               <Link href="/portfolio" className={`block text-white text-3xl py-4 ${isActive('/portfolio') ? 'active' : ''}`} onClick={toggleMobileMenu}>
-                Portfólio
+                Portfolio
               </Link>
             </li>
             <li className="border-b border-white/10">
-              <Link href="/sluzby" className={`block text-white text-3xl py-4 ${isActive('/sluzby') ? 'active' : ''}`} onClick={toggleMobileMenu}>
-                Služby
+              <Link href="/services" className={`block text-white text-3xl py-4 ${isActive('/services') ? 'active' : ''}`} onClick={toggleMobileMenu}>
+                Dienstleistungen
               </Link>
             </li>
             <li className="border-b border-white/10">
-              <Link href="/o-nas" className={`block text-white text-3xl py-4 ${isActive('/o-nas') ? 'active' : ''}`} onClick={toggleMobileMenu}>
-                O nás
+              <Link href="/about" className={`block text-white text-3xl py-4 ${isActive('/about') ? 'active' : ''}`} onClick={toggleMobileMenu}>
+                Über uns
               </Link>
             </li>
             <li className="border-b border-white/10">
@@ -193,7 +193,7 @@ export function Header() {
               </Link>
             </li>
             <li className="border-b border-white/10">
-              <Link href="/kontakt" className={`block text-white text-3xl py-4 ${isActive('/kontakt') ? 'active' : ''}`} onClick={toggleMobileMenu}>
+              <Link href="/contact" className={`block text-white text-3xl py-4 ${isActive('/contact') ? 'active' : ''}`} onClick={toggleMobileMenu}>
                 Kontakt
               </Link>
             </li>

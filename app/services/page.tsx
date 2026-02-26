@@ -1,0 +1,213 @@
+import Image from "next/image";
+import Link from "next/link";
+import { BackgroundTextAnimation } from "@/components/BackgroundTextAnimation";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Dienstleistungen - Webentwicklung, E-Shops, Apps | AEB Digital Bratislava",
+    description: "Komplette digitale Dienstleistungen in Bratislava: Website-Entwicklung ab 500 €, maßgeschneiderte E-Shops, Webanwendungen, digitales Marketing, SEO-Optimierung, UI/UX-Design. Kostenlose Beratung!",
+    keywords: [
+        "webentwicklung",
+        "webdesign dienstleistungen",
+        "e-shop entwicklung",
+        "webanwendungen",
+        "SEO optimierung",
+        "digitales marketing",
+        "UI/UX design",
+        "responsive webdesign",
+        "WordPress websites",
+        "React entwicklung",
+    ],
+    alternates: {
+        canonical: "https://aebdigital.com/de/services",
+    },
+    openGraph: {
+        title: "Dienstleistungen - Webentwicklung, E-Shops, Apps | AEB Digital",
+        description: "Komplette digitale Dienstleistungen in Bratislava: Websites, E-Shops, Anwendungen, Marketing. Kostenlose Beratung!",
+        url: "https://aebdigital.com/de/services",
+        type: "website",
+    },
+};
+
+interface ServiceItemProps {
+    id: string;
+    title: string;
+    description: string;
+    features: string[];
+    imageSrc: string;
+    imageAlt: string;
+    reverse?: boolean;
+}
+
+function ServiceSection({ id, title, description, features, imageSrc, imageAlt, reverse = false }: ServiceItemProps) {
+    return (
+        <section id={id} className={`services-page-section ${reverse ? 'reverse' : ''}`}>
+            {/* Desktop Layout */}
+            <div className={`hidden lg:flex ${reverse ? 'flex-row-reverse' : 'flex-row'} min-h-screen`}>
+                {/* Text Column */}
+                <div className="w-1/2 flex items-center">
+                    <div className={`py-20 ${reverse ? 'pl-8 pr-[5vw]' : 'pl-[5vw] pr-8'}`}>
+                        <h2 className="text-7xl xl:text-8xl font-bold mb-6">{title}</h2>
+                        <p className="text-gray-light mb-8">{description}</p>
+
+                        <div className="service-list grid grid-cols-1 gap-4 mb-8">
+                            {features.map((feature, index) => (
+                                <div key={index} className="service-item flex items-center">
+                                    <span className="service-number text-accent-teal font-bold text-lg mr-2">{(index + 1).toString().padStart(2, '0')}</span>
+                                    <span className="text-gray-light">{feature}</span>
+                                </div>
+                            ))}
+                        </div>
+
+                        <Link href="/contact" className="btn btn-primary">Angebot anfordern</Link>
+                    </div>
+                </div>
+                {/* Image Column - 50vw, touching edge */}
+                <div className="w-1/2 relative h-screen">
+                    <Image src={imageSrc} alt={imageAlt} fill className="object-cover" />
+                </div>
+            </div>
+
+            {/* Mobile Layout */}
+            <div className="lg:hidden">
+                <div className="relative h-[50vh] w-full">
+                    <Image src={imageSrc} alt={imageAlt} fill className="object-cover" />
+                </div>
+                <div className="py-12 px-4">
+                    <h2 className="text-4xl font-bold mb-6">{title}</h2>
+                    <p className="text-gray-light mb-8">{description}</p>
+
+                    <div className="service-list grid grid-cols-1 gap-4 mb-8">
+                        {features.map((feature, index) => (
+                            <div key={index} className="service-item flex items-center">
+                                <span className="service-number text-accent-teal font-bold text-lg mr-2">{(index + 1).toString().padStart(2, '0')}</span>
+                                <span className="text-gray-light">{feature}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <Link href="/contact" className="btn btn-primary">Angebot anfordern</Link>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function ProcessSection() {
+    const processSteps = [
+        {
+            step: 1,
+            title: "Beratung",
+            description: "Beim ersten Treffen definieren wir gemeinsam Ihre Bedürfnisse und Projektziele."
+        },
+        {
+            step: 2,
+            title: "Angebot",
+            description: "Wir erstellen einen detaillierten Lösungsvorschlag und ein Preisangebot, das auf Ihr Budget zugeschnitten ist."
+        },
+        {
+            step: 3,
+            title: "Entwicklung",
+            description: "Wir setzen das Projekt mit den neuesten Technologien und Best Practices um."
+        },
+        {
+            step: 4,
+            title: "Testen",
+            description: "Wir testen alle Funktionen gründlich und optimieren die Leistung der Lösung."
+        },
+        {
+            step: 5,
+            title: "Start",
+            description: "Wir starten das Projekt in die Produktion und sorgen für einen reibungslosen Übergang."
+        },
+        {
+            step: 6,
+            title: "Support",
+            description: "Wir bieten technischen Support und Wartung für den langfristigen Erfolg des Projekts."
+        },
+    ];
+
+    return (
+        <section className="process-section py-20 text-white relative overflow-hidden">
+            <div className="container relative z-10">
+                <h2 className="heading-section text-center mb-12">Unser Prozess</h2>
+
+                <div className="process-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {processSteps.map((step, index) => (
+                        <div key={index} className="process-card">
+                            <div className="process-icon">
+                                <span className="text-2xl font-bold">{step.step}</span>
+                            </div>
+                            <h3 className="text-xl font-semibold mb-4 text-white">{step.title}</h3>
+                            <p className="text-gray-light">{step.description}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default function ServicesPage() {
+    return (
+        <>
+            <BackgroundTextAnimation />
+
+            {/* Page Header */}
+            <section className="page-header py-32 text-white">
+                <div className="container">
+                    <h1 className="page-title">Unsere Dienstleistungen</h1>
+                </div>
+            </section>
+
+            <ServiceSection
+                id="websites"
+                title="Websites"
+                description="Wir erstellen moderne, responsive Websites, die für alle Geräte optimiert sind. Unsere Websites sind schnell, SEO-optimiert und mit Blick auf die Benutzererfahrung gestaltet."
+                features={["Responsive Design", "SEO-Optimierung", "Schnelle Ladezeiten", "CMS-System", "Technischer Support", "SSL-Zertifikate", "Hosting & Domains", "Google Analytics"]}
+                imageSrc="/sources/web-design.webp"
+                imageAlt="Websites"
+            />
+
+            <ServiceSection
+                id="web-applications"
+                title="Webanwendungen"
+                description="Wir entwickeln fortschrittliche Webanwendungen mit modernen Funktionen. Wir nutzen neueste Technologien wie React, Node.js und TypeScript für robuste Lösungen."
+                features={["React & Vue.js", "Node.js Backend", "Echtzeit-Funktionen", "API-Integrationen", "Skalierbarkeit", "Progressive Web Apps", "Datenbanken & Cloud", "Automatisierung"]}
+                imageSrc="/sources/services/aplikacie.webp"
+                imageAlt="Webanwendungen"
+                reverse
+            />
+
+            <ServiceSection
+                id="e-shops"
+                title="E-Shops"
+                description="Wir erstellen umfassende E-Commerce-Lösungen, die Ihren Umsatz steigern. Vom Design über Zahlungsgateways bis zur Bestellverwaltung – alles an einem Ort."
+                features={["WooCommerce & Shopify", "Zahlungsgateways", "Lagerverwaltung", "Analysen & Berichte", "Mobile Optimierung", "Bestandsverwaltung", "Multi-Channel-Verkauf", "E-Mail-Marketing-Integration"]}
+                imageSrc="/sources/Gemini_Generated_Image_lxz7dglxz7dglxz7.webp"
+                imageAlt="E-Shops"
+            />
+
+            <ServiceSection
+                id="digital-marketing"
+                title="Digitales Marketing"
+                description="Wir helfen Ihrer Marke, online zu wachsen. Wir verwalten Social Media, erstellen Inhalte und schalten Werbekampagnen, die Ergebnisse liefern."
+                features={["Social Media Management", "Google Ads & Facebook Ads", "Content-Erstellung", "E-Mail-Marketing", "SEO-Optimierung", "Influencer Marketing", "Conversion-Optimierung", "Marketing-Automatisierung"]}
+                imageSrc="/sources/social-media.webp"
+                imageAlt="Digitales Marketing"
+                reverse
+            />
+
+            <ServiceSection
+                id="email-marketing"
+                title="E-Mail-Marketing"
+                description="Wir erstellen effektive E-Mail-Kampagnen, die Kundenbeziehungen aufbauen und Conversions steigern. Von Newslettern bis zu automatisierten Sequenzen."
+                features={["Newsletter-Kampagnen", "E-Mail-Automatisierung", "A/B Tests", "Analysen & Berichte", "Inhaltspersonalisierung", "Drip-Kampagnen", "Lead Nurturing", "ROI-Optimierung"]}
+                imageSrc="/sources/email-market.webp"
+                imageAlt="E-Mail-Marketing"
+            />
+
+            <ProcessSection />
+        </>
+    );
+}
