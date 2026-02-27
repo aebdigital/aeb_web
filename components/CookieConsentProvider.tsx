@@ -48,10 +48,20 @@ export function CookieConsentProvider({ children }: CookieConsentProviderProps) 
     // Load consent from localStorage on mount
     const storedConsent = localStorage.getItem('cookieConsent');
     if (storedConsent) {
-      const parsedConsent = JSON.parse(storedConsent);
-      setConsent(parsedConsent.settings);
-      // If consent exists, don't show the banner
-      setShowBanner(false);
+      try {
+        const parsedConsent = JSON.parse(storedConsent);
+        const settings = parsedConsent.settings;
+        if (settings && typeof settings.analytics !== 'undefined') {
+          setConsent(settings);
+        }
+        // If consent exists, don't show the banner
+        setShowBanner(false);
+      } catch {
+        // Malformed JSON — clear it and show banner
+        localStorage.removeItem('cookieConsent');
+        const timer = setTimeout(() => setShowBanner(true), 1000);
+        return () => clearTimeout(timer);
+      }
     } else {
       // If no consent, show the banner after a short delay
       const timer = setTimeout(() => {

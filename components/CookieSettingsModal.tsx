@@ -5,8 +5,8 @@ import { useCookieConsent } from './CookieConsentProvider';
 
 export function CookieSettingsModal() {
   const { showSettings, setShowSettings, consent, saveSettings, acceptAllCookies } = useCookieConsent();
-  const [analyticsEnabled, setAnalyticsEnabled] = useState(consent.analytics);
-  const [marketingEnabled, setMarketingEnabled] = useState(consent.marketing);
+  const [analyticsEnabled, setAnalyticsEnabled] = useState(consent?.analytics ?? false);
+  const [marketingEnabled, setMarketingEnabled] = useState(consent?.marketing ?? false);
 
   useEffect(() => {
     // Sync internal state with context consent when modal opens
@@ -14,7 +14,7 @@ export function CookieSettingsModal() {
       setAnalyticsEnabled(consent.analytics);
       setMarketingEnabled(consent.marketing);
     }
-  }, [showSettings, consent.analytics, consent.marketing]);
+  }, [showSettings, consent?.analytics, consent?.marketing]);
 
   const handleSaveSettings = () => {
     saveSettings({

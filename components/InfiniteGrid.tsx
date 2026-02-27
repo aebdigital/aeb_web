@@ -32,7 +32,7 @@ const portfolioItemsData: PortfolioItem[] = [
   { link: 'https://www.veskolfarm.sk/', image: '/sources/aeb-portfolio/veskolfarm.sk.webp', alt: 'Veskol Farm' },
   { link: 'https://www.lemino.sk/', image: '/sources/aeb-portfolio/lemino.sk.webp', alt: 'Lemino' },
   { link: 'https://www.instalatherm.sk/', image: '/sources/aeb-portfolio/instalatherm.sk.webp', alt: 'Instalatherm' },
-  { link: 'https://www.kreslimesivankou.sk/', image: '/sources/aeb-portfolio/kreslimesivankou.sk.webp', alt: 'Kreslíme si Vankóu' },
+  { link: 'https://www.provel.sk/', image: '/sources/aeb-portfolio/provel.sk.webp', alt: 'Provel' },
   { link: 'https://www.autocentrumbb.sk/', image: '/sources/aeb-portfolio/autocentrumbb.sk.webp', alt: 'Autocentrum BB' },
   { link: 'https://www.pemavzt.sk/', image: '/sources/aeb-portfolio/pemavzt.sk.webp', alt: 'Pemavzt' },
   { link: 'https://penelcom.sk/', image: '/sources/aeb-portfolio/penelcom.sk.webp', alt: 'Penelcom' },

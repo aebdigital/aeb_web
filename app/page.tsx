@@ -306,13 +306,13 @@ export default function Home() {
 
   const portfolioItems = [
     {
-      imgSrc: "/sources/aeb-portfolio/kovosklo.webp",
+      imgSrc: "/sources/aeb-portfolio/kovo-sklo.sk.webp",
       alt: "Kovovýroba",
       category: "Kovovýroba",
       subheading: "Moderné webové riešenia pre kovovýrobné firmy",
     },
     {
-      imgSrc: "/sources/aeb-portfolio/stolarstvo.webp",
+      imgSrc: "/sources/aeb-portfolio/falat.sk.webp",
       alt: "Stolárstvo",
       category: "Stolárstvo",
       subheading: "Prezentujte svoje stolárske výrobky online",
@@ -324,37 +324,37 @@ export default function Home() {
       subheading: "Profesionálne weby pre stavebné spoločnosti",
     },
     {
-      imgSrc: "/sources/aeb-portfolio/110.webp",
+      imgSrc: "/sources/aeb-portfolio/provel.sk.webp",
       alt: "Zdravotníctvo",
       category: "Zdravotníctvo",
       subheading: "Digitálne riešenia pre zdravotnícke zariadenia",
     },
     {
-      imgSrc: "/sources/aeb-portfolio/120.webp",
+      imgSrc: "/sources/aeb-portfolio/mtautos.sk.webp",
       alt: "Autobazáre",
       category: "Autobazáre",
       subheading: "E-shopy a katalógy pre predaj vozidiel",
     },
     {
-      imgSrc: "/sources/aeb-portfolio/70.webp",
+      imgSrc: "/sources/aeb-portfolio/veskolfarm.sk.webp",
       alt: "Poľnohospodárstvo",
       category: "Poľnohospodárstvo",
       subheading: "Webové stránky pre poľnohospodárske firmy",
     },
     {
-      imgSrc: "/sources/aeb-portfolio/lerent.webp",
+      imgSrc: "/sources/aeb-portfolio/lerent.sk.webp",
       alt: "Autopožičovne",
       category: "Autopožičovne",
       subheading: "Rezervačné systémy a prezentácie vozidiel",
     },
     {
-      imgSrc: "/sources/aeb-portfolio/10.webp",
+      imgSrc: "/sources/aeb-portfolio/zmrdwear.sk.webp",
       alt: "Fashion",
       category: "Fashion",
       subheading: "E-commerce riešenia pre módny priemysel",
     },
     {
-      imgSrc: "/sources/aeb-portfolio/Screenshot 2025-12-05 at 19.20.50.webp",
+      imgSrc: "/sources/aeb-portfolio/legispro.sk.webp",
       alt: "Advokátske kancelárie",
       category: "Advokátske kancelárie",
       subheading: "Profesionálne weby pre právnické služby",
