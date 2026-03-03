@@ -25,6 +25,43 @@ export function Header() {
     };
   }, [isMobileMenuOpen]);
 
+  const getLocalizedHref = (lang: 'sk' | 'cz' | 'at' | 'en') => {
+    const roots = {
+      sk: "https://aebdigital.sk",
+      cz: "https://aebdigital.cz",
+      at: "https://aebdigital.at",
+      en: "https://aebdigital.com"
+    };
+
+    const pathMaps: Record<string, Record<string, string>> = {
+      '/portfolio': { sk: '/portfolio', cz: '/portfolio', at: '/portfolio', en: '/portfolio' },
+      '/sluzby': { sk: '/sluzby', cz: '/services', at: '/services', en: '/services' },
+      '/services': { sk: '/sluzby', cz: '/services', at: '/services', en: '/services' },
+      '/o-nas': { sk: '/o-nas', cz: '/about', at: '/about', en: '/about' },
+      '/about': { sk: '/o-nas', cz: '/about', at: '/about', en: '/about' },
+      '/blog': { sk: '/blog', cz: '/blog', at: '/blog', en: '/blog' },
+      '/kontakt': { sk: '/kontakt', cz: '/contact', at: '/contact', en: '/contact' },
+      '/contact': { sk: '/kontakt', cz: '/contact', at: '/contact', en: '/contact' },
+    };
+
+    const exactMatch = pathMaps[pathname];
+    if (exactMatch) return roots[lang] + exactMatch[lang];
+    if (pathname.startsWith('/blog/')) return roots[lang] + '/blog';
+    return roots[lang];
+  };
+
+  const LanguageSwitcher = ({ className = "", currentLang }: { className?: string, currentLang: string }) => (
+    <div className={`flex items-center space-x-2 font-[family-name:var(--font-manrope)] ${className}`}>
+      <a href={getLocalizedHref('sk')} className={`transition-colors ${currentLang === 'sk' ? 'text-white font-bold' : 'text-white/60 hover:text-white'}`}>SK</a>
+      <span className="text-white/30">|</span>
+      <a href={getLocalizedHref('cz')} className={`transition-colors ${currentLang === 'cz' ? 'text-white font-bold' : 'text-white/60 hover:text-white'}`}>CZ</a>
+      <span className="text-white/30">|</span>
+      <a href={getLocalizedHref('at')} className={`transition-colors ${currentLang === 'at' ? 'text-white font-bold' : 'text-white/60 hover:text-white'}`}>AT</a>
+      <span className="text-white/30">|</span>
+      <a href={getLocalizedHref('en')} className={`transition-colors ${currentLang === 'en' ? 'text-white font-bold' : 'text-white/60 hover:text-white'}`}>EN</a>
+    </div>
+  );
+
   // Function to determine if a link is active based on current path
   const isActive = (path: string) => {
     return pathname === path;
@@ -71,13 +108,16 @@ export function Header() {
               </nav>
             </div>
 
-            {/* CTA Button (Desktop) */}
-            <Link href="/kontakt" className="btn btn-secondary hidden md:flex">
-              <span className="btn-text-container">
-                <span className="btn-text btn-text-visible">Kontaktujte nás</span>
-                <span className="btn-text btn-text-hidden">VIAC</span>
-              </span>
-            </Link>
+            <div className="hidden md:flex items-center space-x-6">
+              <LanguageSwitcher currentLang="sk" />
+              {/* CTA Button (Desktop) */}
+              <Link href="/kontakt" className="btn btn-secondary">
+                <span className="btn-text-container">
+                  <span className="btn-text btn-text-visible">Kontaktujte nás</span>
+                  <span className="btn-text btn-text-hidden">VIAC</span>
+                </span>
+              </Link>
+            </div>
 
             {/* Mobile Menu Toggle */}
             <button
@@ -95,9 +135,8 @@ export function Header() {
 
       {/* Mobile Menu - Outside header to avoid mix-blend-difference inheritance */}
       <div
-        className={`mobile-menu fixed top-0 left-0 w-full h-full transform ${
-          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 ease-in-out md:hidden z-[100] overflow-hidden animate-gradient-shift`}
+        className={`mobile-menu fixed top-0 left-0 w-full h-full transform ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+          } transition-transform duration-300 ease-in-out md:hidden z-[100] overflow-hidden animate-gradient-shift`}
         style={{
           background: 'linear-gradient(135deg, #030303 0%, #0a0a0a 25%, #050505 50%, #080808 75%, #040404 100%)',
           backgroundSize: '400% 400%'
@@ -161,6 +200,9 @@ export function Header() {
               </Link>
             </li>
           </ul>
+          <div className="mt-8 flex justify-center pb-8">
+            <LanguageSwitcher currentLang="sk" className="text-xl space-x-6" />
+          </div>
         </div>
       </div>
     </>

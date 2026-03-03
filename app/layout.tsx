@@ -331,6 +331,11 @@ export default function RootLayout({
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="alternate" hrefLang="sk-SK" href="https://aebdigital.sk" />
+        <link rel="alternate" hrefLang="cs-CZ" href="https://aebdigital.cz" />
+        <link rel="alternate" hrefLang="de-AT" href="https://aebdigital.at" />
+        <link rel="alternate" hrefLang="en-US" href="https://aebdigital.com" />
+        <link rel="alternate" hrefLang="x-default" href="https://aebdigital.com" />
       </head>
       <body className="antialiased">
         <LenisProvider>
