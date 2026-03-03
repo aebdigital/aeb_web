@@ -76,7 +76,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteUrl,
     languages: {
-      "sk-SK": siteUrl,
+      "sk-SK": "https://aebdigital.sk",
+      "cs-CZ": "https://aebdigital.cz",
+      "en-US": "https://aebdigital.com",
+      "de-AT": "https://aebdigital.at",
     },
   },
   openGraph: {
