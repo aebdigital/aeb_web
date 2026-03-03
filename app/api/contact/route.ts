@@ -130,6 +130,7 @@ export async function POST(request: NextRequest) {
     }
 
 
+
     // Honeypot check: If the hidden field 'website' is filled, it's a bot.
     if (website && website.length > 0) {
       console.warn(`Honeypot triggered. Bot detected. IP: ${request.headers.get('x-forwarded-for') || request.headers.get('client-ip')}`);
