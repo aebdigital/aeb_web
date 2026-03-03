@@ -111,7 +111,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           success: true,
-          message: 'Ďakujeme! Vaša správa bola úspešne odoslaná.',
+          message: 'Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.',
         },
         { status: 200, headers }
       );
@@ -123,11 +123,12 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           success: true,
-          message: 'Ďakujeme! Vaša správa bola úspešne odoslaná.',
+          message: 'Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.',
         },
         { status: 200, headers }
       );
     }
+
 
     // Honeypot check: If the hidden field 'website' is filled, it's a bot.
     if (website && website.length > 0) {
@@ -149,7 +150,7 @@ export async function POST(request: NextRequest) {
       console.warn(`Rate limit exceeded for IP: ${ip} or Email: ${email}`);
       return NextResponse.json(
         {
-          error: 'Prekročili ste limit odoslaní. Skúste to prosím neskôr.',
+          error: 'Sie haben das Limit für Einsendungen überschritten. Bitte versuchen Sie es später noch einmal.',
           details: 'Rate limit exceeded.',
         },
         { status: 429, headers }

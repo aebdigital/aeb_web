@@ -56,6 +56,8 @@ export function Header() {
       <span className="text-white/30">|</span>
       <a href={getLocalizedHref('cz')} className={`transition-colors ${currentLang === 'cz' ? 'text-white font-bold' : 'text-white/60 hover:text-white'}`}>CZ</a>
       <span className="text-white/30">|</span>
+      <a href={getLocalizedHref('at')} className={`transition-colors ${currentLang === 'at' ? 'text-white font-bold' : 'text-white/60 hover:text-white'}`}>AT</a>
+      <span className="text-white/30">|</span>
       <a href={getLocalizedHref('en')} className={`transition-colors ${currentLang === 'en' ? 'text-white font-bold' : 'text-white/60 hover:text-white'}`}>EN</a>
     </div>
   );
@@ -107,7 +109,7 @@ export function Header() {
             </div>
 
             <div className="hidden md:flex items-center space-x-6">
-              <LanguageSwitcher currentLang="de" />
+              <LanguageSwitcher currentLang="at" />
               {/* CTA Button (Desktop) */}
               <Link href="/contact" className="btn btn-secondary">
                 <span className="btn-text-container">
@@ -199,7 +201,7 @@ export function Header() {
             </li>
           </ul>
           <div className="mt-8 flex justify-center pb-8">
-            <LanguageSwitcher currentLang="sk" className="text-xl space-x-6" />
+            <LanguageSwitcher currentLang="at" className="text-xl space-x-6" />
           </div>
         </div>
       </div>
