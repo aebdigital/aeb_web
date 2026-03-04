@@ -104,7 +104,7 @@ export default function AboutUsPage() {
               title="Tvoríme digitálne zážitky, ktoré inšpirujú"
               leadText="Sme mladý, dynamický tím s viac ako 5-ročnými skúsenosťami v oblasti digitálnych technológií. Začínali sme ako malá agentúra s veľkými snami."
               paragraph="Dnes máme za sebou 120+ spokojných klientov a pokračujeme v inšpirovaní ďalších po celom Slovensku. Každý projekt riešime s individuálnym prístupom a dôrazom na detail."
-              imageSrc="/sources/aeb-portfolio/30.webp"
+              imageSrc="/sources/email-market.webp"
               imageAlt="AEB Digital práca"
             />
             <StorySection
@@ -112,7 +112,7 @@ export default function AboutUsPage() {
               title="Kvalita a inovácie na prvom mieste"
               leadText="Veríme, že každý projekt je jedinečný a zaslúži si individuálny prístup. Používame najnovšie technológie a trendy, ale nikdy nezabudneme na základné princípy kvalitnej práce."
               paragraph="Naším cieľom nie je len vytvoriť funkčné riešenie, ale pomôcť vašej firme dosiahnuť skutočný úspech v digitálnom svete."
-              imageSrc="/sources/aeb-portfolio/80.webp"
+              imageSrc="/sources/social-media.webp"
               imageAlt="Digitálne riešenia"
               reverse
             />
