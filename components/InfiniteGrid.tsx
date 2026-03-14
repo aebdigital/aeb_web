@@ -46,6 +46,8 @@ const portfolioItemsData: PortfolioItem[] = [
   { link: 'https://wens.sk/', image: '/sources/aeb-portfolio/wens.sk.webp', alt: 'Wens' },
   { link: 'https://mtautos.sk/', image: '/sources/aeb-portfolio/mtautos.sk.webp', alt: 'MT Autos' },
   { link: 'https://autopozicovnamichalovce.sk/', image: '/sources/aeb-portfolio/autopozicovnamichalovce.sk.webp', alt: 'Autopožičovňa Michalovce' },
+  { link: 'https://max4.sk/', image: '/sources/aeb-portfolio/max4.sk.webp', alt: 'Max4' },
+  { link: 'https://zivyklubzdravia.sk/', image: '/sources/aeb-portfolio/zivyklubzdravia.sk.webp', alt: 'Živý Klub Zdravia' },
 ];
 
 const itemWidth = 300;
