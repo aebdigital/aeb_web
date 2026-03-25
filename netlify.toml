@@ -7,3 +7,148 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+[[redirects]]
+  from = "/alumsist"
+  to = "/templates/alumsist/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/austav"
+  to = "/templates/austav/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/avrekon"
+  to = "/templates/avrekon/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/bomif"
+  to = "/templates/bomif/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/dobritesari"
+  to = "/templates/dobritesari/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/efektivnestavby"
+  to = "/templates/efektivnestavby/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/ellio"
+  to = "/templates/ellio/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/hurtstav"
+  to = "/templates/hurtstav/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/hydrotunel"
+  to = "/templates/hydrotunel/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/inrestsro"
+  to = "/templates/inrestsro/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/kosap"
+  to = "/templates/kosap/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/kostelansky"
+  to = "/templates/kostelansky/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/kronostav"
+  to = "/templates/kronostav/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/la-ma"
+  to = "/templates/la-ma/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/miroslavholecvykopoveprace"
+  to = "/templates/miroslavholecvykopoveprace/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/mmsadrokartony"
+  to = "/templates/mmsadrokartony/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/poterymm"
+  to = "/templates/poterymm/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/pramo"
+  to = "/templates/pramo/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/premona-nitra"
+  to = "/templates/premona-nitra/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/purdom"
+  to = "/templates/purdom/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/redosi_group"
+  to = "/templates/redosi_group/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/revast"
+  to = "/templates/revast/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/soki"
+  to = "/templates/soki/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/soultrade"
+  to = "/templates/soultrade/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/stamaxplus"
+  to = "/templates/stamaxplus/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/starbuilding"
+  to = "/templates/starbuilding/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/stavferka"
+  to = "/templates/stavferka/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/vo-vyske"
+  to = "/templates/vo-vyske/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/zamkovadlazbamartin"
+  to = "/templates/zamkovadlazbamartin/index.html"
+  status = 200
