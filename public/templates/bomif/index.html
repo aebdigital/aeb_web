@@ -4,8 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BOMIF s.r.o. | Stavebná činnosť Nitra - Priemyselné a rodinné stavby</title>
+    <script>
+        // Dynamic base tag to support both Production rewrites and Local file preview
+        if (window.location.protocol !== 'file:') {
+            document.write('<base href="/templates/bomif/">');
+        }
+    </script>
+    ');
+        }
+    </script>
     <meta name="robots" content="noindex, nofollow">
-    <base href="/templates/bomif/">
     <meta name="description" content="BOMIF s.r.o. Nitra - odborná realizácia priemyselných stavieb, rodinných domov a protipožiarnych prestupov od roku 1994. Prenájom priestorov v Nitre.">
     
     <!-- Google Fonts: Manrope -->
@@ -388,35 +396,35 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         <!-- Service 1 -->
-                        <div class="reveal-on-scroll h-[400px] bg-white group overflow-hidden relative rounded-none border border-border">
-                            <img src="img2.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-20 group-hover:opacity-100">
-                            <div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="reveal-on-scroll h-[400px] bg-foreground group overflow-hidden relative rounded-none border border-border/10">
+                            <img src="img2.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-primary/90 transition-all duration-500"></div>
                             <div class="absolute bottom-10 left-10 z-10">
-                                <h3 class="text-xl font-black uppercase text-foreground group-hover:text-white transition-colors leading-tight">Priemyselné stavby</h3>
+                                <h3 class="text-xl font-black uppercase text-white transition-colors leading-tight">Priemyselné stavby</h3>
                             </div>
                         </div>
                         <!-- Service 2 -->
-                        <div class="reveal-on-scroll h-[400px] bg-white group overflow-hidden relative rounded-none border border-border" style="transition-delay: 100ms;">
-                            <img src="img3.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-20 group-hover:opacity-100">
-                            <div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="reveal-on-scroll h-[400px] bg-foreground group overflow-hidden relative rounded-none border border-border/10" style="transition-delay: 100ms;">
+                            <img src="img3.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-primary/90 transition-all duration-500"></div>
                             <div class="absolute bottom-10 left-10 z-10">
-                                <h3 class="text-xl font-black uppercase text-foreground group-hover:text-white transition-colors leading-tight">Rodinné domy</h3>
+                                <h3 class="text-xl font-black uppercase text-white transition-colors leading-tight">Rodinné domy</h3>
                             </div>
                         </div>
                         <!-- Service 3 -->
-                        <div class="reveal-on-scroll h-[400px] bg-white group overflow-hidden relative rounded-none border border-border" style="transition-delay: 200ms;">
-                            <img src="img4.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-20 group-hover:opacity-100">
-                            <div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="reveal-on-scroll h-[400px] bg-foreground group overflow-hidden relative rounded-none border border-border/10" style="transition-delay: 200ms;">
+                            <img src="img4.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-primary/90 transition-all duration-500"></div>
                             <div class="absolute bottom-10 left-10 z-10">
-                                <h3 class="text-xl font-black uppercase text-foreground group-hover:text-white transition-colors leading-tight">Inžinierske stavby</h3>
+                                <h3 class="text-xl font-black uppercase text-white transition-colors leading-tight">Inžinierske stavby</h3>
                             </div>
                         </div>
                         <!-- Service 4 -->
-                        <div class="reveal-on-scroll h-[400px] bg-white group overflow-hidden relative rounded-none border border-border" style="transition-delay: 300ms;">
-                            <img src="img5.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-20 group-hover:opacity-100">
-                            <div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="reveal-on-scroll h-[400px] bg-foreground group overflow-hidden relative rounded-none border border-border/10" style="transition-delay: 300ms;">
+                            <img src="img5.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-primary/90 transition-all duration-500"></div>
                             <div class="absolute bottom-10 left-10 z-10">
-                                <h3 class="text-xl font-black uppercase text-foreground group-hover:text-white transition-colors leading-tight">Protipožiarne prestupy</h3>
+                                <h3 class="text-xl font-black uppercase text-white transition-colors leading-tight">Protipožiarne prestupy</h3>
                             </div>
                         </div>
                     </div>
