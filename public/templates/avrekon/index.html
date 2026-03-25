@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVrekon s.r.o. | Výstavba domov a komplexné rekonštrukcie</title>
+    <meta name="description" content="AVrekon s.r.o. - odborná výstavba rodinných domov na kľúč, komplexné rekonštrukcie bytov a domov, zemné práce a vizualizácie. Bývajte do 5 mesiacov!">
+    
+    <!-- Google Fonts: Manrope -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS 3 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#fbbf24', // Gold
+                            light: '#fcd34d',
+                            dark: '#b45309',
+                        },
+                        secondary: '#111827', // Deep Navy/Black
+                        foreground: '#111827',
+                        muted: '#6b7280',
+                        light: '#f9fafb',
+                        border: '#e5e7eb',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 3s infinite',
+                        'spin-slow': 'spin 8s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+
+    <style>
+        /* Base styles */
+        :root {
+            --color-primary: #fbbf24;
+            --color-primary-light: #fcd34d;
+            --color-primary-dark: #b45309;
+            --color-secondary: #111827;
+            --color-background: #ffffff;
+            --color-foreground: #111827;
+            --color-muted: #6b7280;
+            --color-light: #f9fafb;
+            --color-border: #e5e7eb;
+        }
+
+        html.lenis, html.lenis body {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden; line-height: 1.1; 
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-foreground);
+            font-family: 'Manrope', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Nav Header Scroll Effect */
+        .site-header {
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .site-header.scrolled {
+            background-color: rgba(17, 24, 39, 0.95); /* secondary/95 */
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Hover Split Text Effect */
+        .hover-split-text { padding-right: 0.2em; 
+            position: relative;
+            overflow: hidden; line-height: 1.1; 
+            display: inline-block;
+            vertical-align: top;
+        }
+        .hover-split-text-inner {
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .hover-split-text-inner::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 110%;
+            left: 0;
+            width: 100%;
+            line-height: inherit;
+        }
+        .group:hover .hover-split-text-inner,
+        .hover-split-text:hover .hover-split-text-inner {
+            transform: translateY(-100%);
+        }
+
+        /* Animate on Scroll Classes */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Image Reveal Effect */
+        .image-reveal-wrapper {
+            position: relative;
+            overflow: hidden; line-height: 1.1; 
+        }
+        .image-reveal-shutter {
+            position: absolute;
+            inset: 0;
+            background-color: var(--color-secondary);
+            z-index: 10;
+            transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .image-reveal-wrapper.is-revealed .image-reveal-shutter {
+            transform: translateY(-100%);
+        }
+        .image-reveal-img {
+            transform: scale(1.2);
+            filter: grayscale(100%);
+            transition: transform 1.8s cubic-bezier(0.76, 0, 0.24, 1), filter 1.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .image-reveal-wrapper.is-revealed .image-reveal-img {
+            transform: scale(1);
+            filter: grayscale(0%);
+        }
+        .image-reveal-wrapper.grayscale-permanent .image-reveal-img {
+            filter: grayscale(100%);
+        }
+        .image-reveal-wrapper.grayscale-permanent.is-revealed .image-reveal-img {
+            filter: grayscale(100%);
+        }
+        .image-reveal-wrapper:hover .image-reveal-img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        /* Menu Overlay Animation */
+        #menu-overlay {
+            transform: translateY(-100%);
+            transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        body.menu-open #menu-overlay {
+            transform: translateY(0);
+        }
+        
+        /* Utility styles for specific components */
+        .parallax-container {
+            position: relative;
+            overflow: hidden; line-height: 1.1; 
+            pointer-events: none;
+        }
+        .parallax-target {
+            width: 100%;
+            height: 100%;
+            will-change: transform;
+        }
+        
+        /* Fade Up Delays */
+        .fade-up { opacity: 0; transform: translateY(30px); animation: fade-up-anim 0.7s ease-out forwards; }
+        .fade-up-1 { animation-delay: 0.1s; }
+        .fade-up-2 { animation-delay: 0.2s; }
+        .fade-up-3 { animation-delay: 0.3s; }
+        .fade-up-4 { animation-delay: 0.4s; }
+        
+        @keyframes fade-up-anim {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .text-outline {
+            -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+            color: transparent;
+        }
+
+        .fill-text-animation {
+            position: relative;
+            background: linear-gradient(to right, white 50%, rgba(255,255,255,0.2) 50%);
+            background-size: 200% 100%;
+            background-position: 100% 0;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fill-text 2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+            animation-delay: 1.2s;
+        }
+        @keyframes fill-text {
+            to { background-position: 0% 0; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+    <!-- SITE HEADER -->
+    <header id="site-header" class="site-header fixed top-0 left-0 right-0 z-50 bg-transparent">
+        <div class="mx-auto w-[95vw] flex items-center justify-between h-16 md:h-24 px-6 md:px-10">
+            <div class="flex items-center">
+                <a href="#" class="flex items-center">
+                    <span class="text-xl md:text-3xl font-black tracking-tighter text-white uppercase italic">AV<span class="text-primary">rekon</span></span>
+                </a>
+            </div>
+            <div class="flex justify-end items-center">
+                <button id="menu-toggle" class="text-white transition-colors text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 backdrop-blur-sm group">
+                    <div class="w-4 flex flex-col gap-1">
+                        <span class="w-full h-[1.5px] bg-white rounded-none"></span>
+                        <span class="w-full h-[1.5px] bg-white rounded-none"></span>
+                    </div>
+                    <span class="hover-split-text">
+                        <span class="hover-split-text-inner" data-text="Menu">Menu</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MENU OVERLAY -->
+    <div id="menu-overlay" class="fixed top-0 inset-x-0 h-screen md:h-[80vh] z-[60] bg-secondary flex flex-col overflow-hidden shadow-2xl border-b border-primary/20">
+        <!-- Texture background -->
+        <div class="absolute inset-0 z-0 pointer-events-none opacity-30" style="background-image: url('texture.svg'); background-size: cover; filter: invert(1);"></div>
+
+        <div class="relative z-10 mx-auto w-[95vw] flex items-center justify-between h-24 px-6 md:px-10">
+            <div class="flex items-center">
+                <span class="text-xl md:text-3xl font-black tracking-tighter text-white uppercase italic">AV<span class="text-primary">rekon</span></span>
+            </div>
+            <div class="flex justify-end">
+                <button id="menu-close" class="text-white transition-colors text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 group">
+                    <span class="relative w-4 h-4 flex items-center justify-center">
+                        <span class="absolute w-full h-[1.5px] bg-white rotate-45 rounded-none"></span>
+                        <span class="absolute w-full h-[1.5px] bg-white -rotate-45 rounded-none"></span>
+                    </span>
+                    <span class="hover-split-text">
+                        <span class="hover-split-text-inner" data-text="Zavrieť">Zavrieť</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+
+        <div class="relative z-10 flex-1 flex items-center pb-8 overflow-y-auto">
+            <div class="mx-auto w-[95vw] px-6 md:px-10 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-20 py-10 md:py-0">
+                <!-- Column 1: Info -->
+                <div class="hidden md:flex flex-col">
+                    <span class="text-white/20 text-xs uppercase tracking-widest block mb-8">Kontakt & Vývoj</span>
+                    <div class="mb-12">
+                        <p class="text-white text-3xl font-black mb-4 tracking-tighter uppercase italic">AVrekon s.r.o.</p>
+                        <p class="text-white/40 text-sm font-light leading-relaxed max-w-xs">
+                            Špecialista na výstavbu rodinných domov na kľúč a komplexné rekonštrukcie s vizualizáciou.
+                        </p>
+                    </div>
+                    <div>
+                        <span class="text-primary/60 text-[10px] uppercase tracking-[0.2em] block mb-2 font-bold">Adam Tomaštík</span>
+                        <p class="text-white text-2xl font-light italic">+421 919 133 959</p>
+                        <p class="text-white/40 text-lg font-light">tomastik@avrekon.sk</p>
+                    </div>
+                </div>
+
+                <!-- Column 2: Nav Center -->
+                <nav class="flex flex-col gap-6 items-center md:items-start">
+                    <span class="text-white/20 text-xs uppercase tracking-widest block mb-4">Navigácia</span>
+                    <div class="flex flex-col gap-4">
+                        <a href="#top" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Úvod">Úvod</span></span>
+                        </a>
+                        <a href="#onas" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="O nás">O nás</span></span>
+                        </a>
+                        <a href="#projekty" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Projekty">Projekty</span></span>
+                        </a>
+                        <a href="#kontakt" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Dopyt">Dopyt</span></span>
+                        </a>
+                    </div>
+                </nav>
+
+                <!-- Column 3: Stats/Extra -->
+                <div class="hidden lg:flex flex-col justify-end items-end text-right">
+                    <div class="text-white/5 text-[15rem] font-black leading-none absolute -bottom-20 -right-20">AV</div>
+                    <div class="relative z-10">
+                        <p class="text-primary text-6xl font-black italic mb-2">5 <span class="text-2xl not-italic uppercase opacity-40">Mesiacov</span></p>
+                        <p class="text-white/40 text-sm uppercase tracking-widest font-bold">Bývate v novom dome</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        
+        <!-- HERO SECTION -->
+        <section id="top" class="sticky top-0 h-screen w-full flex items-center overflow-hidden z-0">
+            <div class="parallax-container absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="parallax-target hero-parallax relative w-full h-full scale-110" data-speed="0.1">
+                    <img src="hero.jpg" alt="Výstavba rodinných domov AVrekon" class="w-full h-full object-cover">
+                </div>
+            </div>
+            
+            <div class="absolute inset-0 bg-black/30"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-secondary/40 via-transparent to-transparent"></div>
+
+            <div class="relative z-10 w-[95vw] mx-auto px-6 md:px-10">
+                <div class="max-w-5xl">
+                    <p class="fade-up text-primary text-sm font-black tracking-[0.4em] uppercase mb-8">
+                        Výstavba na kľúč · Rekonštrukcie · Development
+                    </p>
+                    <h1 class="fade-up fade-up-1 text-6xl md:text-8xl lg:text-9xl font-black text-white leading-[0.9] tracking-tighter uppercase italic">
+                        Bývajte do<br><span class="fill-text-animation">5 mesiacov!</span>
+                    </h1>
+                    <p class="fade-up fade-up-2 mt-12 text-lg md:text-2xl text-white/70 font-light max-w-2xl leading-relaxed">
+                        Prevezmeme všetky starosti ohľadom výstavby vášho domu snov. Realizujeme všetko od vizualizácie až po záverečné upratovanie.
+                    </p>
+                    <div class="fade-up fade-up-3 mt-16 flex flex-col sm:flex-row gap-6">
+                        <a href="#kontakt" class="group inline-flex items-center justify-center px-12 py-5 bg-primary text-secondary text-sm font-black rounded-none hover:scale-105 transition-all duration-300">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Začať projekt">Začať projekt</span></span>
+                        </a>
+                        <a href="#onas" class="group inline-flex items-center justify-center px-12 py-5 border-2 border-white/20 text-white text-sm font-bold rounded-none hover:bg-white/10 transition-all duration-300">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Naše služby">Naše služby</span></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN LAYOVER -->
+        <div class="relative z-10 bg-white">
+            
+            <!-- SERVICES HORIZONTAL -->
+            <section id="sluzby" class="py-28 md:py-36 bg-secondary relative overflow-hidden text-white">
+                <!-- Background Image -->
+                <div class="absolute inset-0 z-0">
+                    <img src="img2.jpg" class="w-full h-full object-cover opacity-20 grayscale" alt="Background">
+                    <div class="absolute inset-0 bg-secondary/80"></div>
+                </div>
+
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="reveal-on-scroll mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
+                        <div>
+                            <p class="text-xs font-black tracking-[0.3em] uppercase text-primary mb-6">Naše Služby</p>
+                            <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase italic">Čo robíme<span class="text-primary">.</span></h2>
+                        </div>
+                        <p class="text-white/60 max-w-md font-light">Naša ponuka je rôznorodá. Realizujeme komplexné rekonštrukcie, výstavbu na kľúč aj inžiniersku činnosť.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Card 1 -->
+                        <div class="reveal-on-scroll bg-white p-12 rounded-none shadow-xl border border-border group hover:border-primary transition-all duration-500">
+                            <div class="w-16 h-16 rounded-none bg-primary/10 flex items-center justify-center mb-8 group-hover:bg-primary transition-colors">
+                                <svg class="w-8 h-8 text-primary group-hover:text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+                            </div>
+                            <h3 class="text-2xl font-black uppercase italic mb-6">Výstavba na kľúč</h3>
+                            <ul class="space-y-4 text-muted font-light text-sm">
+                                <li class="flex gap-3"><span class="text-primary font-bold">✓</span> Hrubá stavba (Základy, múry, krov)</li>
+                                <li class="flex gap-3"><span class="text-primary font-bold">✓</span> Holodom (Inštalácie, omietky)</li>
+                                <li class="flex gap-3"><span class="text-primary font-bold">✓</span> Na kľúč (Dokončenie, exteriér)</li>
+                            </ul>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="reveal-on-scroll bg-white p-12 rounded-none shadow-xl border border-border group hover:border-primary transition-all duration-500" style="transition-delay: 150ms;">
+                            <div class="w-16 h-16 rounded-none bg-primary/10 flex items-center justify-center mb-8 group-hover:bg-primary transition-colors">
+                                <svg class="w-8 h-8 text-primary group-hover:text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                            </div>
+                            <h3 class="text-2xl font-black uppercase italic mb-6">Rekonštrukcie</h3>
+                            <ul class="space-y-4 text-muted font-light text-sm">
+                                <li class="flex gap-3"><span class="text-primary font-bold">✓</span> Bytové jadrá & Dispozície</li>
+                                <li class="flex gap-3"><span class="text-primary font-bold">✓</span> Vodoinštalácie & Elektro</li>
+                                <li class="flex gap-3"><span class="text-primary font-bold">✓</span> Vizualizácie interiéru</li>
+                            </ul>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="reveal-on-scroll bg-white p-12 rounded-none shadow-xl border border-border group hover:border-primary transition-all duration-500" style="transition-delay: 300ms;">
+                            <div class="w-16 h-16 rounded-none bg-primary/10 flex items-center justify-center mb-8 group-hover:bg-primary transition-colors">
+                                <svg class="w-8 h-8 text-primary group-hover:text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" /></svg>
+                            </div>
+                            <h3 class="text-2xl font-black uppercase italic mb-6">Extra Služby</h3>
+                            <ul class="space-y-4 text-muted font-light text-sm">
+                                <li class="flex gap-3"><span class="text-primary font-bold">✓</span> Sťahovanie & Uskladnenie</li>
+                                <li class="flex gap-3"><span class="text-primary font-bold">✓</span> Odpad & Záverečné upratovanie</li>
+                                <li class="flex gap-3"><span class="text-primary font-bold">✓</span> Podrezávanie & Hydroizolácia</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROCESS / PHASES -->
+            <section class="py-28 md:py-36 bg-secondary relative overflow-hidden text-white">
+                <!-- Background Image -->
+                <div class="absolute inset-0 z-0">
+                    <img src="img1.jpg" class="w-full h-full object-cover opacity-10 grayscale" alt="Background">
+                    <div class="absolute inset-0 bg-secondary/85"></div>
+                </div>
+                <div class="mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                        <div class="reveal-on-scroll">
+                            <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase italic mb-12">Fázy Výstavby</h2>
+                            <div class="space-y-12">
+                                <div class="relative pl-16">
+                                    <div class="absolute left-0 top-0 text-7xl font-black text-white/5 leading-none">01</div>
+                                    <h4 class="text-2xl font-black uppercase text-primary mb-4">Hrubá stavba</h4>
+                                    <p class="text-white/50 font-light leading-relaxed">Základy zabezpečujúce stabilitu, steny z tehly/betónu, stropná konštrukcia a krov podľa plánu.</p>
+                                </div>
+                                <div class="relative pl-16">
+                                    <div class="absolute left-0 top-0 text-7xl font-black text-white/5 leading-none">02</div>
+                                    <h4 class="text-2xl font-black uppercase text-primary mb-4">Holodom</h4>
+                                    <p class="text-white/50 font-light leading-relaxed">Uzavretá stavba bez finálnych interiérov. Rozvody inštalácií, hrubé omietky a fasáda.</p>
+                                </div>
+                                <div class="relative pl-16">
+                                    <div class="absolute left-0 top-0 text-7xl font-black text-white/5 leading-none">03</div>
+                                    <h4 class="text-2xl font-black uppercase text-primary mb-4">Dom na kľúč</h4>
+                                    <p class="text-white/50 font-light leading-relaxed">Kompletné dokončenie: podlahy, dvere, sanita, terénne úpravy a chodníky. Okamžité bývanie.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll">
+                            <div class="image-reveal-wrapper rounded-none aspect-[4/5] shadow-2xl skew-y-2">
+                                <div class="image-reveal-shutter"></div>
+                                <img src="img1.jpg" alt="Proces výstavby AVrekon" class="image-reveal-img w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROJECTS / GALLERY -->
+            <section id="projekty" class="py-28 md:py-36 bg-white overflow-hidden">
+                <div class="mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="reveal-on-scroll mb-20 text-center">
+                        <h2 class="text-5xl md:text-8xl font-black text-secondary tracking-tighter uppercase italic mb-8">Projekty<span class="text-primary">.</span></h2>
+                        <p class="text-muted max-w-2xl mx-auto font-light lg:text-xl">Pozrite si výsledky našej precíznej práce priamo v teréne.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg group">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="img2.jpg" alt="Projekt 1" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-10 text-center">
+                                <p class="text-white text-sm font-bold uppercase tracking-widest italic">Komplexná rekonštrukcia</p>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg md:mt-12 group" style="transition-delay: 150ms;">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="img3.jpg" alt="Projekt 2" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-10 text-center">
+                                <p class="text-white text-sm font-bold uppercase tracking-widest italic">Interiérové detaily</p>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg md:mt-24 group" style="transition-delay: 300ms;">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="img4.jpg" alt="Projekt 3" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-10 text-center">
+                                <p class="text-white text-sm font-bold uppercase tracking-widest italic">Kúpeľňa & Obklady</p>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg group" style="transition-delay: 100ms;">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="img5.jpg" alt="Projekt 4" class="image-reveal-img w-full h-full object-cover">
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg md:mt-12 group" style="transition-delay: 250ms;">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="img6.jpg" alt="Projekt 5" class="image-reveal-img w-full h-full object-cover">
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg md:mt-24 group" style="transition-delay: 400ms;">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="img7.jpg" alt="Projekt 6" class="image-reveal-img w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER WRAPPER -->
+            <footer id="kontakt" class="bg-secondary text-white pt-28 md:pt-40 relative overflow-hidden">
+                <!-- Texture background -->
+                <div class="absolute inset-0 z-0 pointer-events-none opacity-20" style="background-image: url('texture.svg'); background-size: cover; filter: invert(1);"></div>
+                
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10 pb-20 md:pb-32">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                        <div>
+                            <h2 class="text-5xl md:text-8xl font-black tracking-tighter uppercase mb-20 italic italic">Dopyt<span class="text-primary">.</span></h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                <div>
+                                    <p class="text-white/20 text-[10px] font-bold tracking-widest uppercase mb-4">Kontakt</p>
+                                    <p class="text-2xl font-black mb-1">Adam Tomaštík</p>
+                                    <a href="tel:+421919133959" class="text-2xl font-light hover:text-primary transition-colors">+421 919 133 959</a>
+                                    <a href="mailto:tomastik@avrekon.sk" class="text-lg font-light block hover:text-primary transition-colors opacity-40 italic mt-2">tomastik@avrekon.sk</a>
+                                </div>
+                                <div class="flex flex-col justify-end">
+                                    <p class="text-white/20 text-[10px] font-bold tracking-widest uppercase mb-4 italic">© 2025 AVrekon s.r.o.</p>
+                                    <nav class="flex gap-4">
+                                        <a href="#top" class="text-[10px] font-bold hover:text-primary uppercase tracking-widest">Úvod</a>
+                                        <a href="#projekty" class="text-[10px] font-bold hover:text-primary uppercase tracking-widest">Projekty</a>
+                                        <a href="#" class="text-[10px] font-bold hover:text-primary uppercase tracking-widest">Cookies</a>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col">
+                           <div class="bg-white/5 border border-white/10 p-10 md:p-16 rounded-none backdrop-blur-3xl">
+                                <h3 class="text-2xl font-black uppercase mb-10 italic">Dokončovacie práce</h3>
+                                <p class="text-white/40 font-light mb-12 leading-relaxed">Omietky, maľby, obklady, fasády, zámkové dlažby a stavba plotov. Kvalita a termíny sú našou prioritou.</p>
+                                <div class="flex flex-wrap gap-3">
+                                    <span class="px-6 py-2 border border-white/10 rounded-none text-[10px] font-bold uppercase tracking-widest text-primary">Byty</span>
+                                    <span class="px-6 py-2 border border-white/10 rounded-none text-[10px] font-bold uppercase tracking-widest text-primary">Domy</span>
+                                    <span class="px-6 py-2 border border-white/10 rounded-none text-[10px] font-bold uppercase tracking-widest text-primary">Interiér</span>
+                                    <span class="px-6 py-2 border border-white/10 rounded-none text-[10px] font-bold uppercase tracking-widest text-primary">Exteriér</span>
+                                </div>
+                           </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-32 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold text-white/5 tracking-widest uppercase">
+                        <p>AVrekon s.r.o. | Professional Construction & Development</p>
+                        <p>All Rights Reserved 2025</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <!-- SCRIPTS -->
+    <script>
+        // --- 1. SMOOTH SCROLL (LENIS) ---
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            touchMultiplier: 2,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // --- 2. HEADER SCROLL EFFECT ---
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // --- 3. MOBILE MENU TOGGLE ---
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        function openMenu() {
+            document.body.classList.add('menu-open');
+            document.body.style.overflow = 'hidden';
+            lenis.stop();
+        }
+
+        function closeMenu() {
+            document.body.classList.remove('menu-open');
+            document.body.style.overflow = '';
+            lenis.start();
+        }
+
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        menuLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // --- 4. ANIMATE ON SCROLL (REVEAL) ---
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
+
+        // --- 5. IMAGE REVEAL (SHUTTER) ---
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-revealed');
+                    imageObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.image-reveal-wrapper').forEach(el => imageObserver.observe(el));
+
+        // --- 6. PARALLAX EFFECT ---
+        window.addEventListener('scroll', () => {
+            const scrolly = window.scrollY;
+            
+            const heroParallax = document.querySelector('.hero-parallax');
+            if (heroParallax) {
+                const speed = heroParallax.getAttribute('data-speed') || 0.1;
+                heroParallax.style.transform = `translateY(${scrolly * speed}px)`;
+            }
+
+            document.querySelectorAll('.parallax-target:not(.hero-parallax)').forEach(el => {
+                const rect = el.parentElement.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                
+                if (rect.top < viewportHeight && rect.bottom > 0) {
+                    const speed = el.getAttribute('data-speed') || 0.2;
+                    const range = speed * 100;
+                    const progress = 1 - (rect.bottom / (viewportHeight + rect.height));
+                    const yMove = (progress * 2 - 1) * range;
+                    el.style.transform = `translateY(${yMove}%)`;
+                }
+            });
+        });
+
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+</body>
+</html>

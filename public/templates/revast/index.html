@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REVAST s.r.o. | Doprava, Stavebníctvo a Poľnohospodárstvo</title>
+    <meta name="description" content="REVAST s.r.o. - Špecialisti na dopravu, stavebné práce a poľnohospodársku činnosť. Tradícia od roku 1996, moderná technika a profesionálny prístup v regióne Zvolen.">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS 3 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#f97316', // Vibrant Orange
+                            dark: '#ea580c',
+                            light: '#fb923c',
+                        },
+                        secondary: {
+                            DEFAULT: '#334155', // Slate
+                            dark: '#0f172a',
+                        },
+                        foreground: '#0f172a',
+                        muted: '#64748b',
+                        light: '#f8fafc',
+                        border: '#e2e8f0',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+
+    <style>
+        /* Base styles */
+        :root {
+            --color-primary: #f97316;
+            --color-background: #ffffff;
+            --color-foreground: #0f172a;
+            --color-muted: #64748b;
+            --color-light: #f8fafc;
+        }
+
+        html.lenis, html.lenis body {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden; line-height: 1.1; 
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-foreground);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Nav Header Scroll Effect */
+        .site-header {
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .site-header.scrolled {
+            background-color: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Hover Split Text Effect */
+        .hover-split-text { padding-right: 0.2em; 
+            position: relative;
+            overflow: hidden; line-height: 1.1; 
+            display: inline-block;
+            vertical-align: top;
+        }
+        .hover-split-text-inner {
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .hover-split-text-inner::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 110%;
+            left: 0;
+            width: 100%;
+            line-height: inherit;
+        }
+        .group:hover .hover-split-text-inner,
+        .hover-split-text:hover .hover-split-text-inner {
+            transform: translateY(-100%);
+        }
+
+        /* Animate on Scroll Classes */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Image Reveal Effect */
+        .image-reveal-wrapper {
+            position: relative;
+            overflow: hidden; line-height: 1.1; 
+        }
+        .image-reveal-shutter {
+            position: absolute;
+            inset: 0;
+            background-color: var(--color-primary);
+            z-index: 10;
+            transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .image-reveal-wrapper.is-revealed .image-reveal-shutter {
+            transform: translateY(-100%);
+        }
+        .image-reveal-img {
+            transform: scale(1.2);
+            filter: grayscale(100%);
+            transition: transform 1.8s cubic-bezier(0.76, 0, 0.24, 1), filter 1.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .image-reveal-wrapper.is-revealed .image-reveal-img {
+            transform: scale(1);
+            filter: grayscale(0%);
+        }
+
+        /* Menu Overlay Animation */
+        #menu-overlay {
+            transform: translateY(-100%);
+            transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        body.menu-open #menu-overlay {
+            transform: translateY(0);
+        }
+        
+        /* Fade Delays */
+        .fade-up { opacity: 0; transform: translateY(30px); animation: fade-up-anim 0.7s ease-out forwards; }
+        .fade-up-1 { animation-delay: 0.15s; }
+        .fade-up-2 { animation-delay: 0.3s; }
+        .fade-up-3 { animation-delay: 0.45s; }
+        
+        @keyframes fade-up-anim {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .machinery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+    <!-- SITE HEADER -->
+    <header id="site-header" class="site-header fixed top-0 left-0 right-0 z-50 bg-transparent">
+        <div class="mx-auto w-[95vw] flex items-center justify-between h-16 md:h-24 px-6 md:px-10">
+            <div class="flex items-center">
+                <a href="#" class="flex flex-col">
+                    <span class="text-2xl md:text-4xl font-black tracking-tighter text-white uppercase italic leading-none">REVAST</span>
+                    <span class="text-[8px] md:text-[10px] font-bold text-primary uppercase tracking-[0.4em] ml-1 mt-1 font-sans">Doprava & Stavebníctvo</span>
+                </a>
+            </div>
+            <div class="flex justify-end items-center">
+                <button id="menu-toggle" class="text-white transition-colors text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 backdrop-blur-sm group">
+                    <div class="w-4 flex flex-col gap-1">
+                        <span class="w-full h-[1.5px] bg-white rounded-none"></span>
+                        <span class="w-full h-[1.5px] bg-white rounded-none"></span>
+                    </div>
+                    <span class="hover-split-text">
+                        <span class="hover-split-text-inner" data-text="Expertíza">Expertíza</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MENU OVERLAY -->
+    <div id="menu-overlay" class="fixed top-0 inset-x-0 h-screen md:h-[65vh] z-[60] bg-secondary-dark flex flex-col overflow-hidden shadow-2xl border-b border-white/5">
+        <!-- Texture background -->
+        <div class="absolute inset-0 z-0 pointer-events-none opacity-20" style="background-image: url('texture.svg'); background-size: cover; filter: invert(1);"></div>
+
+        <div class="relative z-10 mx-auto w-[95vw] flex items-center justify-between h-24 px-6 md:px-10">
+            <span class="text-2xl md:text-3xl font-black tracking-tighter text-white uppercase italic">REVAST</span>
+            <button id="menu-close" class="text-white transition-colors text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 group">
+                <span class="relative w-4 h-4 flex items-center justify-center">
+                    <span class="absolute w-full h-[1.5px] bg-white rotate-45 rounded-none"></span>
+                    <span class="absolute w-full h-[1.5px] bg-white -rotate-45 rounded-none"></span>
+                </span>
+                <span class="hover-split-text">
+                    <span class="hover-split-text-inner" data-text="Zavrieť">Zavrieť</span>
+                </span>
+            </button>
+        </div>
+
+        <div class="relative z-10 flex-1 flex items-center pb-8 overflow-y-auto font-black italic uppercase tracking-tighter">
+            <div class="mx-auto w-[95vw] px-6 md:px-10 w-full grid grid-cols-1 md:grid-cols-2 gap-12 py-10 md:py-0 text-center md:text-right">
+                <div class="hidden md:flex flex-col justify-center items-start text-left">
+                    <p class="text-white text-4xl mb-6">REVAST s.r.o.</p>
+                    <p class="text-white/40 text-sm font-light leading-relaxed italic uppercase tracking-widest italic italic italic">Štefan Rievaj<br>Družstevná 314/58, Pliešovce</p>
+                </div>
+                <nav class="flex flex-col gap-4 items-center md:items-end">
+                    <a href="#top" class="menu-link text-4xl md:text-7xl text-white block group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Úvod">Úvod</span></span></a>
+                    <a href="#sluzby" class="menu-link text-4xl md:text-7xl text-white block group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Naše Služby">Naše Služby</span></span></a>
+                    <a href="#firma" class="menu-link text-4xl md:text-7xl text-white block group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="O Firme">O Firme</span></span></a>
+                    <a href="#kontakt" class="menu-link text-4xl md:text-7xl text-white block group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kontakt">Kontakt</span></span></a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        
+        <!-- HERO SECTION -->
+        <section id="top" class="sticky top-0 h-screen w-full flex items-center overflow-hidden z-0">
+            <div class="parallax-container absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="parallax-target hero-parallax relative w-full h-full scale-110" data-speed="0.1">
+                    <img src="hero.jpg" alt="REVAST s.r.o. Doprava a Stavebníctvo" class="w-full h-full object-cover">
+                </div>
+            </div>
+            
+            <div class="absolute inset-0 bg-black/40"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-secondary-dark/40 via-transparent to-transparent"></div>
+
+            <div class="relative z-10 w-[95vw] mx-auto px-6 md:px-10">
+                <div class="flex flex-col items-start translate-y-12">
+                    <div class="fade-up inline-flex items-center gap-4 bg-primary/20 border border-primary/20 px-5 py-2 mb-8 rounded-none backdrop-blur-md">
+                        <span class="w-2 h-2 bg-primary rounded-none animate-pulse"></span>
+                        <span class="text-white text-[10px] font-black tracking-[0.4em] uppercase font-sans decoration-primary decoration-2 underline underline-offset-4">Skúsenosti od roku 1996</span>
+                    </div>
+                    <h1 class="fade-up fade-up-1 text-7xl md:text-11xl font-black text-white leading-[0.85] tracking-tighter uppercase italic italic italic">
+                        Doprava<br><span class="text-primary italic italic italic italic">Stavby.</span>
+                    </h1>
+                    <p class="fade-up fade-up-2 mt-12 text-lg md:text-2xl text-white/80 font-light max-w-2xl leading-relaxed italic italic font-sans italic italic">
+                        Komplexné riešenia v doprave, stavebníctve a poľnohospodárstve. Tradícia, moderná technika a tím 16-tich profesionálov pre váš projekt.
+                    </p>
+                    <div class="fade-up fade-up-3 mt-16 flex flex-col sm:flex-row gap-6">
+                        <a href="#kontakt" class="group inline-flex items-center justify-center px-12 py-5 bg-primary text-secondary-dark text-sm font-black rounded-none hover:bg-white hover:text-primary transition-all duration-300 shadow-2xl">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Cenový dopyt">Cenový dopyt</span></span>
+                        </a>
+                        <a href="#sluzby" class="group inline-flex items-center justify-center px-12 py-5 border border-white/20 text-white text-sm font-bold rounded-none hover:bg-white/10 transition-all duration-300">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Zobraziť služby">Zobraziť služby</span></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN LAYOVER -->
+        <div class="relative z-10 bg-white">
+            
+            <!-- SERVICES (SLUZBY) -->
+            <section id="sluzby" class="py-28 md:py-40 bg-secondary-dark relative overflow-hidden text-white">
+                <!-- Background Image -->
+                <div class="absolute inset-0 z-0">
+                    <img src="img2.jpg" class="w-full h-full object-cover opacity-20 grayscale" alt="Background">
+                    <div class="absolute inset-0 bg-secondary-dark/85"></div>
+                </div>
+
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="reveal-on-scroll mb-20">
+                        <h2 class="text-5xl md:text-8xl font-black text-white tracking-tighter uppercase italic leading-none italic italic italic italic italic">Tri Piliere<br>Našich Služieb<span class="text-primary italic italic italic italic italic italic italic">.</span></h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Column 1: Doprava -->
+                        <div class="reveal-on-scroll bg-light p-10 rounded-none group hover:bg-secondary-dark transition-all duration-500 italic italic uppercase tracking-tighter font-extrabold italic italic italic italic italic">
+                            <h3 class="text-3xl mb-10 group-hover:text-white transition-colors">01. Doprava</h3>
+                            <ul class="space-y-4 text-xs tracking-widest text-muted group-hover:text-white/60 transition-colors italic">
+                                <li>Preprava bežného materiálu</li>
+                                <li>Preprava sypkého materiálu</li>
+                                <li>Preprava dreva</li>
+                                <li class="pt-6 font-black text-primary italic italic italic">Technika:</li>
+                                <li>Kamióny & Valníky</li>
+                                <li>Dodávky do 6,5t & 3,5t</li>
+                                <li>Hydraulické ruky</li>
+                            </ul>
+                        </div>
+                        <!-- Column 2: Stavebnctvo -->
+                        <div class="reveal-on-scroll bg-light p-10 rounded-none group hover:bg-secondary-dark transition-all duration-500 md:mt-12 italic italic uppercase tracking-tighter font-extrabold italic italic italic italic italic">
+                            <h3 class="text-3xl mb-10 group-hover:text-white transition-colors">02. Stavby</h3>
+                            <ul class="space-y-4 text-xs tracking-widest text-muted group-hover:text-white/60 transition-colors italic">
+                                <li>Zemné a výkopové práce</li>
+                                <li>Betonáž & Asfaltovanie</li>
+                                <li>Zametanie komunikácií</li>
+                                <li class="pt-6 font-black text-primary italic italic italic">Technika:</li>
+                                <li>Bagre Kubota</li>
+                                <li>UNC Locust & Žeriav</li>
+                                <li>Vibračné dosky</li>
+                            </ul>
+                        </div>
+                        <!-- Column 3: Polnohospodarstvo -->
+                        <div class="reveal-on-scroll bg-light p-10 rounded-none group hover:bg-secondary-dark transition-all duration-500 italic italic uppercase tracking-tighter font-extrabold italic italic italic italic italic">
+                            <h3 class="text-3xl mb-10 group-hover:text-white transition-colors leading-none">03. Poľno</h3>
+                            <ul class="space-y-4 text-xs tracking-widest text-muted group-hover:text-white/60 transition-colors italic">
+                                <li>Kosenie & Mulčovanie</li>
+                                <li>Zvoz balíkov</li>
+                                <li>Zhrňovanie</li>
+                                <li class="pt-6 font-black text-primary italic italic italic">Technika:</li>
+                                <li>Traktory Zetor & Kubota</li>
+                                <li>Moderné príslušenstvo</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ABOUT SECTION (FIRMA) -->
+            <section id="firma" class="py-28 md:py-40 bg-secondary-dark text-white overflow-hidden relative">
+                <!-- Texture background -->
+                <div class="absolute inset-0 z-0 pointer-events-none opacity-20" style="background-image: url('texture.svg'); background-size: cover; filter: invert(1);"></div>
+
+                <div class="mx-auto w-[95vw] px-6 md:px-10 relative z-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                        <div class="reveal-on-scroll">
+                            <p class="text-[10px] font-black tracking-[0.4em] uppercase text-primary mb-6 italic italic italic">O firme Revast</p>
+                            <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter mb-10 uppercase italic italic italic italic italic italic italic leading-none">Silné Zázemie<span class="text-primary italic italic italic italic italic italic">.</span></h2>
+                            <div class="space-y-8 text-xl font-light text-white/50 leading-relaxed italic italic italic italic italic italic italic leading-relaxed">
+                                <p>Základy našej firmy siahajú do roku 1996, kedy zakladateľ Štefan Rievaj začal pracovať v doprave a stavebníctve. Revast s.r.o. ako taká vznikla v roku 2008.</p>
+                                <p>Dnes firma primárne poskytuje komplexné služby pre región Zvolen a okolie, pričom zamestnáva tím 16-tich šikovných pracovníkov.</p>
+                                <p>Okrem realizačnej činnosti ponúkame aj prenájom vlastných dielní vo Zvolene na servis osobných a nákladných vozidiel.</p>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll" style="transition-delay: 200ms;">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="image-reveal-wrapper rounded-none aspect-square skew-x-1 shadow-2xl">
+                                    <div class="image-reveal-shutter"></div>
+                                    <img src="img1.jpg" alt="Stavebná činnosť Revast" class="image-reveal-img w-full h-full object-cover">
+                                </div>
+                                <div class="image-reveal-wrapper rounded-none aspect-square skew-x-1 shadow-2xl mt-12">
+                                    <div class="image-reveal-shutter"></div>
+                                    <img src="img2.jpg" alt="Poľnohospodárstvo Revast" class="image-reveal-img w-full h-full object-cover">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER / KONTAKT -->
+            <footer id="kontakt" class="bg-white text-foreground pt-28 md:pt-40 relative overflow-hidden">
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10 pb-20 md:pb-32">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                        <div>
+                            <h2 class="text-6xl md:text-9xl font-black tracking-tighter uppercase mb-20 italic italic italic italic italic italic italic leading-none italic italic">Kontakt<span class="text-primary italic">.</span></h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 font-sans italic italic">
+                                <div>
+                                    <p class="text-muted text-[10px] font-bold tracking-widest uppercase mb-4 italic italic italic italic italic italic italic uppercase italic">Sídlo Firmy</p>
+                                    <p class="text-2xl font-light italic leading-relaxed italic italic italic uppercase italic leading-none italic italic">
+                                        Družstevná 314/58<br>
+                                        962 63 PLIEŠOVCE
+                                    </p>
+                                    <p class="text-muted text-[10px] font-bold tracking-widest uppercase mt-12 mb-4 italic italic italic italic italic italic italic uppercase italic">Prevádzka</p>
+                                    <p class="text-xl font-light italic italic italic italic italic uppercase italic leading-none italic italic">
+                                        Pod dráhami 25<br>
+                                        960 01 ZVOLEN
+                                    </p>
+                                </div>
+                                <div class="space-y-12 italic italic">
+                                    <div class="flex flex-col gap-2">
+                                        <p class="text-muted text-[10px] font-bold tracking-widest uppercase italic italic italic italic italic italic italic uppercase italic mb-4">Konateľ: Štefan Rievaj</p>
+                                        <a href="tel:0905520810" class="text-3xl font-black italic block hover:text-primary transition-colors italic italic">0905 520 810</a>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <p class="text-muted text-[10px] font-bold tracking-widest uppercase italic italic italic italic italic italic italic uppercase italic mb-4">Dispečer</p>
+                                        <a href="tel:0908450705" class="text-2xl font-black italic block hover:text-primary transition-colors italic italic">0908 450 705</a>
+                                    </div>
+                                    <a href="mailto:revast@revast.sk" class="text-xl font-light italic block hover:text-primary underline underline-offset-8 italic italic">revast@revast.sk</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col justify-end">
+                            <div class="bg-secondary-dark p-12 lg:p-16 rounded-none text-white shadow-2xl relative group overflow-hidden">
+                                <h3 class="text-4xl font-black uppercase mb-10 italic italic italic italic italic italic italic leading-none italic italic italic leading-none">Máte Otázky?<br>Revast odpovie<span class="text-primary italic">.</span></h3>
+                                <p class="text-white/40 text-base font-light italic leading-relaxed mb-4 italic italic italic leading-relaxed italic italic">Zabezpečíme všetko od bagrovania až po prepravu s hydraulickou rukou.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-32 pt-10 border-t border-border flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold text-muted tracking-widest uppercase italic italic italic italic italic italic italic leading-none italic italic italic leading-none italic italic">
+                        <p>© 2026 REVAST s.r.o. | Všetky práva vyhradené</p>
+                        <p>Pliešovce — Zvolen — SR</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <!-- SCRIPTS -->
+    <script>
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            touchMultiplier: 2,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        function openMenu() {
+            document.body.classList.add('menu-open');
+            document.body.style.overflow = 'hidden';
+            lenis.stop();
+        }
+
+        function closeMenu() {
+            document.body.classList.remove('menu-open');
+            document.body.style.overflow = '';
+            lenis.start();
+        }
+
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        menuLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
+
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-revealed');
+                    imageObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.image-reveal-wrapper').forEach(el => imageObserver.observe(el));
+
+        window.addEventListener('scroll', () => {
+            const scrolly = window.scrollY;
+            const heroParallax = document.querySelector('.hero-parallax');
+            if (heroParallax) {
+                const speed = heroParallax.getAttribute('data-speed') || 0.1;
+                heroParallax.style.transform = `translateY(${scrolly * speed}px)`;
+            }
+        });
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+</body>
+</html>

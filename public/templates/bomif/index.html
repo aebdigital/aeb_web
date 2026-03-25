@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOMIF s.r.o. | Stavebná činnosť Nitra - Priemyselné a rodinné stavby</title>
+    <meta name="description" content="BOMIF s.r.o. Nitra - odborná realizácia priemyselných stavieb, rodinných domov a protipožiarnych prestupov od roku 1994. Prenájom priestorov v Nitre.">
+    
+    <!-- Google Fonts: Manrope -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS 3 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#e11d48', // Deep Vibrant Red
+                            light: '#fb7185',
+                            dark: '#9f1239',
+                        },
+                        foreground: '#1a1a1a',
+                        muted: '#6b7280',
+                        light: '#fff6f7',
+                        border: '#e5e7eb',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 3s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+
+    <style>
+        /* Base styles */
+        :root {
+            --color-primary: #e11d48;
+            --color-primary-light: #fb7185;
+            --color-primary-dark: #9f1239;
+            --color-background: #ffffff;
+            --color-foreground: #1a1a1a;
+            --color-muted: #6b7280;
+            --color-light: #fff6f7;
+            --color-border: #e5e7eb;
+        }
+
+        html.lenis, html.lenis body {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden; line-height: 1.1; 
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-foreground);
+            font-family: 'Manrope', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Nav Header Scroll Effect */
+        .site-header {
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .site-header.scrolled {
+            background-color: rgba(225, 29, 72, 0.95); /* primary/95 */
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Hover Split Text Effect */
+        .hover-split-text { padding-right: 0.2em; 
+            position: relative;
+            overflow: hidden; line-height: 1.1; 
+            display: inline-block;
+            vertical-align: top;
+        }
+        .hover-split-text-inner {
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .hover-split-text-inner::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 110%;
+            left: 0;
+            width: 100%;
+            line-height: inherit;
+        }
+        .group:hover .hover-split-text-inner,
+        .hover-split-text:hover .hover-split-text-inner {
+            transform: translateY(-100%);
+        }
+
+        /* Animate on Scroll Classes */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Image Reveal Effect */
+        .image-reveal-wrapper {
+            position: relative;
+            overflow: hidden; line-height: 1.1; 
+        }
+        .image-reveal-shutter {
+            position: absolute;
+            inset: 0;
+            background-color: var(--color-primary);
+            z-index: 10;
+            transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .image-reveal-wrapper.is-revealed .image-reveal-shutter {
+            transform: translateY(-100%);
+        }
+        .image-reveal-img {
+            transform: scale(1.2);
+            filter: grayscale(100%);
+            transition: transform 1.8s cubic-bezier(0.76, 0, 0.24, 1), filter 1.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .image-reveal-wrapper.is-revealed .image-reveal-img {
+            transform: scale(1);
+            filter: grayscale(0%);
+        }
+        .image-reveal-wrapper.grayscale-permanent .image-reveal-img {
+            filter: grayscale(100%);
+        }
+        .image-reveal-wrapper.grayscale-permanent.is-revealed .image-reveal-img {
+            filter: grayscale(100%);
+        }
+        .image-reveal-wrapper:hover .image-reveal-img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        /* Menu Overlay Animation */
+        #menu-overlay {
+            transform: translateY(-100%);
+            transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        body.menu-open #menu-overlay {
+            transform: translateY(0);
+        }
+        
+        /* Utility styles for specific components */
+        .parallax-container {
+            position: relative;
+            overflow: hidden; line-height: 1.1; 
+            pointer-events: none;
+        }
+        .parallax-target {
+            width: 100%;
+            height: 100%;
+            will-change: transform;
+        }
+        
+        /* Fade Up Delays */
+        .fade-up { opacity: 0; transform: translateY(30px); animation: fade-up-anim 0.7s ease-out forwards; }
+        .fade-up-1 { animation-delay: 0.1s; }
+        .fade-up-2 { animation-delay: 0.2s; }
+        .fade-up-3 { animation-delay: 0.3s; }
+        .fade-up-4 { animation-delay: 0.4s; }
+        
+        @keyframes fade-up-anim {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .diagonal-bg {
+            clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+    <!-- SITE HEADER -->
+    <header id="site-header" class="site-header fixed top-0 left-0 right-0 z-50 bg-transparent">
+        <div class="mx-auto w-[95vw] flex items-center justify-between h-16 md:h-24 px-6 md:px-10">
+            <div class="flex items-center">
+                <a href="#" class="flex items-center">
+                    <span class="text-2xl md:text-4xl font-black tracking-tighter text-white uppercase italic">BOMIF</span>
+                </a>
+            </div>
+            <div class="flex justify-end items-center">
+                <button id="menu-toggle" class="text-white transition-colors text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 backdrop-blur-sm group">
+                    <div class="w-4 flex flex-col gap-1">
+                        <span class="w-full h-[1.5px] bg-white rounded-none"></span>
+                        <span class="w-full h-[1.5px] bg-white rounded-none"></span>
+                    </div>
+                    <span class="hover-split-text">
+                        <span class="hover-split-text-inner" data-text="Menu">Menu</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MENU OVERLAY -->
+    <div id="menu-overlay" class="fixed top-0 inset-x-0 h-screen md:h-[70vh] z-[60] bg-primary flex flex-col overflow-hidden shadow-2xl border-b border-white/10">
+        <!-- Texture background -->
+        <div class="absolute inset-0 z-0 pointer-events-none opacity-30" style="background-image: url('texture.svg'); background-size: cover; filter: invert(1);"></div>
+
+        <div class="relative z-10 mx-auto w-[95vw] flex items-center justify-between h-24 px-6 md:px-10">
+            <div class="flex items-center">
+                <span class="text-2xl md:text-3xl font-black tracking-tighter text-white uppercase italic">BOMIF</span>
+            </div>
+            <div class="flex justify-end">
+                <button id="menu-close" class="text-white transition-colors text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 group">
+                    <span class="relative w-4 h-4 flex items-center justify-center">
+                        <span class="absolute w-full h-[1.5px] bg-white rotate-45 rounded-none"></span>
+                        <span class="absolute w-full h-[1.5px] bg-white -rotate-45 rounded-none"></span>
+                    </span>
+                    <span class="hover-split-text">
+                        <span class="hover-split-text-inner" data-text="Zavrieť">Zavrieť</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+
+        <div class="relative z-10 flex-1 flex items-center pb-8 overflow-y-auto">
+            <div class="mx-auto w-[95vw] px-6 md:px-10 w-full grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20 py-10 md:py-0">
+                <!-- Column 1: Info -->
+                <div class="hidden md:flex flex-col">
+                    <span class="text-white/30 text-xs uppercase tracking-widest block mb-8">Kontakt & Informácie</span>
+                    <div class="mb-8">
+                        <p class="text-white text-xl font-black mb-2 tracking-tight uppercase">BOMIF s.r.o.</p>
+                        <p class="text-white/50 text-sm font-light leading-relaxed max-w-xs">
+                            Zlievarenská 1<br>949 05 NITRA
+                        </p>
+                    </div>
+                    <div class="mb-8">
+                        <span class="text-white/30 text-[10px] uppercase tracking-[0.2em] block mb-2 font-bold">Telefón</span>
+                        <p class="text-white text-xl font-light italic">+421 911 933 988</p>
+                        <p class="text-white/60 text-lg font-light italic">bomif@bomif.sk</p>
+                    </div>
+                </div>
+
+                <!-- Column 2: Services -->
+                <div class="flex flex-col gap-2 items-center md:items-start order-2 md:order-2">
+                    <span class="text-white/30 text-xs uppercase tracking-widest block mb-6 md:mb-8 self-start">Naše Služby</span>
+                    <div class="flex flex-col gap-3">
+                        <a href="#sluzby" class="menu-link text-lg md:text-2xl text-white/70 hover:text-white transition-colors block group">
+                            <span class="hover-split-text leading-tight"><span class="hover-split-text-inner" data-text="Priemyselné stavby">Priemyselné stavby</span></span>
+                        </a>
+                        <a href="#sluzby" class="menu-link text-lg md:text-2xl text-white/70 hover:text-white transition-colors block group">
+                            <span class="hover-split-text leading-tight"><span class="hover-split-text-inner" data-text="Protipožiarne prestupy">Protipožiarne prestupy</span></span>
+                        </a>
+                        <a href="#sluzby" class="menu-link text-lg md:text-2xl text-white/70 hover:text-white transition-colors block group">
+                            <span class="hover-split-text leading-tight"><span class="hover-split-text-inner" data-text="Inžinierske stavby">Inžinierske stavby</span></span>
+                        </a>
+                        <a href="#sluzby" class="menu-link text-lg md:text-2xl text-white/70 hover:text-white transition-colors block group">
+                            <span class="hover-split-text leading-tight"><span class="hover-split-text-inner" data-text="Prenájom priestorov">Prenájom priestorov</span></span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 3: Navigation -->
+                <nav class="flex flex-col gap-4 items-center md:items-end order-1 md:order-3">
+                    <span class="text-white/30 text-xs uppercase tracking-widest block mb-6 md:mb-8">Navigácia</span>
+                    <div class="flex flex-col gap-4 items-center md:items-end">
+                        <a href="#top" class="menu-link text-3xl md:text-4xl lg:text-5xl text-white block group font-bold tracking-tight">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Úvod">Úvod</span></span>
+                        </a>
+                        <a href="#onas" class="menu-link text-3xl md:text-4xl lg:text-5xl text-white block group font-bold tracking-tight">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="O nás">O nás</span></span>
+                        </a>
+                        <a href="#sluzby" class="menu-link text-3xl md:text-4xl lg:text-5xl text-white block group font-bold tracking-tight">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Služby">Služby</span></span>
+                        </a>
+                        <a href="#kontakt" class="menu-link text-3xl md:text-4xl lg:text-5xl text-white block group font-bold tracking-tight">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kontakt">Kontakt</span></span>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        
+        <!-- HERO SECTION -->
+        <section id="top" class="sticky top-0 h-screen w-full flex items-center overflow-hidden z-0">
+            <div class="parallax-container absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="parallax-target hero-parallax relative w-full h-full scale-110" data-speed="0.1">
+                    <img src="hero.jpg" alt="BOMIF stavebná činnosť" class="w-full h-full object-cover">
+                </div>
+            </div>
+            
+            <div class="absolute inset-0 bg-primary/20"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent"></div>
+
+            <div class="relative z-10 w-[95vw] mx-auto px-6 md:px-10">
+                <p class="fade-up text-white/70 text-sm font-semibold tracking-[0.4em] uppercase mb-8">
+                    Tradičná stavebná firma od roku 1994
+                </p>
+                <h1 class="fade-up fade-up-1 text-6xl md:text-8xl lg:text-9xl font-black text-white leading-[0.9] tracking-tighter uppercase italic">
+                    Budujeme s<br><span class="font-light italic text-white/50">skúsenosťou.</span>
+                </h1>
+                <p class="fade-up fade-up-2 mt-12 text-lg md:text-2xl text-white/90 font-light max-w-2xl leading-relaxed">
+                    Od jednoduchých stavieb po zložité priemyselné objekty a novostavby. Tradícia, kvalita a odborný tím remeselníkov.
+                </p>
+                <div class="fade-up fade-up-3 mt-16 flex flex-col sm:flex-row gap-6">
+                    <a href="#kontakt" class="group inline-flex items-center justify-center px-12 py-5 bg-white text-primary text-sm font-bold rounded-none hover:bg-white/90 transition-all duration-300 shadow-xl">
+                        <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Oslovte nás">Oslovte nás</span></span>
+                    </a>
+                    <a href="#sluzby" class="group inline-flex items-center justify-center px-12 py-5 border-2 border-white/20 text-white text-sm font-bold rounded-none hover:bg-white/10 transition-all duration-300">
+                        <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Naše služby">Naše služby</span></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="fade-up fade-up-4 absolute bottom-10 left-10">
+                <div class="w-20 h-20 border-2 border-white/20 rounded-none flex items-center justify-center group">
+                    <span class="text-white text-2xl font-black italic">1994</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN LAYOVER -->
+        <div class="relative z-10 bg-white shadow-[0_-50px_100px_rgba(0,0,0,0.1)]">
+            
+            <!-- ABOUT US -->
+            <section id="onas" class="py-28 md:py-36 bg-foreground relative overflow-hidden text-white">
+                <!-- Background Image -->
+                <div class="absolute inset-0 z-0">
+                    <img src="img1.jpg" class="w-full h-full object-cover opacity-20 grayscale" alt="Background">
+                    <div class="absolute inset-0 bg-foreground/85"></div>
+                </div>
+
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                        <div class="reveal-on-scroll">
+                            <p class="text-xs font-semibold tracking-[0.3em] uppercase text-primary mb-6">Profil Spoločnosti</p>
+                            <h2 class="text-4xl md:text-5xl lg:text-7xl font-black text-white tracking-tighter mb-10 uppercase italic">O Nás</h2>
+                            <div class="space-y-6 text-xl font-light text-white/70 leading-relaxed">
+                                <p>Firma <span class="text-primary font-bold">BOMIF</span> bola založená v roku 1994. Sídli v novovybudovanom areáli na Zlievarenskej ulici v Nitre – Krškanoch.</p>
+                                <p>Areál slúži ako zázemie samotnej stavebnej činnosti, ale aj ako sídlo spriaznených firiem, ktorým sme dokázali vytvoriť domovské prostredie na podnikanie a rozvoj.</p>
+                                <p class="text-sm border-l-4 border-primary pl-6 font-bold uppercase tracking-widest text-white/80 italic">
+                                    "Postupným získavaním skúseností sa vyprofiloval skúsený tím technikov a remeselníkov."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll" style="transition-delay: 200ms;">
+                            <div class="image-reveal-wrapper rounded-none aspect-square shadow-2xl skew-y-3">
+                                <div class="image-reveal-shutter"></div>
+                                <img src="img1.jpg" alt="BOMIF areál a výstavba" class="image-reveal-img w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SERVICES RED BOXES -->
+            <section id="sluzby" class="py-20 md:py-32 bg-light">
+                <div class="mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="reveal-on-scroll mb-20 text-center">
+                        <h2 class="text-4xl md:text-7xl font-black text-primary uppercase tracking-tighter italic">Ponúkané Služby</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <!-- Service 1 -->
+                        <div class="reveal-on-scroll h-[400px] bg-white group overflow-hidden relative rounded-none border border-border">
+                            <img src="img2.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-20 group-hover:opacity-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div class="absolute bottom-10 left-10 z-10">
+                                <h3 class="text-xl font-black uppercase text-foreground group-hover:text-white transition-colors leading-tight">Priemyselné stavby</h3>
+                            </div>
+                        </div>
+                        <!-- Service 2 -->
+                        <div class="reveal-on-scroll h-[400px] bg-white group overflow-hidden relative rounded-none border border-border" style="transition-delay: 100ms;">
+                            <img src="img3.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-20 group-hover:opacity-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div class="absolute bottom-10 left-10 z-10">
+                                <h3 class="text-xl font-black uppercase text-foreground group-hover:text-white transition-colors leading-tight">Rodinné domy</h3>
+                            </div>
+                        </div>
+                        <!-- Service 3 -->
+                        <div class="reveal-on-scroll h-[400px] bg-white group overflow-hidden relative rounded-none border border-border" style="transition-delay: 200ms;">
+                            <img src="img4.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-20 group-hover:opacity-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div class="absolute bottom-10 left-10 z-10">
+                                <h3 class="text-xl font-black uppercase text-foreground group-hover:text-white transition-colors leading-tight">Inžinierske stavby</h3>
+                            </div>
+                        </div>
+                        <!-- Service 4 -->
+                        <div class="reveal-on-scroll h-[400px] bg-white group overflow-hidden relative rounded-none border border-border" style="transition-delay: 300ms;">
+                            <img src="img5.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-20 group-hover:opacity-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div class="absolute bottom-10 left-10 z-10">
+                                <h3 class="text-xl font-black uppercase text-foreground group-hover:text-white transition-colors leading-tight">Protipožiarne prestupy</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-20 reveal-on-scroll flex flex-col md:flex-row gap-12 items-center justify-between border-y border-border py-12">
+                        <div class="flex items-center gap-10">
+                            <div class="text-5xl font-black text-primary italic">30+</div>
+                            <p class="text-xs font-bold uppercase tracking-widest text-muted">Rokov na trhu<br>Slovenska</p>
+                        </div>
+                        <div class="flex items-center gap-10">
+                            <div class="text-5xl font-black text-primary italic">100+</div>
+                            <p class="text-xs font-bold uppercase tracking-widest text-muted">Zrealizovaných<br>objektov</p>
+                        </div>
+                        <div class="flex items-center gap-10">
+                            <div class="text-5xl font-black text-primary italic">ISO</div>
+                            <p class="text-xs font-bold uppercase tracking-widest text-muted">Certifikovaná<br>kvalita prác</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER WRAPPER -->
+            <footer id="kontakt" class="bg-primary text-white pt-28 md:pt-40 relative overflow-hidden">
+                <!-- Texture background -->
+                <div class="absolute inset-0 z-0 pointer-events-none opacity-20" style="background-image: url('texture.svg'); background-size: cover; filter: invert(1);"></div>
+                
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10 pb-20 md:pb-32">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                        <div>
+                            <h2 class="text-6xl md:text-9xl font-black tracking-tighter uppercase mb-20 italic">BOMIF<span class="text-white/20">.</span></h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                <div>
+                                    <p class="text-white/40 text-[10px] font-bold tracking-widest uppercase mb-4 italic">Adresa</p>
+                                    <p class="text-2xl font-light italic leading-relaxed">
+                                        BOMIF s.r.o.<br>
+                                        Zlievarenská 1<br>
+                                        949 05 NITRA
+                                    </p>
+                                </div>
+                                <div>
+                                    <p class="text-white/40 text-[10px] font-bold tracking-widest uppercase mb-4 italic">Online</p>
+                                    <a href="tel:+421911933988" class="text-2xl font-black block hover:text-white/70 transition-colors italic">+421 911 933 988</a>
+                                    <a href="mailto:bomif@bomif.sk" class="text-lg font-light block hover:text-white/70 transition-colors opacity-40 italic mt-2 underline">bomif@bomif.sk</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col justify-end">
+                            <div class="bg-white/10 p-12 rounded-none backdrop-blur-3xl border border-white/10">
+                                <p class="text-white/40 text-[10px] font-bold tracking-widest uppercase mb-8 italic">Navigácia</p>
+                                <nav class="flex flex-col gap-4">
+                                    <a href="#top" class="text-2xl font-black uppercase italic hover:text-white/50 transition-all tracking-tight">Úvod</a>
+                                    <a href="#onas" class="text-2xl font-black uppercase italic hover:text-white/50 transition-all tracking-tight">O nás</a>
+                                    <a href="#sluzby" class="text-2xl font-black uppercase italic hover:text-white/50 transition-all tracking-tight">Realizácie</a>
+                                    <a href="#" class="text-2xl font-black uppercase italic hover:text-white/50 transition-all tracking-tight">Certifikáty</a>
+                                </nav>
+                                <div class="mt-12 text-[10px] font-bold uppercase tracking-widest text-white/30">
+                                    Copyright BOMIF 2026. All Rights Reserved.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-32 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold text-white/10 tracking-widest uppercase italic">
+                        <p>Kvalita z Nitry od roku 1994</p>
+                        <p>Created by FARENBY</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <!-- SCRIPTS -->
+    <script>
+        // --- 1. SMOOTH SCROLL (LENIS) ---
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            touchMultiplier: 2,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // --- 2. HEADER SCROLL EFFECT ---
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // --- 3. MOBILE MENU TOGGLE ---
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        function openMenu() {
+            document.body.classList.add('menu-open');
+            document.body.style.overflow = 'hidden';
+            lenis.stop();
+        }
+
+        function closeMenu() {
+            document.body.classList.remove('menu-open');
+            document.body.style.overflow = '';
+            lenis.start();
+        }
+
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        menuLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // --- 4. ANIMATE ON SCROLL (REVEAL) ---
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
+
+        // --- 5. IMAGE REVEAL (SHUTTER) ---
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-revealed');
+                    imageObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.image-reveal-wrapper').forEach(el => imageObserver.observe(el));
+
+        // --- 6. PARALLAX EFFECT ---
+        window.addEventListener('scroll', () => {
+            const scrolly = window.scrollY;
+            
+            const heroParallax = document.querySelector('.hero-parallax');
+            if (heroParallax) {
+                const speed = heroParallax.getAttribute('data-speed') || 0.1;
+                heroParallax.style.transform = `translateY(${scrolly * speed}px)`;
+            }
+
+            document.querySelectorAll('.parallax-target:not(.hero-parallax)').forEach(el => {
+                const rect = el.parentElement.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                
+                if (rect.top < viewportHeight && rect.bottom > 0) {
+                    const speed = el.getAttribute('data-speed') || 0.2;
+                    const range = speed * 100;
+                    const progress = 1 - (rect.bottom / (viewportHeight + rect.height));
+                    const yMove = (progress * 2 - 1) * range;
+                    el.style.transform = `translateY(${yMove}%)`;
+                }
+            });
+        });
+
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+</body>
+</html>

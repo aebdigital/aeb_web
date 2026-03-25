@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LA-MA s.r.o. | Profesionálna stavebná spoločnosť</title>
+    <meta name="description" content="Profesionálna stavebná spoločnosť LA-MA s.r.o. s dlhoročnými skúsenosťami. Realizujeme domy, priemyselné stavby, obnoviteľné zdroje a iné po celom Slovensku aj v zahraničí.">
+    
+    <!-- Google Fonts: Manrope -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS 3 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#b22222', // Firebrick/Red for LA-MA logo feel
+                            light: '#d23232',
+                            dark: '#8b0000',
+                        },
+                        foreground: '#1a1a1a',
+                        muted: '#6b7280',
+                        light: '#fffcfc',
+                        border: '#e5e7eb',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 3s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+
+    <style>
+        /* Base styles */
+        :root {
+            --color-primary: #b22222;
+            --color-primary-light: #d23232;
+            --color-primary-dark: #8b0000;
+            --color-background: #ffffff;
+            --color-foreground: #1a1a1a;
+            --color-muted: #6b7280;
+            --color-light: #fffcfc;
+            --color-border: #e5e7eb;
+        }
+
+        html.lenis, html.lenis body {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden; line-height: 1.1; 
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-foreground);
+            font-family: 'Manrope', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Nav Header Scroll Effect */
+        .site-header {
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .site-header.scrolled {
+            background-color: rgba(178, 34, 34, 0.95); /* primary/95 */
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Hover Split Text Effect */
+        .hover-split-text { padding-right: 0.2em; 
+            position: relative;
+            overflow: hidden; line-height: 1.1; 
+            display: inline-block;
+            vertical-align: top;
+        }
+        .hover-split-text-inner {
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .hover-split-text-inner::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 110%;
+            left: 0;
+            width: 100%;
+            line-height: inherit;
+        }
+        .group:hover .hover-split-text-inner,
+        .hover-split-text:hover .hover-split-text-inner {
+            transform: translateY(-100%);
+        }
+
+        /* Animate on Scroll Classes */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Image Reveal Effect */
+        .image-reveal-wrapper {
+            position: relative;
+            overflow: hidden; line-height: 1.1; 
+        }
+        .image-reveal-shutter {
+            position: absolute;
+            inset: 0;
+            background-color: var(--color-primary);
+            z-index: 10;
+            transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .image-reveal-wrapper.is-revealed .image-reveal-shutter {
+            transform: translateY(-100%);
+        }
+        .image-reveal-img {
+            transform: scale(1.2);
+            filter: grayscale(100%);
+            transition: transform 1.8s cubic-bezier(0.76, 0, 0.24, 1), filter 1.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .image-reveal-wrapper.is-revealed .image-reveal-img {
+            transform: scale(1);
+            filter: grayscale(0%);
+        }
+        .image-reveal-wrapper.grayscale-permanent .image-reveal-img {
+            filter: grayscale(100%);
+        }
+        .image-reveal-wrapper.grayscale-permanent.is-revealed .image-reveal-img {
+            filter: grayscale(100%);
+        }
+        .image-reveal-wrapper:hover .image-reveal-img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        /* Menu Overlay Animation */
+        #menu-overlay {
+            transform: translateY(-100%);
+            transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        body.menu-open #menu-overlay {
+            transform: translateY(0);
+        }
+        
+        /* Utility styles for specific components */
+        .parallax-container {
+            position: relative;
+            overflow: hidden; line-height: 1.1; 
+            pointer-events: none;
+        }
+        .parallax-target {
+            width: 100%;
+            height: 100%;
+            will-change: transform;
+        }
+        
+        /* Fade Up Delays */
+        .fade-up { opacity: 0; transform: translateY(30px); animation: fade-up-anim 0.7s ease-out forwards; }
+        .fade-up-1 { animation-delay: 0.1s; }
+        .fade-up-2 { animation-delay: 0.2s; }
+        .fade-up-3 { animation-delay: 0.3s; }
+        .fade-up-4 { animation-delay: 0.4s; }
+        
+        @keyframes fade-up-anim {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+    <!-- SITE HEADER -->
+    <header id="site-header" class="site-header fixed top-0 left-0 right-0 z-50 bg-transparent">
+        <div class="mx-auto w-[95vw] flex items-center justify-between h-16 md:h-24 px-6 md:px-10">
+            <div class="flex items-center">
+                <a href="#" class="flex items-center">
+                    <span class="text-xl md:text-2xl font-black tracking-wider text-white uppercase">LA - MA</span>
+                </a>
+            </div>
+            <div class="flex justify-end items-center gap-6">
+                <div class="hidden md:flex gap-4">
+                    <a href="#" class="text-white/70 hover:text-white text-xs font-bold uppercase transition-colors">SK</a>
+                    <a href="#" class="text-white/40 hover:text-white text-xs font-bold uppercase transition-colors">EN</a>
+                </div>
+                <button id="menu-toggle" class="text-white transition-colors text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 backdrop-blur-sm group">
+                    <div class="w-4 flex flex-col gap-1">
+                        <span class="w-full h-[1.5px] bg-white rounded-none"></span>
+                        <span class="w-full h-[1.5px] bg-white rounded-none"></span>
+                    </div>
+                    <span class="hover-split-text">
+                        <span class="hover-split-text-inner" data-text="Menu">Menu</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MENU OVERLAY -->
+    <div id="menu-overlay" class="fixed top-0 inset-x-0 h-screen md:h-[70vh] z-[60] bg-primary flex flex-col overflow-hidden shadow-2xl border-b border-white/10">
+        <!-- Texture background -->
+        <div class="absolute inset-0 z-0 pointer-events-none opacity-30" style="background-image: url('texture.svg'); background-size: cover; filter: invert(1);"></div>
+
+        <div class="relative z-10 mx-auto w-[95vw] flex items-center justify-between h-24 px-6 md:px-10">
+            <div class="flex items-center">
+                <span class="text-xl md:text-2xl font-black tracking-wider text-white uppercase">LA - MA</span>
+            </div>
+            <div class="flex justify-end">
+                <button id="menu-close" class="text-white transition-colors text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 group">
+                    <span class="relative w-4 h-4 flex items-center justify-center">
+                        <span class="absolute w-full h-[1.5px] bg-white rotate-45 rounded-none"></span>
+                        <span class="absolute w-full h-[1.5px] bg-white -rotate-45 rounded-none"></span>
+                    </span>
+                    <span class="hover-split-text">
+                        <span class="hover-split-text-inner" data-text="Zavrieť">Zavrieť</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+
+        <div class="relative z-10 flex-1 flex items-center pb-8 overflow-y-auto">
+            <div class="mx-auto w-[95vw] px-6 md:px-10 w-full grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20 py-10 md:py-0">
+                <!-- Column 1: Info -->
+                <div class="hidden md:flex flex-col">
+                    <span class="text-white/30 text-xs uppercase tracking-widest block mb-8">Kontakt & Informácie</span>
+                    <div class="mb-8">
+                        <p class="text-white text-xl font-black mb-2 tracking-tight">LA-MA s.r.o.</p>
+                        <p class="text-white/50 text-sm font-light leading-relaxed">
+                            Národná 3707/34, 010 01 Žilina<br>Slovenská republika
+                        </p>
+                    </div>
+                    <div class="mb-8">
+                        <span class="text-white/30 text-[10px] uppercase tracking-[0.2em] block mb-2 font-bold">Telefón</span>
+                        <p class="text-white text-xl font-light">+421 904 659 535</p>
+                        <p class="text-white/60 text-lg font-light">mazgut@la-ma.sk</p>
+                    </div>
+                </div>
+
+                <!-- Column 2: Services -->
+                <div class="flex flex-col gap-2 items-center md:items-start order-2 md:order-2">
+                    <span class="text-white/30 text-xs uppercase tracking-widest block mb-6 md:mb-8 self-start">Naša Ponuka</span>
+                    <div class="flex flex-col gap-3">
+                        <a href="#sluzby" class="menu-link text-lg md:text-2xl text-white/70 hover:text-white transition-colors block group">
+                            <span class="hover-split-text leading-tight"><span class="hover-split-text-inner" data-text="Priemyselné objekty">Priemyselné objekty</span></span>
+                        </a>
+                        <a href="#sluzby" class="menu-link text-lg md:text-2xl text-white/70 hover:text-white transition-colors block group">
+                            <span class="hover-split-text leading-tight"><span class="hover-split-text-inner" data-text="Bytová výstavba">Bytová výstavba</span></span>
+                        </a>
+                        <a href="#sluzby" class="menu-link text-lg md:text-2xl text-white/70 hover:text-white transition-colors block group">
+                            <span class="hover-split-text leading-tight"><span class="hover-split-text-inner" data-text="Drevovýroba">Drevovýroba</span></span>
+                        </a>
+                        <a href="#sluzby" class="menu-link text-lg md:text-2xl text-white/70 hover:text-white transition-colors block group">
+                            <span class="hover-split-text leading-tight"><span class="hover-split-text-inner" data-text="Obnoviteľné zdroje">Obnoviteľné zdroje</span></span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 3: Navigation -->
+                <nav class="flex flex-col gap-4 items-center md:items-end order-1 md:order-3">
+                    <span class="text-white/30 text-xs uppercase tracking-widest block mb-6 md:mb-8">Navigácia</span>
+                    <div class="flex flex-col gap-4 items-center md:items-end">
+                        <a href="#top" class="menu-link text-3xl md:text-4xl lg:text-5xl text-white block group font-bold tracking-tight">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Úvod">Úvod</span></span>
+                        </a>
+                        <a href="#onas" class="menu-link text-3xl md:text-4xl lg:text-5xl text-white block group font-bold tracking-tight">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="O spoločnosti">O spoločnosti</span></span>
+                        </a>
+                        <a href="#sluzby" class="menu-link text-3xl md:text-4xl lg:text-5xl text-white block group font-bold tracking-tight">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Referencie">Referencie</span></span>
+                        </a>
+                        <a href="#kontakt" class="menu-link text-3xl md:text-4xl lg:text-5xl text-white block group font-bold tracking-tight">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kontakt">Kontakt</span></span>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        
+        <!-- HERO SECTION -->
+        <section id="top" class="sticky top-0 h-screen w-full flex items-center overflow-hidden z-0">
+            <div class="parallax-container absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="parallax-target hero-parallax relative w-full h-full scale-110" data-speed="0.15">
+                    <img src="hero.jpg" alt="Stavebná činnosť LA-MA" class="w-full h-full object-cover">
+                </div>
+            </div>
+            
+            <div class="absolute inset-0 bg-black/20"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-black/40 via-black/10 to-transparent"></div>
+
+            <div class="relative z-10 w-[95vw] mx-auto px-6 md:px-10">
+                <p class="fade-up text-white/50 text-sm font-medium tracking-[0.3em] uppercase mb-8">
+                    Stavebná spoločnosť · Od roku 2007
+                </p>
+                <h1 class="fade-up fade-up-1 text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-extrabold text-white leading-[0.95] tracking-tight">
+                    Profesionálna<br><span class="font-light text-white/70">stavebná činnosť.</span>
+                </h1>
+                <p class="fade-up fade-up-2 mt-10 text-lg md:text-xl text-white/50 font-light max-w-xl leading-relaxed">
+                    Pôsobíme na celom území SR aj v zahraničí. Svojou činnosťou pokrývame širokú škálu od priemyselných budov až po individuálnu bytovú výstavbu.
+                </p>
+                <div class="fade-up fade-up-3 mt-12 flex flex-col sm:flex-row gap-4">
+                    <a href="#kontakt" class="group inline-flex items-center justify-center px-10 py-4 bg-primary text-white text-sm font-semibold rounded-none hover:bg-primary/90 transition-all duration-300">
+                        <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kontaktujte nás">Kontaktujte nás</span></span>
+                    </a>
+                    <a href="#sluzby" class="group inline-flex items-center justify-center px-10 py-4 border border-white/30 text-white text-sm font-light rounded-none hover:bg-white/10 transition-all duration-300">
+                        <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Naše referencie">Naše referencie</span></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="fade-up fade-up-4 absolute bottom-10 left-1/2 -translate-x-1/2">
+                <div class="w-6 h-10 border-2 border-white/30 rounded-none flex items-start justify-center p-2">
+                    <div class="w-1.5 h-2.5 bg-white/60 rounded-none animate-bounce"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN LAYOVER -->
+        <div class="relative z-10 bg-white shadow-[0_-50px_100px_rgba(0,0,0,0.1)]">
+            
+            <!-- ABOUT COMPANY -->
+            <section id="onas" class="py-28 md:py-36 bg-foreground relative overflow-hidden text-white">
+                <!-- Background Image -->
+                <div class="absolute inset-0 z-0">
+                    <img src="extra1.jpg" class="w-full h-full object-cover opacity-20 grayscale" alt="Background">
+                    <div class="absolute inset-0 bg-foreground/85"></div>
+                </div>
+
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                        <div class="reveal-on-scroll">
+                            <p class="text-xs font-semibold tracking-[0.3em] uppercase text-primary mb-6">O spoločnosti LA-MA s.r.o.</p>
+                            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-10">Na trhu od roku 2007</h2>
+                            <div class="space-y-6 text-lg font-light text-white/70 leading-relaxed text-justify">
+                                <p>Spoločnosť LA-MA s.r.o. je profesionálna stavebná spoločnosť s dlhoročnými skúsenosťami pôsobiaca na celom území Slovenskej republiky ale aj v zahraničí. Svojou činnosťou pokrývame širokú škálu stavebnej činnosti od výstavby domov, bytových domov v akomkoľvek variante (hrubá stavba, holodom, stavba na kľúč, prípadne rekonštrukcia), výstavby priemyselných budov, komunikácií a reklamných nosičov.</p>
+                                <p>Pri plnení úloh sa zameriavame na <span class="text-primary font-bold italic text-primary">úzku komunikáciu s klientom</span>, aby sme čo najviac vyhoveli jeho požiadavkám a potrebám a zároveň spĺňali technické parametre a normy, ktoré sú v stavebníctve dôležité.</p>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll" style="transition-delay: 200ms;">
+                            <div class="image-reveal-wrapper rounded-none aspect-square shadow-2xl">
+                                <div class="image-reveal-shutter"></div>
+                                <img src="extra1.jpg" alt="Priemyselné stavby" class="image-reveal-img w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SERVICES LIST -->
+            <section id="sluzby" class="py-20 md:py-32 bg-light">
+                <div class="mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="reveal-on-scroll mb-20 text-center">
+                        <h2 class="text-3xl md:text-5xl lg:text-6xl font-black text-foreground uppercase tracking-tighter">Naše služby</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1px bg-border overflow-hidden rounded-none md:rounded-none border border-border">
+                        <!-- Service 1 -->
+                        <div class="bg-white p-12 md:p-16 flex flex-col gap-6 group hover:bg-primary transition-colors duration-500">
+                            <span class="text-4xl font-black text-primary/10 group-hover:text-white/20 transition-colors">01</span>
+                            <h3 class="text-2xl font-bold uppercase group-hover:text-white transition-colors">Výstavba priemyselných objektov</h3>
+                            <p class="text-muted group-hover:text-white/70 font-light transition-colors">Kompletná realizácia priemyselných hál a budov na mieru vašim potrebám.</p>
+                        </div>
+                        <!-- Service 2 -->
+                        <div class="bg-white p-12 md:p-16 flex flex-col gap-6 group hover:bg-primary transition-colors duration-500">
+                            <span class="text-4xl font-black text-primary/10 group-hover:text-white/20 transition-colors">02</span>
+                            <h3 class="text-2xl font-bold uppercase group-hover:text-white transition-colors">Individuálna bytová výstavba</h3>
+                            <p class="text-muted group-hover:text-white/70 font-light transition-colors">Výstavba rodinných domov (hrubá stavba, holodom, na kľúč) a rekonštrukcie.</p>
+                        </div>
+                        <!-- Service 3 -->
+                        <div class="bg-white p-12 md:p-16 flex flex-col gap-6 group hover:bg-primary transition-colors duration-500">
+                            <span class="text-4xl font-black text-primary/10 group-hover:text-white/20 transition-colors">03</span>
+                            <h3 class="text-2xl font-bold uppercase group-hover:text-white transition-colors">Drevovýroba</h3>
+                            <p class="text-muted group-hover:text-white/70 font-light transition-colors">Špecializovaná výroba z dreva vrátane schodísk a konštrukcií rodinných domov.</p>
+                        </div>
+                        <!-- Service 4 -->
+                        <div class="bg-white p-12 md:p-16 flex flex-col gap-6 group hover:bg-primary transition-colors duration-500">
+                            <span class="text-4xl font-black text-primary/10 group-hover:text-white/20 transition-colors">04</span>
+                            <h3 class="text-2xl font-bold uppercase group-hover:text-white transition-colors">Reklamné zariadenia</h3>
+                            <p class="text-muted group-hover:text-white/70 font-light transition-colors">Výroba a výstavba reklamných zariadení a oceľových konštrukcií.</p>
+                        </div>
+                        <!-- Service 5 -->
+                        <div class="bg-white p-12 md:p-16 flex flex-col gap-6 group hover:bg-primary transition-colors duration-500">
+                            <span class="text-4xl font-black text-primary/10 group-hover:text-white/20 transition-colors">05</span>
+                            <h3 class="text-2xl font-bold uppercase group-hover:text-white transition-colors">Obnoviteľné zdroje</h3>
+                            <p class="text-muted group-hover:text-white/70 font-light transition-colors">Výstavba obnoviteľných zdrojov energie (napr. fotovoltika, elektrárne).</p>
+                        </div>
+                        <!-- Service 6 -->
+                        <div class="bg-white p-12 md:p-16 flex flex-col gap-6 group hover:bg-primary transition-colors duration-500">
+                            <span class="text-4xl font-black text-primary/10 group-hover:text-white/20 transition-colors">06</span>
+                            <h3 class="text-2xl font-bold uppercase group-hover:text-white transition-colors">Pozemné stavby</h3>
+                            <p class="text-muted group-hover:text-white/70 font-light transition-colors">Realizácia komunikácií a komplexných pozemných stavebných prác.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- REFERENCES / WORK -->
+            <section class="py-28 md:py-36 bg-white">
+                <div class="mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="reveal-on-scroll flex flex-col md:flex-row justify-between items-baseline mb-20 gap-8">
+                        <div>
+                            <p class="text-xs font-semibold tracking-[0.3em] uppercase text-primary mb-6">Referencie</p>
+                            <h2 class="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground tracking-tighter uppercase">Naša práca hovorí za nás</h2>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20">
+                        <!-- Project 1 -->
+                        <div class="reveal-on-scroll group">
+                            <div class="image-reveal-wrapper rounded-none aspect-[4/3] mb-8 overflow-hidden">
+                                <div class="image-reveal-shutter"></div>
+                                <img src="img2.jpg" alt="SCANIA Žilina-Brno" class="image-reveal-img w-full h-full object-cover">
+                            </div>
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-primary text-xs font-bold uppercase tracking-widest mb-2">Priemyselné objekty</p>
+                                    <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight">Rekonštrukcia servisu SCANIA</h3>
+                                    <p class="text-muted text-sm mt-2 font-light">Žilina – Brno</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Project 2 -->
+                        <div class="reveal-on-scroll group" style="transition-delay: 150ms;">
+                            <div class="image-reveal-wrapper rounded-none aspect-[4/3] mb-8 overflow-hidden">
+                                <div class="image-reveal-shutter"></div>
+                                <img src="img3.jpg" alt="RD Martin" class="image-reveal-img w-full h-full object-cover">
+                            </div>
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-primary text-xs font-bold uppercase tracking-widest mb-2">Bytová výstavba</p>
+                                    <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight">Rodinný dom Martin</h3>
+                                    <p class="text-muted text-sm mt-2 font-light">Realizácia individuálnej bytovej výstavby</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Project 3 -->
+                        <div class="reveal-on-scroll group">
+                            <div class="image-reveal-wrapper rounded-none aspect-[4/3] mb-8 overflow-hidden">
+                                <div class="image-reveal-shutter"></div>
+                                <img src="img4.jpg" alt="Schodisko Martin" class="image-reveal-img w-full h-full object-cover">
+                            </div>
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-primary text-xs font-bold uppercase tracking-widest mb-2">Drevovýroba</p>
+                                    <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight">Schodisko RD Martin</h3>
+                                    <p class="text-muted text-sm mt-2 font-light">Detailná realizácia drevovýroby</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Project 4 -->
+                        <div class="reveal-on-scroll group" style="transition-delay: 150ms;">
+                            <div class="image-reveal-wrapper rounded-none aspect-[4/3] mb-8 overflow-hidden">
+                                <div class="image-reveal-shutter"></div>
+                                <img src="img1.jpg" alt="Fotovoltika Rumunsko" class="image-reveal-img w-full h-full object-cover">
+                            </div>
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-primary text-xs font-bold uppercase tracking-widest mb-2">Obnoviteľné zdroje</p>
+                                    <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight">Elektráreň Rumunsko</h3>
+                                    <p class="text-muted text-sm mt-2 font-light">Inštalácia fotovoltických panelov</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TEAM / COOPERATION -->
+            <section class="py-20 md:py-32 bg-light border-y border-border">
+                <div class="mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+                        <div class="lg:col-span-1">
+                            <p class="text-xs font-bold tracking-[0.3em] uppercase text-primary mb-6">Náš tím</p>
+                            <h2 class="text-3xl md:text-4xl font-black text-foreground uppercase tracking-tight">Vedenie spoločnosti</h2>
+                        </div>
+                        <div class="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="bg-white p-8 rounded-none border border-border">
+                                <p class="text-primary text-[10px] font-bold uppercase tracking-widest mb-2">Konateľ</p>
+                                <p class="text-xl font-bold mb-4">Juraj Mažgút</p>
+                                <p class="text-muted text-sm mb-1 font-light italic">mazgut@la-ma.sk</p>
+                                <p class="text-foreground text-sm font-semibold">+421 904 659 535</p>
+                            </div>
+                            <div class="bg-white p-8 rounded-none border border-border">
+                                <p class="text-primary text-[10px] font-bold uppercase tracking-widest mb-2">Výrobný úsek</p>
+                                <p class="text-xl font-bold mb-4">Juraj Laščiak</p>
+                                <p class="text-muted text-sm mb-1 font-light italic">lasciak@la-ma.sk</p>
+                                <p class="text-foreground text-sm font-semibold">+421 903 115 415</p>
+                            </div>
+                            <div class="bg-white p-8 rounded-none border border-border">
+                                <p class="text-primary text-[10px] font-bold uppercase tracking-widest mb-2">Fakturácia, Obchod</p>
+                                <p class="text-xl font-bold mb-4">Mgr. Jozef Novák</p>
+                                <p class="text-muted text-sm mb-1 font-light italic">novak@la-ma.sk</p>
+                                <p class="text-foreground text-sm font-semibold">+421 903 550 359</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER WRAPPER -->
+            <footer id="kontakt" class="bg-primary text-white overflow-hidden relative">
+                <!-- Texture background -->
+                <div class="absolute inset-0 z-0 pointer-events-none opacity-10" style="background-image: url('texture.svg'); background-size: cover; filter: invert(1);"></div>
+                
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10 py-20 md:py-32">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                        <div>
+                            <h2 class="text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter uppercase mb-12">Kontaktujte nás kedykoľvek.</h2>
+                            <div class="space-y-12">
+                                <div>
+                                    <p class="text-primary-light text-xs font-bold tracking-widest uppercase mb-4">Adresa sídla</p>
+                                    <p class="text-2xl md:text-3xl font-light leading-relaxed">
+                                        LA - MA s. r. o.<br>
+                                        Národná 3707/34<br>
+                                        010 01 Žilina
+                                    </p>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                                    <div>
+                                        <p class="text-primary-light text-xs font-bold tracking-widest uppercase mb-4">Telefón</p>
+                                        <a href="tel:+421904659535" class="text-2xl md:text-3xl font-black hover:text-white/70 transition-colors">+421 904 659 535</a>
+                                    </div>
+                                    <div>
+                                        <p class="text-primary-light text-xs font-bold tracking-widest uppercase mb-4">Fakturačné údaje</p>
+                                        <p class="text-sm font-light text-white/50">
+                                            IČO: 36759091<br>
+                                            DIČ: 2022359548<br>
+                                            IČ DPH: SK2022359548
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col justify-end">
+                            <div class="bg-white/5 border border-white/10 p-10 md:p-16 rounded-none backdrop-blur-sm">
+                                <p class="text-white/40 text-xs font-bold tracking-widest uppercase mb-8">Rýchle odkazy</p>
+                                <nav class="flex flex-col gap-6">
+                                    <a href="#top" class="text-3xl font-bold hover:text-white/50 transition-all">Úvod</a>
+                                    <a href="#onas" class="text-3xl font-bold hover:text-white/50 transition-all">O spoločnosti</a>
+                                    <a href="#sluzby" class="text-3xl font-bold hover:text-white/50 transition-all">Služby / Referencie</a>
+                                    <a href="#" class="text-3xl font-bold hover:text-white/50 transition-all text-white/20">EN English</a>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-20 pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-medium text-white/40 tracking-widest uppercase">
+                        <p>©2026 LA - MA s. r. o. Všetky práva vyhradené.</p>
+                        <p>Copyright © 2022 la-ma.sk Created by dudik.net</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <!-- SCRIPTS -->
+    <script>
+        // --- 1. SMOOTH SCROLL (LENIS) ---
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            touchMultiplier: 2,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // --- 2. HEADER SCROLL EFFECT ---
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // --- 3. MOBILE MENU TOGGLE ---
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        function openMenu() {
+            document.body.classList.add('menu-open');
+            document.body.style.overflow = 'hidden';
+            lenis.stop();
+        }
+
+        function closeMenu() {
+            document.body.classList.remove('menu-open');
+            document.body.style.overflow = '';
+            lenis.start();
+        }
+
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        menuLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // --- 4. ANIMATE ON SCROLL (REVEAL) ---
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
+
+        // --- 5. IMAGE REVEAL (SHUTTER) ---
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-revealed');
+                    imageObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.image-reveal-wrapper').forEach(el => imageObserver.observe(el));
+
+        // --- 6. PARALLAX EFFECT ---
+        window.addEventListener('scroll', () => {
+            const scrolly = window.scrollY;
+            
+            const heroParallax = document.querySelector('.hero-parallax');
+            if (heroParallax) {
+                const speed = heroParallax.getAttribute('data-speed') || 0.1;
+                heroParallax.style.transform = `translateY(${scrolly * speed}px)`;
+            }
+
+            document.querySelectorAll('.parallax-target:not(.hero-parallax)').forEach(el => {
+                const rect = el.parentElement.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                
+                if (rect.top < viewportHeight && rect.bottom > 0) {
+                    const speed = el.getAttribute('data-speed') || 0.2;
+                    const range = speed * 100;
+                    const progress = 1 - (rect.bottom / (viewportHeight + rect.height));
+                    const yMove = (progress * 2 - 1) * range;
+                    el.style.transform = `translateY(${yMove}%)`;
+                }
+            });
+        });
+
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+</body>
+</html>
