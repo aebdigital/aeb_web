@@ -35,6 +35,10 @@
                         light: '#f8fafc',
                         border: '#e2e8f0',
                     },
+                    fontSize: {
+                        '10xl': '8rem',
+                        '11xl': '10rem',
+                    },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     },
@@ -166,14 +170,15 @@
         }
 
         .service-card {
-            border: 1px solid var(--color-border);
-            border-radius: 4rem;
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
             padding: 3rem;
+            overflow: hidden;
+            border-radius: 0;
             transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        .service-card:hover {
-            border-color: var(--color-primary);
-            background-color: var(--color-light);
         }
     </style>
 </head>
@@ -246,8 +251,8 @@
                 </div>
             </div>
             
-            <div class="absolute inset-0 bg-black/20"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-black/60"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
 
             <div class="relative z-10 w-[95vw] mx-auto px-6 md:px-10">
                 <div class="flex flex-col items-start translate-y-12">
@@ -321,30 +326,60 @@
                         <h2 class="text-5xl md:text-8xl font-black text-foreground tracking-tighter uppercase italic italic italic italic italic leading-none">Čo Vykonávame<span class="text-primary italic">.</span></h2>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 italic italic uppercase tracking-tighter font-extrabold italic italic italic italic italic italic text-foreground">
-                        <div class="reveal-on-scroll service-card bg-white group hover:bg-primary transition-all duration-500">
-                            <h3 class="text-3xl mb-10 group-hover:text-white transition-colors">Stavby na kľúč</h3>
-                            <p class="text-[10px] tracking-widest text-muted group-hover:text-white/60 transition-colors italic leading-relaxed">Kompletná realizácia od A po Z bez starostí pre investora.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Stavby na kľúč -->
+                        <div class="reveal-on-scroll service-card group">
+                            <img src="img1.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Stavby">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-4">Stavby na kľúč</h3>
+                                <p class="text-xs tracking-widest text-white/60 leading-relaxed uppercase font-bold">Kompletná realizácia od A po Z bez starostí pre investora.</p>
+                            </div>
                         </div>
-                        <div class="reveal-on-scroll service-card bg-white group hover:bg-primary transition-all duration-500 md:mt-12">
-                            <h3 class="text-3xl mb-10 group-hover:text-white transition-colors">Obnova Budov</h3>
-                            <p class="text-[10px] tracking-widest text-muted group-hover:text-white/60 transition-colors italic leading-relaxed">Špecializovaná rekonštrukcia historických a pamiatkovo chránených objektov.</p>
+                        <!-- Obnova Budov -->
+                        <div class="reveal-on-scroll service-card group md:mt-12">
+                            <img src="img2.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Obnova">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-4">Obnova Budov</h3>
+                                <p class="text-xs tracking-widest text-white/60 leading-relaxed uppercase font-bold">Špecializovaná rekonštrukcia pamiatkovo chránených objektov.</p>
+                            </div>
                         </div>
-                        <div class="reveal-on-scroll service-card bg-white group hover:bg-primary transition-all duration-500">
-                            <h3 class="text-3xl mb-10 group-hover:text-white transition-colors leading-none">Elektro</h3>
-                            <p class="text-[10px] tracking-widest text-muted group-hover:text-white/60 transition-colors italic leading-relaxed">Elektroinštalačné práce pre rodinné domy, byty a priemyselné budovy.</p>
+                        <!-- Elektro -->
+                        <div class="reveal-on-scroll service-card group">
+                            <img src="img3.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Elektro">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-4 leading-none">Elektro</h3>
+                                <p class="text-xs tracking-widest text-white/60 leading-relaxed uppercase font-bold">Elektroinštalačné práce pre rodinné domy, byty a priemysel.</p>
+                            </div>
                         </div>
-                        <div class="reveal-on-scroll service-card bg-white group hover:bg-primary transition-all duration-500 md:mt-12">
-                            <h3 class="text-3xl mb-10 group-hover:text-white transition-colors">Zemné práce</h3>
-                            <p class="text-[10px] tracking-widest text-muted group-hover:text-white/60 transition-colors italic leading-relaxed">Výkopy základov, inžinierske siete a terénne úpravy vlastnou technikou.</p>
+                        <!-- Zemné práce -->
+                        <div class="reveal-on-scroll service-card group md:mt-12">
+                            <img src="img4.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Zemné">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-4">Zemné práce</h3>
+                                <p class="text-xs tracking-widest text-white/60 leading-relaxed uppercase font-bold">Výkopy základov, inžinierske siete a terénne úpravy.</p>
+                            </div>
                         </div>
-                        <div class="reveal-on-scroll service-card bg-white group hover:bg-primary transition-all duration-500">
-                            <h3 class="text-3xl mb-10 group-hover:text-white transition-colors leading-none">Interiér</h3>
-                            <p class="text-[10px] tracking-widest text-muted group-hover:text-white/60 transition-colors italic leading-relaxed">Obklady, dlažby, schodiská a stropy realizované s vysokou precíznosťou.</p>
+                        <!-- Interiér -->
+                        <div class="reveal-on-scroll service-card group">
+                            <img src="img5.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Interiér">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-4 leading-none">Interiér</h3>
+                                <p class="text-xs tracking-widest text-white/60 leading-relaxed uppercase font-bold">Obklady, dlažby, schodiská realizované s precíznosťou.</p>
+                            </div>
                         </div>
-                        <div class="reveal-on-scroll service-card bg-white group hover:bg-primary transition-all duration-500 md:mt-12">
-                            <h3 class="text-3xl mb-10 group-hover:text-white transition-colors leading-none">Demolácie</h3>
-                            <p class="text-[10px] tracking-widest text-muted group-hover:text-white/60 transition-colors italic leading-relaxed">Bezpečné búracie práce a odvoz stavebného odpadu.</p>
+                        <!-- Demolácie -->
+                        <div class="reveal-on-scroll service-card group md:mt-12">
+                            <img src="img6.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Demolácie">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-4 leading-none">Demolácie</h3>
+                                <p class="text-xs tracking-widest text-white/60 leading-relaxed uppercase font-bold">Bezpečné búracie práce a odvoz stavebného odpadu.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
