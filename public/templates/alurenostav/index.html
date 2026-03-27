@@ -58,8 +58,12 @@
         *:hover > .hover-split-text > .hover-split-text-inner,
         .hover-split-text:hover > .hover-split-text-inner { transform: translateY(-100%); }
 
-        #site-header { transition: background-color 0.5s ease; }
-        #site-header.scrolled { background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        #site-header { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); color: white; }
+        #site-header.scrolled { background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.05); color: var(--color-dark); shadow: 0 4px 30px rgba(0, 0, 0, 0.05); }
+        
+        #site-header .header-logo-text { color: inherit; transition: color 0.5s ease; }
+        #site-header .header-btn { border-color: currentColor; transition: all 0.5s ease; }
+        #site-header.scrolled .header-btn { background: white; border-color: rgba(0,0,0,0.1); }
 
         .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
         .fade-in.is-visible { opacity: 1; transform: translateY(0); }
@@ -154,20 +158,19 @@
     <header id="site-header" class="fixed top-0 left-0 right-0 z-50">
         <div class="site-container flex items-center justify-between h-16 md:h-24">
             <div class="hidden md:flex w-1/3 items-center">
-                <a href="tel:+421907533504" class="text-dark bg-white border border-dark/10 rounded-full px-5 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-dark hover:text-white transition-all group">
+                <a href="tel:+421907533504" class="header-btn border rounded-full px-5 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-white hover:text-dark transition-all group">
                     <span class="hover-split-text">
                         <span class="hover-split-text-inner" data-text="+421 907 533 504">+421 907 533 504</span>
                     </span>
                 </a>
             </div>
             <div class="flex-1 md:w-1/3 flex justify-start md:justify-center">
-                <a href="#" class="text-xl md:text-2xl font-black tracking-tighter text-dark uppercase italic flex items-center gap-2">
-                    <img src="logo.webp" class="h-8 md:h-10 w-auto" alt="Alurenostav Logo">
+                <a href="#" class="header-logo-text text-xl md:text-2xl font-black tracking-tighter uppercase italic flex items-center gap-2">
                     ALU RENOSTAV
                 </a>
             </div>
             <div class="flex md:w-1/3 justify-end items-center">
-                <button id="menu-toggle" class="text-dark bg-white border border-dark/10 rounded-full px-5 py-2.5 text-xs font-medium uppercase tracking-[0.2em] flex items-center gap-3 hover:bg-dark hover:text-white transition-all group">
+                <button id="menu-toggle" class="header-btn border rounded-full px-5 py-2.5 text-xs font-medium uppercase tracking-[0.2em] flex items-center gap-3 hover:bg-white hover:text-dark transition-all group">
                     <div class="w-4 flex flex-col gap-1.5 items-end">
                         <span class="w-full h-[1.5px] bg-current rounded-full"></span>
                         <span class="w-2/3 h-[1.5px] bg-current rounded-full transition-all group-hover:w-full"></span>
