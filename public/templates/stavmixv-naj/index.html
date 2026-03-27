@@ -141,10 +141,10 @@
     <!-- MAIN CONTENT -->
     <main>
         <!-- HERO SECTION -->
-        <section id="top" class="relative h-screen w-full flex items-center overflow-hidden z-0 bg-primary-dark">
-            <div class="parallax-container absolute inset-0 overflow-hidden pointer-events-none">
-                <div class="parallax-target hero-parallax relative w-full h-full scale-110">
-                    <img src="hero.jpg" alt="STAVMIX V-NAJ Hero" class="w-full h-full object-cover">
+        <section id="top" class="fixed inset-0 w-full h-screen flex items-center overflow-hidden z-0 bg-primary-dark">
+            <div class="parallax-container absolute inset-0 overflow-hidden pointer-events-none scale-110">
+                <div class="parallax-target hero-parallax relative w-full h-full">
+                    <img src="hero.jpg" id="hero-bg-img" alt="STAVMIX V-NAJ Hero" class="w-full h-full object-cover">
                 </div>
             </div>
             
@@ -173,10 +173,10 @@
         </section>
 
         <!-- CONTENT LAYOVER -->
-        <div class="relative z-10 bg-white">
+        <div class="relative z-10 bg-white shadow-[0_-20px_50px_rgba(0,0,0,0.3)] mt-[100vh]">
             
             <!-- STATS BLOCK -->
-            <section class="py-20 md:py-28 bg-primary text-white border-b border-white/5">
+            <section class="py-12 md:py-16 bg-primary text-white border-b border-white/5 relative">
                 <div class="mx-auto w-[95vw] px-6 md:px-10 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
                     <div class="reveal-on-scroll">
                         <p class="text-6xl md:text-8xl font-black italic tracking-tighter text-accent leading-none">20</p>
@@ -363,8 +363,10 @@
         window.addEventListener('scroll', () => {
             const scrolly = window.scrollY;
             document.getElementById('site-header').classList.toggle('scrolled', scrolly > 50);
-            const heroParallax = document.querySelector('.hero-parallax');
-            if (heroParallax) heroParallax.style.transform = `translateY(${scrolly * 0.1}px)`;
+            const heroImg = document.getElementById('hero-bg-img');
+            if (scrolly < window.innerHeight) {
+                heroImg.style.transform = `translateY(${scrolly * 0.4}px)`;
+            }
         });
 
         const menuToggle = document.getElementById('menu-toggle');
