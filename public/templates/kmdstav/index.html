@@ -203,9 +203,9 @@
 
     <main>
         <!-- Hero Section -->
-        <section id="domov" class="relative h-screen flex items-end pb-32 overflow-hidden bg-black">
-            <div class="absolute inset-0 z-0 opacity-60">
-                <img src="hero.avif" class="w-full h-full object-cover">
+        <section id="domov" class="fixed inset-0 h-screen flex items-end pb-32 overflow-hidden bg-black z-0">
+            <div class="absolute inset-0 z-0 opacity-60 scale-110">
+                <img src="hero.avif" id="hero-bg-img" class="w-full h-full object-cover">
             </div>
             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-1"></div>
             <div class="relative z-10 site-container">
@@ -230,7 +230,7 @@
         </section>
 
         <!-- Dynamic Content Area -->
-        <div class="relative z-10 bg-[#f7f7f7] shadow-inner grain-overlay">
+        <div class="relative z-10 bg-[#f7f7f7] shadow-[0_-20px_50px_rgba(0,0,0,0.3)] mt-[100vh] grain-overlay">
             <!-- About Section -->
             <section id="o-nas" class="py-28 md:py-48 relative overflow-hidden">
                 <div class="site-container relative z-10">
@@ -433,6 +433,14 @@
 
         const fInObs = new IntersectionObserver(e => { e.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-visible'); fInObs.unobserve(en.target) } }) }, { threshold: .1 });
         document.querySelectorAll('.fade-in').forEach(el => fInObs.observe(el));
+
+        const heroImg = document.getElementById('hero-bg-img');
+        window.addEventListener('scroll', () => {
+            const scroll = window.scrollY;
+            if (scroll < window.innerHeight) {
+                heroImg.style.transform = `translateY(${scroll * 0.4}px)`;
+            }
+        });
     </script>
 </body>
 </html>
