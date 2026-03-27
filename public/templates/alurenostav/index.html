@@ -185,9 +185,9 @@
 
     <main>
         <!-- Hero Section -->
-        <section id="domov" class="relative h-screen flex items-center overflow-hidden bg-slate-100">
-            <div class="absolute inset-0 z-0">
-                <img src="hero.webp" class="w-full h-full object-cover">
+        <section id="domov" class="fixed inset-0 h-screen flex items-center overflow-hidden bg-slate-100 z-0">
+            <div class="absolute inset-0 z-0 scale-110">
+                <img src="hero.webp" id="hero-bg-img" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-slate-900/40"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
             </div>
@@ -212,7 +212,7 @@
         </section>
 
         <!-- Dynamic Content Area -->
-        <div class="relative z-10 bg-white shadow-inner">
+        <div class="relative z-10 bg-white shadow-[0_-20px_50px_rgba(0,0,0,0.3)] mt-[100vh]">
             <!-- Services Catalog Slider -->
             <section id="sluzby" class="py-28 md:py-48 bg-white overflow-hidden grain-overlay relative">
                 <div class="texture-bg"></div>
@@ -379,6 +379,14 @@
 
         const fInObs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('is-visible');fInObs.unobserve(en.target)}})},{threshold:.1});
         document.querySelectorAll('.fade-in').forEach(el=>fInObs.observe(el));
+
+        const heroImg = document.getElementById('hero-bg-img');
+        window.addEventListener('scroll', () => {
+            const scroll = window.scrollY;
+            if (scroll < window.innerHeight) {
+                heroImg.style.transform = `translateY(${scroll * 0.4}px)`;
+            }
+        });
     </script>
 </body>
 </html>
