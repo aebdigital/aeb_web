@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STAVMIX V-NAJ s.r.o. | 20 rokov skúseností v stavebníctve</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.2/dist/lenis.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#1e3a8a', // Navy Blue
+                            dark: '#172554',
+                            light: '#1e40af',
+                        },
+                        accent: {
+                            DEFAULT: '#f59e0b', // Amber/Orange
+                            dark: '#d97706',
+                        },
+                        foreground: '#0f172a',
+                        muted: '#64748b',
+                        light: '#f8fafc',
+                        border: '#e2e8f0',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --color-primary: #1e3a8a;
+            --color-background: #ffffff;
+            --color-foreground: #0f172a;
+            --color-muted: #64748b;
+            --color-light: #f8fafc;
+        }
+
+        body { background-color: var(--color-background); color: var(--color-foreground); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+        /* Site Header Scroll Effect */
+        .site-header { transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .site-header.scrolled { background-color: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+
+        /* Hover Split Text Effect */
+        .hover-split-text { position: relative; overflow: hidden; display: inline-block; vertical-align: top; }
+        .hover-split-text-inner { display: block; transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1); }
+        .hover-split-text-inner::after { content: attr(data-text); position: absolute; top: 110%; left: 0; width: 100%; line-height: inherit; }
+        .group:hover .hover-split-text-inner, .hover-split-text:hover .hover-split-text-inner { transform: translateY(-100%); }
+
+        /* Animate on Scroll */
+        .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+        .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+        /* Image Reveal Effect */
+        .image-reveal-wrapper { position: relative; overflow: hidden; }
+        .image-reveal-shutter { position: absolute; inset: 0; background-color: var(--color-primary); z-index: 10; transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1); }
+        .image-reveal-wrapper.is-revealed .image-reveal-shutter { transform: translateY(-100%); }
+        .image-reveal-img { transform: scale(1.2); filter: grayscale(100%); transition: transform 1.8s cubic-bezier(0.76, 0, 0.24, 1), filter 1.8s cubic-bezier(0.76, 0, 0.24, 1); }
+        .image-reveal-wrapper.is-revealed .image-reveal-img { transform: scale(1); filter: grayscale(0%); }
+
+        /* Menu Overlay */
+        #menu-overlay { transform: translateY(-100%); transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1); z-index: 60; }
+        body.menu-open #menu-overlay { transform: translateY(0); }
+        
+        .fade-up { opacity: 0; transform: translateY(30px); animation: fade-up-anim 0.7s ease-out forwards; }
+        .fade-up-1 { animation-delay: 0.1s; }
+        .fade-up-2 { animation-delay: 0.2s; }
+        .fade-up-3 { animation-delay: 0.3s; }
+        @keyframes fade-up-anim { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Texture Background */
+        .texture-bg { position: absolute; inset: 0; z-index: 0; opacity: 0.05; background-image: url('texture.svg'); background-size: cover; pointer-events: none; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+    <!-- SITE HEADER -->
+    <header id="site-header" class="site-header fixed top-0 left-0 right-0 z-50 bg-transparent">
+        <div class="mx-auto w-[95vw] flex items-center justify-between h-16 md:h-24 px-6 md:px-10">
+            <div class="flex items-center">
+                <a href="#" class="flex flex-col">
+                    <span class="text-2xl md:text-3xl font-black tracking-tighter text-white uppercase italic leading-none">STAVMIX<span class="text-accent"> V-NAJ</span></span>
+                    <span class="text-[8px] md:text-[10px] font-bold text-white/40 uppercase tracking-[0.4em] ml-1 mt-1 font-sans">s.r.o. | 20 rokov</span>
+                </a>
+            </div>
+            <div class="flex justify-end items-center">
+                <button id="menu-toggle" class="text-white transition-colors text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-6 py-3 flex items-center gap-3 hover:bg-white/10 backdrop-blur-sm group">
+                    <div class="w-4 flex flex-col gap-1">
+                        <span class="w-full h-[1.5px] bg-white rounded-none"></span>
+                        <span class="w-full h-[1.5px] bg-white rounded-none"></span>
+                    </div>
+                    <span class="hover-split-text">
+                        <span class="hover-split-text-inner" data-text="Služby">Služby</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MENU OVERLAY -->
+    <div id="menu-overlay" class="fixed top-0 inset-x-0 h-screen md:h-[65vh] bg-primary flex flex-col overflow-hidden shadow-2xl">
+        <div class="texture-bg opacity-20 filter invert"></div>
+        <div class="relative z-10 mx-auto w-[95vw] flex items-center justify-between h-24 px-6 md:px-10">
+            <span class="text-2xl md:text-3xl font-black tracking-tighter text-white uppercase italic">STAVMIX V-NAJ</span>
+            <button id="menu-close" class="text-white transition-colors text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-6 py-3 flex items-center gap-3 hover:bg-white/10 group">
+                <span class="relative w-4 h-4 flex items-center justify-center">
+                    <span class="absolute w-full h-[1.5px] bg-white rotate-45 rounded-none"></span>
+                    <span class="absolute w-full h-[1.5px] bg-white -rotate-45 rounded-none"></span>
+                </span>
+                <span class="hover-split-text">
+                    <span class="hover-split-text-inner" data-text="Zavrieť">Zavrieť</span>
+                </span>
+            </button>
+        </div>
+
+        <div class="relative z-10 flex-1 flex items-center pb-8 overflow-y-auto font-black uppercase italic tracking-tighter">
+            <div class="mx-auto w-[95vw] px-6 md:px-10 w-full grid grid-cols-1 md:grid-cols-2 gap-12 py-10 md:py-0">
+                <div class="hidden md:flex flex-col justify-center">
+                    <p class="text-white text-4xl mb-6">Naša Odpoveď</p>
+                    <p class="text-white/40 text-sm font-light leading-relaxed italic uppercase tracking-wider italic">Nehľadajte odpovede na internete.<br>Spýtajte sa priamo nás.</p>
+                </div>
+                <nav class="flex flex-col gap-4 items-center md:items-end">
+                    <a href="#top" class="menu-link text-4xl md:text-7xl text-white block group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Úvod">Úvod</span></span></a>
+                    <a href="#sluzby" class="menu-link text-4xl md:text-7xl text-white block group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Služby">Služby</span></span></a>
+                    <a href="#referencie" class="menu-link text-4xl md:text-7xl text-white block group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Prečo my?">Prečo my?</span></span></a>
+                    <a href="#kontakt" class="menu-link text-4xl md:text-7xl text-white block group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kontakt">Kontakt</span></span></a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- HERO SECTION -->
+        <section id="top" class="relative h-screen w-full flex items-center overflow-hidden z-0 bg-primary-dark">
+            <div class="parallax-container absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="parallax-target hero-parallax relative w-full h-full scale-110">
+                    <img src="hero.jpg" alt="STAVMIX V-NAJ Hero" class="w-full h-full object-cover">
+                </div>
+            </div>
+            
+            <div class="absolute inset-0 bg-black/40"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/60 via-transparent to-transparent"></div>
+
+            <div class="relative z-10 w-[95vw] mx-auto px-6 md:px-10">
+                <div class="flex flex-col items-start translate-y-12">
+                    <div class="fade-up inline-flex items-center gap-4 bg-white/10 border border-white/20 px-5 py-2 mb-8 rounded-none backdrop-blur-md">
+                        <span class="w-2 h-2 bg-accent rounded-none animate-pulse"></span>
+                        <span class="text-white text-[10px] font-black tracking-[0.4em] uppercase font-sans">20 rokov skúseností na trhu!</span>
+                    </div>
+                    <h1 class="fade-up fade-up-1 text-5xl md:text-7xl lg:text-[5.5rem] font-black text-white leading-[1.05] tracking-tight uppercase italic">
+                        Stavebná firma,<br><span class="text-accent">ktorá to vie.</span>
+                    </h1>
+                    <div class="fade-up fade-up-2 mt-16 flex flex-col sm:flex-row gap-6">
+                        <a href="#kontakt" class="group inline-flex items-center justify-center px-12 py-5 bg-accent text-primary-dark text-sm font-black rounded-none hover:bg-white hover:text-accent transition-all duration-300 shadow-2xl uppercase">
+                            Napíšte nám
+                        </a>
+                        <a href="#sluzby" class="group inline-flex items-center justify-center px-12 py-5 border border-white/20 text-white text-sm font-bold rounded-none hover:bg-white/10 transition-all duration-300 uppercase">
+                            Naše práce
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTENT LAYOVER -->
+        <div class="relative z-10 bg-white">
+            
+            <!-- STATS BLOCK -->
+            <section class="py-20 md:py-28 bg-primary text-white border-b border-white/5">
+                <div class="mx-auto w-[95vw] px-6 md:px-10 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                    <div class="reveal-on-scroll">
+                        <p class="text-6xl md:text-8xl font-black italic tracking-tighter text-accent leading-none">20</p>
+                        <p class="text-xs font-bold tracking-[0.4em] uppercase mt-4 text-white/40">Rokov na trhu</p>
+                    </div>
+                    <div class="reveal-on-scroll" style="transition-delay: 100ms">
+                        <p class="text-6xl md:text-8xl font-black italic tracking-tighter text-accent leading-none">947</p>
+                        <p class="text-xs font-bold tracking-[0.4em] uppercase mt-4 text-white/40">Spokojných zákazníkov</p>
+                    </div>
+                    <div class="reveal-on-scroll" style="transition-delay: 200ms">
+                        <p class="text-6xl md:text-8xl font-black italic tracking-tighter text-accent leading-none">2240</p>
+                        <p class="text-xs font-bold tracking-[0.4em] uppercase mt-4 text-white/40">Špinavých montériek</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SERVICES GRID -->
+            <section id="sluzby" class="py-28 md:py-40 bg-light border-y border-border">
+                <div class="mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="reveal-on-scroll mb-20 flex flex-col md:flex-row items-end justify-between">
+                        <div>
+                            <p class="text-xs font-black tracking-[0.3em] uppercase text-accent mb-6 italic">STAVEBNÉ PRÁCE A SLUŽBY V PORTFÓLIU</p>
+                            <h2 class="text-5xl md:text-8xl font-black text-foreground tracking-tighter uppercase italic leading-none">Ponuka Služieb<span class="text-accent">.</span></h2>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <!-- Service items -->
+                        <div class="reveal-on-scroll bg-white p-10 border border-border group hover:bg-primary transition-all duration-500">
+                             <h3 class="text-2xl font-black italic uppercase tracking-tighter mb-4 group-hover:text-white transition-colors">Okná & Dvere</h3>
+                             <p class="text-xs text-muted leading-relaxed group-hover:text-white/60 mb-8 uppercase">Dodávka a montáž high-end systémov</p>
+                             <div class="image-reveal-wrapper aspect-video mb-8 overflow-hidden">
+                                <img src="img1.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                             </div>
+                             <a href="#kontakt" class="block w-full py-4 border border-border text-center text-[10px] font-black uppercase tracking-widest group-hover:bg-accent group-hover:text-primary group-hover:border-accent transition-all">Chcem ponuku</a>
+                        </div>
+                        <div class="reveal-on-scroll bg-white p-10 border border-border group hover:bg-primary transition-all duration-500">
+                            <h3 class="text-2xl font-black italic uppercase tracking-tighter mb-4 group-hover:text-white transition-colors">Zasklenie Lodžií</h3>
+                            <p class="text-xs text-muted leading-relaxed group-hover:text-white/60 mb-8 uppercase">Zateplenie a zvýšenie komfortu bývania</p>
+                            <div class="image-reveal-wrapper aspect-video mb-8 overflow-hidden">
+                               <img src="img2.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            </div>
+                            <a href="#kontakt" class="block w-full py-4 border border-border text-center text-[10px] font-black uppercase tracking-widest group-hover:bg-accent group-hover:text-primary group-hover:border-accent transition-all">Chcem ponuku</a>
+                       </div>
+                       <div class="reveal-on-scroll bg-white p-10 border border-border group hover:bg-primary transition-all duration-500">
+                            <h3 class="text-2xl font-black italic uppercase tracking-tighter mb-4 group-hover:text-white transition-colors">Garážové brány</h3>
+                            <p class="text-xs text-muted leading-relaxed group-hover:text-white/60 mb-8 uppercase">Bezpečné a moderné riešenia otvorov</p>
+                            <div class="image-reveal-wrapper aspect-video mb-8 overflow-hidden">
+                               <img src="img3.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            </div>
+                            <a href="#kontakt" class="block w-full py-4 border border-border text-center text-[10px] font-black uppercase tracking-widest group-hover:bg-accent group-hover:text-primary group-hover:border-accent transition-all">Chcem ponuku</a>
+                       </div>
+                       <div class="reveal-on-scroll bg-white p-10 border border-border group hover:bg-primary transition-all duration-500">
+                            <h3 class="text-2xl font-black italic uppercase tracking-tighter mb-4 group-hover:text-white transition-colors">Izolácie & Fasády</h3>
+                            <p class="text-xs text-muted leading-relaxed group-hover:text-white/60 mb-8 uppercase">Striekané izolácie a zatepľovacie systémy</p>
+                            <div class="image-reveal-wrapper aspect-video mb-8 overflow-hidden">
+                               <img src="img6.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            </div>
+                            <a href="#kontakt" class="block w-full py-4 border border-border text-center text-[10px] font-black uppercase tracking-widest group-hover:bg-accent group-hover:text-primary group-hover:border-accent transition-all">Chcem ponuku</a>
+                       </div>
+                    </div>
+                    
+                    <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="reveal-on-scroll bg-white p-8 border border-border flex items-center justify-between group hover:bg-primary transition-all">
+                            <span class="text-lg font-black uppercase italic tracking-tighter group-hover:text-white">Omietky & Potery</span>
+                            <a href="#kontakt" class="px-5 py-2 bg-accent text-[10px] font-black uppercase tracking-widest text-primary-dark">Ponuka</a>
+                        </div>
+                        <div class="reveal-on-scroll bg-white p-8 border border-border flex items-center justify-between group hover:bg-primary transition-all">
+                            <span class="text-lg font-black uppercase italic tracking-tighter group-hover:text-white">Kamenný Koberec</span>
+                            <a href="#kontakt" class="px-5 py-2 bg-accent text-[10px] font-black uppercase tracking-widest text-primary-dark">Ponuka</a>
+                        </div>
+                        <div class="reveal-on-scroll bg-white p-8 border border-border flex items-center justify-between group hover:bg-primary transition-all">
+                            <span class="text-lg font-black uppercase italic tracking-tighter group-hover:text-white">Zámková Dlažba</span>
+                            <a href="#kontakt" class="px-5 py-2 bg-accent text-[10px] font-black uppercase tracking-widest text-primary-dark">Ponuka</a>
+                        </div>
+                        <div class="reveal-on-scroll bg-white p-8 border border-border flex items-center justify-between group hover:bg-primary transition-all">
+                            <span class="text-lg font-black uppercase italic tracking-tighter group-hover:text-white">Stavba Domu na Kľúč</span>
+                            <a href="#kontakt" class="px-5 py-2 bg-accent text-[10px] font-black uppercase tracking-widest text-primary-dark">Ponuka</a>
+                        </div>
+                        <div class="reveal-on-scroll bg-white p-8 border border-border flex items-center justify-between group hover:bg-primary transition-all">
+                            <span class="text-lg font-black uppercase italic tracking-tighter group-hover:text-white">Prerábky Bytov</span>
+                            <a href="#kontakt" class="px-5 py-2 bg-accent text-[10px] font-black uppercase tracking-widest text-primary-dark">Ponuka</a>
+                        </div>
+                        <div class="reveal-on-scroll bg-white p-8 border border-border flex items-center justify-between group hover:bg-primary transition-all">
+                            <span class="text-lg font-black uppercase italic tracking-tighter group-hover:text-white">Zemné & Výkopové práce</span>
+                            <a href="#kontakt" class="px-5 py-2 bg-accent text-[10px] font-black uppercase tracking-widest text-primary-dark">Ponuka</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- WHY US / USA EXPERIENCE -->
+            <section id="referencie" class="py-28 md:py-40 bg-primary-dark text-white relative overflow-hidden">
+                <div class="texture-bg opacity-10 filter invert"></div>
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                        <div class="reveal-on-scroll">
+                            <p class="text-xs font-black tracking-[0.3em] uppercase text-accent mb-6 italic">PREČO SA ROZHODNÚŤ PRE NÁS</p>
+                            <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter mb-10 uppercase italic leading-none">Skúsenosť za<br><span class="text-accent">veľkou mlákou.</span></h2>
+                            <div class="space-y-8 text-xl font-light text-white/70 leading-relaxed italic">
+                                <p>Lebo sme dlhé roky porábali v Amerike. A oni už znajú co je kvalita! Lebo sme najprv makali ako poctiví robotníci a preto nám nie sú cudzie slová ako skúsenosť a zodpovednosť.</p>
+                                <p>Lebo za tých 20 rokov tvrdej roboty doma už máme svoje stroje, vozový park, lešenia aj vlastný areál. Lebo my známe, kto je náš pán!</p>
+                                <div class="pt-8 grid grid-cols-2 gap-6 uppercase tracking-widest text-[10px] font-bold text-white/40">
+                                    <div class="flex items-center gap-3"><span class="w-2 h-2 bg-accent"></span> Vlastný vozový park</div>
+                                    <div class="flex items-center gap-3"><span class="w-2 h-2 bg-accent"></span> Poctivá robota</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll grid grid-cols-2 gap-4">
+                            <div class="image-reveal-wrapper aspect-[4/5] skew-y-2">
+                                <div class="image-reveal-shutter"></div>
+                                <img src="img7.jpg" class="image-reveal-img w-full h-full object-cover">
+                            </div>
+                            <div class="image-reveal-wrapper aspect-[4/5] -skew-y-2 mt-12">
+                                <div class="image-reveal-shutter"></div>
+                                <img src="img8.jpg" class="image-reveal-img w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PARTNERS -->
+            <section class="py-20 bg-white border-b border-border overflow-hidden">
+                <div class="mx-auto w-[95vw] px-6 md:px-10">
+                    <p class="text-center text-[10px] font-black tracking-[0.4em] text-muted uppercase mb-12 italic">Naši hrdí dodávatelia & partneri</p>
+                    <div class="flex flex-wrap items-center justify-center gap-12 md:gap-24 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all">
+                        <span class="text-3xl font-black italic tracking-tighter">HASIT</span>
+                        <span class="text-3xl font-black italic tracking-tighter text-primary">SOLBET</span>
+                        <span class="text-3xl font-black italic tracking-tighter">THERMALICA</span>
+                        <span class="text-3xl font-black italic tracking-tighter text-primary-dark">KNAUF</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer id="kontakt" class="bg-primary text-white pt-28 md:pt-40 relative overflow-hidden">
+                <div class="texture-bg opacity-10 filter invert"></div>
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10 pb-20 md:pb-32">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                        <div>
+                            <h2 class="text-6xl md:text-9xl font-black tracking-tighter uppercase mb-20 leading-none italic">Kontakt<span class="text-accent">.</span></h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 font-sans italic">
+                                <div class="reveal-on-scroll">
+                                    <p class="text-white/20 text-[10px] font-bold tracking-widest uppercase mb-4">Prevádzka Humenné</p>
+                                    <p class="text-2xl font-light leading-relaxed uppercase">STAVMIX V-NAJ s.r.o.</p>
+                                    <p class="text-lg font-light text-white/50 mt-2">Jasenovská 2770<br>066 01 Humenné</p>
+                                </div>
+                                <div class="reveal-on-scroll space-y-8" style="transition-delay: 100ms">
+                                    <div class="flex flex-col gap-2 uppercase tracking-widest text-[10px] font-bold text-white/40">
+                                        <p>Zavolajte nám</p>
+                                        <a href="tel:+421915148405" class="text-3xl font-black text-white italic">+421 915 148 405</a>
+                                        <a href="tel:+421908342576" class="text-2xl font-black text-white/60 italic">+421 908 342 576</a>
+                                    </div>
+                                    <a href="mailto:stavmixvnaj@gmail.com" class="text-xl font-light block hover:text-accent underline underline-offset-8">stavmixvnaj@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col justify-end reveal-on-scroll">
+                            <div class="bg-white/5 p-12 lg:p-16 border border-white/10 backdrop-blur-3xl shadow-2xl relative group overflow-hidden">
+                                <div class="absolute inset-0 bg-accent/10 translate-y-full group-hover:translate-y-0 transition-transform duration-700"></div>
+                                <div class="relative z-10">
+                                    <h3 class="text-4xl lg:text-5xl font-black uppercase mb-10 italic leading-none">Máte projekt?<br>Spýtajte sa priamo nás<span class="text-accent">.</span></h3>
+                                    <p class="text-white/50 text-base font-light italic uppercase tracking-wider">Už 20 rokov staviame, rekonštruujeme, zatepľujeme.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-primary-dark/50 py-10">
+                    <div class="mx-auto w-[95vw] px-6 md:px-10 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold text-white/20 tracking-widest uppercase italic">
+                        <p>© 2012 - 2026 | STAVMIX V-NAJ S.R.O.</p>
+                        <p>Realizácie — Tradícia — USA Quality</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        const lenis = new Lenis({ duration: 1.5, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+        function raf(t) { lenis.raf(t); requestAnimationFrame(raf) } requestAnimationFrame(raf);
+        
+        window.addEventListener('scroll', () => {
+            const scrolly = window.scrollY;
+            document.getElementById('site-header').classList.toggle('scrolled', scrolly > 50);
+            const heroParallax = document.querySelector('.hero-parallax');
+            if (heroParallax) heroParallax.style.transform = `translateY(${scrolly * 0.1}px)`;
+        });
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        const toggleMenu = (open) => {
+            document.body.classList.toggle('menu-open', open);
+            document.body.style.overflow = open ? 'hidden' : '';
+            open ? lenis.stop() : lenis.start();
+        };
+        menuToggle.addEventListener('click', () => toggleMenu(true));
+        menuClose.addEventListener('click', () => toggleMenu(false));
+        menuLinks.forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+        const revealObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); revealObs.unobserve(entry.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObs.observe(el));
+
+        const imageObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-revealed'); imageObs.unobserve(entry.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.image-reveal-wrapper').forEach(el => imageObs.observe(el));
+    </script>
+</body>
+</html>

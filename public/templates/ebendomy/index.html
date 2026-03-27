@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EBEN ECODOM | Moderná CLT výstavba rodinných domov</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.2/dist/lenis.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 
+                        primary: '#e5d9b9', 
+                        'primary-dark': '#d4c5a0',
+                        accent: '#8B7355',
+                        warm: '#F5F0EB',
+                        dark: '#1a1a1a'
+                    },
+                    fontFamily: { 
+                        sans: ['"Rethink Sans"', 'sans-serif'],
+                        heading: ['"Rethink Sans"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root { 
+            --color-primary: #e5d9b9; 
+            --color-dark: #1a1a1a;
+            --font-rethink: '"Rethink Sans"', sans-serif;
+        }
+        
+        body { font-family: var(--font-rethink); background-color: #fdfcf9; color: var(--color-dark); overflow-x: hidden; position: relative; }
+        
+        /* Global Texture Background */
+        body::before { content: ''; position: absolute; inset: 0; z-index: -1; opacity: 0.05; background-image: url('texture.svg'); background-size: cover; background-attachment: fixed; }
+
+        /* Site Container - 95vw */
+        .site-container { width: 95vw; max-width: 95vw; margin-left: auto; margin-right: auto; }
+        
+        /* Navigation Overlay */
+        #nav-overlay {
+            position: fixed; top: 0; left: 0; right: 0; height: 75vh; z-index: 60;
+            background: #272220; transform: translateY(-100%);
+            transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5); border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex; flex-direction: column; overflow: hidden;
+        }
+        #nav-overlay.is-open { transform: translateY(0); }
+        
+        /* Texture Overlay */
+        .texture-bg { position: absolute; inset: 0; z-index: 0; opacity: 0.1; pointer-events: none; background-image: url('texture.svg'); background-size: cover; }
+        #nav-overlay .texture-bg { opacity: 0.3; filter: invert(1); }
+        
+        /* Hover Split Text */
+        .hover-split-text { position: relative; overflow: hidden; display: inline-block; vertical-align: top; }
+        .hover-split-text-inner { display: block; transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1); }
+        .hover-split-text-inner::after { content: attr(data-text); position: absolute; top: 100%; left: 0; width: 100%; line-height: inherit; }
+        *:hover > .hover-split-text > .hover-split-text-inner,
+        .hover-split-text:hover > .hover-split-text-inner { transform: translateY(-100%); }
+
+        /* Site Header */
+        #site-header { transition: background-color 0.5s ease; }
+        #site-header.scrolled { background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+
+        /* Animations */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .fade-in.is-visible { opacity: 1; transform: translateY(0); }
+        
+        /* Reference Slider */
+        .ref-slider { display: flex; gap: 1.5rem; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; padding: 1.5rem 0; }
+        .ref-slider::-webkit-scrollbar { display: none; }
+        .ref-card { flex: 0 0 520px; height: 750px; position: relative; border-radius: 12px; overflow: hidden; cursor: pointer; transition: transform 0.8s ease; background: #fff; }
+        @media (max-width: 768px) { .ref-card { flex: 0 0 85vw; height: 500px; } }
+        .ref-card:hover { transform: translateY(-5px); }
+        .ref-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .ref-card:hover img { transform: scale(1.05); }
+        
+        .hover-reveal-clip { position: absolute; inset: 0; z-index: 10; clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); transition: clip-path 0.7s cubic-bezier(0.76, 0, 0.24, 1); }
+        .ref-card:hover .hover-reveal-clip { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+        
+        .ref-card-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 2.5rem; background: rgba(255,255,255,0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); color: black; z-index: 20; border-top: 1px solid rgba(0,0,0,0.05); }
+        
+        /* Divider Line */
+        .divider { width: 60px; height: 2px; background-color: var(--color-primary); margin-bottom: 2rem; }
+        
+        /* Grain Texture */
+        .grain-overlay::after { content: ''; position: absolute; inset: 0; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); pointer-events: none; z-index: 1; }
+    </style>
+</head>
+<body class="antialiased selection:bg-primary selection:text-dark">
+    <!-- Full-screen Menu Overlay -->
+    <div id="nav-overlay">
+        <div class="texture-bg"></div>
+        <div class="relative z-10 site-container flex items-center justify-between h-24 shrink-0">
+            <div class="w-1/3 flex items-center">
+                <button class="text-white text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-full px-5 py-2.5 hover:bg-white/10 transition-colors group">
+                    <span class="hover-split-text">
+                        <span class="hover-split-text-inner" data-text="SK">SK</span>
+                    </span>
+                </button>
+            </div>
+            <div class="w-1/3 flex justify-center">
+                <img src="image.svg" class="h-10 md:h-12 w-auto brightness-0 invert" alt="Logo">
+            </div>
+            <div class="w-1/3 flex justify-end">
+                <button id="menu-close" class="text-white text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-full px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 transition-colors group">
+                    <span class="relative w-4 h-4 flex items-center justify-center">
+                        <span class="absolute w-full h-[1.5px] bg-white rotate-45 rounded-full transition-transform group-hover:rotate-0"></span>
+                        <span class="absolute w-full h-[1.5px] bg-white -rotate-45 rounded-full transition-transform group-hover:rotate-0"></span>
+                    </span>
+                    <span class="hover-split-text">
+                        <span class="hover-split-text-inner" data-text="Zavrieť">Zavrieť</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+
+        <div class="relative z-10 flex-1 flex items-center pb-8 overflow-y-auto">
+            <div class="site-container w-full flex flex-col md:flex-row justify-between items-start gap-12">
+                <!-- Left: Contact -->
+                <div class="hidden md:flex flex-col gap-10 w-1/2 pl-8 pt-4">
+                    <div>
+                        <span class="text-white/40 text-xs uppercase tracking-[0.2em] mb-4 block">Kontaktujte nás</span>
+                        <a href="tel:+421905598970" class="text-white text-2xl font-light block hover:text-white/70 transition-colors group">
+                            <span class="hover-split-text">
+                                <span class="hover-split-text-inner" data-text="+421 905 598 970">+421 905 598 970</span>
+                            </span>
+                        </a>
+                        <a href="mailto:eben.ecodom@gmail.com" class="text-white text-2xl font-light mt-3 block hover:text-white/70 transition-colors group">
+                            <span class="hover-split-text">
+                                <span class="hover-split-text-inner" data-text="eben.ecodom@gmail.com">eben.ecodom@gmail.com</span>
+                            </span>
+                        </a>
+                    </div>
+                    <div>
+                        <span class="text-white/40 text-xs uppercase tracking-[0.2em] mb-4 block">Centrála</span>
+                        <address class="not-italic">
+                            <span class="text-white/80 text-xl font-light block group">
+                                <span class="hover-split-text">
+                                    <span class="hover-split-text-inner" data-text="Jasenovská 6308">Jasenovská 6308</span>
+                                </span>
+                            </span>
+                            <span class="text-white/80 text-xl font-light block mt-2 group">
+                                <span class="hover-split-text">
+                                    <span class="hover-split-text-inner" data-text="066 01 Humenné">066 01 Humenné</span>
+                                </span>
+                            </span>
+                        </address>
+                    </div>
+                </div>
+                <!-- Right: Links -->
+                <div class="w-full md:w-1/2 flex flex-col items-center md:items-end text-center md:text-right">
+                    <nav class="flex flex-col gap-5">
+                        <a href="#domov" class="menu-link text-4xl md:text-6xl lg:text-7xl font-black text-white uppercase italic tracking-tighter group">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Úvod">Úvod</span></span>
+                        </a>
+                        <a href="#clt" class="menu-link text-4xl md:text-6xl lg:text-7xl font-black text-white uppercase italic tracking-tighter group">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="O CLT stavbe">O CLT stavbe</span></span>
+                        </a>
+                        <a href="#ponuka" class="menu-link text-4xl md:text-6xl lg:text-7xl font-black text-white uppercase italic tracking-tighter group">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Ponuka domov">Ponuka domov</span></span>
+                        </a>
+                        <a href="#kontakt" class="menu-link text-4xl md:text-6xl lg:text-7xl font-black text-white uppercase italic tracking-tighter group">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kontakt">Kontakt</span></span>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header id="site-header" class="fixed top-0 left-0 right-0 z-50">
+        <div class="site-container flex items-center justify-between h-16 md:h-24">
+            <!-- Language (Desktop) -->
+            <div class="hidden md:flex w-1/3 items-center">
+                <button class="text-dark bg-white border border-dark/10 rounded-full px-5 py-2.5 text-xs font-medium uppercase tracking-[0.2em] hover:bg-dark hover:text-white transition-all group">
+                    <span class="hover-split-text">
+                        <span class="hover-split-text-inner" data-text="SK">SK</span>
+                    </span>
+                </button>
+            </div>
+            <!-- Logo -->
+            <div class="flex-1 md:w-1/3 flex justify-start md:justify-center">
+                <a href="#" class="flex items-center">
+                    <img src="image.svg" class="h-8 md:h-12 w-auto" alt="Logo">
+                </a>
+            </div>
+            <!-- Toggle -->
+            <div class="flex md:w-1/3 justify-end items-center">
+                <button id="menu-toggle" class="text-dark bg-white border border-dark/10 rounded-full px-5 py-2.5 text-xs font-medium uppercase tracking-[0.2em] flex items-center gap-3 hover:bg-dark hover:text-white transition-all group">
+                    <div class="w-4 flex flex-col gap-1.5 items-end">
+                        <span class="w-full h-[1.5px] bg-current rounded-full"></span>
+                        <span class="w-2/3 h-[1.5px] bg-current rounded-full transition-all group-hover:w-full"></span>
+                    </div>
+                    <span class="hover-split-text">
+                        <span class="hover-split-text-inner" data-text="Menu">Menu</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="domov" class="relative h-screen flex items-end pb-32 overflow-hidden bg-black">
+            <div class="absolute inset-0 z-0 opacity-60">
+                <img src="hero.avif" class="w-full h-full object-cover">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-1"></div>
+            <div class="relative z-10 site-container">
+                <div class="max-w-[90vw]">
+                    <div class="mb-12 px-6 py-2 border border-white/20 bg-white/10 backdrop-blur-md rounded-full inline-flex items-center gap-3 fade-in">
+                        <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                        <p class="text-[10px] font-black uppercase tracking-[0.3em] text-white italic">Nová dimenzia výstavby</p>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl lg:text-[5.5rem] font-black text-[#5c4a33] leading-[1.05] tracking-tight uppercase italic fade-in" style="transition-delay: 0.1s">
+                        Ekologické bývanie,<br><span class="text-[#e5d9b9]">progresívna stavba.</span>
+                    </h1>
+                    <div class="mt-12 flex flex-col md:flex-row items-end justify-between gap-12 fade-in" style="transition-delay: 0.2s">
+                        <p class="text-lg md:text-xl text-[#5c4a33]/60 font-light max-w-2xl leading-relaxed italic">
+                            Ponúkame premyslené existujúce katalógové riešenia, ako aj individuálne riešenia prostredníctvom štúdií a komplexných projektov na mieru.
+                        </p>
+                        <div class="flex gap-6">
+                            <a href="#ponuka" class="px-14 py-6 bg-white text-dark text-xs font-black rounded-full hover:bg-primary transition-all duration-500 uppercase italic tracking-widest shadow-2xl shrink-0">Zobraziť ponuku</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Content Area -->
+        <div class="relative z-10 bg-[#fdfcf9] shadow-inner grain-overlay">
+            <!-- CLT Advantages -->
+            <section id="clt" class="py-28 md:py-48 relative overflow-hidden">
+                <div class="site-container relative z-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-end">
+                        <div class="fade-in">
+                            <div class="divider"></div>
+                            <h2 class="text-5xl md:text-9xl font-black text-dark tracking-tighter uppercase italic leading-none mb-10">
+                                Progresívna<br><span class="text-primary">Stavba.</span>
+                            </h2>
+                            <p class="text-xl text-dark/60 font-light italic leading-relaxed max-w-lg tracking-tighter">
+                                Jednotlivé stavebné moduly sa pripravia sofistikovanou drevárskou technológiou presne na mieru so všetkými stavebnými otvormi a prvkami.
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 fade-in" style="transition-delay: 0.2s">
+                            <div class="bg-white p-12 border border-dark/5 rounded-[3rem] hover:border-primary/50 transition-all duration-500 group shadow-sm">
+                                <h3 class="text-sm font-black text-primary uppercase tracking-[0.2em] italic mb-6">Výhoda 01</h3>
+                                <p class="text-2xl font-bold italic tracking-tighter uppercase mb-2">Rýchlosť</p>
+                                <p class="text-sm text-dark/50 italic tracking-tighter">Blesková montáž na pozemku v priebehu dní.</p>
+                            </div>
+                            <div class="bg-white p-12 border border-dark/5 rounded-[3rem] hover:border-primary/50 transition-all duration-500 group shadow-sm">
+                                <h3 class="text-sm font-black text-primary uppercase tracking-[0.2em] italic mb-6">Výhoda 02</h3>
+                                <p class="text-2xl font-bold italic tracking-tighter uppercase mb-2">Energia</p>
+                                <p class="text-sm text-dark/50 italic tracking-tighter">Pasívne štandardy s minimálnymi nákladmi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- House Catalog Slider -->
+            <section id="ponuka" class="py-28 md:py-48 bg-white overflow-hidden relative">
+                <div class="site-container relative z-10">
+                    <div class="fade-in mb-24 flex flex-col md:flex-row items-end justify-between gap-10">
+                        <div>
+                            <div class="divider"></div>
+                            <h2 class="text-5xl md:text-9xl font-black text-dark tracking-tighter uppercase italic leading-none">Ponuka<span class="text-primary"> Domov.</span></h2>
+                        </div>
+                        <div class="flex gap-4">
+                            <button onclick="document.getElementById('catalog-slider').scrollBy({left:-550,behavior:'smooth'})" class="w-16 h-16 rounded-full border border-dark/10 flex items-center justify-center hover:bg-primary transition-all bg-white shadow-sm">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6" /></svg>
+                            </button>
+                            <button onclick="document.getElementById('catalog-slider').scrollBy({left:550,behavior:'smooth'})" class="w-16 h-16 rounded-full border border-dark/10 flex items-center justify-center hover:bg-primary transition-all bg-white shadow-sm">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6" /></svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="catalog-slider" class="ref-slider fade-in">
+                        <div class="ref-card group">
+                            <img src="cat1.avif" alt="Smrek">
+                            <div class="hover-reveal-clip">
+                                <img src="cat4.avif" alt="Smrek Alternative">
+                            </div>
+                            <div class="ref-card-overlay">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h3 class="text-3xl font-black italic tracking-tighter uppercase">Smrek</h3>
+                                    <span class="text-primary font-black italic">83,22 m²</span>
+                                </div>
+                                <p class="text-xs font-bold text-dark/40 uppercase tracking-widest italic tracking-tighter">Moderný 3-izbový dom</p>
+                            </div>
+                        </div>
+                        <div class="ref-card group">
+                            <img src="cat2.avif" alt="Breza">
+                            <div class="hover-reveal-clip">
+                                <img src="cat5.avif" alt="Breza Alternative">
+                            </div>
+                            <div class="ref-card-overlay">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h3 class="text-3xl font-black italic tracking-tighter uppercase">Breza</h3>
+                                    <span class="text-primary font-black italic">101,48 m²</span>
+                                </div>
+                                <p class="text-xs font-bold text-dark/40 uppercase tracking-widest italic tracking-tighter">Priestranný 4-izbový dom</p>
+                            </div>
+                        </div>
+                        <div class="ref-card group">
+                            <img src="cat3.avif" alt="Platan">
+                            <div class="hover-reveal-clip">
+                                <img src="cat6.avif" alt="Platan Alternative">
+                            </div>
+                            <div class="ref-card-overlay">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h3 class="text-3xl font-black italic tracking-tighter uppercase">Platan</h3>
+                                    <span class="text-primary font-black italic">203,05 m²</span>
+                                </div>
+                                <p class="text-xs font-bold text-dark/40 uppercase tracking-widest italic tracking-tighter">Dvojpodlažná vila</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Parallax Quote Section -->
+            <section class="relative h-[80vh] flex items-center overflow-hidden bg-black">
+                <div class="absolute inset-0 z-0 opacity-50">
+                    <img src="cat7.avif" class="w-full h-full object-cover scale-110" style="object-position: center 30%;">
+                </div>
+                <!-- Parallax overlay -->
+                <div class="absolute inset-0 bg-black/40 z-1"></div>
+                <div class="site-container relative z-10 text-center">
+                    <div class="divider mx-auto mb-16"></div>
+                    <blockquote class="text-4xl md:text-7xl font-light text-white leading-tight italic tracking-tighter max-w-6xl mx-auto mb-16 uppercase fade-in">
+                        „Prirodzená klíma a atmosféra lesa priamo vo vašom ekologickom dome.“
+                    </blockquote>
+                    <cite class="text-[12px] font-black tracking-[0.4em] text-primary uppercase italic not-italic fade-in">— EBEN ECODOM | CLT SPECIALIST</cite>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer id="kontakt" class="bg-dark text-white pt-28 md:pt-48 relative overflow-hidden">
+                <div class="texture-bg" style="opacity: 0.05"></div>
+                <div class="site-container relative z-10 pb-20">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 border-b border-white/5 pb-28 md:pb-48">
+                        <div>
+                            <div class="divider"></div>
+                            <h2 class="text-7xl md:text-[12rem] font-black tracking-tighter uppercase italic leading-[0.8] mb-12">Kontakt<span class="text-primary">.</span></h2>
+                            <p class="text-xl font-light text-white/40 italic tracking-tighter max-w-md">Sme pripravení postaviť váš sen z masívneho dreva. Ozvite sa nám pre individuálnu konzultáciu.</p>
+                        </div>
+                        <div class="flex flex-col justify-end">
+                            <div class="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-[4rem] p-12 md:p-20 shadow-2xl">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                    <div>
+                                        <p class="text-primary text-[10px] font-bold tracking-[0.3em] uppercase mb-4 italic">Adresa</p>
+                                        <p class="text-3xl font-black italic tracking-tighter uppercase mb-6">EBEN ECODOM</p>
+                                        <p class="text-xl font-light text-white/40 italic tracking-tighter leading-relaxed">Jasenovská 6308<br>066 01 Humenné</p>
+                                    </div>
+                                    <div class="flex flex-col justify-end">
+                                        <p class="text-primary text-[10px] font-bold tracking-[0.3em] uppercase mb-4 italic">Zástupca</p>
+                                        <p class="text-3xl font-black italic tracking-tighter uppercase mb-2">Radovan Kendereš</p>
+                                        <a href="tel:+421905598970" class="text-xl font-light hover:text-primary transition-colors italic tracking-tighter underline underline-offset-8">+421 905 598 970</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-10 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-bold text-white/20 tracking-[0.4em] uppercase italic">
+                        <p>© 2026 EBEN ECODOM | VÝSTAVBA Z CLT PANELOV</p>
+                        <nav class="flex gap-10">
+                            <a href="#" class="hover:text-primary transition-colors uppercase">Facebook</a>
+                            <a href="#" class="hover:text-primary transition-colors uppercase">Instagram</a>
+                        </nav>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        const lenis=new Lenis({duration:1.5,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t))});
+        function raf(t){lenis.raf(t);requestAnimationFrame(raf)}requestAnimationFrame(raf);
+        
+        const header=document.getElementById('site-header');
+        window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',window.scrollY>50)});
+        
+        const menuToggle=document.getElementById('menu-toggle');
+        const menuClose=document.getElementById('menu-close');
+        const overlay=document.getElementById('nav-overlay');
+        const menuLinks=document.querySelectorAll('.menu-link');
+
+        const toggleMenu=(o)=>{overlay.classList.toggle('is-open',o);document.body.style.overflow=o?'hidden':''};
+        menuToggle.addEventListener('click',()=>toggleMenu(true));
+        menuClose.addEventListener('click',()=>toggleMenu(false));
+        menuLinks.forEach(l=>l.addEventListener('click',()=>toggleMenu(false)));
+
+        const fInObs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('is-visible');fInObs.unobserve(en.target)}})},{threshold:.1});
+        document.querySelectorAll('.fade-in').forEach(el=>fInObs.observe(el));
+    </script>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EKODAT Bardejov | Partner pre Váš dom - 20 rokov na trhu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.2/dist/lenis.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b7b40', // Natural Green
+                        'primary-dark': '#2d5d31',
+                        accent: '#F5F5F7',
+                        dark: '#1a1a1a',
+                        light: '#ffffff'
+                    },
+                    fontFamily: {
+                        sans: ['"Rethink Sans"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --color-primary: #3b7b40;
+            --color-background: #ffffff;
+            --color-foreground: #1a1a1a;
+        }
+
+        body { background-color: var(--color-background); color: var(--color-foreground); font-family: '"Rethink Sans"', sans-serif; overflow-x: hidden; }
+
+        /* Site Header Scroll Effect */
+        .site-header { transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .site-header.scrolled { background-color: rgba(255, 255, 255, 0.82); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+
+        /* Navigation Overlay */
+        #nav-overlay {
+            position: fixed; top: 0; left: 0; right: 0; height: 75vh; z-index: 60;
+            background: #1a1a1a; transform: translateY(-100%);
+            transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5); border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex; flex-direction: column; overflow: hidden;
+        }
+        #nav-overlay.is-open { transform: translateY(0); }
+
+        /* Texture / Grain Overlay */
+        .texture-bg { position: absolute; inset: 0; z-index: 0; opacity: 0.05; pointer-events: none; background-image: url('texture.svg'); background-size: cover; }
+        #nav-overlay .texture-bg { opacity: 0.1; filter: invert(1); }
+        .grain-overlay::after { content: ''; position: absolute; inset: 0; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); pointer-events: none; z-index: 10; }
+
+        /* Hover Split Text Effect */
+        .hover-split-text { position: relative; overflow: hidden; display: inline-block; vertical-align: top; }
+        .hover-split-text-inner { display: block; transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1); }
+        .hover-split-text-inner::after { content: attr(data-text); position: absolute; top: 100%; left: 0; width: 100%; line-height: inherit; }
+        *:hover > .hover-split-text > .hover-split-text-inner, .hover-split-text:hover > .hover-split-text-inner { transform: translateY(-100%); }
+
+        /* Animate on Scroll */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .fade-in.is-visible { opacity: 1; transform: translateY(0); }
+
+        /* Image Reveal Effect */
+        .image-reveal-wrapper { position: relative; overflow: hidden; }
+        .image-reveal-shutter { position: absolute; inset: 0; background-color: var(--color-primary); z-index: 10; transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1); }
+        .image-reveal-wrapper.is-revealed .image-reveal-shutter { transform: translateY(-100%); }
+        .image-reveal-img { transform: scale(1.1); transition: transform 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .image-reveal-wrapper.is-revealed .image-reveal-img { transform: scale(1); }
+
+        /* Divider Line */
+        .divider { width: 60px; height: 1.5px; background-color: var(--color-primary); margin-bottom: 2rem; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased bg-white">
+    <!-- SITE HEADER -->
+    <header id="site-header" class="site-header fixed top-0 left-0 right-0 z-50">
+        <div class="mx-auto w-[95vw] flex items-center justify-between h-16 md:h-24">
+            <div class="flex items-center">
+                <a href="#" class="flex flex-col">
+                    <span class="text-xl md:text-2xl font-black tracking-tighter text-dark uppercase italic leading-none">EKODAT<span class="text-primary">.</span></span>
+                    <span class="text-[8px] font-bold text-dark/30 uppercase tracking-[0.4em] ml-0.5 mt-1">Bardejov | 20+ Rokov</span>
+                </a>
+            </div>
+            <div class="flex justify-end items-center gap-6">
+                <a href="tel:+421905187620" class="hidden md:block text-[10px] font-black uppercase tracking-widest text-dark/40 hover:text-primary transition-colors">+421 905 187 620</a>
+                <button id="menu-toggle" class="text-dark bg-white border border-dark/10 rounded-full px-6 py-2.5 text-xs font-medium uppercase tracking-[0.2em] flex items-center gap-3 hover:bg-dark hover:text-white transition-all group">
+                    <div class="w-4 flex flex-col gap-1.5 items-end">
+                        <span class="w-full h-[1.2px] bg-current rounded-full"></span>
+                        <span class="w-2/3 h-[1.2px] bg-current rounded-full transition-all group-hover:w-full"></span>
+                    </div>
+                    <span class="hover-split-text">
+                        <span class="hover-split-text-inner" data-text="Menu">Menu</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVIGATION OVERLAY -->
+    <div id="nav-overlay">
+        <div class="texture-bg"></div>
+        <div class="relative z-10 mx-auto w-[95vw] flex items-center justify-between h-24 shrink-0">
+            <span class="text-xl md:text-2xl font-black tracking-tighter text-white uppercase italic">EKODAT<span class="text-primary"> BARD</span></span>
+            <button id="menu-close" class="text-white text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-full px-6 py-2.5 flex items-center gap-3 hover:bg-white/10 transition-colors group">
+                <span class="relative w-4 h-4 flex items-center justify-center">
+                    <span class="absolute w-full h-[1.2px] bg-white rotate-45 rounded-full"></span>
+                    <span class="absolute w-full h-[1.2px] bg-white -rotate-45 rounded-full"></span>
+                </span>
+                <span class="hover-split-text">
+                    <span class="hover-split-text-inner" data-text="Zavrieť">Zavrieť</span>
+                </span>
+            </button>
+        </div>
+
+        <div class="relative z-10 flex-1 flex items-center pb-8 overflow-y-auto">
+            <div class="mx-auto w-[95vw] grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="hidden md:flex flex-col justify-center pl-8 pt-4">
+                    <p class="text-white/20 text-xs uppercase tracking-[0.3em] mb-12">Expertíza v stavebníctve</p>
+                    <p class="text-white text-4xl font-light leading-snug italic max-w-md">„Dôverujte odborníkom, ktorí pracujú pre Váš dom.“</p>
+                </div>
+                <nav class="flex flex-col gap-4 items-center md:items-end text-center md:text-right px-6">
+                    <a href="#intro" class="menu-link text-4xl md:text-7xl font-black text-white uppercase italic tracking-tighter group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Úvod">Úvod</span></span></a>
+                    <a href="#sluzby" class="menu-link text-4xl md:text-7xl font-black text-white uppercase italic tracking-tighter group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Služby">Služby</span></span></a>
+                    <a href="#onas" class="menu-link text-4xl md:text-7xl font-black text-white uppercase italic tracking-tighter group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="O nás">O nás</span></span></a>
+                    <a href="#kontakt" class="menu-link text-4xl md:text-7xl font-black text-white uppercase italic tracking-tighter group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kontakt">Kontakt</span></span></a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="grain-overlay">
+        <!-- HERO SECTION -->
+        <section id="intro" class="relative h-screen flex items-center overflow-hidden bg-accent">
+            <div class="absolute inset-0 z-0">
+                <img src="hero.jpg" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-white/40"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent"></div>
+            </div>
+            <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10">
+                <div class="max-w-4xl">
+                    <div class="mb-10 px-6 py-2 border border-primary/20 bg-white/30 backdrop-blur-md rounded-full inline-flex items-center gap-3 fade-in">
+                        <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                        <p class="text-[10px] font-black uppercase tracking-[0.3em] text-dark italic">EKODAT — 20 rokov partnerstva</p>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl lg:text-[5.5rem] font-black text-dark leading-[1.05] tracking-tight uppercase italic fade-in" style="transition-delay: 0.1s">
+                        Partner pre<br><span class="text-primary italic">Váš dom.</span>
+                    </h1>
+                    <p class="mt-12 text-lg md:text-xl text-dark/70 font-light max-w-xl leading-relaxed italic fade-in" style="transition-delay: 0.2s">
+                        Kvalita na prvom mieste. Komplexné stavebné činnosti od okien a dverí až po vlastné stavebniny. Budujte budúcnosť s odborníkmi.
+                    </p>
+                    <div class="mt-16 flex flex-col sm:flex-row gap-6 fade-in" style="transition-delay: 0.3s">
+                        <a href="#kontakt" class="px-14 py-6 bg-primary text-white text-xs font-black rounded-full hover:bg-dark transition-all duration-500 uppercase italic tracking-widest shadow-xl">Kontaktujte nás</a>
+                        <a href="#onas" class="px-14 py-6 border border-dark/10 text-dark text-xs font-bold rounded-full hover:bg-dark hover:text-white transition-all duration-500 uppercase italic tracking-widest">O našej firme</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS SECTION -->
+        <section class="py-24 bg-dark text-white relative z-10">
+            <div class="texture-bg opacity-10"></div>
+            <div class="mx-auto w-[95vw] px-6 md:px-10 grid grid-cols-2 md:grid-cols-4 gap-12 text-center relative z-10">
+                <div class="fade-in">
+                    <p class="text-5xl md:text-6xl font-black italic tracking-tighter text-primary">20+</p>
+                    <p class="text-[9px] font-bold uppercase tracking-[0.4em] mt-4 text-white/40 italic">Rokov skúseností</p>
+                </div>
+                <div class="fade-in" style="transition-delay: 0.1s">
+                    <p class="text-5xl md:text-6xl font-black italic tracking-tighter text-primary">1000+</p>
+                    <p class="text-[9px] font-bold uppercase tracking-[0.4em] mt-4 text-white/40 italic">Spokojných klientov</p>
+                </div>
+                <div class="fade-in" style="transition-delay: 0.2s">
+                    <p class="text-5xl md:text-6xl font-black italic tracking-tighter text-primary">500+</p>
+                    <p class="text-[9px] font-bold uppercase tracking-[0.4em] mt-4 text-white/40 italic">Dokončených stavieb</p>
+                </div>
+                <div class="fade-in" style="transition-delay: 0.3s">
+                    <p class="text-5xl md:text-6xl font-black italic tracking-tighter text-primary">家族</p>
+                    <p class="text-[9px] font-bold uppercase tracking-[0.4em] mt-4 text-white/40 italic">Rodinná firma</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="onas" class="py-32 md:py-48 bg-white relative overflow-hidden">
+            <div class="mx-auto w-[95vw] px-6 md:px-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                    <div class="fade-in">
+                        <div class="divider"></div>
+                        <h2 class="text-5xl md:text-8xl font-black text-dark tracking-tighter uppercase italic leading-none mb-10">Naša<br><span class="text-primary italic">Vášeň.</span></h2>
+                        <div class="space-y-8 text-xl font-light text-dark/70 leading-relaxed italic">
+                            <p>Ekodat BARDEJOV s.r.o. má za sebou bohatú históriu trvajúcu viac ako 20 rokov. Naše pôsobenie začalo predajom okien a dverí, dnes sme expertmi aj v oblasti fasádnych prác a prevádzkujeme vlastné stavebniny.</p>
+                            <p>Sme hrdá rodinná firma, ktorá si zakladá na dlhodobých vzťahoch. Váš projekt pre nás nie je iba prácou, ale aj príležitosťou pre vytvorenie domova, ktorý si zaslúžite.</p>
+                        </div>
+                    </div>
+                    <div class="fade-in relative group" style="transition-delay: 0.2s">
+                        <div class="image-reveal-wrapper rounded-[3rem] overflow-hidden shadow-2xl">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="img5.jpg" class="image-reveal-img w-full h-[600px] object-cover">
+                        </div>
+                        <div class="absolute -bottom-10 -left-10 bg-primary p-12 rounded-[2rem] text-white shadow-2xl hidden md:block">
+                            <p class="text-4xl font-black italic tracking-tighter uppercase leading-none">20+</p>
+                            <p class="text-[9px] font-bold uppercase tracking-[0.3em] mt-2 opacity-60 italic">Rokov na trhu</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="sluzby" class="py-32 md:py-48 bg-accent relative overflow-hidden">
+            <div class="texture-bg opacity-10"></div>
+            <div class="mx-auto w-[95vw] px-6 md:px-10">
+                <div class="fade-in mb-24 flex flex-col md:flex-row items-end justify-between gap-10">
+                    <div>
+                        <div class="divider"></div>
+                        <h2 class="text-5xl md:text-8xl font-black text-dark tracking-tighter uppercase italic leading-none">Prémiové<span class="text-primary italic"> Služby.</span></h2>
+                    </div>
+                    <p class="text-dark/40 text-xs font-black uppercase tracking-[0.3em] mb-4 italic">Komplexné riešenia pre Váš dom</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 relative z-10">
+                    <div class="fade-in bg-white p-12 rounded-[2.5rem] shadow-sm hover:shadow-2xl transition-all duration-700 border border-dark/5 flex flex-col justify-between group h-[500px] overflow-hidden">
+                        <div class="relative z-10">
+                            <h3 class="text-3xl font-black italic tracking-tighter uppercase mb-6 group-hover:text-primary transition-colors">Okná a Dvere</h3>
+                            <p class="text-sm text-dark/50 italic leading-relaxed uppercase tracking-tighter">Široký výber štýlov, dizajnov a materiálov pre Váš exteriér aj interiér.</p>
+                        </div>
+                        <div class="relative w-full h-48 mt-12 rounded-2xl overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+                             <img src="img1.jpg" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="fade-in bg-white p-12 rounded-[2.5rem] shadow-sm hover:shadow-2xl transition-all duration-700 border border-dark/5 flex flex-col justify-between group h-[500px] overflow-hidden" style="transition-delay: 0.1s">
+                        <div class="relative z-10">
+                            <h3 class="text-3xl font-black italic tracking-tighter uppercase mb-6 group-hover:text-primary transition-colors">Fasády & Zateplenie</h3>
+                            <p class="text-sm text-dark/50 italic leading-relaxed uppercase tracking-tighter">Zvýšte energetickú efektívnosť a chráňte svoj domov pred vplyvmi počasia.</p>
+                        </div>
+                        <div class="relative w-full h-48 mt-12 rounded-2xl overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+                             <img src="img2.jpg" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="fade-in bg-white p-12 rounded-[2.5rem] shadow-sm hover:shadow-2xl transition-all duration-700 border border-dark/5 flex flex-col justify-between group h-[500px] overflow-hidden" style="transition-delay: 0.2s">
+                        <div class="relative z-10">
+                            <h3 class="text-3xl font-black italic tracking-tighter uppercase mb-6 group-hover:text-primary transition-colors">Stavebniny</h3>
+                            <p class="text-sm text-dark/50 italic leading-relaxed uppercase tracking-tighter">Kompletný sortiment stavebného materiálu priamo v našej predajni.</p>
+                        </div>
+                        <div class="relative w-full h-48 mt-12 rounded-2xl overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+                             <img src="img3.jpg" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <footer id="kontakt" class="bg-white pt-32 md:pt-48 pb-20 relative overflow-hidden">
+            <div class="mx-auto w-[95vw] px-6 md:px-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-end border-b border-dark/5 pb-32">
+                    <div class="fade-in">
+                        <div class="divider"></div>
+                        <h2 class="text-6xl md:text-[10rem] font-black tracking-tighter uppercase italic leading-[0.8] mb-12">Kontakt<span class="text-primary italic">.</span></h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 font-sans italic">
+                            <div>
+                                <p class="text-dark/30 text-[9px] font-bold tracking-[0.3em] uppercase mb-6">Centrála Bardejov</p>
+                                <p class="text-3xl font-black italic tracking-tighter uppercase mb-3">EKODAT s.r.o.</p>
+                                <p class="text-xl font-light text-dark/50 leading-relaxed uppercase">Kacvinského 3219<br>085 01 Bardejov</p>
+                                <p class="text-xs font-bold text-primary mt-6 tracking-widest uppercase">/pri nákladke vagónov/</p>
+                            </div>
+                            <div class="space-y-8">
+                                <div class="flex flex-col gap-2">
+                                    <p class="text-dark/30 text-[9px] font-bold tracking-[0.3em] uppercase">Telefón</p>
+                                    <a href="tel:+421905187620" class="text-3xl font-black italic tracking-tighter uppercase hover:text-primary transition-colors">+421 905 187 620</a>
+                                    <a href="tel:0544881076" class="text-2xl font-black italic tracking-tighter uppercase text-dark/40">054 / 488 10 76</a>
+                                </div>
+                                <a href="mailto:ekodatbj@gmail.com" class="text-lg font-light block hover:text-primary underline underline-offset-8">ekodatbj@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fade-in flex flex-col justify-end">
+                        <div class="bg-dark text-white p-12 md:p-16 rounded-[4rem] shadow-2xl relative overflow-hidden group">
+                            <div class="texture-bg opacity-10 filter invert"></div>
+                            <div class="relative z-10">
+                                <h3 class="text-3xl font-black italic tracking-tighter uppercase mb-10 leading-none">Otváracie<br><span class="text-primary italic">hodiny.</span></h3>
+                                <div class="grid grid-cols-2 gap-8 text-[11px] font-bold tracking-widest uppercase italic">
+                                    <div>
+                                        <p class="text-white/30 mb-2">Kancelária</p>
+                                        <p>Po - Pia: 7:30 - 16:00</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-white/30 mb-2">Stavebniny</p>
+                                        <p>Po - Pia: 7:00 - 16:00</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-12 flex flex-col md:flex-row justify-between items-center gap-8 text-[9px] font-bold text-dark/20 tracking-[0.4em] uppercase italic text-center">
+                    <p>© 2026 EKODAT BARDEJOV S.R.O. | DOMOV, KTORÝ SI ZASLÚŽITE</p>
+                    <div class="flex gap-10">
+                        <a href="#" class="hover:text-primary transition-colors">Facebook</a>
+                        <a href="#" class="hover:text-primary transition-colors">Instagram</a>
+                        <a href="#" class="hover:text-primary transition-colors">Cookie politika</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        const lenis = new Lenis({ duration: 1.5, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+        function raf(t) { lenis.raf(t); requestAnimationFrame(raf) } requestAnimationFrame(raf);
+        
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 50) });
+        
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const overlay = document.getElementById('nav-overlay');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        const toggleMenu = (o) => { overlay.classList.toggle('is-open', o); document.body.style.overflow = o ? 'hidden' : ''; o ? lenis.stop() : lenis.start() };
+        menuToggle.addEventListener('click', () => toggleMenu(true));
+        menuClose.addEventListener('click', () => toggleMenu(false));
+        menuLinks.forEach(l => l.addEventListener('click', () => toggleMenu(false)));
+
+        const fInObs = new IntersectionObserver(e => { e.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-visible'); fInObs.unobserve(en.target) } }) }, { threshold: .1 });
+        document.querySelectorAll('.fade-in').forEach(el => fInObs.observe(el));
+
+        const revObs = new IntersectionObserver(e => { e.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-revealed'); revObs.unobserve(en.target) } }) }, { threshold: .1 });
+        document.querySelectorAll('.image-reveal-wrapper').forEach(el => revObs.observe(el));
+    </script>
+</body>
+</html>

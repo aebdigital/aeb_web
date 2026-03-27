@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSL TRADING | Stavebná spoločnosť</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.2/dist/lenis.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: '#3ab79b', navy: '#424242' },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root { --color-primary: #3ab79b; --color-navy: #424242; }
+        body { background-color: #ffffff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        
+        #site-header { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); padding: 1.5rem 0; }
+        #site-header.scrolled { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.05); padding: 1.25rem 0; }
+        
+        .reveal-on-scroll{opacity:0;transform:translateY(30px);transition:opacity .7s ease-out,transform .7s ease-out}.reveal-on-scroll.is-visible{opacity:1;transform:translateY(0)}
+        .image-reveal-wrapper{position:relative;overflow:hidden;line-height:1.1;border-radius:1rem}
+        .image-reveal-shutter{position:absolute;inset:0;background-color:var(--color-primary);z-index:10;transition:transform 1.2s cubic-bezier(.76,0,.24,1)}
+        .image-reveal-wrapper.is-revealed .image-reveal-shutter{transform:translateY(-100%)}
+        .image-reveal-img{transform:scale(1.2);transition:transform 1.8s cubic-bezier(.76,0,.24,1)}
+        .image-reveal-wrapper.is-revealed .image-reveal-img{transform:scale(1)}
+        
+        .divider { width: 60px; height: 2px; background-color: var(--color-primary); margin-bottom: 1.5rem; }
+        .grain-overlay{position:relative}.grain-overlay::after{content:'';position:absolute;inset:0;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");pointer-events:none;z-index:1}
+        
+        .ref-slider { display: flex; gap: 1.5rem; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; padding: 1.5rem 0; margin-top: 2rem; position: relative; z-index: 10;}
+        .ref-slider::-webkit-scrollbar { display: none; }
+        .ref-card { flex: 0 0 480px; height: 650px; position: relative; border-radius: 1.5rem; overflow: hidden; cursor: pointer; transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        @media (max-width: 768px) { .ref-card { flex: 0 0 85vw; height: 500px; } }
+        .ref-card:hover { transform: translateY(-10px); }
+        .ref-card-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 2.5rem 2rem; background: rgba(58, 183, 155, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: white; transform: translateY(0); transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1); z-index: 20; }
+        
+        .hover-reveal-clip { position: absolute; inset: 0; z-index: 1; clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); transition: clip-path 0.7s cubic-bezier(0.76, 0, 0.24, 1); }
+        .ref-card:hover .hover-reveal-clip { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+
+        .tag { display: inline-flex; align-items: center; gap: 0.5rem; background: #f0fdfa; border: 1px solid #ccfbf1; padding: 0.5rem 1rem; border-radius: 9999px; font-size: 0.65rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; font-style: italic; color: #0d9488; }
+        
+        .fade-up{opacity:0;transform:translateY(30px);animation:fade-up-anim .7s ease-out forwards}.fade-up-1{animation-delay:.1s}.fade-up-2{animation-delay:.2s}.fade-up-3{animation-delay:.3s}
+        @keyframes fade-up-anim{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    </style>
+</head>
+<body class="antialiased">
+    <header id="site-header" class="fixed top-0 left-0 w-full z-50">
+        <div class="mx-auto w-[95vw] flex justify-between items-center px-6 md:px-10">
+            <a href="#" class="flex items-center gap-4">
+                <span class="text-2xl font-black tracking-tighter text-navy uppercase italic leading-none">BSL TRADING<span class="text-primary italic">.</span></span>
+            </a>
+            <nav class="hidden md:flex items-center gap-12">
+                <a href="#domov" class="text-[10px] font-black uppercase tracking-widest text-navy hover:text-primary transition-colors italic">Domov</a>
+                <a href="#onas" class="text-[10px] font-black uppercase tracking-widest text-navy hover:text-primary transition-colors italic">O nás</a>
+                <a href="#sluzby" class="text-[10px] font-black uppercase tracking-widest text-navy hover:text-primary transition-colors italic">Služby</a>
+                <a href="#kontakt" class="text-[10px] font-black uppercase tracking-widest text-navy hover:text-primary transition-colors italic">Kontakt</a>
+            </nav>
+            <div class="flex items-center gap-6">
+                <a href="tel:+421905723897" class="hidden md:block text-[10px] font-black uppercase tracking-widest text-navy italic">+421 905 723 897</a>
+                <button id="menu-toggle" class="md:hidden flex flex-col gap-1.5 p-2">
+                    <span class="w-6 h-0.5 bg-navy"></span>
+                    <span class="w-6 h-0.5 bg-navy"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="domov" class="relative min-h-[90vh] flex items-center overflow-hidden bg-white py-32">
+            <div class="absolute inset-y-0 right-0 w-1/2 z-0 hidden lg:block">
+                <div class="image-reveal-wrapper h-full rounded-l-[5rem]">
+                    <div class="image-reveal-shutter"></div>
+                    <img src="hero.jpg" class="image-reveal-img w-full h-full object-cover">
+                </div>
+            </div>
+            <div class="relative z-10 w-[95vw] mx-auto px-6 md:px-10">
+                <div class="flex flex-col items-start lg:w-1/2">
+                    <div class="tag mb-10 fade-up">
+                        <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                        STAVEBNÁ SPOLOČNOSŤ
+                    </div>
+                    <h1 class="text-6xl md:text-[10rem] font-black text-navy leading-[0.85] tracking-tighter uppercase italic drop-shadow-sm fade-up fade-up-1">
+                        Vaša stavba,<br><span class="text-primary italic">náš cieľ.</span>
+                    </h1>
+                    <p class="mt-12 text-lg md:text-2xl text-navy/60 font-light max-w-xl leading-relaxed italic tracking-tighter fade-up fade-up-2">
+                        Komplexné stavebné riešenia od rekonštrukcií po novostavby na kľúč s osvedčeným receptom na úspech.
+                    </p>
+                    <div class="mt-16 flex flex-col sm:flex-row gap-6 fade-up fade-up-3">
+                        <a href="#kontakt" class="px-12 py-5 bg-navy text-white text-xs font-black rounded-full hover:bg-primary transition-all duration-500 uppercase italic tracking-tighter">
+                            Kontaktujte nás
+                        </a>
+                        <a href="#sluzby" class="px-12 py-5 border border-navy/10 text-navy text-xs font-bold rounded-full hover:bg-navy hover:text-white transition-all duration-500 uppercase italic tracking-tighter">
+                            Naše služby
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="relative z-10 bg-white shadow-2xl">
+            <!-- About Section -->
+            <section id="onas" class="py-28 md:py-48 bg-white relative overflow-hidden grain-overlay">
+                <div class="mx-auto w-[95vw] px-6 md:px-10 relative z-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                        <div class="reveal-on-scroll order-2 lg:order-1">
+                            <div class="image-reveal-wrapper aspect-[4/3] shadow-2xl rounded-[3rem]">
+                                <div class="image-reveal-shutter"></div>
+                                <img src="about.jpg" class="image-reveal-img w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll order-1 lg:order-2">
+                            <div class="divider"></div>
+                            <p class="text-xs font-black tracking-[0.3em] uppercase text-primary mb-8 italic">O Nás</p>
+                            <h2 class="text-5xl md:text-8xl font-black text-navy tracking-tighter mb-12 uppercase italic leading-none">Príbeh Poctivej<br><span class="text-primary italic">Práce.</span></h2>
+                            <div class="space-y-10 text-xl font-light text-navy/70 leading-relaxed italic tracking-tighter">
+                                <p>Osvedčeným receptom na úspech sú schopnosti, trpezlivosť a ťažká práca. V roku 2009 sme založili firmu BSV STAV s.r.o., ktorá sa postupne transformovala na BSL TRADING.</p>
+                                <p>Dnes zamestnávame viac ako 33 kmeňových zamestnancov a realizujeme stavby veľkého rozsahu, vrátane komplexných rekonštrukcií s desiatkami bytových jednotiek.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section id="sluzby" class="py-28 md:py-48 bg-zinc-50 overflow-hidden grain-overlay rounded-[5rem]">
+                <div class="mx-auto w-[95vw] px-6 md:px-10 relative z-10">
+                    <div class="reveal-on-scroll mb-24 flex flex-col md:flex-row items-end justify-between gap-10">
+                        <div>
+                            <div class="divider"></div>
+                            <h2 class="text-5xl md:text-8xl font-black text-navy tracking-tighter uppercase italic leading-none">Naše<span class="text-primary italic"> Služby.</span></h2>
+                            <p class="text-navy/40 mt-4 italic uppercase font-bold text-xs">Komplexné portfólio pre vašu stavbu</p>
+                        </div>
+                        <div class="flex gap-4">
+                            <button onclick="document.getElementById('serv-slider').scrollBy({left:-500,behavior:'smooth'})" class="w-14 h-14 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-white transition-all bg-white shadow-sm">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6" /></svg>
+                            </button>
+                            <button onclick="document.getElementById('serv-slider').scrollBy({left:500,behavior:'smooth'})" class="w-14 h-14 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-white transition-all bg-white shadow-sm">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6" /></svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="serv-slider" class="ref-slider reveal-on-scroll">
+                        <div class="ref-card group">
+                            <img src="service1.jpg" class="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-110">
+                            <div class="hover-reveal-clip">
+                                <img src="service2.jpg" class="object-cover w-full h-full">
+                            </div>
+                            <div class="ref-card-overlay">
+                                <p class="text-[10px] font-bold tracking-[0.2em] uppercase text-white/60 mb-2 italic">Interiér</p>
+                                <h3 class="text-3xl font-black italic tracking-tighter uppercase">Rekonštrukcie</h3>
+                                <p class="text-sm text-white/80 mt-2 font-light italic">Od maľovania a dlažieb až po celkovú obnovu bytových domov.</p>
+                            </div>
+                        </div>
+                        <div class="ref-card group">
+                            <img src="service2.jpg" class="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-110">
+                            <div class="hover-reveal-clip">
+                                <img src="service3.jpg" class="object-cover w-full h-full">
+                            </div>
+                            <div class="ref-card-overlay">
+                                <p class="text-[10px] font-bold tracking-[0.2em] uppercase text-white/60 mb-2 italic">Rezanie</p>
+                                <h3 class="text-3xl font-black italic tracking-tighter uppercase">Rezanie betónu</h3>
+                                <p class="text-sm text-white/80 mt-2 font-light italic">Príprava pred výkopovými prácami na vozovkách a chodníkoch.</p>
+                            </div>
+                        </div>
+                        <div class="ref-card group">
+                            <img src="service3.jpg" class="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-110">
+                            <div class="hover-reveal-clip">
+                                <img src="service4.jpg" class="object-cover w-full h-full">
+                            </div>
+                            <div class="ref-card-overlay">
+                                <p class="text-[10px] font-bold tracking-[0.2em] uppercase text-white/60 mb-2 italic">Terén</p>
+                                <h3 class="text-3xl font-black italic tracking-tighter uppercase">Výkopové práce</h3>
+                                <p class="text-sm text-white/80 mt-2 font-light italic">Základy domov, bazény, jímky a hrubé terénne úpravy.</p>
+                            </div>
+                        </div>
+                        <div class="ref-card group">
+                            <img src="service4.jpg" class="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-110">
+                            <div class="hover-reveal-clip">
+                                <img src="service5.jpg" class="object-cover w-full h-full">
+                            </div>
+                            <div class="ref-card-overlay">
+                                <p class="text-[10px] font-bold tracking-[0.2em] uppercase text-white/60 mb-2 italic">Izolácie</p>
+                                <h3 class="text-3xl font-black italic tracking-tighter uppercase">Zatepľovanie</h3>
+                                <p class="text-sm text-white/80 mt-2 font-light italic">Kvalitné zatepľovacie systémy pre domy a bytovky.</p>
+                            </div>
+                        </div>
+                        <div class="ref-card group">
+                            <img src="service5.jpg" class="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-110">
+                            <div class="hover-reveal-clip">
+                                <img src="service6.jpg" class="object-cover w-full h-full">
+                            </div>
+                            <div class="ref-card-overlay">
+                                <p class="text-[10px] font-bold tracking-[0.2em] uppercase text-white/60 mb-2 italic">Stavba</p>
+                                <h3 class="text-3xl font-black italic tracking-tighter uppercase">Domy na kľúč</h3>
+                                <p class="text-sm text-white/80 mt-2 font-light italic">Komplexné murárske a dokončovacie práce od základov po strechu.</p>
+                            </div>
+                        </div>
+                        <div class="ref-card group">
+                            <img src="service6.jpg" class="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-110">
+                            <div class="hover-reveal-clip">
+                                <img src="service1.jpg" class="object-cover w-full h-full">
+                            </div>
+                            <div class="ref-card-overlay">
+                                <p class="text-[10px] font-bold tracking-[0.2em] uppercase text-white/60 mb-2 italic">Búranie</p>
+                                <h3 class="text-3xl font-black italic tracking-tighter uppercase">Demolácie</h3>
+                                <p class="text-sm text-white/80 mt-2 font-light italic">Búracie práce vrátane odvozu a ekologickej likvidácie sute.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonial Section -->
+            <section class="py-28 md:py-48 bg-white overflow-hidden grain-overlay">
+                <div class="mx-auto w-[80vw] px-6 text-center reveal-on-scroll">
+                    <div class="divider mx-auto mb-16"></div>
+                    <p class="text-3xl md:text-5xl font-light text-navy leading-tight italic tracking-tighter mb-16 uppercase leading-none">
+                        „Úspech je súčet malých snáh, opakovaných deň čo deň.“
+                    </p>
+                    <p class="text-xs font-black tracking-widest text-primary uppercase italic tracking-tighter">— BSL TRADING S.R.O.</p>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer id="kontakt" class="bg-[#1a1a1a] text-white pt-28 md:pt-48 relative overflow-hidden grain-overlay">
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10 pb-20">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-24 border-b border-white/5 pb-28 md:pb-48">
+                        <div class="lg:col-span-1">
+                            <h2 class="text-6xl md:text-8xl font-black tracking-tighter uppercase mb-24 italic leading-none text-white italic">Kontakt<span class="text-primary italic">.</span></h2>
+                            <div class="space-y-12">
+                                <div>
+                                    <p class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase mb-8 italic">Sídlo Firmy</p>
+                                    <p class="text-3xl font-black italic uppercase tracking-tighter">BSL TRADING s.r.o.</p>
+                                    <p class="text-lg font-light text-zinc-400 italic mt-4 uppercase tracking-tighter">Suchý Jarok 1299/1<br>066 01 Humenné</p>
+                                </div>
+                                <div class="pt-10">
+                                    <p class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase mb-8 italic">IČO / DIČ</p>
+                                    <p class="text-sm font-bold text-zinc-400 tracking-widest italic uppercase">51787202 / 2120791849</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-2 space-y-24">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                                <div class="p-10 border border-white/10 rounded-[2.5rem] bg-white/5 backdrop-blur-md">
+                                    <p class="text-primary text-[10px] font-bold tracking-widest uppercase mb-4 italic">Konateľ</p>
+                                    <h3 class="text-2xl font-black italic tracking-tighter uppercase mb-6">Vincent Bilšák</h3>
+                                    <div class="space-y-2">
+                                        <a href="tel:+421905723897" class="text-xl font-light italic block hover:text-primary transition-colors tracking-tighter">0905 723 897</a>
+                                        <a href="mailto:bilsak@bsltrading.sk" class="text-xs font-bold italic block hover:text-primary transition-colors text-zinc-400 tracking-widest uppercase">bilsak@bsltrading.sk</a>
+                                    </div>
+                                </div>
+                                <div class="p-10 border border-white/10 rounded-[2.5rem] bg-white/5 backdrop-blur-md">
+                                    <p class="text-primary text-[10px] font-bold tracking-widest uppercase mb-4 italic">Obchodný zástupca</p>
+                                    <h3 class="text-2xl font-black italic tracking-tighter uppercase mb-6">Marek Dudrák</h3>
+                                    <div class="space-y-2">
+                                        <a href="tel:+421917458618" class="text-xl font-light italic block hover:text-primary transition-colors tracking-tighter">0917 458 618</a>
+                                        <a href="mailto:bsldudrak@gmail.com" class="text-xs font-bold italic block hover:text-primary transition-colors text-zinc-400 tracking-widest uppercase">bsldudrak@gmail.com</a>
+                                    </div>
+                                </div>
+                                <div class="p-10 border border-white/10 rounded-[2.5rem] bg-white/5 backdrop-blur-md">
+                                    <p class="text-primary text-[10px] font-bold tracking-widest uppercase mb-4 italic">Projektový manažér</p>
+                                    <h3 class="text-2xl font-black italic tracking-tighter uppercase mb-6">Peter Savkanič</h3>
+                                    <div class="space-y-2">
+                                        <a href="tel:+421908323627" class="text-xl font-light italic block hover:text-primary transition-colors tracking-tighter">0908 323 627</a>
+                                        <a href="mailto:bslsavkanic@gmail.com" class="text-xs font-bold italic block hover:text-primary transition-colors text-zinc-400 tracking-widest uppercase">bslsavkanic@gmail.com</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-center">
+                                    <div class="image-reveal-wrapper rounded-[3rem] aspect-square grayscale opacity-20 w-48">
+                                        <div class="image-reveal-shutter"></div>
+                                        <img src="about.jpg" class="image-reveal-img w-full h-full object-cover">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-10 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-bold text-zinc-600 tracking-[0.4em] uppercase italic">
+                        <p>© 2026 BSL TRADING | ALL RIGHTS RESERVED</p>
+                        <nav class="flex gap-8">
+                            <a href="#" class="hover:text-white transition-colors">FACEBOOK</a>
+                            <a href="#" class="hover:text-white transition-colors uppercase">BSLTRADING.SK</a>
+                        </nav>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        const lenis=new Lenis({duration:1.3,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t))});
+        function raf(t){lenis.raf(t);requestAnimationFrame(raf)}requestAnimationFrame(raf);
+        const header=document.getElementById('site-header');
+        window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',window.scrollY>50)});
+        const revealObs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('is-visible');revealObs.unobserve(en.target)}})},{threshold:.15});
+        document.querySelectorAll('.reveal-on-scroll').forEach(el=>revealObs.observe(el));
+        const imgObs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('is-revealed');imgObs.unobserve(en.target)}})},{threshold:.1});
+        document.querySelectorAll('.image-reveal-wrapper').forEach(el=>imgObs.observe(el));
+    </script>
+</body>
+</html>

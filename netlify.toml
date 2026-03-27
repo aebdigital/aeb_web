@@ -9,6 +9,11 @@
   package = "@netlify/plugin-nextjs"
 
 [[redirects]]
+  from = "/abbainovator"
+  to = "/templates/abbainovator/index.html"
+  status = 200
+
+[[redirects]]
   from = "/alumsist"
   to = "/templates/alumsist/index.html"
   status = 200
@@ -29,8 +34,53 @@
   status = 200
 
 [[redirects]]
+  from = "/kmdstav"
+  to = "/templates/kmdstav/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/betcon"
+  to = "/templates/betcon/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/dmbauteam"
+  to = "/templates/dmbauteam/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/agim"
+  to = "/templates/agim/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/alurenostav"
+  to = "/templates/alurenostav/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/bosolutions"
+  to = "/templates/bosolutions/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/bsltrading"
+  to = "/templates/bsltrading/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/darton"
+  to = "/templates/darton/index.html"
+  status = 200
+
+[[redirects]]
   from = "/dobritesari"
   to = "/templates/dobritesari/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/dzatko-junior"
+  to = "/templates/dzatko-junior/index.html"
   status = 200
 
 [[redirects]]
@@ -41,6 +91,21 @@
 [[redirects]]
   from = "/ellio"
   to = "/templates/ellio/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/ebendomy"
+  to = "/templates/ebendomy/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/hirver"
+  to = "/templates/hirver/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/hnlstavby"
+  to = "/templates/hnlstavby/index.html"
   status = 200
 
 [[redirects]]
@@ -89,6 +154,16 @@
   status = 200
 
 [[redirects]]
+  from = "/modularnastavba"
+  to = "/templates/modularnastavba/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/montter"
+  to = "/templates/montter/index.html"
+  status = 200
+
+[[redirects]]
   from = "/poterymm"
   to = "/templates/poterymm/index.html"
   status = 200
@@ -104,6 +179,11 @@
   status = 200
 
 [[redirects]]
+  from = "/pkprojekt"
+  to = "/templates/pkprojekt/index.html"
+  status = 200
+
+[[redirects]]
   from = "/purdom"
   to = "/templates/purdom/index.html"
   status = 200
@@ -111,6 +191,11 @@
 [[redirects]]
   from = "/redosi_group"
   to = "/templates/redosi_group/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/reinter"
+  to = "/templates/reinter/index.html"
   status = 200
 
 [[redirects]]
@@ -129,6 +214,16 @@
   status = 200
 
 [[redirects]]
+  from = "/sochabau"
+  to = "/templates/sochabau/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/tostav"
+  to = "/templates/tostav/index.html"
+  status = 200
+
+[[redirects]]
   from = "/stamaxplus"
   to = "/templates/stamaxplus/index.html"
   status = 200
@@ -139,6 +234,11 @@
   status = 200
 
 [[redirects]]
+  from = "/stavba-domu-na-kluc"
+  to = "/templates/stavba-domu-na-kluc/index.html"
+  status = 200
+
+[[redirects]]
   from = "/stavferka"
   to = "/templates/stavferka/index.html"
   status = 200
@@ -146,6 +246,11 @@
 [[redirects]]
   from = "/vo-vyske"
   to = "/templates/vo-vyske/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/windoo"
+  to = "/templates/windoo/index.html"
   status = 200
 
 [[redirects]]

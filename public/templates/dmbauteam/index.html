@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DM-BAU TEAM | Práca a zamestnanie v Nemecku - Stavebné práce EU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.2/dist/lenis.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a', // Deep Navy
+                        'primary-dark': '#172554',
+                        accent: '#f59e0b', // Amber/Gold
+                        dark: '#0f172a',
+                        light: '#ffffff'
+                    },
+                    fontFamily: {
+                        sans: ['"Rethink Sans"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --color-primary: #1e3a8a;
+            --color-background: #ffffff;
+            --color-foreground: #0f172a;
+        }
+
+        body { background-color: var(--color-background); color: var(--color-foreground); font-family: '"Rethink Sans"', sans-serif; overflow-x: hidden; }
+
+        /* Site Header Scroll Effect */
+        .site-header { transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .site-header.scrolled { background-color: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+
+        /* Navigation Overlay */
+        #nav-overlay {
+            position: fixed; top: 0; left: 0; right: 0; height: 75vh; z-index: 60;
+            background: #0f172a; transform: translateY(-100%);
+            transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5); border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex; flex-direction: column; overflow: hidden;
+        }
+        #nav-overlay.is-open { transform: translateY(0); }
+
+        /* Texture / Grain Overlay */
+        .texture-bg { position: absolute; inset: 0; z-index: 0; opacity: 0.05; pointer-events: none; background-image: url('texture.svg'); background-size: cover; }
+        #nav-overlay .texture-bg { opacity: 0.1; filter: invert(1); }
+        .grain-overlay::after { content: ''; position: absolute; inset: 0; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); pointer-events: none; z-index: 10; }
+
+        /* Hover Split Text Effect */
+        .hover-split-text { position: relative; overflow: hidden; display: inline-block; vertical-align: top; }
+        .hover-split-text-inner { display: block; transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1); }
+        .hover-split-text-inner::after { content: attr(data-text); position: absolute; top: 100%; left: 0; width: 100%; line-height: inherit; }
+        *:hover > .hover-split-text > .hover-split-text-inner, .hover-split-text:hover > .hover-split-text-inner { transform: translateY(-100%); }
+
+        /* Animate on Scroll */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .fade-in.is-visible { opacity: 1; transform: translateY(0); }
+
+        /* Image Reveal Effect */
+        .image-reveal-wrapper { position: relative; overflow: hidden; }
+        .image-reveal-shutter { position: absolute; inset: 0; background-color: var(--color-primary); z-index: 10; transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1); }
+        .image-reveal-wrapper.is-revealed .image-reveal-shutter { transform: translateY(-100%); }
+        .image-reveal-img { transform: scale(1.1); transition: transform 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .image-reveal-wrapper.is-revealed .image-reveal-img { transform: scale(1); }
+
+        /* Divider Line */
+        .divider { width: 60px; height: 1.5px; background-color: var(--color-primary); margin-bottom: 2rem; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased bg-white">
+    <!-- SITE HEADER -->
+    <header id="site-header" class="site-header fixed top-0 left-0 right-0 z-50">
+        <div class="mx-auto w-[95vw] flex items-center justify-between h-16 md:h-24">
+            <div class="flex items-center">
+                <a href="#" class="flex flex-col">
+                    <span class="text-xl md:text-2xl font-black tracking-tighter text-dark uppercase italic leading-none">DM-BAU<span class="text-accent">.</span></span>
+                    <span class="text-[8px] font-bold text-dark/30 uppercase tracking-[0.4em] ml-0.5 mt-1">Recruitment & Construction</span>
+                </a>
+            </div>
+            <div class="flex justify-end items-center gap-6">
+                <a href="tel:+421918792607" class="hidden md:block text-[10px] font-black uppercase tracking-widest text-dark/40 hover:text-primary transition-colors">+421 918 792 607</a>
+                <button id="menu-toggle" class="text-dark bg-white border border-dark/10 rounded-full px-6 py-2.5 text-xs font-medium uppercase tracking-[0.2em] flex items-center gap-3 hover:bg-dark hover:text-white transition-all group">
+                    <div class="w-4 flex flex-col gap-1.5 items-end">
+                        <span class="w-full h-[1.2px] bg-current rounded-full"></span>
+                        <span class="w-2/3 h-[1.2px] bg-current rounded-full transition-all group-hover:w-full"></span>
+                    </div>
+                    <span class="hover-split-text">
+                        <span class="hover-split-text-inner" data-text="Menu">Menu</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVIGATION OVERLAY -->
+    <div id="nav-overlay">
+        <div class="texture-bg"></div>
+        <div class="relative z-10 mx-auto w-[95vw] flex items-center justify-between h-24 shrink-0">
+            <span class="text-xl md:text-2xl font-black tracking-tighter text-white uppercase italic">DM-BAU TEAM<span class="text-accent"> EU</span></span>
+            <button id="menu-close" class="text-white text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-full px-6 py-2.5 flex items-center gap-3 hover:bg-white/10 transition-colors group">
+                <span class="relative w-4 h-4 flex items-center justify-center">
+                    <span class="absolute w-full h-[1.2px] bg-white rotate-45 rounded-full"></span>
+                    <span class="absolute w-full h-[1.2px] bg-white -rotate-45 rounded-full"></span>
+                </span>
+                <span class="hover-split-text">
+                    <span class="hover-split-text-inner" data-text="Zavrieť">Zavrieť</span>
+                </span>
+            </button>
+        </div>
+
+        <div class="relative z-10 flex-1 flex items-center pb-8 overflow-y-auto">
+            <div class="mx-auto w-[95vw] grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="hidden md:flex flex-col justify-center pl-8 pt-4 text-white/40 uppercase tracking-[0.3em] font-medium">
+                    <p class="mb-4">Práca v Nemecku</p>
+                    <p class="mb-4">Práca v Rakúsku</p>
+                    <p>Stavebné práce EU</p>
+                </div>
+                <nav class="flex flex-col gap-4 items-center md:items-end text-center md:text-right px-6">
+                    <a href="#intro" class="menu-link text-4xl md:text-7xl font-black text-white uppercase italic tracking-tighter group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Domov">Domov</span></span></a>
+                    <a href="#onas" class="menu-link text-4xl md:text-7xl font-black text-white uppercase italic tracking-tighter group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="O nás">O nás</span></span></a>
+                    <a href="#sluzby" class="menu-link text-4xl md:text-7xl font-black text-white uppercase italic tracking-tighter group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Služby">Služby</span></span></a>
+                    <a href="#praca" class="menu-link text-4xl md:text-7xl font-black text-white uppercase italic tracking-tighter group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Práca">Práca</span></span></a>
+                    <a href="#kontakt" class="menu-link text-4xl md:text-7xl font-black text-white uppercase italic tracking-tighter group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kontakt">Kontakt</span></span></a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="grain-overlay">
+        <!-- HERO SECTION -->
+        <section id="intro" class="relative h-screen flex items-end pb-32 overflow-hidden bg-dark">
+            <div class="absolute inset-0 z-0 opacity-60">
+                <img src="partners.jpg" class="w-full h-full object-cover">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent z-1"></div>
+            <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10">
+                <div class="max-w-4xl">
+                    <div class="mb-10 px-6 py-2 border border-white/20 bg-white/10 backdrop-blur-md rounded-full inline-flex items-center gap-3 fade-in">
+                        <span class="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+                        <p class="text-[10px] font-black uppercase tracking-[0.3em] text-white italic">DM-BAU TEAM — Vaša cesta ku kariére v zahraničí</p>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl lg:text-[5.5rem] font-black text-white leading-[1.05] tracking-tight uppercase italic fade-in" style="transition-delay: 0.1s">
+                        Práca v<br><span class="text-accent italic">Nemecku.</span>
+                    </h1>
+                    <p class="mt-12 text-lg md:text-xl text-white/50 font-light max-w-xl leading-relaxed italic fade-in" style="transition-delay: 0.2s">
+                        Sprostredkovanie a realizácia inštalačných, montážnych a stavebných prác po celom území EÚ. Férový prístup, seriózna fakturácia a zabezpečené ubytovanie.
+                    </p>
+                    <div class="mt-16 flex flex-col sm:flex-row gap-6 fade-in" style="transition-delay: 0.3s">
+                        <a href="#praca" class="px-14 py-6 bg-accent text-dark text-xs font-black rounded-full hover:bg-white transition-all duration-500 uppercase italic tracking-widest shadow-xl">Ponuka práce</a>
+                        <a href="#kontakt" class="px-14 py-6 border border-white/20 text-white text-xs font-bold rounded-full hover:bg-white hover:text-dark transition-all duration-500 uppercase italic tracking-widest">Registrácia</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="onas" class="py-32 md:py-48 bg-white relative overflow-hidden">
+            <div class="mx-auto w-[95vw] px-6 md:px-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                    <div class="fade-in">
+                        <p class="text-[10px] font-black uppercase tracking-[0.4em] text-primary mb-6">Kto sme</p>
+                        <h2 class="text-5xl md:text-8xl font-black text-dark tracking-tighter uppercase italic leading-none mb-10">Naša<br><span class="text-primary italic">Vízia.</span></h2>
+                        <div class="space-y-8 text-xl font-light text-dark/70 leading-relaxed italic">
+                            <p>Sme mladá inovatívna spoločnosť s dlhoročnou osobnou skúsenosťou s prácou v zahraničí. Poskytujeme pracovné príležitosti po celom území Nemecka, Rakúska či Holandska.</p>
+                            <p>Máme dlhodobé zahraničné partnerstvá, ktoré nám umožňujú pre Vás zabezpečiť dobre platenú a serióznu prácu u stabilných klientov.</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 fade-in" style="transition-delay: 0.2s">
+                        <div class="image-reveal-wrapper rounded-[2.5rem] overflow-hidden aspect-[3/4]">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="serioznost.jpg" class="image-reveal-img w-full h-full object-cover">
+                        </div>
+                        <div class="image-reveal-wrapper rounded-[2.5rem] overflow-hidden aspect-[3/4] mt-12">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="spolupraca.jpg" class="image-reveal-img w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES / VALUES GRID -->
+        <section id="sluzby" class="py-32 md:py-48 bg-primary text-white relative overflow-hidden">
+            <div class="texture-bg opacity-10 filter invert"></div>
+            <div class="mx-auto w-[95vw] px-6 md:px-10">
+                <div class="fade-in mb-24">
+                    <div class="divider bg-accent"></div>
+                    <h2 class="text-5xl md:text-8xl font-black tracking-tighter uppercase italic leading-none">Naše<span class="text-accent italic"> Služby.</span></h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                    <div class="fade-in group">
+                        <p class="text-accent text-[10px] font-bold tracking-[0.3em] uppercase mb-6 italic">01</p>
+                        <h3 class="text-3xl font-black italic tracking-tighter uppercase mb-6">Montážne práce</h3>
+                        <p class="text-white/50 text-base leading-relaxed italic uppercase tracking-tighter">Realizácia komplexných montážnych systémov pre priemysel aj bytovú výstavbu.</p>
+                    </div>
+                    <div class="fade-in group" style="transition-delay: 0.1s">
+                        <p class="text-accent text-[10px] font-bold tracking-[0.3em] uppercase mb-6 italic">02</p>
+                        <h3 class="text-3xl font-black italic tracking-tighter uppercase mb-6">Stavebné práce</h3>
+                        <p class="text-white/50 text-base leading-relaxed italic uppercase tracking-tighter">Klasické murárske práce a betonáž pri výstavbe rodinných domov.</p>
+                    </div>
+                    <div class="fade-in group" style="transition-delay: 0.2s">
+                        <p class="text-accent text-[10px] font-bold tracking-[0.3em] uppercase mb-6 italic">03</p>
+                        <h3 class="text-3xl font-black italic tracking-tighter uppercase mb-6">Inštalácie</h3>
+                        <p class="text-white/50 text-base leading-relaxed italic uppercase tracking-tighter">Elektromontáže a technické inštalačné práce pod vedením skúsených majstrov.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED JOB SECTION -->
+        <section id="praca" class="py-32 md:py-48 bg-accent relative overflow-hidden">
+            <div class="mx-auto w-[95vw] px-6 md:px-10">
+                <div class="bg-white rounded-[4rem] p-12 md:p-24 shadow-2xl relative overflow-hidden">
+                    <div class="texture-bg opacity-10"></div>
+                    <div class="relative z-10 flex flex-col lg:flex-row justify-between items-start gap-12">
+                        <div class="fade-in max-w-2xl">
+                            <span class="px-5 py-2 bg-primary text-white text-[10px] font-bold uppercase tracking-widest italic rounded-full inline-block mb-10">Aktuálna ponuka</span>
+                            <h2 class="text-5xl md:text-7xl font-black text-dark tracking-tighter uppercase italic leading-none mb-10">Murári /<br><span class="text-primary italic">Stavbári.</span></h2>
+                            <div class="space-y-6 text-xl font-light text-dark/70 italic tracking-tighter">
+                                <p>Pre nášho klienta v Nemecku (Región Heilbronn) hľadáme šikovných stavbárov na murárske práce a betonáž.</p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-base uppercase font-bold tracking-widest text-primary pt-6 border-t border-dark/5">
+                                    <p>Nástup: 17.06.2024</p>
+                                    <p>Sadzba: 23 € / hod.</p>
+                                    <p>Fakturácia: 14 / 14</p>
+                                    <p>Ubytovanie: Zabezpečené</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fade-in flex flex-col items-center lg:items-end w-full lg:w-auto mt-12 lg:mt-0">
+                            <div class="p-12 bg-dark rounded-[3rem] text-white text-center shadow-2xl skew-y-1">
+                                <p class="text-xs uppercase tracking-widest mb-4 opacity-40">Mesačný zárobok cca</p>
+                                <p class="text-6xl font-black italic tracking-tighter text-accent leading-none">4400 €<span class="text-2xl text-white ml-2">+</span></p>
+                                <a href="mailto:dmbauteam@gmail.com" class="mt-10 block px-10 py-5 bg-white text-dark text-[10px] font-black uppercase tracking-[0.3em] rounded-full hover:bg-accent transition-all">Poslať životopis</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <footer id="kontakt" class="bg-white pt-32 md:pt-48 pb-20 relative overflow-hidden border-t border-dark/5">
+            <div class="mx-auto w-[95vw] px-6 md:px-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-end pb-32">
+                    <div class="fade-in">
+                        <div class="divider"></div>
+                        <h2 class="text-6xl md:text-[10rem] font-black tracking-tighter uppercase italic leading-[0.8] mb-12">Kontakt<span class="text-primary italic">.</span></h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 font-sans italic">
+                            <div>
+                                <p class="text-dark/30 text-[9px] font-bold tracking-[0.3em] uppercase mb-6">Sídlo spoločnosti</p>
+                                <p class="text-2xl font-black italic tracking-tighter uppercase mb-4">DM-BAU TEAM, s. r. o.</p>
+                                <p class="text-lg font-light text-dark/50 leading-relaxed uppercase">26. novembra 1510/3<br>066 01 Humenné</p>
+                                <div class="mt-8 pt-8 border-t border-dark/5 text-[9px] font-bold text-dark/30 uppercase tracking-widest space-y-2">
+                                    <p>IČO: 53 699 165</p>
+                                    <p>DIČ: 2121463872</p>
+                                </div>
+                            </div>
+                            <div class="space-y-12">
+                                <div class="flex flex-col gap-2">
+                                    <p class="text-dark/30 text-[9px] font-bold tracking-[0.3em] uppercase">Spýtajte sa priamo</p>
+                                    <p class="text-sm font-bold uppercase mb-2">Daniel Mažo</p>
+                                    <a href="tel:+421918792607" class="text-3xl font-black italic tracking-tighter uppercase hover:text-primary transition-colors">+421 918 792 607</a>
+                                    <a href="mailto:dmbauteam@gmail.com" class="text-xl font-light block hover:text-primary underline underline-offset-8 mt-4">dmbauteam@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-12 flex flex-col md:flex-row justify-between items-center gap-8 text-[9px] font-bold text-dark/20 tracking-[0.4em] uppercase italic text-center">
+                    <p>© 2026 DM-BAU TEAM | PROFESSIONAL EU SERVICES</p>
+                    <div class="flex gap-10">
+                        <a href="#" class="hover:text-primary transition-colors">Facebook</a>
+                        <a href="#" class="hover:text-primary transition-colors">Instagram</a>
+                        <a href="#" class="hover:text-primary transition-colors">Ochrana osobných údajov</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        const lenis = new Lenis({ duration: 1.5, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+        function raf(t) { lenis.raf(t); requestAnimationFrame(raf) } requestAnimationFrame(raf);
+        
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 50) });
+        
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const overlay = document.getElementById('nav-overlay');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        const toggleMenu = (o) => { overlay.classList.toggle('is-open', o); document.body.style.overflow = o ? 'hidden' : ''; o ? lenis.stop() : lenis.start() };
+        menuToggle.addEventListener('click', () => toggleMenu(true));
+        menuClose.addEventListener('click', () => toggleMenu(false));
+        menuLinks.forEach(l => l.addEventListener('click', () => toggleMenu(false)));
+
+        const fInObs = new IntersectionObserver(e => { e.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-visible'); fInObs.unobserve(en.target) } }) }, { threshold: .1 });
+        document.querySelectorAll('.fade-in').forEach(el => fInObs.observe(el));
+
+        const revObs = new IntersectionObserver(e => { e.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-revealed'); revObs.unobserve(en.target) } }) }, { threshold: .1 });
+        document.querySelectorAll('.image-reveal-wrapper').forEach(el => revObs.observe(el));
+    </script>
+</body>
+</html>
