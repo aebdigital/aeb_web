@@ -59,9 +59,9 @@
         #nav-overlay .texture-bg { opacity: 0.2; filter: invert(1); }
         
         /* Hover Split Text */
-        .hover-split-text { position: relative; overflow: hidden; display: inline-block; vertical-align: top; }
+        .hover-split-text { position: relative; overflow: hidden; display: inline-block; vertical-align: top; padding-right: 0.15em; }
         .hover-split-text-inner { display: block; transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1); }
-        .hover-split-text-inner::after { content: attr(data-text); position: absolute; top: 100%; left: 0; width: 100%; line-height: inherit; }
+        .hover-split-text-inner::after { content: attr(data-text); position: absolute; top: 100%; left: 0; width: 100%; line-height: inherit; padding-right: inherit; }
         *:hover > .hover-split-text > .hover-split-text-inner,
         .hover-split-text:hover > .hover-split-text-inner { transform: translateY(-100%); }
 
