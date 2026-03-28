@@ -210,9 +210,9 @@
 
     <main>
         <!-- Hero Section -->
-        <section id="domov" class="relative h-screen flex items-end pb-32 overflow-hidden bg-black">
-            <div class="absolute inset-0 z-0 opacity-60">
-                <img src="hero.avif" class="w-full h-full object-cover">
+        <section id="domov" class="sticky top-0 h-screen flex items-end pb-32 overflow-hidden bg-black z-0">
+            <div class="absolute inset-0 z-0 opacity-60 hero-parallax">
+                <img src="hero.avif" class="w-full h-full object-cover scale-110">
             </div>
             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-1"></div>
             <div class="relative z-10 site-container">
@@ -221,11 +221,11 @@
                         <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
                         <p class="text-[10px] font-black uppercase tracking-[0.3em] text-white italic">Nová dimenzia výstavby</p>
                     </div>
-                    <h1 class="text-5xl md:text-7xl lg:text-[5.5rem] font-black text-[#5c4a33] leading-[1.05] tracking-tight uppercase italic fade-in" style="transition-delay: 0.1s">
-                        Ekologické bývanie,<br><span class="text-[#e5d9b9]">progresívna stavba.</span>
+                    <h1 class="text-5xl md:text-7xl lg:text-[5.5rem] font-black text-white leading-[1.05] tracking-tight uppercase italic fade-in" style="transition-delay: 0.1s">
+                        Ekologické bývanie,<br><span class="text-primary">progresívna stavba.</span>
                     </h1>
                     <div class="mt-12 flex flex-col md:flex-row items-end justify-between gap-12 fade-in" style="transition-delay: 0.2s">
-                        <p class="text-lg md:text-xl text-[#5c4a33]/60 font-light max-w-2xl leading-relaxed italic">
+                        <p class="text-lg md:text-xl text-white/60 font-light max-w-2xl leading-relaxed italic">
                             Ponúkame premyslené existujúce katalógové riešenia, ako aj individuálne riešenia prostredníctvom štúdií a komplexných projektov na mieru.
                         </p>
                         <div class="flex gap-6">
@@ -425,6 +425,15 @@
 
         const fInObs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('is-visible');fInObs.unobserve(en.target)}})},{threshold:.1});
         document.querySelectorAll('.fade-in').forEach(el=>fInObs.observe(el));
+
+        // Parallax Effect
+        window.addEventListener('scroll', () => {
+            const parallax = document.querySelector('.hero-parallax');
+            if (parallax) {
+                let scroll = window.pageYOffset;
+                parallax.style.transform = `translateY(${scroll * 0.4}px)`;
+            }
+        });
     </script>
 </body>
 </html>
