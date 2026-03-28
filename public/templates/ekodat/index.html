@@ -38,8 +38,13 @@
         body { background-color: var(--color-background); color: var(--color-foreground); font-family: '"Rethink Sans"', sans-serif; overflow-x: hidden; }
 
         /* Site Header Scroll Effect */
-        .site-header { transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); }
-        .site-header.scrolled { background-color: rgba(255, 255, 255, 0.82); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+        .site-header { transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); color: white; }
+        .site-header.scrolled { background-color: rgba(255, 255, 255, 0.82); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); color: var(--color-foreground); }
+        
+        .header-link { color: rgba(255, 255, 255, 0.5); transition: color 0.5s ease; }
+        .site-header.scrolled .header-link { color: rgba(26, 26, 26, 0.4); }
+        .header-logo { color: white; transition: color 0.5s ease; }
+        .site-header.scrolled .header-logo { color: var(--color-foreground); }
 
         /* Navigation Overlay */
         #nav-overlay {
@@ -82,14 +87,14 @@
     <header id="site-header" class="site-header fixed top-0 left-0 right-0 z-50">
         <div class="mx-auto w-[95vw] flex items-center justify-between h-16 md:h-24">
             <div class="flex items-center">
-                <a href="#" class="flex flex-col">
-                    <span class="text-xl md:text-2xl font-black tracking-tighter text-dark uppercase italic leading-none">EKODAT<span class="text-primary">.</span></span>
-                    <span class="text-[8px] font-bold text-dark/30 uppercase tracking-[0.4em] ml-0.5 mt-1">Bardejov | 20+ Rokov</span>
+                <a href="#" class="header-logo flex flex-col">
+                    <span class="text-xl md:text-2xl font-black tracking-tighter uppercase italic leading-none">EKODAT<span class="text-primary">.</span></span>
+                    <span class="text-[8px] font-bold opacity-30 uppercase tracking-[0.4em] ml-0.5 mt-1">Bardejov | 20+ Rokov</span>
                 </a>
             </div>
             <div class="flex justify-end items-center gap-6">
-                <a href="tel:+421905187620" class="hidden md:block text-[10px] font-black uppercase tracking-widest text-dark/40 hover:text-primary transition-colors">+421 905 187 620</a>
-                <button id="menu-toggle" class="text-dark bg-white border border-dark/10 rounded-full px-6 py-2.5 text-xs font-medium uppercase tracking-[0.2em] flex items-center gap-3 hover:bg-dark hover:text-white transition-all group">
+                <a href="tel:+421905187620" class="header-link hidden md:block text-[10px] font-black uppercase tracking-widest hover:text-primary transition-colors">+421 905 187 620</a>
+                <button id="menu-toggle" class="text-current bg-white/10 md:bg-white border border-current/10 rounded-full px-6 py-2.5 text-xs font-medium uppercase tracking-[0.2em] flex items-center gap-3 hover:bg-dark hover:text-white transition-all group">
                     <div class="w-4 flex flex-col gap-1.5 items-end">
                         <span class="w-full h-[1.2px] bg-current rounded-full"></span>
                         <span class="w-2/3 h-[1.2px] bg-current rounded-full transition-all group-hover:w-full"></span>
@@ -137,27 +142,27 @@
     <!-- MAIN CONTENT -->
     <main class="grain-overlay">
         <!-- HERO SECTION -->
-        <section id="intro" class="fixed inset-0 h-screen flex items-center overflow-hidden bg-accent z-0">
+        <section id="intro" class="fixed inset-0 h-screen flex items-center overflow-hidden bg-dark z-0">
             <div class="absolute inset-0 z-0 scale-110">
                 <img src="hero.jpg" id="hero-bg-img" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-white/40"></div>
-                <div class="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent"></div>
+                <div class="absolute inset-0 bg-black/60"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent"></div>
             </div>
             <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10">
                 <div class="max-w-4xl">
-                    <div class="mb-10 px-6 py-2 border border-primary/20 bg-white/30 backdrop-blur-md rounded-full inline-flex items-center gap-3 fade-in">
+                    <div class="mb-10 px-6 py-2 border border-white/20 bg-white/10 backdrop-blur-md rounded-full inline-flex items-center gap-3 fade-in">
                         <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-                        <p class="text-[10px] font-black uppercase tracking-[0.3em] text-dark italic">EKODAT — 20 rokov partnerstva</p>
+                        <p class="text-[10px] font-black uppercase tracking-[0.3em] text-white italic">EKODAT — 20 rokov partnerstva</p>
                     </div>
-                    <h1 class="text-5xl md:text-7xl lg:text-[5.5rem] font-black text-dark leading-[1.05] tracking-tight uppercase italic fade-in" style="transition-delay: 0.1s">
+                    <h1 class="text-5xl md:text-7xl lg:text-[5.5rem] font-black text-white leading-[1.05] tracking-tight uppercase italic fade-in" style="transition-delay: 0.1s">
                         Partner pre<br><span class="text-primary italic">Váš dom.</span>
                     </h1>
-                    <p class="mt-12 text-lg md:text-xl text-dark/70 font-light max-w-xl leading-relaxed italic fade-in" style="transition-delay: 0.2s">
+                    <p class="mt-12 text-lg md:text-xl text-white/70 font-light max-w-xl leading-relaxed italic fade-in" style="transition-delay: 0.2s">
                         Kvalita na prvom mieste. Komplexné stavebné činnosti od okien a dverí až po vlastné stavebniny. Budujte budúcnosť s odborníkmi.
                     </p>
                     <div class="mt-16 flex flex-col sm:flex-row gap-6 fade-in" style="transition-delay: 0.3s">
-                        <a href="#kontakt" class="px-14 py-6 bg-primary text-white text-xs font-black rounded-full hover:bg-dark transition-all duration-500 uppercase italic tracking-widest shadow-xl">Kontaktujte nás</a>
-                        <a href="#onas" class="px-14 py-6 border border-dark/10 text-dark text-xs font-bold rounded-full hover:bg-dark hover:text-white transition-all duration-500 uppercase italic tracking-widest">O našej firme</a>
+                        <a href="#kontakt" class="px-14 py-6 bg-primary text-white text-xs font-black rounded-full hover:bg-white hover:text-dark transition-all duration-500 uppercase italic tracking-widest shadow-xl">Kontaktujte nás</a>
+                        <a href="#onas" class="px-14 py-6 border border-white/10 text-white text-xs font-bold rounded-full hover:bg-white hover:text-dark transition-all duration-500 uppercase italic tracking-widest">O našej firme</a>
                     </div>
                 </div>
             </div>
@@ -232,7 +237,7 @@
                             <h3 class="text-3xl font-black italic tracking-tighter uppercase mb-6 group-hover:text-primary transition-colors">Okná a Dvere</h3>
                             <p class="text-sm text-dark/50 italic leading-relaxed uppercase tracking-tighter">Široký výber štýlov, dizajnov a materiálov pre Váš exteriér aj interiér.</p>
                         </div>
-                        <div class="relative w-full h-48 mt-12 rounded-2xl overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <div class="relative w-full h-48 mt-12 rounded-2xl overflow-hidden transition-all duration-700">
                              <img src="img1.jpg" class="w-full h-full object-cover">
                         </div>
                     </div>
@@ -241,7 +246,7 @@
                             <h3 class="text-3xl font-black italic tracking-tighter uppercase mb-6 group-hover:text-primary transition-colors">Fasády & Zateplenie</h3>
                             <p class="text-sm text-dark/50 italic leading-relaxed uppercase tracking-tighter">Zvýšte energetickú efektívnosť a chráňte svoj domov pred vplyvmi počasia.</p>
                         </div>
-                        <div class="relative w-full h-48 mt-12 rounded-2xl overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <div class="relative w-full h-48 mt-12 rounded-2xl overflow-hidden transition-all duration-700">
                              <img src="img2.jpg" class="w-full h-full object-cover">
                         </div>
                     </div>
@@ -250,7 +255,7 @@
                             <h3 class="text-3xl font-black italic tracking-tighter uppercase mb-6 group-hover:text-primary transition-colors">Stavebniny</h3>
                             <p class="text-sm text-dark/50 italic leading-relaxed uppercase tracking-tighter">Kompletný sortiment stavebného materiálu priamo v našej predajni.</p>
                         </div>
-                        <div class="relative w-full h-48 mt-12 rounded-2xl overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <div class="relative w-full h-48 mt-12 rounded-2xl overflow-hidden transition-all duration-700">
                              <img src="img3.jpg" class="w-full h-full object-cover">
                         </div>
                     </div>
