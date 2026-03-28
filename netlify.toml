@@ -254,6 +254,16 @@
   status = 200
 
 [[redirects]]
+  from = "/stavmixv-naj"
+  to = "/templates/stavmixv-naj/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/ekodat"
+  to = "/templates/ekodat/index.html"
+  status = 200
+
+[[redirects]]
   from = "/zamkovadlazbamartin"
   to = "/templates/zamkovadlazbamartin/index.html"
   status = 200
