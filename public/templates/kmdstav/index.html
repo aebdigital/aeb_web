@@ -66,8 +66,18 @@
         .hover-split-text:hover > .hover-split-text-inner { transform: translateY(-100%); }
 
         /* Site Header */
-        #site-header { transition: background-color 0.5s ease; }
-        #site-header.scrolled { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        #site-header { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        #site-header.scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.05); height: 80px; }
+        
+        .header-link { color: rgba(255,255,255,0.5); transition: all 0.3s ease; }
+        #site-header.scrolled .header-link { color: rgba(0,0,0,0.4); }
+        #site-header.scrolled .header-link:hover { color: var(--color-primary); }
+
+        .logo-img { filter: brightness(0) invert(1); transition: all 0.5s ease; }
+        #site-header.scrolled .logo-img { filter: none; }
+
+        .menu-btn { color: white; border-color: rgba(255,255,255,0.2); background: transparent; }
+        #site-header.scrolled .menu-btn { color: var(--color-dark); border-color: rgba(0,0,0,0.1); background: white; }
 
         /* Animations */
         .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
@@ -177,21 +187,21 @@
     </div>
 
     <!-- Main Header -->
-    <header id="site-header" class="fixed top-0 left-0 right-0 z-50">
-        <div class="site-container flex items-center justify-between h-16 md:h-24">
+    <header id="site-header" class="fixed top-0 left-0 right-0 z-50 group">
+        <div class="site-container flex items-center justify-between h-24 transition-all duration-500">
             <div class="w-1/3 hidden md:flex items-center">
-                <a href="tel:0919382334" class="text-xs font-black uppercase tracking-[0.2em] text-dark/40 hover:text-primary transition-colors">0919 382 334</a>
+                <a href="tel:0919382334" class="header-link text-[10px] font-black uppercase tracking-[0.3em] italic">0919 382 334</a>
             </div>
             <div class="flex-1 md:w-1/3 flex justify-start md:justify-center">
                 <a href="#" class="flex items-center">
-                    <img src="logo.avif" class="h-8 md:h-12 w-auto" alt="Logo">
+                    <img src="logo.avif" class="logo-img h-10 md:h-14 w-auto object-contain" alt="Logo">
                 </a>
             </div>
             <div class="flex md:w-1/3 justify-end items-center">
-                <button id="menu-toggle" class="text-dark bg-white border border-dark/10 rounded-full px-5 py-2.5 text-xs font-medium uppercase tracking-[0.2em] flex items-center gap-3 hover:bg-dark hover:text-white transition-all group">
-                    <div class="w-4 flex flex-col gap-1.5 items-end">
+                <button id="menu-toggle" class="menu-btn border rounded-full px-6 py-3 text-[10px] font-black uppercase tracking-[0.3em] italic flex items-center gap-4 transition-all group/btn">
+                    <div class="w-5 flex flex-col gap-1.5 items-end">
                         <span class="w-full h-[1.5px] bg-current rounded-full"></span>
-                        <span class="w-2/3 h-[1.5px] bg-current rounded-full transition-all group-hover:w-full"></span>
+                        <span class="w-2/3 h-[1.5px] bg-current rounded-full transition-all group-hover/btn:w-full"></span>
                     </div>
                     <span class="hover-split-text">
                         <span class="hover-split-text-inner" data-text="Menu">Menu</span>
@@ -214,15 +224,15 @@
                         <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
                         <p class="text-[10px] font-black uppercase tracking-[0.3em] text-white italic">Staviame sny od základov</p>
                     </div>
-                    <h1 class="text-5xl md:text-7xl lg:text-[5.5rem] font-black text-white leading-[1.05] tracking-tight uppercase italic fade-in" style="transition-delay: 0.1s">
-                        Váš sen<br><span class="text-primary">o bývaní.</span>
+                    <h1 class="text-6xl md:text-8xl lg:text-[7rem] font-black text-white leading-[1] tracking-tighter uppercase italic fade-in" style="transition-delay: 0.1s">
+                        Váš sen<br><span class="text-primary italic">o bývaní.</span>
                     </h1>
                     <div class="mt-16 flex flex-col md:flex-row items-end justify-between gap-12 fade-in" style="transition-delay: 0.2s">
-                        <p class="text-lg md:text-xl text-white/50 font-light max-w-2xl leading-tight italic">
+                        <p class="text-lg md:text-xl text-white font-light max-w-2xl leading-tight italic tracking-tighter">
                             KMD Stav je Váš spoľahlivý partner pre komplexné riešenia v oblasti stavebníctva. S nami sa sny stávajú realitou.
                         </p>
                         <div class="flex gap-6">
-                            <a href="#sluzby" class="px-14 py-6 bg-white text-dark text-xs font-black rounded-full hover:bg-primary transition-all duration-500 uppercase italic tracking-widest shadow-2xl shrink-0">Naše služby</a>
+                            <a href="#sluzby" class="px-14 py-6 bg-white text-dark text-[10px] font-black rounded-full hover:bg-primary hover:text-white transition-all duration-500 uppercase italic tracking-[0.3em] shadow-2xl shrink-0">Naše služby</a>
                         </div>
                     </div>
                 </div>
@@ -261,83 +271,100 @@
             <!-- Services Slider -->
             <section id="sluzby" class="py-28 md:py-48 bg-white overflow-hidden relative">
                 <div class="site-container relative z-10">
-                    <div class="fade-in mb-24 flex flex-col md:flex-row items-end justify-between gap-10">
-                        <div>
-                            <div class="divider"></div>
-                            <h2 class="text-5xl md:text-9xl font-black text-dark tracking-tighter uppercase italic leading-none">Naše<span class="text-primary"> Služby.</span></h2>
-                        </div>
-                        <div class="flex gap-4">
-                            <button onclick="document.getElementById('service-slider').scrollBy({left:-550,behavior:'smooth'})" class="w-16 h-16 rounded-full border border-dark/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all bg-white shadow-sm">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6" /></svg>
-                            </button>
-                            <button onclick="document.getElementById('service-slider').scrollBy({left:550,behavior:'smooth'})" class="w-16 h-16 rounded-full border border-dark/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all bg-white shadow-sm">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6" /></svg>
-                            </button>
-                        </div>
+                    <div class="fade-in mb-24">
+                        <div class="divider"></div>
+                        <h2 class="text-5xl md:text-9xl font-black text-dark tracking-tighter uppercase italic leading-none">Naše<span class="text-primary italic"> Služby.</span></h2>
                     </div>
                     
-                    <div id="service-slider" class="ref-slider fade-in">
-                        <div class="ref-card group">
-                            <img src="serv1.avif" alt="Zemné práce">
-                            <div class="ref-card-overlay">
-                                <h3 class="text-3xl font-black italic tracking-tighter uppercase">Zemné a výkopové práce</h3>
-                                <p class="mt-4 text-sm font-bold opacity-80 uppercase italic tracking-tighter">Kompletná príprava terénu</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 fade-in">
+                        <!-- Card 1 -->
+                        <div class="relative min-h-[500px] flex flex-col justify-end p-10 rounded-[3rem] overflow-hidden group shadow-2xl">
+                            <img src="serv1.avif" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Zemné a výkopové práce">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <p class="text-primary text-[10px] font-bold tracking-[0.3em] uppercase mb-4 italic">01 / Príprava</p>
+                                <h3 class="text-3xl font-black italic tracking-tighter uppercase mb-6 leading-none">Zemné a<br>výkopové práce</h3>
+                                <p class="text-white/60 text-xs leading-relaxed italic uppercase tracking-widest">Kompletná príprava terénu pre vaše stavby.</p>
                             </div>
                         </div>
-                        <div class="ref-card group">
-                            <img src="serv2.avif" alt="Výstavba domov">
-                            <div class="ref-card-overlay">
-                                <h3 class="text-3xl font-black italic tracking-tighter uppercase">Výstavba rodinných domov</h3>
-                                <p class="mt-4 text-sm font-bold opacity-80 uppercase italic tracking-tighter">Realizácie na kľúč</p>
+                        <!-- Card 2 -->
+                        <div class="relative min-h-[500px] flex flex-col justify-end p-10 rounded-[3rem] overflow-hidden group shadow-2xl">
+                            <img src="serv2.avif" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Výstavba rodinných domov">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <p class="text-primary text-[10px] font-bold tracking-[0.3em] uppercase mb-4 italic">02 / Realizácia</p>
+                                <h3 class="text-3xl font-black italic tracking-tighter uppercase mb-6 leading-none tracking-tighter">Výstavba<br>rodinných domov</h3>
+                                <p class="text-white/60 text-xs leading-relaxed italic uppercase tracking-widest">Kompletná realizácia stavieb na kľúč.</p>
                             </div>
                         </div>
-                        <div class="ref-card group">
-                            <img src="serv3.avif" alt="Zámková dlažba">
-                            <div class="ref-card-overlay">
-                                <h3 class="text-3xl font-black italic tracking-tighter uppercase">Zámková dlažba</h3>
-                                <p class="mt-4 text-sm font-bold opacity-80 uppercase italic tracking-tighter">Okolie domu a chodníky</p>
+                        <!-- Card 3 -->
+                        <div class="relative min-h-[500px] flex flex-col justify-end p-10 rounded-[3rem] overflow-hidden group shadow-2xl">
+                            <img src="serv3.avif" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Zámková dlažba">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <p class="text-primary text-[10px] font-bold tracking-[0.3em] uppercase mb-4 italic">03 / Exteriér</p>
+                                <h3 class="text-3xl font-black italic tracking-tighter uppercase mb-6 leading-none">Zámková<br>dlažba</h3>
+                                <p class="text-white/60 text-xs leading-relaxed italic uppercase tracking-widest">Profesionálna pokládka dlažieb a úprava okolia.</p>
                             </div>
                         </div>
-                        <div class="ref-card group">
-                            <img src="serv4.avif" alt="Parkoviská">
-                            <div class="ref-card-overlay">
-                                <h3 class="text-3xl font-black italic tracking-tighter uppercase">Parkoviská</h3>
-                                <p class="mt-4 text-sm font-bold opacity-80 uppercase italic tracking-tighter">Spevnené plochy</p>
+                        <!-- Card 4 -->
+                        <div class="relative min-h-[500px] flex flex-col justify-end p-10 rounded-[3rem] overflow-hidden group shadow-2xl">
+                            <img src="serv4.avif" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Parkoviská">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <p class="text-primary text-[10px] font-bold tracking-[0.3em] uppercase mb-4 italic">04 / Infraštruktúra</p>
+                                <h3 class="text-3xl font-black italic tracking-tighter uppercase mb-6 leading-none">Parkoviská a<br>spevnené plochy</h3>
+                                <p class="text-white/60 text-xs leading-relaxed italic uppercase tracking-widest">Veľkoplošné riešenia pre parkoviská.</p>
                             </div>
                         </div>
-                        <div class="ref-card group">
-                            <img src="serv5.avif" alt="Vykurovanie">
-                            <div class="ref-card-overlay">
-                                <h3 class="text-3xl font-black italic tracking-tighter uppercase">Podlahové vykurovanie</h3>
-                                <p class="mt-4 text-sm font-bold opacity-80 uppercase italic tracking-tighter">Moderné systémy</p>
+                        <!-- Card 5 -->
+                        <div class="relative min-h-[500px] flex flex-col justify-end p-10 rounded-[3rem] overflow-hidden group shadow-2xl">
+                            <img src="serv5.avif" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Vykurovanie">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <p class="text-primary text-[10px] font-bold tracking-[0.3em] uppercase mb-4 italic">05 / Interiér</p>
+                                <h3 class="text-3xl font-black italic tracking-tighter uppercase mb-6 leading-none">Podlahové<br>vykurovanie</h3>
+                                <p class="text-white/60 text-xs leading-relaxed italic uppercase tracking-widest">Moderné a úsporné vykurovacie systémy.</p>
                             </div>
                         </div>
-                        <div class="ref-card group">
-                            <img src="serv6.avif" alt="Búracie práce">
-                            <div class="ref-card-overlay">
-                                <h3 class="text-3xl font-black italic tracking-tighter uppercase">Búracie práce</h3>
-                                <p class="mt-4 text-sm font-bold opacity-80 uppercase italic tracking-tighter">Rýchlo a bezpečne</p>
+                        <!-- Card 6 -->
+                        <div class="relative min-h-[500px] flex flex-col justify-end p-10 rounded-[3rem] overflow-hidden group shadow-2xl">
+                            <img src="serv6.avif" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Búracie práce">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <p class="text-primary text-[10px] font-bold tracking-[0.3em] uppercase mb-4 italic">06 / Sanácia</p>
+                                <h3 class="text-3xl font-black italic tracking-tighter uppercase mb-6 leading-none">Búracie a<br>demolačné práce</h3>
+                                <p class="text-white/60 text-xs leading-relaxed italic uppercase tracking-widest">Bezpečné odstránenie starých objektov.</p>
                             </div>
                         </div>
-                        <div class="ref-card group">
-                            <img src="serv7.avif" alt="Zatepľovanie">
-                            <div class="ref-card-overlay">
-                                <h3 class="text-3xl font-black italic tracking-tighter uppercase">Zatepľovanie budov</h3>
-                                <p class="mt-4 text-sm font-bold opacity-80 uppercase italic tracking-tighter">Efektívna izolácia</p>
+                        <!-- Card 7 -->
+                        <div class="relative min-h-[500px] flex flex-col justify-end p-10 rounded-[3rem] overflow-hidden group shadow-2xl">
+                            <img src="serv7.avif" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Zatepľovanie">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <p class="text-primary text-[10px] font-bold tracking-[0.3em] uppercase mb-4 italic">07 / Energetika</p>
+                                <h3 class="text-3xl font-black italic tracking-tighter uppercase mb-6 leading-none">Zatepľovanie<br>budov</h3>
+                                <p class="text-white/60 text-xs leading-relaxed italic uppercase tracking-widest">Zníženie nákladov na energie.</p>
                             </div>
                         </div>
-                        <div class="ref-card group">
-                            <img src="serv8.avif" alt="Oplotenia">
-                            <div class="ref-card-overlay">
-                                <h3 class="text-3xl font-black italic tracking-tighter uppercase">Oplotenia pozemkov</h3>
-                                <p class="mt-4 text-sm font-bold opacity-80 uppercase italic tracking-tighter">Bezpečnosť a estetika</p>
+                        <!-- Card 8 -->
+                        <div class="relative min-h-[500px] flex flex-col justify-end p-10 rounded-[3rem] overflow-hidden group shadow-2xl">
+                            <img src="serv8.avif" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Oplotenia">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <p class="text-primary text-[10px] font-bold tracking-[0.3em] uppercase mb-4 italic">08 / Bezpečnosť</p>
+                                <h3 class="text-3xl font-black italic tracking-tighter uppercase mb-6 leading-none">Oplotenia<br>pozemkov</h3>
+                                <p class="text-white/60 text-xs leading-relaxed italic uppercase tracking-widest">Kvalitné a estetické ohradenie majetku.</p>
                             </div>
                         </div>
-                        <div class="ref-card group">
-                            <img src="serv9.avif" alt="Terasy">
-                            <div class="ref-card-overlay">
-                                <h3 class="text-3xl font-black italic tracking-tighter uppercase">Drevené terasy</h3>
-                                <p class="mt-4 text-sm font-bold opacity-80 uppercase italic tracking-tighter">Výstavba z exteriérového dreva</p>
+                        <!-- Card 9 -->
+                        <div class="relative min-h-[500px] flex flex-col justify-end p-10 rounded-[3rem] overflow-hidden group shadow-2xl">
+                            <img src="serv9.avif" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Terasy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <p class="text-primary text-[10px] font-bold tracking-[0.3em] uppercase mb-4 italic">09 / Relax</p>
+                                <h3 class="text-3xl font-black italic tracking-tighter uppercase mb-6 leading-none">Drevené<br>terasy</h3>
+                                <p class="text-white/60 text-xs leading-relaxed italic uppercase tracking-widest">Výstavba z exteriérového dreva.</p>
                             </div>
                         </div>
                     </div>
