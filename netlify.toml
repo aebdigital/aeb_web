@@ -267,3 +267,23 @@
   from = "/zamkovadlazbamartin"
   to = "/templates/zamkovadlazbamartin/index.html"
   status = 200
+
+[[redirects]]
+  from = "/espron"
+  to = "/templates/espron/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/dclpartners"
+  to = "/templates/dclpartners/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/roneprojekt"
+  to = "/templates/roneprojekt/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/soldout"
+  to = "/templates/soldout/index.html"
+  status = 200

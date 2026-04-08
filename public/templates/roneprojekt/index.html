@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RONE Projekt, s.r.o. | Geodézia, Inžiniering, Stavebné projekty, Nehnuteľnosti</title>
+    <script>
+        if (window.location.protocol !== 'file:') {
+            document.write('<base href="/templates/roneprojekt/">');
+        }
+    </script>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="RONE Projekt – geodetické a inžinierske služby, stavebné projekty, výstavba rodinných domov, predaj a kúpa nehnuteľností. Malacky.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Outfit:wght@300;400;600;900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: '#2563eb', light: '#3b82f6', dark: '#1d4ed8' },
+                        secondary: '#0f172a',
+                        foreground: '#0f172a',
+                        muted: '#6b7280',
+                        light: '#f8fafc',
+                        border: '#e2e8f0',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    fontSize: { '10xl': '7.5rem', '11xl': '9rem' },
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --color-primary: #2563eb;
+            --color-secondary: #0f172a;
+        }
+
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+
+        body {
+            background-color: #ffffff;
+            color: #0f172a;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .site-header { transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .site-header.scrolled {
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .hover-split-text {
+            padding-right: 0.2em;
+            position: relative; overflow: hidden; line-height: 1.1;
+            display: inline-block; vertical-align: top;
+        }
+        .hover-split-text-inner {
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .hover-split-text-inner::after {
+            content: attr(data-text);
+            position: absolute; top: 110%; left: 0;
+            width: 100%; line-height: inherit;
+        }
+        .group:hover .hover-split-text-inner,
+        .hover-split-text:hover .hover-split-text-inner { transform: translateY(-100%); }
+
+        .reveal-on-scroll {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+        .image-reveal-wrapper { position: relative; overflow: hidden; }
+        .image-reveal-shutter {
+            position: absolute; inset: 0;
+            background-color: var(--color-secondary);
+            z-index: 10;
+            transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .image-reveal-wrapper.is-revealed .image-reveal-shutter { transform: translateY(-100%); }
+        .image-reveal-img {
+            transform: scale(1.2); filter: grayscale(100%);
+            transition: transform 1.8s cubic-bezier(0.76, 0, 0.24, 1), filter 1.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .image-reveal-wrapper.is-revealed .image-reveal-img { transform: scale(1); filter: grayscale(0%); }
+        .image-reveal-wrapper:hover .image-reveal-img { transform: scale(1.05); filter: grayscale(0%); }
+
+        #menu-overlay { transform: translateY(-100%); transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1); }
+        body.menu-open #menu-overlay { transform: translateY(0); }
+
+        .parallax-container { position: relative; overflow: hidden; pointer-events: none; }
+        .parallax-target { width: 100%; height: 100%; will-change: transform; }
+
+        .fade-up { opacity: 0; transform: translateY(30px); animation: fade-up-anim 0.7s ease-out forwards; }
+        .fade-up-1 { animation-delay: 0.1s; }
+        .fade-up-2 { animation-delay: 0.2s; }
+        .fade-up-3 { animation-delay: 0.3s; }
+        .fade-up-4 { animation-delay: 0.4s; }
+        @keyframes fade-up-anim {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .fill-text-animation {
+            position: relative;
+            background: linear-gradient(to right, white 50%, rgba(255,255,255,0.15) 50%);
+            background-size: 200% 100%;
+            background-position: 100% 0;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fill-text 2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+            animation-delay: 1.2s;
+        }
+        @keyframes fill-text { to { background-position: 0% 0; } }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+    <!-- ═══════ HEADER ═══════ -->
+    <header id="site-header" class="site-header fixed top-0 left-0 right-0 z-50 bg-transparent">
+        <div class="mx-auto w-[95vw] flex items-center justify-between h-16 md:h-24 px-6 md:px-10">
+            <a href="#" class="flex items-center">
+                <span class="text-xl md:text-3xl font-black tracking-tighter text-white uppercase italic font-heading">RONE<span class="text-primary">Projekt</span></span>
+            </a>
+            <button id="menu-toggle" class="text-white text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 backdrop-blur-sm group transition-colors">
+                <div class="w-4 flex flex-col gap-1">
+                    <span class="w-full h-[1.5px] bg-white"></span>
+                    <span class="w-full h-[1.5px] bg-white"></span>
+                </div>
+                <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Menu">Menu</span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ═══════ MENU OVERLAY ═══════ -->
+    <div id="menu-overlay" class="fixed top-0 inset-x-0 h-screen md:h-[80vh] z-[60] bg-secondary flex flex-col overflow-hidden shadow-2xl border-b border-primary/20">
+        <div class="absolute inset-0 z-0 pointer-events-none opacity-30" style="background-image: url('texture.svg'); background-size: cover; filter: invert(1);"></div>
+
+        <div class="relative z-10 mx-auto w-[95vw] flex items-center justify-between h-24 px-6 md:px-10">
+            <span class="text-xl md:text-3xl font-black tracking-tighter text-white uppercase italic font-heading">RONE<span class="text-primary">Projekt</span></span>
+            <button id="menu-close" class="text-white text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 group transition-colors">
+                <span class="relative w-4 h-4 flex items-center justify-center">
+                    <span class="absolute w-full h-[1.5px] bg-white rotate-45"></span>
+                    <span class="absolute w-full h-[1.5px] bg-white -rotate-45"></span>
+                </span>
+                <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Zavrieť">Zavrieť</span></span>
+            </button>
+        </div>
+
+        <div class="relative z-10 flex-1 flex items-center pb-8 overflow-y-auto">
+            <div class="mx-auto w-[95vw] px-6 md:px-10 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-20 py-10 md:py-0">
+                <!-- Col 1: Info -->
+                <div class="hidden md:flex flex-col">
+                    <span class="text-white/20 text-xs uppercase tracking-widest block mb-8">Kontakt & Informácie</span>
+                    <div class="mb-12">
+                        <p class="text-white text-3xl font-black mb-4 tracking-tighter uppercase italic font-heading">RONE Projekt s.r.o.</p>
+                        <p class="text-white/40 text-sm font-light leading-relaxed max-w-xs">
+                            Hviezdoslavova 1799/51<br>Malacky, 901 01
+                        </p>
+                    </div>
+                    <div>
+                        <span class="text-primary/60 text-[10px] uppercase tracking-[0.2em] block mb-2 font-bold">Kontakt</span>
+                        <p class="text-white text-2xl font-light italic">+421 903 726 345</p>
+                        <p class="text-white/40 text-lg font-light">roneprojekt@gmail.com</p>
+                    </div>
+                </div>
+
+                <!-- Col 2: Nav -->
+                <nav class="flex flex-col gap-6 items-center md:items-start">
+                    <span class="text-white/20 text-xs uppercase tracking-widest block mb-4">Navigácia</span>
+                    <div class="flex flex-col gap-4">
+                        <a href="#top" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter font-heading">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Úvod">Úvod</span></span>
+                        </a>
+                        <a href="#onas" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter font-heading">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="O nás">O nás</span></span>
+                        </a>
+                        <a href="#sluzby" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter font-heading">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Služby">Služby</span></span>
+                        </a>
+                        <a href="#projekty" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter font-heading">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Portfólio">Portfólio</span></span>
+                        </a>
+                        <a href="#kontakt" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter font-heading">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kontakt">Kontakt</span></span>
+                        </a>
+                    </div>
+                </nav>
+
+                <!-- Col 3: Accent -->
+                <div class="hidden lg:flex flex-col justify-end items-end text-right">
+                    <div class="text-white/5 text-[15rem] font-black leading-none absolute -bottom-20 -right-20 font-heading">RP</div>
+                    <div class="relative z-10">
+                        <p class="text-primary text-5xl font-black italic mb-2 font-heading">9:00 <span class="text-2xl not-italic uppercase opacity-40">– 18:00</span></p>
+                        <p class="text-white/40 text-sm uppercase tracking-widest font-bold">Pondelok – Piatok</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- ═══════ HERO ═══════ -->
+        <section id="top" class="sticky top-0 h-screen w-full flex items-center overflow-hidden z-0">
+            <div class="parallax-container absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="parallax-target hero-parallax w-full h-full scale-110" data-speed="0.1">
+                    <img src="hero.webp" alt="RONE Projekt realizácia" class="w-full h-full object-cover">
+                </div>
+            </div>
+            <div class="absolute inset-0 bg-black/40"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-secondary/50 via-transparent to-transparent"></div>
+
+            <div class="relative z-10 w-[95vw] mx-auto px-6 md:px-10">
+                <div class="max-w-5xl">
+                    <p class="fade-up text-primary text-sm font-black tracking-[0.4em] uppercase mb-8">
+                        Geodézia · Inžiniering · Stavebné projekty · Nehnuteľnosti
+                    </p>
+                    <h1 class="fade-up fade-up-1 text-7xl md:text-10xl lg:text-11xl font-black text-white leading-[0.85] tracking-tighter uppercase italic font-heading pr-4">
+                        Vaša stavba<br><span class="fill-text-animation">od A po Z.</span>
+                    </h1>
+                    <p class="fade-up fade-up-2 mt-12 text-lg md:text-2xl text-white/70 font-light max-w-2xl leading-relaxed">
+                        Komplexné profesionálne služby — od geodetického zamerania, cez inžinierske povolenia a stavebné projekty, až po realizáciu a predaj nehnuteľností.
+                    </p>
+                    <div class="fade-up fade-up-3 mt-16 flex flex-col sm:flex-row gap-6">
+                        <a href="#kontakt" class="group inline-flex items-center justify-center px-12 py-5 bg-primary text-white text-sm font-black rounded-none hover:scale-105 transition-all duration-300">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Nezáväzný dopyt">Nezáväzný dopyt</span></span>
+                        </a>
+                        <a href="#sluzby" class="group inline-flex items-center justify-center px-12 py-5 border-2 border-white/20 text-white text-sm font-bold rounded-none hover:bg-white/10 transition-all duration-300">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Naše služby">Naše služby</span></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ MAIN LAYOVER ═══════ -->
+        <div class="relative z-10 bg-white">
+
+            <!-- ═══════ SERVICES ═══════ -->
+            <section id="sluzby" class="py-28 md:py-36 bg-secondary relative overflow-hidden text-white">
+                <div class="absolute inset-0 z-0">
+                    <img src="rozvoj.webp" class="w-full h-full object-cover opacity-15 grayscale" alt="">
+                    <div class="absolute inset-0 bg-secondary/85"></div>
+                </div>
+
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="reveal-on-scroll mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
+                        <div>
+                            <p class="text-xs font-black tracking-[0.3em] uppercase text-primary mb-6">Naše Služby</p>
+                            <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase italic font-heading">Čo robíme<span class="text-primary">.</span></h2>
+                        </div>
+                        <p class="text-white/60 max-w-md font-light">Naša ponuka pokrýva celý cyklus — od prvého merania pozemku cez projekt až po odovzdanie kľúčov.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Card 1 -->
+                        <div class="reveal-on-scroll relative min-h-[450px] flex flex-col justify-end p-10 overflow-hidden group">
+                            <img src="inziniering.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Geodézia">
+                            <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <span class="text-primary text-xs font-black tracking-widest uppercase mb-4 block">01 / Geodézia</span>
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none font-heading">Geodetické<br>služby</h3>
+                                <ul class="space-y-3 text-white/70 font-medium text-xs tracking-wide">
+                                    <li>Vytýčenie stavby a pozemku</li>
+                                    <li>Geometrický plán</li>
+                                    <li>Adresný bod</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="reveal-on-scroll relative min-h-[450px] flex flex-col justify-end p-10 overflow-hidden group" style="transition-delay:150ms;">
+                            <img src="zaklady.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Inžiniering">
+                            <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <span class="text-primary text-xs font-black tracking-widest uppercase mb-4 block">02 / Inžiniering</span>
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none font-heading">Inžinierske<br>& Projektové</h3>
+                                <ul class="space-y-3 text-white/70 font-medium text-xs tracking-wide">
+                                    <li>Územno-plánovacie informácie</li>
+                                    <li>Stavebné povolenia</li>
+                                    <li>Stavebné projekty & zastavovacie štúdie</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="reveal-on-scroll relative min-h-[450px] flex flex-col justify-end p-10 overflow-hidden group" style="transition-delay:300ms;">
+                            <img src="dom.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Stavba a nehnuteľnosti">
+                            <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <span class="text-primary text-xs font-black tracking-widest uppercase mb-4 block">03 / Realizácia</span>
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none font-heading">Stavba<br>& Nehnuteľnosti</h3>
+                                <ul class="space-y-3 text-white/70 font-medium text-xs tracking-wide">
+                                    <li>Výstavba rodinných domov na kľúč</li>
+                                    <li>Predaj a kúpa nehnuteľností</li>
+                                    <li>Kompletný servis po zápis do katastra</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════ ABOUT / PROCESS ═══════ -->
+            <section id="onas" class="py-28 md:py-36 bg-secondary relative overflow-hidden text-white">
+                <div class="absolute inset-0 z-0">
+                    <img src="doska.webp" class="w-full h-full object-cover opacity-10 grayscale" alt="">
+                    <div class="absolute inset-0 bg-secondary/88"></div>
+                </div>
+                <div class="mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                        <div class="reveal-on-scroll">
+                            <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase italic mb-12 font-heading">Ako<br>pracujeme<span class="text-primary">.</span></h2>
+                            <div class="space-y-12">
+                                <div class="relative pl-16">
+                                    <div class="absolute left-0 top-0 text-7xl font-black text-white/5 leading-none font-heading">01</div>
+                                    <h4 class="text-2xl font-black uppercase text-primary mb-4">Geodézia & Projekt</h4>
+                                    <p class="text-white/50 font-light leading-relaxed">Zameráme pozemok, vypracujeme geometrický plán, návrh stavby a zastavovaciu štúdiu na mieru.</p>
+                                </div>
+                                <div class="relative pl-16">
+                                    <div class="absolute left-0 top-0 text-7xl font-black text-white/5 leading-none font-heading">02</div>
+                                    <h4 class="text-2xl font-black uppercase text-primary mb-4">Povolenia & Inžiniering</h4>
+                                    <p class="text-white/50 font-light leading-relaxed">Zabezpečíme územno-plánovacie informácie, stavebné povolenia a všetku potrebnú dokumentáciu.</p>
+                                </div>
+                                <div class="relative pl-16">
+                                    <div class="absolute left-0 top-0 text-7xl font-black text-white/5 leading-none font-heading">03</div>
+                                    <h4 class="text-2xl font-black uppercase text-primary mb-4">Realizácia & Predaj</h4>
+                                    <p class="text-white/50 font-light leading-relaxed">Vystavíme dom na kľúč a postaráme sa o kompletný servis od ponuky nehnuteľnosti až po zápis do katastra.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll">
+                            <div class="image-reveal-wrapper rounded-none aspect-[4/5] shadow-2xl skew-y-2">
+                                <div class="image-reveal-shutter"></div>
+                                <img src="hruba-stavba.webp" alt="RONE Projekt výstavba" class="image-reveal-img w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════ GALLERY / PORTFOLIO ═══════ -->
+            <section id="projekty" class="py-28 md:py-36 bg-white overflow-hidden">
+                <div class="mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="reveal-on-scroll mb-20 text-center">
+                        <h2 class="text-5xl md:text-8xl font-black text-secondary tracking-tighter uppercase italic mb-8 font-heading">Portfólio<span class="text-primary">.</span></h2>
+                        <p class="text-muted max-w-2xl mx-auto font-light lg:text-xl">Výsledky našej práce — od základov po odovzdanie kľúčov.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg group">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="hero.webp" alt="Dokončená stavba" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-10 text-center">
+                                <p class="text-white text-sm font-bold uppercase tracking-widest italic">Rodinný dom na kľúč</p>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg md:mt-12 group" style="transition-delay:150ms;">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="rozvoj.webp" alt="Bytový rozvoj" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-10 text-center">
+                                <p class="text-white text-sm font-bold uppercase tracking-widest italic">Stavebná lokalita</p>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg md:mt-24 group" style="transition-delay:300ms;">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="hruba-stavba.webp" alt="Hrubá stavba" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-10 text-center">
+                                <p class="text-white text-sm font-bold uppercase tracking-widest italic">Hrubá stavba</p>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg group" style="transition-delay:100ms;">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="holodom.webp" alt="Holodom" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-10 text-center">
+                                <p class="text-white text-sm font-bold uppercase tracking-widest italic">Holodom – pred finišom</p>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg md:mt-12 group" style="transition-delay:250ms;">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="doska.webp" alt="Základy" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-10 text-center">
+                                <p class="text-white text-sm font-bold uppercase tracking-widest italic">Základová doska</p>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg md:mt-24 group" style="transition-delay:400ms;">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="dom.webp" alt="Dom v noci" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-10 text-center">
+                                <p class="text-white text-sm font-bold uppercase tracking-widest italic">Odovzdaný dom</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════ FOOTER ═══════ -->
+            <footer id="kontakt" class="bg-secondary text-white pt-28 md:pt-40 relative overflow-hidden">
+                <div class="absolute inset-0 z-0 pointer-events-none opacity-20" style="background-image: url('texture.svg'); background-size: cover; filter: invert(1);"></div>
+
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10 pb-20 md:pb-32">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                        <div>
+                            <h2 class="text-5xl md:text-8xl font-black tracking-tighter uppercase italic mb-20 font-heading">Kontakt<span class="text-primary">.</span></h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                <div>
+                                    <p class="text-white/20 text-[10px] font-bold tracking-widest uppercase mb-4">Sídlo</p>
+                                    <p class="text-2xl font-black mb-1">RONE Projekt, s.r.o.</p>
+                                    <p class="text-white/50 font-light mt-2 leading-relaxed">
+                                        Hviezdoslavova 1799/51<br>Malacky, 901 01
+                                    </p>
+                                    <div class="mt-6">
+                                        <p class="text-white/20 text-[10px] font-bold tracking-widest uppercase mb-2">Prevádzková doba</p>
+                                        <p class="text-white/60 font-light">Pondelok – Piatok: 9:00 – 18:00</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-white/20 text-[10px] font-bold tracking-widest uppercase mb-4">Telefón & Email</p>
+                                    <a href="tel:+421903726345" class="text-2xl font-light hover:text-primary transition-colors block">+421 903 726 345</a>
+                                    <a href="mailto:roneprojekt@gmail.com" class="text-lg font-light block hover:text-primary transition-colors opacity-40 italic mt-2">roneprojekt@gmail.com</a>
+                                    <div class="mt-8">
+                                        <p class="text-white/20 text-[10px] font-bold tracking-widest uppercase mb-4">© 2025 RONE Projekt, s.r.o.</p>
+                                        <nav class="flex gap-4">
+                                            <a href="#top" class="text-[10px] font-bold hover:text-primary uppercase tracking-widest transition-colors">Úvod</a>
+                                            <a href="#sluzby" class="text-[10px] font-bold hover:text-primary uppercase tracking-widest transition-colors">Služby</a>
+                                            <a href="#projekty" class="text-[10px] font-bold hover:text-primary uppercase tracking-widest transition-colors">Portfólio</a>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col">
+                            <div class="bg-white/5 border border-white/10 p-10 md:p-16 rounded-none backdrop-blur-3xl">
+                                <h3 class="text-2xl font-black uppercase mb-10 italic font-heading">Profesionálne služby</h3>
+                                <p class="text-white/40 font-light mb-12 leading-relaxed">Komplexný prístup k vašej nehnuteľnosti — geodézia, povolenia, projekt, výstavba aj predaj pod jednou strechou.</p>
+                                <div class="flex flex-wrap gap-3">
+                                    <span class="px-6 py-2 border border-white/10 rounded-none text-[10px] font-bold uppercase tracking-widest text-primary">Geodézia</span>
+                                    <span class="px-6 py-2 border border-white/10 rounded-none text-[10px] font-bold uppercase tracking-widest text-primary">Inžiniering</span>
+                                    <span class="px-6 py-2 border border-white/10 rounded-none text-[10px] font-bold uppercase tracking-widest text-primary">Projekty</span>
+                                    <span class="px-6 py-2 border border-white/10 rounded-none text-[10px] font-bold uppercase tracking-widest text-primary">Výstavba</span>
+                                    <span class="px-6 py-2 border border-white/10 rounded-none text-[10px] font-bold uppercase tracking-widest text-primary">Nehnuteľnosti</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-32 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold text-white/10 tracking-widest uppercase">
+                        <p>RONE Projekt, s.r.o. | Geodézia · Inžiniering · Stavba · Nehnuteľnosti</p>
+                        <p>All Rights Reserved 2025</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), touchMultiplier: 2 });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 50); });
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose  = document.getElementById('menu-close');
+        const menuLinks  = document.querySelectorAll('.menu-link');
+        function openMenu()  { document.body.classList.add('menu-open');    document.body.style.overflow='hidden'; lenis.stop(); }
+        function closeMenu() { document.body.classList.remove('menu-open'); document.body.style.overflow='';       lenis.start(); }
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        menuLinks.forEach(l => l.addEventListener('click', closeMenu));
+
+        const revealObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); revealObs.unobserve(e.target); } });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObs.observe(el));
+
+        const imgObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-revealed'); imgObs.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.image-reveal-wrapper').forEach(el => imgObs.observe(el));
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const hp = document.querySelector('.hero-parallax');
+            if (hp) hp.style.transform = `translateY(${scrollY * (parseFloat(hp.dataset.speed)||0.1)}px)`;
+        });
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+</body>
+</html>
