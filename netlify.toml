@@ -287,3 +287,38 @@
   from = "/soldout"
   to = "/templates/soldout/index.html"
   status = 200
+
+[[redirects]]
+  from = "/mkem"
+  to = "/templates/mkem/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/odes"
+  to = "/templates/odes/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/bma-dk"
+  to = "/templates/bma-dk/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/likvidaciaazbestu"
+  to = "/templates/likvidaciaazbestu/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/riljak"
+  to = "/templates/riljak/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/klimaelektro"
+  to = "/templates/klimaelektro/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/jmstrechy7"
+  to = "/templates/jmstrechy7/index.html"
+  status = 200

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Likvidácia azbestu | Krovmont s.r.o. — Dolný Kubín</title>
+    <script>
+        if (window.location.protocol !== 'file:') {
+            document.write('<base href="/templates/likvidaciaazbestu/">');
+        }
+    </script>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Krovmont s.r.o. — profesionálna likvidácia azbestu a dezinfekcie priestorov. Certifikovaní pracovníci, celé Slovensko. Dolný Kubín.">
+
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Outfit:wght@300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#16a34a',
+                            light: '#22c55e',
+                            dark: '#15803d',
+                        },
+                        secondary: '#111827',
+                        foreground: '#111827',
+                        muted: '#6b7280',
+                        light: '#f9fafb',
+                        border: '#e5e7eb',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    fontSize: {
+                        '10xl': '7.5rem',
+                        '11xl': '9rem',
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --color-primary: #16a34a;
+            --color-secondary: #111827;
+        }
+
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+
+        body {
+            background-color: #ffffff;
+            color: #111827;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .site-header { transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .site-header.scrolled {
+            background-color: rgba(17, 24, 39, 0.97);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(22,163,74,0.15);
+        }
+
+        .hover-split-text {
+            padding-right: 0.2em;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .hover-split-text-inner {
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .hover-split-text-inner::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 110%;
+            left: 0;
+            width: 100%;
+            line-height: inherit;
+        }
+        .group:hover .hover-split-text-inner,
+        .hover-split-text:hover .hover-split-text-inner {
+            transform: translateY(-100%);
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .image-reveal-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+        .image-reveal-shutter {
+            position: absolute;
+            inset: 0;
+            background-color: var(--color-secondary);
+            z-index: 10;
+            transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .image-reveal-wrapper.is-revealed .image-reveal-shutter {
+            transform: translateY(-100%);
+        }
+        .image-reveal-img {
+            transform: scale(1.2);
+            filter: grayscale(100%);
+            transition: transform 1.8s cubic-bezier(0.76, 0, 0.24, 1), filter 1.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .image-reveal-wrapper.is-revealed .image-reveal-img {
+            transform: scale(1);
+            filter: grayscale(0%);
+        }
+        .image-reveal-wrapper:hover .image-reveal-img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        #menu-overlay {
+            transform: translateY(-100%);
+            transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        body.menu-open #menu-overlay {
+            transform: translateY(0);
+        }
+
+        .parallax-container {
+            position: relative;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .parallax-target {
+            width: 100%;
+            height: 100%;
+            will-change: transform;
+        }
+
+        .fade-up { opacity: 0; transform: translateY(30px); animation: fade-up-anim 0.7s ease-out forwards; }
+        .fade-up-1 { animation-delay: 0.1s; }
+        .fade-up-2 { animation-delay: 0.2s; }
+        .fade-up-3 { animation-delay: 0.3s; }
+        .fade-up-4 { animation-delay: 0.4s; }
+
+        @keyframes fade-up-anim {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .fill-text-animation {
+            position: relative;
+            background: linear-gradient(to right, white 50%, rgba(255,255,255,0.2) 50%);
+            background-size: 200% 100%;
+            background-position: 100% 0;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fill-text 2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+            animation-delay: 1.2s;
+        }
+        @keyframes fill-text {
+            to { background-position: 0% 0; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+    <!-- ═══════ SITE HEADER ═══════ -->
+    <header id="site-header" class="site-header fixed top-0 left-0 right-0 z-50 bg-transparent">
+        <div class="mx-auto w-[95vw] flex items-center justify-between h-16 md:h-24 px-6 md:px-10">
+            <a href="#" class="flex items-center">
+                <span class="text-lg md:text-2xl font-black tracking-tighter text-white uppercase italic font-heading">Likvidácia<span class="text-primary">Azbestu</span></span>
+            </a>
+            <button id="menu-toggle" class="text-white transition-colors text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 backdrop-blur-sm group">
+                <div class="w-4 flex flex-col gap-1">
+                    <span class="w-full h-[1.5px] bg-white"></span>
+                    <span class="w-full h-[1.5px] bg-white"></span>
+                </div>
+                <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Menu">Menu</span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ═══════ MENU OVERLAY ═══════ -->
+    <div id="menu-overlay" class="fixed top-0 inset-x-0 h-screen md:h-[80vh] z-[60] bg-secondary flex flex-col overflow-hidden shadow-2xl border-b border-primary/20">
+        <div class="absolute inset-0 z-0 pointer-events-none opacity-5" style="background: repeating-linear-gradient(90deg, rgba(22,163,74,0.4) 0px, rgba(22,163,74,0.4) 1px, transparent 1px, transparent 80px), repeating-linear-gradient(0deg, rgba(22,163,74,0.4) 0px, rgba(22,163,74,0.4) 1px, transparent 1px, transparent 80px);"></div>
+
+        <div class="relative z-10 mx-auto w-[95vw] flex items-center justify-between h-24 px-6 md:px-10">
+            <span class="text-lg md:text-2xl font-black tracking-tighter text-white uppercase italic font-heading">Likvidácia<span class="text-primary">Azbestu</span></span>
+            <button id="menu-close" class="text-white transition-colors text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 group">
+                <span class="relative w-4 h-4 flex items-center justify-center">
+                    <span class="absolute w-full h-[1.5px] bg-white rotate-45"></span>
+                    <span class="absolute w-full h-[1.5px] bg-white -rotate-45"></span>
+                </span>
+                <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Zavrieť">Zavrieť</span></span>
+            </button>
+        </div>
+
+        <div class="relative z-10 flex-1 flex items-center pb-8 overflow-y-auto">
+            <div class="mx-auto w-[95vw] px-6 md:px-10 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-20 py-10 md:py-0">
+                <!-- Col 1: Contact -->
+                <div class="hidden md:flex flex-col">
+                    <span class="text-white/20 text-xs uppercase tracking-widest block mb-8">Kontakt & Sídlo</span>
+                    <div class="mb-10">
+                        <p class="text-white text-3xl font-black mb-4 tracking-tighter uppercase italic font-heading">Krovmont s.r.o.</p>
+                        <p class="text-white/40 text-sm font-light leading-relaxed">
+                            Fučíkova 952/33<br>
+                            026 01 Dolný Kubín<br>
+                            Slovensko
+                        </p>
+                    </div>
+                    <div>
+                        <span class="text-primary/70 text-[10px] uppercase tracking-[0.2em] block mb-2 font-bold">Kontaktujte nás</span>
+                        <a href="tel:0907824596" class="text-white text-xl font-light italic block hover:text-primary transition-colors">0907 824 596</a>
+                        <a href="mailto:krovmontdk@gmail.com" class="text-white/40 text-base font-light mt-2 block hover:text-primary transition-colors">krovmontdk@gmail.com</a>
+                        <a href="mailto:info@likvidaciaazbestu.eu" class="text-white/40 text-base font-light mt-1 block hover:text-primary transition-colors">info@likvidaciaazbestu.eu</a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation -->
+                <nav class="flex flex-col gap-6 items-center md:items-start">
+                    <span class="text-white/20 text-xs uppercase tracking-widest block mb-4">Navigácia</span>
+                    <div class="flex flex-col gap-4">
+                        <a href="#top" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter font-heading">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Úvod">Úvod</span></span>
+                        </a>
+                        <a href="#sluzby" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter font-heading">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Služby">Služby</span></span>
+                        </a>
+                        <a href="#onas" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter font-heading">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="O nás">O nás</span></span>
+                        </a>
+                        <a href="#cena" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter font-heading">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Cena">Cena</span></span>
+                        </a>
+                        <a href="#kontakt" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter font-heading">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kontakt">Kontakt</span></span>
+                        </a>
+                    </div>
+                </nav>
+
+                <!-- Col 3: Highlight -->
+                <div class="hidden lg:flex flex-col justify-end items-end text-right">
+                    <div class="text-white/5 text-[12rem] font-black leading-none absolute -bottom-12 -right-8 font-heading">AZ</div>
+                    <div class="relative z-10 space-y-8">
+                        <div>
+                            <p class="text-primary text-4xl font-black italic mb-1 font-heading">100%</p>
+                            <p class="text-white/40 text-xs uppercase tracking-widest font-bold">Bezpečné odstránenie</p>
+                        </div>
+                        <div>
+                            <p class="text-primary text-4xl font-black italic mb-1 font-heading">SR</p>
+                            <p class="text-white/40 text-xs uppercase tracking-widest font-bold">Celé územie Slovenska</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════ MAIN CONTENT ═══════ -->
+    <main>
+
+        <!-- ═══════ HERO ═══════ -->
+        <section id="top" class="sticky top-0 h-screen w-full flex items-center overflow-hidden z-0">
+            <div class="parallax-container absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="parallax-target hero-parallax relative w-full h-full scale-110" data-speed="0.1">
+                    <img src="strecha.jpg" alt="Likvidácia azbestu na streche" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <div class="absolute inset-0 bg-black/55"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-secondary/60 via-transparent to-transparent"></div>
+
+            <div class="relative z-10 w-[95vw] mx-auto px-6 md:px-10">
+                <div class="max-w-5xl">
+                    <p class="fade-up text-primary text-sm font-black tracking-[0.4em] uppercase mb-8">
+                        Certifikovaní pracovníci · Celé Slovensko · Bezplatná cenová ponuka
+                    </p>
+                    <h1 class="fade-up fade-up-1 text-6xl md:text-9xl lg:text-10xl font-black text-white leading-[0.85] tracking-tighter uppercase italic font-heading">
+                        Lacno<br><span class="fill-text-animation">a rýchlo.</span>
+                    </h1>
+                    <p class="fade-up fade-up-2 mt-12 text-lg md:text-2xl text-white/70 font-light max-w-2xl leading-relaxed">
+                        Profesionálna likvidácia azbestu a dezinfekcia priestorov. Azbest má okom neviditeľné vlákna nebezpečné pre zdravie — nechajte to <span class="text-white font-normal">certifikovaným odborníkom</span>.
+                    </p>
+                    <div class="fade-up fade-up-3 mt-16 flex flex-col sm:flex-row gap-6">
+                        <a href="#kontakt" class="group inline-flex items-center justify-center px-12 py-5 bg-primary text-white text-sm font-black rounded-none hover:scale-105 transition-all duration-300">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Bezplatná ponuka">Bezplatná ponuka</span></span>
+                        </a>
+                        <a href="#sluzby" class="group inline-flex items-center justify-center px-12 py-5 border-2 border-white/20 text-white text-sm font-bold rounded-none hover:bg-white/10 transition-all duration-300">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Naše služby">Naše služby</span></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fade-up fade-up-4 absolute bottom-10 left-1/2 -translate-x-1/2">
+                <div class="w-6 h-10 border-2 border-white/30 flex items-start justify-center p-2">
+                    <div class="w-1.5 h-2.5 bg-white/60 animate-bounce"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ MAIN LAYOVER ═══════ -->
+        <div class="relative z-10 bg-white">
+
+            <!-- ═══════ SERVICES ═══════ -->
+            <section id="sluzby" class="py-28 md:py-36 bg-secondary relative overflow-hidden text-white">
+                <div class="absolute inset-0 z-0">
+                    <img src="img1.jpg" class="w-full h-full object-cover opacity-10 grayscale" alt="">
+                    <div class="absolute inset-0 bg-secondary/85"></div>
+                </div>
+
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="reveal-on-scroll mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
+                        <div>
+                            <p class="text-xs font-black tracking-[0.3em] uppercase text-primary mb-6">Naše služby</p>
+                            <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase italic font-heading">Čo robíme<span class="text-primary">.</span></h2>
+                        </div>
+                        <p class="text-white/60 max-w-md font-light">Kompletný servis — od bezplatnej cenovej ponuky a poradenstva cez žiadosti pre úrady až po samotné odstránenie a odvoz.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Card 1: Azbest -->
+                        <div class="reveal-on-scroll relative min-h-[450px] flex flex-col justify-end p-10 overflow-hidden group">
+                            <img src="strecha.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Likvidácia azbestu">
+                            <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/50 to-transparent"></div>
+                            <div class="relative z-10">
+                                <span class="text-primary text-xs font-black tracking-widest uppercase mb-4 block">01 / Azbest</span>
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none font-heading">Likvidácia<br>azbestu</h3>
+                                <ul class="space-y-2 text-white/70 font-medium text-xs tracking-wide">
+                                    <li>Vlnovky a hladké štvorce na streche</li>
+                                    <li>Boletické panely a obklady</li>
+                                    <li>Zateplenie azbestovými platňami</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Dezinfekcia -->
+                        <div class="reveal-on-scroll relative min-h-[450px] flex flex-col justify-end p-10 overflow-hidden group" style="transition-delay: 150ms;">
+                            <img src="mikro.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Dezinfekcia priestorov">
+                            <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/50 to-transparent"></div>
+                            <div class="relative z-10">
+                                <span class="text-primary text-xs font-black tracking-widest uppercase mb-4 block">02 / Dezinfekcia</span>
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none font-heading">Dezinfekcia<br>priestorov</h3>
+                                <ul class="space-y-2 text-white/70 font-medium text-xs tracking-wide">
+                                    <li>Chemická dezinfekcia (aerosol)</li>
+                                    <li>Ozónová dezinfekcia</li>
+                                    <li>Verejné, komerčné aj obytné priestory</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Servis -->
+                        <div class="reveal-on-scroll relative min-h-[450px] flex flex-col justify-end p-10 overflow-hidden group" style="transition-delay: 300ms;">
+                            <img src="img5.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Kompletný servis">
+                            <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/50 to-transparent"></div>
+                            <div class="relative z-10">
+                                <span class="text-primary text-xs font-black tracking-widest uppercase mb-4 block">03 / Servis</span>
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none font-heading">Kompletný<br>servis</h3>
+                                <ul class="space-y-2 text-white/70 font-medium text-xs tracking-wide">
+                                    <li>Bezplatná cenová ponuka</li>
+                                    <li>Žiadosti pre úrady (legislatíva)</li>
+                                    <li>Odvoz a likvidácia odpadu</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════ ABOUT + PRICE INFO ═══════ -->
+            <section id="onas" class="py-28 md:py-36 bg-white relative overflow-hidden">
+                <div class="mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                        <div class="reveal-on-scroll">
+                            <p class="text-xs font-black tracking-[0.3em] uppercase text-primary mb-6">Prečo my</p>
+                            <h2 class="text-5xl md:text-7xl font-black text-foreground tracking-tighter uppercase italic mb-12 font-heading">Krovmont<span class="text-primary">.</span></h2>
+                            <p class="text-muted font-light mb-10 leading-relaxed max-w-lg">
+                                Krovmont s.r.o. je spoľahlivým partnerom pre legitímne zneškodňovanie azbestu. Pracujeme v interiéri aj exteriéri, prácu vykonávajú certifikovaní pracovníci po celom území Slovenska.
+                            </p>
+                            <div class="space-y-10">
+                                <div class="relative pl-16">
+                                    <div class="absolute left-0 top-0 text-7xl font-black text-primary/10 leading-none font-heading">01</div>
+                                    <h4 class="text-xl font-black uppercase text-primary mb-3 font-heading">Certifikovaní pracovníci</h4>
+                                    <p class="text-muted font-light leading-relaxed">Dezinfekčné práce vykonávame na základe živnostenského oprávnenia podľa zákona Z.Z. §355/2007. Tieto práce nemôžu vykonávať bežné upratovacie firmy.</p>
+                                </div>
+                                <div class="relative pl-16">
+                                    <div class="absolute left-0 top-0 text-7xl font-black text-primary/10 leading-none font-heading">02</div>
+                                    <h4 class="text-xl font-black uppercase text-primary mb-3 font-heading">Poradenstvo & legislatíva</h4>
+                                    <p class="text-muted font-light leading-relaxed">Poskytujeme bezplatné poradenstvo a vypracovávame žiadosti pre úrady v súlade s legislatívou. Celý proces vybavíme za vás.</p>
+                                </div>
+                                <div class="relative pl-16">
+                                    <div class="absolute left-0 top-0 text-7xl font-black text-primary/10 leading-none font-heading">03</div>
+                                    <h4 class="text-xl font-black uppercase text-primary mb-3 font-heading">Celé Slovensko</h4>
+                                    <p class="text-muted font-light leading-relaxed">Práce vykonávame po celom území Slovenska — v interiéri aj exteriéri. Kontaktujte nás kdekoľvek ste.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="reveal-on-scroll">
+                            <div class="image-reveal-wrapper rounded-none aspect-[4/5] shadow-2xl skew-y-2">
+                                <div class="image-reveal-shutter"></div>
+                                <img src="img1.jpg" alt="Krovmont — likvidácia azbestu" class="image-reveal-img w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════ PRICE / HOW IT WORKS ═══════ -->
+            <section id="cena" class="py-28 md:py-36 bg-secondary relative overflow-hidden text-white">
+                <div class="absolute inset-0 z-0">
+                    <img src="strecha.jpg" class="w-full h-full object-cover opacity-5 grayscale" alt="">
+                    <div class="absolute inset-0 bg-secondary/90"></div>
+                </div>
+
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                        <!-- Left: Price factors -->
+                        <div class="reveal-on-scroll">
+                            <p class="text-xs font-black tracking-[0.3em] uppercase text-primary mb-6">Cenová ponuka</p>
+                            <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase italic mb-12 font-heading">Ako zistiť<br>cenu<span class="text-primary">?</span></h2>
+                            <p class="text-white/60 font-light mb-12 leading-relaxed max-w-lg">
+                                Pre cenovú ponuku nám vždy uveďte tieto tri informácie — pripravíme vám bezplatnú ponuku čo najskôr.
+                            </p>
+                            <div class="space-y-8">
+                                <div class="flex gap-6 items-start">
+                                    <span class="text-5xl font-black text-primary/20 font-heading leading-none shrink-0">1</span>
+                                    <div>
+                                        <h4 class="text-lg font-black uppercase text-white mb-2 font-heading">Typ azbestu</h4>
+                                        <p class="text-white/50 font-light text-sm leading-relaxed">Hladké štvorce na streche, vlnovky na streche, boletické panely, obklady, zateplenie azbestovými platňami.</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-6 items-start">
+                                    <span class="text-5xl font-black text-primary/20 font-heading leading-none shrink-0">2</span>
+                                    <div>
+                                        <h4 class="text-lg font-black uppercase text-white mb-2 font-heading">Výmera v m²</h4>
+                                        <p class="text-white/50 font-light text-sm leading-relaxed">Odhadovaná plocha, ktorá sa bude odstraňovať, uvedená v metroch štvorcových.</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-6 items-start">
+                                    <span class="text-5xl font-black text-primary/20 font-heading leading-none shrink-0">3</span>
+                                    <div>
+                                        <h4 class="text-lg font-black uppercase text-white mb-2 font-heading">Lokalita</h4>
+                                        <p class="text-white/50 font-light text-sm leading-relaxed">Obec alebo presná adresa, kde sa budova s azbestom nachádza.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Dezinfekcia areas -->
+                        <div class="reveal-on-scroll">
+                            <p class="text-xs font-black tracking-[0.3em] uppercase text-primary mb-6">Dezinfekcia</p>
+                            <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase italic mb-12 font-heading">Kde<br>dezinfikujeme<span class="text-primary">?</span></h2>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-4 p-5 border border-white/10 hover:border-primary/40 transition-colors">
+                                    <span class="text-primary font-black text-lg shrink-0">→</span>
+                                    <div>
+                                        <p class="font-bold uppercase text-sm tracking-wide text-white mb-1">Verejné priestory</p>
+                                        <p class="text-white/40 text-xs font-light">Autobusové zástavky, oddychové zóny, lavičky, parky</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4 p-5 border border-white/10 hover:border-primary/40 transition-colors">
+                                    <span class="text-primary font-black text-lg shrink-0">→</span>
+                                    <div>
+                                        <p class="font-bold uppercase text-sm tracking-wide text-white mb-1">Verejné budovy</p>
+                                        <p class="text-white/40 text-xs font-light">Športové haly, školy, kultúrne priestory, úrady</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4 p-5 border border-white/10 hover:border-primary/40 transition-colors">
+                                    <span class="text-primary font-black text-lg shrink-0">→</span>
+                                    <div>
+                                        <p class="font-bold uppercase text-sm tracking-wide text-white mb-1">Obchodné priestory</p>
+                                        <p class="text-white/40 text-xs font-light">Obchody, reštaurácie, ubytovacie zariadenia, sklady</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4 p-5 border border-white/10 hover:border-primary/40 transition-colors">
+                                    <span class="text-primary font-black text-lg shrink-0">→</span>
+                                    <div>
+                                        <p class="font-bold uppercase text-sm tracking-wide text-white mb-1">Priemyselné budovy</p>
+                                        <p class="text-white/40 text-xs font-light">Výrobné a priemyselné prevádzky</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4 p-5 border border-white/10 hover:border-primary/40 transition-colors">
+                                    <span class="text-primary font-black text-lg shrink-0">→</span>
+                                    <div>
+                                        <p class="font-bold uppercase text-sm tracking-wide text-white mb-1">Obytné budovy & autá</p>
+                                        <p class="text-white/40 text-xs font-light">Schodiská, spoločné priestory, domácnosti, interiéry vozidiel</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════ FOOTER / CTA ═══════ -->
+            <footer id="kontakt" class="bg-secondary text-white pt-28 md:pt-40 relative overflow-hidden">
+                <div class="absolute inset-0 z-0 pointer-events-none opacity-5" style="background: repeating-linear-gradient(90deg, rgba(22,163,74,0.4) 0px, rgba(22,163,74,0.4) 1px, transparent 1px, transparent 80px), repeating-linear-gradient(0deg, rgba(22,163,74,0.4) 0px, rgba(22,163,74,0.4) 1px, transparent 1px, transparent 80px);"></div>
+
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10 pb-20 md:pb-32">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                        <!-- Left: Contact -->
+                        <div>
+                            <h2 class="text-5xl md:text-8xl font-black tracking-tighter uppercase italic mb-20 font-heading">Ponuka<span class="text-primary">.</span></h2>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                <div>
+                                    <p class="text-white/20 text-[10px] font-bold tracking-widest uppercase mb-4">Telefón</p>
+                                    <a href="tel:0907824596" class="text-2xl font-light hover:text-primary transition-colors block mb-6">0907 824 596</a>
+                                    <p class="text-white/20 text-[10px] font-bold tracking-widest uppercase mb-4">Email</p>
+                                    <a href="mailto:krovmontdk@gmail.com" class="text-base font-light block hover:text-primary transition-colors opacity-60 italic">krovmontdk@gmail.com</a>
+                                    <a href="mailto:info@likvidaciaazbestu.eu" class="text-base font-light block hover:text-primary transition-colors opacity-60 italic mt-1">info@likvidaciaazbestu.eu</a>
+                                </div>
+                                <div>
+                                    <p class="text-white/20 text-[10px] font-bold tracking-widest uppercase mb-4">Adresa</p>
+                                    <p class="text-white/60 font-light leading-relaxed">
+                                        Krovmont s.r.o.<br>
+                                        Fučíkova 952/33<br>
+                                        026 01 Dolný Kubín
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Tag badges -->
+                        <div class="flex flex-col">
+                            <div class="bg-white/5 border border-white/10 p-10 md:p-16 rounded-none backdrop-blur-3xl">
+                                <h3 class="text-2xl font-black uppercase mb-6 italic font-heading">Čo odstraňujeme</h3>
+                                <p class="text-white/40 font-light mb-10 leading-relaxed">Pracujeme v interiéri aj exteriéri na celom území Slovenska. Všetky práce vykonávajú certifikovaní pracovníci s potrebným oprávnením.</p>
+                                <div class="flex flex-wrap gap-3">
+                                    <span class="px-6 py-2 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-primary">Strechy — vlnovky</span>
+                                    <span class="px-6 py-2 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-primary">Boletické panely</span>
+                                    <span class="px-6 py-2 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-primary">Obklady</span>
+                                    <span class="px-6 py-2 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-primary">Azbestové platne</span>
+                                    <span class="px-6 py-2 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-primary">Chemická dezinfekcia</span>
+                                    <span class="px-6 py-2 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-primary">Ozónová dezinfekcia</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-32 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold text-white/10 tracking-widest uppercase">
+                        <p>Krovmont s.r.o. | likvidaciaazbestu.sk</p>
+                        <div class="flex gap-6">
+                            <a href="#" class="hover:text-white/30 transition-colors">Cookies</a>
+                            <p>© 2026 Likvidaciaazbestu.sk</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div><!-- end main layover -->
+    </main>
+
+    <!-- ═══════ SCRIPTS ═══════ -->
+    <script>
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            touchMultiplier: 2,
+        });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 50); });
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        function openMenu() { document.body.classList.add('menu-open'); document.body.style.overflow = 'hidden'; lenis.stop(); }
+        function closeMenu() { document.body.classList.remove('menu-open'); document.body.style.overflow = ''; lenis.start(); }
+
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        menuLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('is-visible'); revealObserver.unobserve(entry.target); }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
+
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('is-revealed'); imageObserver.unobserve(entry.target); }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.image-reveal-wrapper').forEach(el => imageObserver.observe(el));
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const heroParallax = document.querySelector('.hero-parallax');
+            if (heroParallax) {
+                heroParallax.style.transform = `translateY(${scrollY * (parseFloat(heroParallax.getAttribute('data-speed')) || 0.1)}px)`;
+            }
+            document.querySelectorAll('.parallax-target:not(.hero-parallax)').forEach(el => {
+                const rect = el.parentElement.getBoundingClientRect();
+                const vh = window.innerHeight;
+                if (rect.top < vh && rect.bottom > 0) {
+                    const speed = parseFloat(el.getAttribute('data-speed')) || 0.15;
+                    const progress = 1 - (rect.bottom / (vh + rect.height));
+                    el.style.transform = `translateY(${(progress * 2 - 1) * speed * 100}%)`;
+                }
+            });
+        });
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+</body>
+</html>

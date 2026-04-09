@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMA, spol. s r.o. | Stavebná spoločnosť — Dolný Kubín</title>
+    <script>
+        if (window.location.protocol !== 'file:') {
+            document.write('<base href="/templates/bma-dk/">');
+        }
+    </script>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="BMA, spol. s r.o. — stavebná spoločnosť od roku 2000. Rodinné domy na kľúč, murované a montované domy, pasívne domy. Dolný Kubín.">
+
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Outfit:wght@300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#b45309',
+                            light: '#d97706',
+                            dark: '#78350f',
+                        },
+                        secondary: '#111827',
+                        foreground: '#111827',
+                        muted: '#6b7280',
+                        light: '#f9fafb',
+                        border: '#e5e7eb',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    fontSize: {
+                        '10xl': '7.5rem',
+                        '11xl': '9rem',
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --color-primary: #b45309;
+            --color-secondary: #111827;
+            --color-background: #ffffff;
+            --color-foreground: #111827;
+            --color-muted: #6b7280;
+        }
+
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+
+        body {
+            background-color: #ffffff;
+            color: var(--color-foreground);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .site-header { transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .site-header.scrolled {
+            background-color: rgba(17, 24, 39, 0.97);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(180,83,9,0.15);
+        }
+
+        .hover-split-text {
+            padding-right: 0.2em;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .hover-split-text-inner {
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .hover-split-text-inner::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 110%;
+            left: 0;
+            width: 100%;
+            line-height: inherit;
+        }
+        .group:hover .hover-split-text-inner,
+        .hover-split-text:hover .hover-split-text-inner {
+            transform: translateY(-100%);
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .image-reveal-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+        .image-reveal-shutter {
+            position: absolute;
+            inset: 0;
+            background-color: var(--color-secondary);
+            z-index: 10;
+            transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .image-reveal-wrapper.is-revealed .image-reveal-shutter {
+            transform: translateY(-100%);
+        }
+        .image-reveal-img {
+            transform: scale(1.2);
+            filter: grayscale(100%);
+            transition: transform 1.8s cubic-bezier(0.76, 0, 0.24, 1), filter 1.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .image-reveal-wrapper.is-revealed .image-reveal-img {
+            transform: scale(1);
+            filter: grayscale(0%);
+        }
+        .image-reveal-wrapper:hover .image-reveal-img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        #menu-overlay {
+            transform: translateY(-100%);
+            transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        body.menu-open #menu-overlay {
+            transform: translateY(0);
+        }
+
+        .parallax-container {
+            position: relative;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .parallax-target {
+            width: 100%;
+            height: 100%;
+            will-change: transform;
+        }
+
+        .fade-up { opacity: 0; transform: translateY(30px); animation: fade-up-anim 0.7s ease-out forwards; }
+        .fade-up-1 { animation-delay: 0.1s; }
+        .fade-up-2 { animation-delay: 0.2s; }
+        .fade-up-3 { animation-delay: 0.3s; }
+        .fade-up-4 { animation-delay: 0.4s; }
+
+        @keyframes fade-up-anim {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .fill-text-animation {
+            position: relative;
+            background: linear-gradient(to right, white 50%, rgba(255,255,255,0.2) 50%);
+            background-size: 200% 100%;
+            background-position: 100% 0;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fill-text 2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+            animation-delay: 1.2s;
+        }
+        @keyframes fill-text {
+            to { background-position: 0% 0; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+    <!-- ═══════ SITE HEADER ═══════ -->
+    <header id="site-header" class="site-header fixed top-0 left-0 right-0 z-50 bg-transparent">
+        <div class="mx-auto w-[95vw] flex items-center justify-between h-16 md:h-24 px-6 md:px-10">
+            <a href="#" class="flex items-center">
+                <span class="text-xl md:text-3xl font-black tracking-tighter text-white uppercase italic font-heading">BMA<span class="text-primary">.</span></span>
+            </a>
+            <button id="menu-toggle" class="text-white transition-colors text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 backdrop-blur-sm group">
+                <div class="w-4 flex flex-col gap-1">
+                    <span class="w-full h-[1.5px] bg-white"></span>
+                    <span class="w-full h-[1.5px] bg-white"></span>
+                </div>
+                <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Menu">Menu</span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ═══════ MENU OVERLAY ═══════ -->
+    <div id="menu-overlay" class="fixed top-0 inset-x-0 h-screen md:h-[80vh] z-[60] bg-secondary flex flex-col overflow-hidden shadow-2xl border-b border-primary/20">
+        <div class="absolute inset-0 z-0 pointer-events-none opacity-5" style="background: repeating-linear-gradient(90deg, rgba(180,83,9,0.3) 0px, rgba(180,83,9,0.3) 1px, transparent 1px, transparent 80px), repeating-linear-gradient(0deg, rgba(180,83,9,0.3) 0px, rgba(180,83,9,0.3) 1px, transparent 1px, transparent 80px);"></div>
+
+        <div class="relative z-10 mx-auto w-[95vw] flex items-center justify-between h-24 px-6 md:px-10">
+            <span class="text-xl md:text-3xl font-black tracking-tighter text-white uppercase italic font-heading">BMA<span class="text-primary">.</span></span>
+            <button id="menu-close" class="text-white transition-colors text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 group">
+                <span class="relative w-4 h-4 flex items-center justify-center">
+                    <span class="absolute w-full h-[1.5px] bg-white rotate-45"></span>
+                    <span class="absolute w-full h-[1.5px] bg-white -rotate-45"></span>
+                </span>
+                <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Zavrieť">Zavrieť</span></span>
+            </button>
+        </div>
+
+        <div class="relative z-10 flex-1 flex items-center pb-8 overflow-y-auto">
+            <div class="mx-auto w-[95vw] px-6 md:px-10 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-20 py-10 md:py-0">
+                <!-- Col 1: Contact -->
+                <div class="hidden md:flex flex-col">
+                    <span class="text-white/20 text-xs uppercase tracking-widest block mb-8">Kontakt & Sídlo</span>
+                    <div class="mb-10">
+                        <p class="text-white text-3xl font-black mb-4 tracking-tighter uppercase italic font-heading">BMA, spol. s r.o.</p>
+                        <p class="text-white/40 text-sm font-light leading-relaxed max-w-xs">
+                            Radlinského 1716<br>
+                            026 01 Dolný Kubín<br>
+                            Slovensko
+                        </p>
+                    </div>
+                    <div>
+                        <span class="text-primary/70 text-[10px] uppercase tracking-[0.2em] block mb-2 font-bold">Telefón</span>
+                        <a href="tel:+421903806908" class="text-white text-xl font-light italic block hover:text-primary transition-colors">+421 903 806 908</a>
+                        <a href="tel:+421903766908" class="text-white text-xl font-light italic block hover:text-primary transition-colors mt-1">+421 903 766 908</a>
+                        <a href="mailto:info@bma-dk.sk" class="text-white/40 text-lg font-light mt-2 block hover:text-primary transition-colors">info@bma-dk.sk</a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation -->
+                <nav class="flex flex-col gap-6 items-center md:items-start">
+                    <span class="text-white/20 text-xs uppercase tracking-widest block mb-4">Navigácia</span>
+                    <div class="flex flex-col gap-4">
+                        <a href="#top" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter font-heading">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Úvod">Úvod</span></span>
+                        </a>
+                        <a href="#onas" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter font-heading">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="O nás">O nás</span></span>
+                        </a>
+                        <a href="#sluzby" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter font-heading">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Služby">Služby</span></span>
+                        </a>
+                        <a href="#referencie" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter font-heading">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Referencie">Referencie</span></span>
+                        </a>
+                        <a href="#kontakt" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter font-heading">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Dopyt">Dopyt</span></span>
+                        </a>
+                    </div>
+                </nav>
+
+                <!-- Col 3: Stats -->
+                <div class="hidden lg:flex flex-col justify-end items-end text-right">
+                    <div class="text-white/5 text-[14rem] font-black leading-none absolute -bottom-16 -right-10 font-heading">BM</div>
+                    <div class="relative z-10 space-y-8">
+                        <div>
+                            <p class="text-primary text-5xl font-black italic mb-1 font-heading">2000 <span class="text-xl not-italic uppercase opacity-40">od roku</span></p>
+                            <p class="text-white/40 text-xs uppercase tracking-widest font-bold">Pôsobíme v stavebníctve</p>
+                        </div>
+                        <div>
+                            <p class="text-primary text-5xl font-black italic mb-1 font-heading">100+ <span class="text-xl not-italic uppercase opacity-40">zákaziek</span></p>
+                            <p class="text-white/40 text-xs uppercase tracking-widest font-bold">Spokojných zákazníkov</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════ MAIN CONTENT ═══════ -->
+    <main>
+
+        <!-- ═══════ HERO ═══════ -->
+        <section id="top" class="sticky top-0 h-screen w-full flex items-center overflow-hidden z-0">
+            <div class="parallax-container absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="parallax-target hero-parallax relative w-full h-full scale-110" data-speed="0.1">
+                    <img src="DSCN2554-4.webp" alt="BMA stavebná spoločnosť Dolný Kubín" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <div class="absolute inset-0 bg-black/50"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-secondary/60 via-transparent to-transparent"></div>
+
+            <div class="relative z-10 w-[95vw] mx-auto px-6 md:px-10">
+                <div class="max-w-5xl">
+                    <p class="fade-up text-primary text-sm font-black tracking-[0.4em] uppercase mb-8">
+                        Stavebná spoločnosť · Od roku 2000 · Dolný Kubín
+                    </p>
+                    <h1 class="fade-up fade-up-1 text-6xl md:text-9xl lg:text-10xl font-black text-white leading-[0.85] tracking-tighter uppercase italic font-heading">
+                        Stavíme<br><span class="fill-text-animation">domovy.</span>
+                    </h1>
+                    <p class="fade-up fade-up-2 mt-12 text-lg md:text-2xl text-white/70 font-light max-w-2xl leading-relaxed">
+                        Postaviť dom dokáže ktokoľvek — no my vám postavíme <span class="text-white font-normal">domov</span>. Rodinné domy na kľúč, murované aj montované, pasívne a nízkoenergetické domy v Dolnom Kubíne a okolí.
+                    </p>
+                    <div class="fade-up fade-up-3 mt-16 flex flex-col sm:flex-row gap-6">
+                        <a href="#kontakt" class="group inline-flex items-center justify-center px-12 py-5 bg-primary text-white text-sm font-black rounded-none hover:scale-105 transition-all duration-300">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Cenová ponuka">Cenová ponuka</span></span>
+                        </a>
+                        <a href="#onas" class="group inline-flex items-center justify-center px-12 py-5 border-2 border-white/20 text-white text-sm font-bold rounded-none hover:bg-white/10 transition-all duration-300">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="O spoločnosti">O spoločnosti</span></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fade-up fade-up-4 absolute bottom-10 left-1/2 -translate-x-1/2">
+                <div class="w-6 h-10 border-2 border-white/30 flex items-start justify-center p-2">
+                    <div class="w-1.5 h-2.5 bg-white/60 animate-bounce"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ MAIN LAYOVER ═══════ -->
+        <div class="relative z-10 bg-white">
+
+            <!-- ═══════ SERVICES ═══════ -->
+            <section id="sluzby" class="py-28 md:py-36 bg-secondary relative overflow-hidden text-white">
+                <div class="absolute inset-0 z-0">
+                    <img src="20191031_105820-4-8.webp" class="w-full h-full object-cover opacity-10 grayscale" alt="">
+                    <div class="absolute inset-0 bg-secondary/85"></div>
+                </div>
+
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="reveal-on-scroll mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
+                        <div>
+                            <p class="text-xs font-black tracking-[0.3em] uppercase text-primary mb-6">Naše služby</p>
+                            <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase italic font-heading">Čo stavíme<span class="text-primary">.</span></h2>
+                        </div>
+                        <p class="text-white/60 max-w-md font-light">Komplexná stavebná dodávka od zakúpeného pozemku až po odovzdanie kľúčov od skolaudovanej stavby.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Card 1 -->
+                        <div class="reveal-on-scroll relative min-h-[450px] flex flex-col justify-end p-10 overflow-hidden group">
+                            <img src="DSCN2556-7-3.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Rodinné domy na kľúč">
+                            <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/50 to-transparent"></div>
+                            <div class="relative z-10">
+                                <span class="text-primary text-xs font-black tracking-widest uppercase mb-4 block">01 / Výstavba</span>
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none font-heading">Rodinné domy<br>na kľúč</h3>
+                                <ul class="space-y-2 text-white/70 font-medium text-xs tracking-wide">
+                                    <li>Murované & montované domy</li>
+                                    <li>Pasívne & nízkoenergetické domy</li>
+                                    <li>Komplexná stavebná dodávka</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="reveal-on-scroll relative min-h-[450px] flex flex-col justify-end p-10 overflow-hidden group" style="transition-delay: 150ms;">
+                            <img src="DSCN2558-7.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Administratívne budovy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/50 to-transparent"></div>
+                            <div class="relative z-10">
+                                <span class="text-primary text-xs font-black tracking-widest uppercase mb-4 block">02 / Komercia</span>
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none font-heading">Komerčné<br>stavby</h3>
+                                <ul class="space-y-2 text-white/70 font-medium text-xs tracking-wide">
+                                    <li>Administratívne budovy</li>
+                                    <li>Polyfunkčné objekty</li>
+                                    <li>Moderné prevedenie s tradíciou</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="reveal-on-scroll relative min-h-[450px] flex flex-col justify-end p-10 overflow-hidden group" style="transition-delay: 300ms;">
+                            <img src="DSCN2571-5.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Návrhy a vizualizácie">
+                            <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/50 to-transparent"></div>
+                            <div class="relative z-10">
+                                <span class="text-primary text-xs font-black tracking-widest uppercase mb-4 block">03 / Projekt</span>
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none font-heading">Návrhy<br>& vizualizácie</h3>
+                                <ul class="space-y-2 text-white/70 font-medium text-xs tracking-wide">
+                                    <li>Architektonické návrhy</li>
+                                    <li>3D vizualizácie</li>
+                                    <li>Stavebný dozor & inžiniering</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════ ABOUT ═══════ -->
+            <section id="onas" class="py-28 md:py-36 bg-white relative overflow-hidden">
+                <div class="mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                        <div class="reveal-on-scroll">
+                            <p class="text-xs font-black tracking-[0.3em] uppercase text-primary mb-6">O nás</p>
+                            <h2 class="text-5xl md:text-7xl font-black text-foreground tracking-tighter uppercase italic mb-12 font-heading">Náš prístup<span class="text-primary">.</span></h2>
+                            <p class="text-muted font-light mb-10 leading-relaxed max-w-lg">
+                                Naša spoločnosť pôsobí v oblasti stavebníctva od roku 2000. Zrealizovali sme stovky zákaziek, za ktorými stál vždy spokojný zákazník. Kvalitný materiál, bohaté skúsenosti a profesionálne vyškolený personál sú zárukou diela najvyššej akosti.
+                            </p>
+                            <div class="space-y-10">
+                                <div class="relative pl-16">
+                                    <div class="absolute left-0 top-0 text-7xl font-black text-primary/10 leading-none font-heading">01</div>
+                                    <h4 class="text-xl font-black uppercase text-primary mb-3 font-heading">Kompletná stavba od A po Z</h4>
+                                    <p class="text-muted font-light leading-relaxed">Začíname výstavbu na zakúpenom pozemku a vo finále odovzdávame kľúče od skolaudovanej stavby. Všetko vo vlastnej réžii.</p>
+                                </div>
+                                <div class="relative pl-16">
+                                    <div class="absolute left-0 top-0 text-7xl font-black text-primary/10 leading-none font-heading">02</div>
+                                    <h4 class="text-xl font-black uppercase text-primary mb-3 font-heading">Stavebný dozor & kvalifikácia</h4>
+                                    <p class="text-muted font-light leading-relaxed">Odborná spôsobilosť v oblasti autorizovaného stavebného inžinierstva. Dostatočná kvalifikovaná pracovná sila a vozový park.</p>
+                                </div>
+                                <div class="relative pl-16">
+                                    <div class="absolute left-0 top-0 text-7xl font-black text-primary/10 leading-none font-heading">03</div>
+                                    <h4 class="text-xl font-black uppercase text-primary mb-3 font-heading">Termíny a rešpekt k zákazníkovi</h4>
+                                    <p class="text-muted font-light leading-relaxed">Spoľahlivý pracovný harmonogram zaručuje odovzdanie v dohodnutom termíne. Vízie zákazníka sú pre nás vždy prvoradé.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="reveal-on-scroll">
+                            <div class="image-reveal-wrapper rounded-none aspect-[4/5] shadow-2xl skew-y-2">
+                                <div class="image-reveal-shutter"></div>
+                                <img src="DSCN2583-1-9.webp" alt="BMA stavebná spoločnosť" class="image-reveal-img w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════ PROJECTS GALLERY ═══════ -->
+            <section id="referencie" class="py-28 md:py-36 bg-gray-50 overflow-hidden">
+                <div class="mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="reveal-on-scroll mb-20 text-center">
+                        <h2 class="text-5xl md:text-8xl font-black text-foreground tracking-tighter uppercase italic mb-8 font-heading">Referencie<span class="text-primary">.</span></h2>
+                        <p class="text-muted max-w-2xl mx-auto font-light lg:text-xl">Naša stavebná spoločnosť vytvára viac než len obytné priestory — staviame miesta, kde žijú ľudia.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg group">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="DSCN2554-4.webp" alt="Realizácia 1" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
+                                <div>
+                                    <p class="text-primary text-xs font-black tracking-widest uppercase mb-2">Rodinný dom</p>
+                                    <p class="text-white text-sm font-bold uppercase italic">V srdci prírody</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg md:mt-12 group" style="transition-delay: 150ms;">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="DSCN2556-7-3.webp" alt="Realizácia 2" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
+                                <div>
+                                    <p class="text-primary text-xs font-black tracking-widest uppercase mb-2">Rodinný dom</p>
+                                    <p class="text-white text-sm font-bold uppercase italic">Na samote</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg md:mt-24 group" style="transition-delay: 300ms;">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="DSCN2558-7.webp" alt="Realizácia 3" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
+                                <div>
+                                    <p class="text-primary text-xs font-black tracking-widest uppercase mb-2">Vila</p>
+                                    <p class="text-white text-sm font-bold uppercase italic">Moderné prevedenie</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg group" style="transition-delay: 100ms;">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="DSCN2571-5.webp" alt="Realizácia 4" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
+                                <div>
+                                    <p class="text-primary text-xs font-black tracking-widest uppercase mb-2">Polyfunkčný objekt</p>
+                                    <p class="text-white text-sm font-bold uppercase italic">Štýl v centre mesta</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg md:mt-12 group" style="transition-delay: 250ms;">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="DSCN2583-1-9.webp" alt="Realizácia 5" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
+                                <div>
+                                    <p class="text-primary text-xs font-black tracking-widest uppercase mb-2">Administratívna budova</p>
+                                    <p class="text-white text-sm font-bold uppercase italic">Moderné prevedenie s tradíciou</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg md:mt-24 group" style="transition-delay: 400ms;">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="DSCN2598-4.webp" alt="Realizácia 6" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
+                                <div>
+                                    <p class="text-primary text-xs font-black tracking-widest uppercase mb-2">Rodinný dom</p>
+                                    <p class="text-white text-sm font-bold uppercase italic">Dom na kľúč</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════ FOOTER / CTA ═══════ -->
+            <footer id="kontakt" class="bg-secondary text-white pt-28 md:pt-40 relative overflow-hidden">
+                <div class="absolute inset-0 z-0 pointer-events-none opacity-5" style="background: repeating-linear-gradient(90deg, rgba(180,83,9,0.4) 0px, rgba(180,83,9,0.4) 1px, transparent 1px, transparent 80px), repeating-linear-gradient(0deg, rgba(180,83,9,0.4) 0px, rgba(180,83,9,0.4) 1px, transparent 1px, transparent 80px);"></div>
+
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10 pb-20 md:pb-32">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                        <!-- Left: Contact -->
+                        <div>
+                            <h2 class="text-5xl md:text-8xl font-black tracking-tighter uppercase italic mb-20 font-heading">Dopyt<span class="text-primary">.</span></h2>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                <div>
+                                    <p class="text-white/20 text-[10px] font-bold tracking-widest uppercase mb-4">Kontakt</p>
+                                    <a href="tel:+421903806908" class="text-2xl font-light hover:text-primary transition-colors block mb-1">+421 903 806 908</a>
+                                    <a href="tel:+421903766908" class="text-2xl font-light hover:text-primary transition-colors block mb-3">+421 903 766 908</a>
+                                    <a href="mailto:info@bma-dk.sk" class="text-lg font-light block hover:text-primary transition-colors opacity-50 italic">info@bma-dk.sk</a>
+                                </div>
+                                <div>
+                                    <p class="text-white/20 text-[10px] font-bold tracking-widest uppercase mb-4">Adresa</p>
+                                    <p class="text-white/60 font-light leading-relaxed mb-6">
+                                        BMA, spol. s r.o.<br>
+                                        Radlinského 1716<br>
+                                        026 01 Dolný Kubín
+                                    </p>
+                                    <p class="text-white/20 text-[10px] font-bold tracking-widest uppercase mb-3">Registrácia</p>
+                                    <p class="text-white/40 text-xs font-light leading-relaxed">
+                                        IČO: 36392359<br>
+                                        DIČ: 2020131641<br>
+                                        IČ DPH: SK2020131641
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Tag badges -->
+                        <div class="flex flex-col">
+                            <div class="bg-white/5 border border-white/10 p-10 md:p-16 rounded-none backdrop-blur-3xl">
+                                <h3 class="text-2xl font-black uppercase mb-6 italic font-heading">Čo ponúkame</h3>
+                                <p class="text-white/40 font-light mb-10 leading-relaxed">Všetko čo robíme je premyslené do posledného detailu — od prvého návrhu až po kompletnú stavbu. Rešpektujeme priania klientov.</p>
+                                <div class="flex flex-wrap gap-3">
+                                    <span class="px-6 py-2 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-primary">Dom na kľúč</span>
+                                    <span class="px-6 py-2 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-primary">Murovaný dom</span>
+                                    <span class="px-6 py-2 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-primary">Montovaný dom</span>
+                                    <span class="px-6 py-2 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-primary">Pasívny dom</span>
+                                    <span class="px-6 py-2 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-primary">Vizualizácie</span>
+                                    <span class="px-6 py-2 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-primary">Stavebný dozor</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-32 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold text-white/10 tracking-widest uppercase">
+                        <p>BMA, spol. s r.o. | Stavebná spoločnosť Dolný Kubín</p>
+                        <div class="flex gap-6">
+                            <a href="#" class="hover:text-white/30 transition-colors">GDPR</a>
+                            <a href="#" class="hover:text-white/30 transition-colors">Cookies</a>
+                            <p>© 2021 BMA, spol. s r.o.</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div><!-- end main layover -->
+    </main>
+
+    <!-- ═══════ SCRIPTS ═══════ -->
+    <script>
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            touchMultiplier: 2,
+        });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        function openMenu() { document.body.classList.add('menu-open'); document.body.style.overflow = 'hidden'; lenis.stop(); }
+        function closeMenu() { document.body.classList.remove('menu-open'); document.body.style.overflow = ''; lenis.start(); }
+
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        menuLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('is-visible'); revealObserver.unobserve(entry.target); }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
+
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('is-revealed'); imageObserver.unobserve(entry.target); }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.image-reveal-wrapper').forEach(el => imageObserver.observe(el));
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const heroParallax = document.querySelector('.hero-parallax');
+            if (heroParallax) {
+                heroParallax.style.transform = `translateY(${scrollY * (parseFloat(heroParallax.getAttribute('data-speed')) || 0.1)}px)`;
+            }
+            document.querySelectorAll('.parallax-target:not(.hero-parallax)').forEach(el => {
+                const rect = el.parentElement.getBoundingClientRect();
+                const vh = window.innerHeight;
+                if (rect.top < vh && rect.bottom > 0) {
+                    const speed = parseFloat(el.getAttribute('data-speed')) || 0.15;
+                    const progress = 1 - (rect.bottom / (vh + rect.height));
+                    el.style.transform = `translateY(${(progress * 2 - 1) * speed * 100}%)`;
+                }
+            });
+        });
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+</body>
+</html>
