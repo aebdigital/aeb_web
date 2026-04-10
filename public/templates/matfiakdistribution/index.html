@@ -121,43 +121,52 @@
 <body class="min-h-screen flex flex-col antialiased">
 
     <!-- MENU OVERLAY -->
-    <div id="menu-overlay" class="fixed inset-0 z-[55] flex flex-col grain-overlay" style="background-color:#0F0F0F;background-image:url('texture.svg');background-size:600px 600px">
-        <div class="mx-auto w-[95vw] flex items-center justify-between h-16 md:h-20 pt-2">
-            <span class="text-lg font-bold uppercase tracking-tight text-white" style="font-family:'Space Grotesk',sans-serif">MATFIAK <span style="color:var(--color-primary)">DISTRIBUTION</span></span>
-            <button id="menu-close" class="w-10 h-10 flex items-center justify-center" aria-label="Zatvoriť">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    <div id="menu-overlay" class="fixed top-0 inset-x-0 h-screen z-[60] flex flex-col overflow-hidden grain-overlay" style="background-color:#0F0F0F;background-image:url('texture.svg');background-size:600px 600px">
+        <div class="mx-auto w-[95vw] flex items-center justify-between h-16 md:h-24">
+            <span class="text-base md:text-lg font-bold uppercase tracking-tight text-white" style="font-family:'Space Grotesk',sans-serif">MATFIAK <span style="color:var(--color-primary)">DISTRIBUTION</span></span>
+            <button id="menu-close" class="text-white transition-colors text-xs tracking-[0.2em] font-bold uppercase border flex items-center gap-3 px-5 py-2.5 hover:bg-white/10" style="border-color:rgba(255,255,255,0.2);font-family:'Space Grotesk',sans-serif" aria-label="Zatvoriť">
+                <span class="relative w-4 h-4 flex items-center justify-center">
+                    <span class="absolute w-full h-px bg-white rotate-45"></span>
+                    <span class="absolute w-full h-px bg-white -rotate-45"></span>
+                </span>
+                <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Zatvoriť">Zatvoriť</span></span>
             </button>
         </div>
-        <nav class="flex-1 flex flex-col justify-center px-[5vw] gap-2">
-            <a href="#" onclick="closeMenu()" class="block text-4xl md:text-6xl font-bold uppercase text-white/10 hover:text-white transition-colors duration-300 leading-tight py-1" style="font-family:'Space Grotesk',sans-serif">O nás</a>
-            <a href="#sluzby" onclick="closeMenu()" class="block text-4xl md:text-6xl font-bold uppercase text-white/10 hover:text-white transition-colors duration-300 leading-tight py-1" style="font-family:'Space Grotesk',sans-serif">Služby</a>
-            <a href="#kontakt" onclick="closeMenu()" class="block text-4xl md:text-6xl font-bold uppercase text-white/10 hover:text-white transition-colors duration-300 leading-tight py-1" style="font-family:'Space Grotesk',sans-serif">Kontakt</a>
-        </nav>
-        <div class="px-[5vw] pb-10 flex items-center gap-6">
+        <div class="flex-1 flex items-center pb-8 overflow-y-auto">
+            <div class="mx-auto w-[95vw] grid grid-cols-1 md:grid-cols-2 gap-12 py-10 md:py-0">
+                <div class="hidden md:flex flex-col justify-center">
+                    <p class="text-white/60 text-sm leading-relaxed mb-4" style="font-family:'Space Grotesk',sans-serif">Stará Ľubovňa, Slovakia</p>
+                    <p class="text-white/30 text-xs uppercase tracking-widest" style="font-family:'Space Grotesk',sans-serif">+421 948 386 053</p>
+                </div>
+                <nav class="flex flex-col gap-3 items-start md:items-end">
+                    <a href="#" class="menu-link block font-bold uppercase text-white group" style="font-family:'Space Grotesk',sans-serif;font-size:clamp(2.2rem,7vw,5rem);line-height:1.1"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="O nás">O nás</span></span></a>
+                    <a href="#sluzby" class="menu-link block font-bold uppercase text-white group" style="font-family:'Space Grotesk',sans-serif;font-size:clamp(2.2rem,7vw,5rem);line-height:1.1"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Služby">Služby</span></span></a>
+                    <a href="#kontakt" class="menu-link block font-bold uppercase text-white group" style="font-family:'Space Grotesk',sans-serif;font-size:clamp(2.2rem,7vw,5rem);line-height:1.1"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kontakt">Kontakt</span></span></a>
+                </nav>
+            </div>
+        </div>
+        <div class="mx-auto w-[95vw] pb-8 flex items-center gap-6 md:hidden">
             <a href="tel:+421948386053" class="text-white/40 text-sm hover:text-white transition-colors">+421 948 386 053</a>
         </div>
     </div>
 
     <!-- HEADER -->
     <header id="site-header" class="site-header fixed top-0 left-0 right-0 z-50 bg-white" style="border-bottom:1px solid rgba(0,0,0,0.08)">
-        <div class="mx-auto w-[95vw] flex items-center justify-between h-16 md:h-20">
+        <div class="mx-auto w-[95vw] flex items-center justify-between h-16 md:h-24">
             <a href="#"><span class="logo-text text-base md:text-lg font-bold uppercase tracking-tight" style="font-family:'Space Grotesk',sans-serif;color:#0A0A0A">MATFIAK <span style="color:var(--color-primary)">DISTRIBUTION</span></span></a>
-            <nav class="hidden md:flex items-center gap-8">
-                <a href="#" class="hover-split-text nav-link text-xs font-semibold uppercase tracking-widest" style="color:#444"><span class="hover-split-text-inner" data-text="O nás">O nás</span></a>
-                <a href="#sluzby" class="hover-split-text nav-link text-xs font-semibold uppercase tracking-widest" style="color:#444"><span class="hover-split-text-inner" data-text="Služby">Služby</span></a>
-                <a href="#kontakt" class="hover-split-text nav-link text-xs font-semibold uppercase tracking-widest" style="color:#444"><span class="hover-split-text-inner" data-text="Kontakt">Kontakt</span></a>
-                <a href="#kontakt" class="btn-primary text-xs">Napíšte nám</a>
-            </nav>
-            <button id="menu-toggle" class="relative z-[60] w-10 h-10 flex flex-col items-end justify-center gap-1.5 md:hidden" aria-label="Menu">
-                <span class="ham-line block h-px transition-all duration-300" style="width:28px;background:#0A0A0A"></span>
-                <span class="ham-line block h-px transition-all duration-300" style="width:20px;background:#0A0A0A"></span>
+            <button id="menu-toggle" class="relative z-[60] text-dark bg-white border flex items-center gap-3 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-dark hover:text-white transition-all group" style="border-color:rgba(0,0,0,0.1);font-family:'Space Grotesk',sans-serif" aria-label="Menu">
+                <div class="w-4 flex flex-col gap-1.5 items-end">
+                    <span class="ham-line block h-px w-full transition-all duration-300" style="background:currentColor"></span>
+                    <span class="ham-line block h-px w-2/3 transition-all duration-300 group-hover:w-full" style="background:currentColor"></span>
+                </div>
+                <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Menu">Menu</span></span>
             </button>
         </div>
     </header>
 
     <!-- HERO -->
-    <section id="hero" class="relative flex items-end pb-20 md:pb-28 pt-16">
-        <div id="hero-bg" style="background-image:url('zemneprace+herophoto.avif')">
+    <section id="hero" class="relative flex items-end pb-20 md:pb-28 pt-24">
+        <div id="hero-bg" style="background-image:url('zemneprace+herophoto.webp')">
             <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(10,10,10,0.92) 0%,rgba(10,10,10,0.5) 55%,rgba(10,10,10,0.25) 100%)"></div>
         </div>
         <div class="absolute inset-x-0 top-[40%] overflow-hidden pointer-events-none z-10">
@@ -372,10 +381,11 @@
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const hamLines = document.querySelectorAll('.ham-line');
-        function openMenu() { document.body.classList.add('menu-open'); hamLines[0].style.transform='translateY(5px) rotate(45deg)'; hamLines[1].style.transform='translateY(-5px) rotate(-45deg)'; hamLines[1].style.width='28px'; hamLines.forEach(h=>h.style.background='white'); }
-        function closeMenu() { document.body.classList.remove('menu-open'); hamLines[0].style.transform=''; hamLines[1].style.transform=''; hamLines[1].style.width='20px'; const s=window.scrollY>60; hamLines.forEach(h=>h.style.background=s?'white':'#0A0A0A'); }
+        function openMenu() { document.body.classList.add('menu-open'); lenis.stop(); }
+        function closeMenu() { document.body.classList.remove('menu-open'); lenis.start(); }
         menuToggle.addEventListener('click', () => document.body.classList.contains('menu-open') ? closeMenu() : openMenu());
         menuClose.addEventListener('click', closeMenu);
+        document.querySelectorAll('.menu-link').forEach(l => l.addEventListener('click', closeMenu));
         const revealObserver = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); }); }, { threshold: 0.1 });
         document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
         const imageObserver = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-revealed'); }); }, { threshold: 0.08 });
