@@ -429,6 +429,11 @@
   status = 200
 
 [[redirects]]
+  from = "/plasttime"
+  to = "/templates/plasttime/index.html"
+  status = 200
+
+[[redirects]]
   from = "/rbltrade"
   to = "/templates/rbltrade/index.html"
   status = 200
