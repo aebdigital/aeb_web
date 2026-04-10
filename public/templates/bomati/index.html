@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOMATI s.r.o. | Výstavba, interiéry a povrchové úpravy</title>
+    <script>
+        if (window.location.protocol !== 'file:') {
+            document.write('<base href="/templates/bomati/">');
+        }
+    </script>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="BOMATI s.r.o. — komplexná realizácia rodinných domov, kúpeľní a interiérov. Obklady, dlažby, prírodný kameň. Od roku 2017. Poprad.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: '#c69b5b', light: '#d4ae76', dark: '#a07d3e' },
+                        secondary: '#1a1a18',
+                        muted: '#6b6b6b',
+                    },
+                    fontFamily: {
+                        heading: ['"DM Serif Display"', 'Georgia', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --color-primary: #c69b5b;
+            --color-primary-dark: #a07d3e;
+            --color-secondary: #1a1a18;
+            --color-muted: #6b6b6b;
+            --color-bg: #faf9f7;
+        }
+
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-secondary);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .site-header { transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .site-header.scrolled {
+            background-color: rgba(26,26,24,0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .hover-split-text {
+            position: relative; overflow: hidden;
+            display: inline-block; vertical-align: top;
+        }
+        .hover-split-text-inner {
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .hover-split-text-inner::after {
+            content: attr(data-text);
+            position: absolute; top: 110%; left: 0;
+            width: 100%; line-height: inherit;
+        }
+        .group:hover .hover-split-text-inner,
+        .hover-split-text:hover .hover-split-text-inner { transform: translateY(-100%); }
+
+        .reveal-on-scroll {
+            opacity: 0; transform: translateY(28px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+        .image-reveal-wrapper { position: relative; overflow: hidden; }
+        .image-reveal-shutter {
+            position: absolute; inset: 0;
+            background-color: var(--color-secondary); z-index: 10;
+            transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .image-reveal-wrapper.is-revealed .image-reveal-shutter { transform: translateY(-100%); }
+        .image-reveal-img {
+            transform: scale(1.15);
+            transition: transform 1.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .image-reveal-wrapper.is-revealed .image-reveal-img { transform: scale(1); }
+        .image-reveal-wrapper:hover .image-reveal-img { transform: scale(1.05); }
+
+        #menu-overlay {
+            transform: translateY(-100%);
+            transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        body.menu-open #menu-overlay { transform: translateY(0); }
+
+        .fade-up { opacity: 0; transform: translateY(30px); animation: fade-up-anim 0.8s ease-out forwards; }
+        .fade-up-1 { animation-delay: 0.15s; }
+        .fade-up-2 { animation-delay: 0.3s; }
+        .fade-up-3 { animation-delay: 0.45s; }
+        @keyframes fade-up-anim {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cookie consent */
+        #cookie-banner {
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        #cookie-banner.is-visible { transform: translateY(0); }
+        #cookie-revisit-btn {
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        #cookie-revisit-btn.is-visible { opacity: 1; pointer-events: auto; }
+
+        /* Divider line */
+        .divider-line {
+            width: 40px; height: 1px;
+            background-color: var(--color-primary);
+            display: inline-block;
+        }
+
+        /* Review stars */
+        .star { color: var(--color-primary); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+    <!-- HEADER -->
+    <header id="site-header" class="site-header fixed top-0 left-0 right-0 z-50 bg-transparent">
+        <div class="mx-auto w-[95vw] flex items-center justify-between h-16 md:h-24 px-4 md:px-8">
+            <a href="#" class="flex items-center">
+                <span class="text-xl md:text-2xl font-bold text-white tracking-wide uppercase" style="font-family:'DM Serif Display',serif;letter-spacing:0.1em">BOMA<span style="color:var(--color-primary)">TI</span></span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="tel:+421910966472" class="text-white/70 hover:text-white text-sm transition-colors font-light tracking-wide">+421 910 966 472</a>
+            </div>
+            <button id="menu-toggle" class="text-white text-xs tracking-[0.2em] font-medium uppercase border border-white/20 px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 group transition-colors">
+                <div class="w-4 flex flex-col gap-1">
+                    <span class="w-full h-[1.5px] bg-white"></span>
+                    <span class="w-full h-[1.5px] bg-white"></span>
+                </div>
+                <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Menu">Menu</span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MENU OVERLAY -->
+    <div id="menu-overlay" class="fixed top-0 inset-x-0 h-screen md:h-[75vh] z-[60] flex flex-col overflow-hidden shadow-2xl" style="background-color:#1a1a18;border-bottom:1px solid rgba(198,155,91,0.2)">
+        <div class="absolute inset-0 z-0 pointer-events-none" style="background:radial-gradient(ellipse at 80% 50%, rgba(198,155,91,0.05) 0%, transparent 60%)"></div>
+
+        <div class="relative z-10 mx-auto w-[95vw] flex items-center justify-between h-24 px-4 md:px-8">
+            <span class="text-xl md:text-2xl font-bold text-white tracking-wide uppercase" style="font-family:'DM Serif Display',serif;letter-spacing:0.1em">BOMA<span style="color:var(--color-primary)">TI</span></span>
+            <button id="menu-close" class="text-white text-xs tracking-[0.2em] font-medium uppercase border border-white/20 px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 group transition-colors">
+                <span class="relative w-4 h-4 flex items-center justify-center">
+                    <span class="absolute w-full h-[1.5px] bg-white rotate-45"></span>
+                    <span class="absolute w-full h-[1.5px] bg-white -rotate-45"></span>
+                </span>
+                <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Zavrieť">Zavrieť</span></span>
+            </button>
+        </div>
+
+        <div class="relative z-10 flex-1 flex items-center pb-8 overflow-y-auto">
+            <div class="mx-auto w-[95vw] px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-16 py-8 md:py-0">
+                <!-- Contact info -->
+                <div class="hidden md:flex flex-col justify-center gap-8">
+                    <div>
+                        <span class="text-white/30 text-[10px] uppercase tracking-[0.25em] block mb-5">Kontakt</span>
+                        <a href="tel:+421910966472" class="text-white text-3xl font-light block hover:text-primary transition-colors" style="letter-spacing:-0.02em">+421 910 966 472</a>
+                        <a href="mailto:info@bomati.sk" class="text-white/40 text-xl font-light block mt-2 hover:text-white/70 transition-colors">info@bomati.sk</a>
+                    </div>
+                    <div>
+                        <span class="text-white/30 text-[10px] uppercase tracking-[0.25em] block mb-3">Adresa</span>
+                        <address class="not-italic text-white/50 text-base font-light leading-relaxed">
+                            Kežmarok<br>Tvarožnianska 2620/13<br>PSČ 060 01
+                        </address>
+                    </div>
+                </div>
+
+                <!-- Nav links -->
+                <nav class="flex flex-col gap-3 items-center md:items-end text-center md:text-right">
+                    <a href="#top" class="menu-link group block text-4xl md:text-6xl text-white hover:text-primary transition-colors" style="font-family:'DM Serif Display',serif;font-style:italic"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Domov">Domov</span></span></a>
+                    <a href="#onas" class="menu-link group block text-4xl md:text-6xl text-white hover:text-primary transition-colors" style="font-family:'DM Serif Display',serif;font-style:italic"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="O nás">O nás</span></span></a>
+                    <a href="#sluzby" class="menu-link group block text-4xl md:text-6xl text-white hover:text-primary transition-colors" style="font-family:'DM Serif Display',serif;font-style:italic"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Služby">Služby</span></span></a>
+                    <a href="#realizacie" class="menu-link group block text-4xl md:text-6xl text-white hover:text-primary transition-colors" style="font-family:'DM Serif Display',serif;font-style:italic"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Realizácie">Realizácie</span></span></a>
+                    <a href="#kontakt" class="menu-link group block text-4xl md:text-6xl text-white hover:text-primary transition-colors" style="font-family:'DM Serif Display',serif;font-style:italic"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kontakt">Kontakt</span></span></a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- HERO -->
+        <section id="top" class="sticky top-0 h-screen w-full flex items-end overflow-hidden z-0">
+            <div class="absolute inset-0">
+                <div class="hero-parallax w-full h-[115%] -top-[15%] absolute">
+                    <img src="herophoto.jpg" alt="BOMATI výstavba a interiéry" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute inset-0 bg-black/50"></div>
+                <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(26,26,24,0.85) 0%,rgba(26,26,24,0.2) 50%,transparent 100%)"></div>
+            </div>
+
+            <div class="relative z-10 w-[95vw] mx-auto px-4 md:px-8 pb-16 md:pb-24">
+                <div class="max-w-4xl">
+                    <div class="fade-up flex items-center gap-4 mb-8">
+                        <span class="divider-line"></span>
+                        <span class="text-[11px] font-semibold tracking-[0.3em] uppercase" style="color:var(--color-primary)">Od roku 2017 · Poprad & okolie</span>
+                    </div>
+                    <h1 class="fade-up fade-up-1 text-5xl md:text-7xl lg:text-8xl text-white leading-[1.0] mb-8" style="font-family:'DM Serif Display',serif;font-style:italic;letter-spacing:-0.02em">
+                        Výstavba,<br>projektový<br><span style="color:var(--color-primary)">manažment.</span>
+                    </h1>
+                    <p class="fade-up fade-up-2 text-lg md:text-xl text-white/70 font-light max-w-2xl leading-relaxed mb-12">
+                        Stavebné práce · Interiér a povrchové úpravy · Prírodný kameň
+                    </p>
+                    <div class="fade-up fade-up-3 flex flex-col sm:flex-row gap-4">
+                        <a href="#kontakt" class="group inline-flex items-center justify-center px-10 py-4 text-secondary text-sm font-semibold tracking-wider uppercase transition-all duration-300 hover:opacity-90" style="background-color:var(--color-primary);color:#1a1a18">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Dopyt na služby">Dopyt na služby</span></span>
+                        </a>
+                        <a href="#onas" class="group inline-flex items-center justify-center px-10 py-4 border border-white/25 text-white text-sm font-medium tracking-wider uppercase hover:bg-white/10 transition-all duration-300">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="O nás">O nás</span></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="relative z-10" style="background-color:var(--color-bg)">
+
+            <!-- O NÁS / ČO ROBÍME -->
+            <section id="onas" class="py-24 md:py-40">
+                <div class="mx-auto w-[95vw] px-4 md:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center">
+                        <div class="reveal-on-scroll">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="divider-line"></span>
+                                <span class="text-[11px] font-semibold tracking-[0.3em] uppercase" style="color:var(--color-primary)">Čo robíme</span>
+                            </div>
+                            <h2 class="text-4xl md:text-6xl mb-8 leading-tight" style="font-family:'DM Serif Display',serif;font-style:italic;color:var(--color-secondary)">
+                                Remeselná<br>dokonalosť.
+                            </h2>
+                            <p class="text-base leading-relaxed mb-6" style="color:var(--color-muted)">
+                                Od roku 2017 sa venujeme komplexnej realizácii rodinných domov, kúpeľní a interiérov. Špecializujeme sa na obklady, dlažby a práce s prírodným či umelým kameňom.
+                            </p>
+                            <p class="text-base leading-relaxed mb-8" style="color:var(--color-muted)">
+                                Naša filozofia spočíva v kombinácii kvality, estetiky a funkčnosti. Kladieme dôraz na detail a spokojnosť klientov.
+                            </p>
+                            <blockquote class="border-l-2 pl-6 py-2 mb-10" style="border-color:var(--color-primary)">
+                                <p class="text-base font-light italic leading-relaxed" style="color:var(--color-secondary)">„Každý klient je jedinečný, a preto si zaslúži individuálny prístup."</p>
+                            </blockquote>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="px-5 py-2.5 text-[11px] font-semibold uppercase tracking-widest border" style="border-color:var(--color-primary);color:var(--color-primary)">Stavebné práce</span>
+                                <span class="px-5 py-2.5 text-[11px] font-semibold uppercase tracking-widest border" style="border-color:var(--color-primary);color:var(--color-primary)">Interiér</span>
+                                <span class="px-5 py-2.5 text-[11px] font-semibold uppercase tracking-widest border" style="border-color:var(--color-primary);color:var(--color-primary)">Kameň</span>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll" style="transition-delay:200ms">
+                            <div class="image-reveal-wrapper shadow-2xl" style="aspect-ratio:4/5">
+                                <div class="image-reveal-shutter"></div>
+                                <img src="LenkaBretzova_interier2_2024-4-scaled.jpg" alt="Bomati interiér realizácia" class="image-reveal-img w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STATS -->
+            <section class="py-16 md:py-20" style="background-color:#1a1a18">
+                <div class="mx-auto w-[95vw] px-4 md:px-8">
+                    <div class="grid grid-cols-3 gap-8 text-center">
+                        <div class="reveal-on-scroll">
+                            <div class="text-4xl md:text-6xl font-bold mb-2" style="font-family:'DM Serif Display',serif;color:var(--color-primary)">15+</div>
+                            <div class="text-xs md:text-sm font-medium uppercase tracking-[0.2em] text-white/50">Odborníkov v tíme</div>
+                        </div>
+                        <div class="reveal-on-scroll" style="transition-delay:100ms">
+                            <div class="text-4xl md:text-6xl font-bold mb-2" style="font-family:'DM Serif Display',serif;color:var(--color-primary)">11</div>
+                            <div class="text-xs md:text-sm font-medium uppercase tracking-[0.2em] text-white/50">Rokov na trhu</div>
+                        </div>
+                        <div class="reveal-on-scroll" style="transition-delay:200ms">
+                            <div class="text-4xl md:text-6xl font-bold mb-2" style="font-family:'DM Serif Display',serif;color:var(--color-primary)">100+</div>
+                            <div class="text-xs md:text-sm font-medium uppercase tracking-[0.2em] text-white/50">Zrealizovaných projektov</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLUŽBY -->
+            <section id="sluzby" class="py-24 md:py-40">
+                <div class="mx-auto w-[95vw] px-4 md:px-8">
+                    <div class="reveal-on-scroll mb-16 text-center">
+                        <div class="flex items-center justify-center gap-4 mb-6">
+                            <span class="divider-line"></span>
+                            <span class="text-[11px] font-semibold tracking-[0.3em] uppercase" style="color:var(--color-primary)">Naše služby</span>
+                            <span class="divider-line"></span>
+                        </div>
+                        <h2 class="text-4xl md:text-6xl" style="font-family:'DM Serif Display',serif;font-style:italic;color:var(--color-secondary)">Na čo sa zameriavame</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Stavebné práce -->
+                        <div class="reveal-on-scroll group relative overflow-hidden" style="aspect-ratio:16/9">
+                            <img src="strbske-pleso-stavebna-firma-realizacia-13.jpg" alt="Stavebné a inžinierske práce" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(26,26,24,0.9) 0%,rgba(26,26,24,0.3) 60%,transparent 100%)"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-8">
+                                <span class="text-[10px] font-semibold tracking-[0.25em] uppercase mb-3 block" style="color:var(--color-primary)">01 / Výstavba</span>
+                                <h3 class="text-2xl md:text-3xl text-white mb-3" style="font-family:'DM Serif Display',serif;font-style:italic">Stavebné a inžinierske práce</h3>
+                                <p class="text-white/60 text-sm font-light leading-relaxed max-w-sm">Komplexná realizácia rodinných domov, projektový manažment a plánovanie od základov po odovzdanie.</p>
+                            </div>
+                        </div>
+
+                        <!-- Interiér -->
+                        <div class="reveal-on-scroll group relative overflow-hidden" style="aspect-ratio:16/9;transition-delay:150ms">
+                            <img src="LenkaBretzova_interier1_2024-6-scaled.jpg" alt="Interiérový dizajn a povrchové úpravy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(26,26,24,0.9) 0%,rgba(26,26,24,0.3) 60%,transparent 100%)"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-8">
+                                <span class="text-[10px] font-semibold tracking-[0.25em] uppercase mb-3 block" style="color:var(--color-primary)">02 / Interiér</span>
+                                <h3 class="text-2xl md:text-3xl text-white mb-3" style="font-family:'DM Serif Display',serif;font-style:italic">Interiérový dizajn a povrchové úpravy</h3>
+                                <p class="text-white/60 text-sm font-light leading-relaxed max-w-sm">Obklady, dlažby, prírodný a umelý kameň. Kúpeľne a wellness priestory na mieru.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interior detail -->
+                    <div class="reveal-on-scroll mt-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="image-reveal-wrapper shadow-lg" style="aspect-ratio:3/4">
+                                <div class="image-reveal-shutter"></div>
+                                <img src="LenkaBretzova_interier5_2024-1-scaled.jpg" alt="Interiér" class="image-reveal-img w-full h-full object-cover">
+                            </div>
+                            <div class="image-reveal-wrapper shadow-lg mt-8" style="aspect-ratio:3/4">
+                                <div class="image-reveal-shutter"></div>
+                                <img src="LenkaBretzova_interier5_2024-5-scaled.jpg" alt="Interiér detail" class="image-reveal-img w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="divider-line"></span>
+                                <span class="text-[11px] font-semibold tracking-[0.3em] uppercase" style="color:var(--color-primary)">Interiér</span>
+                            </div>
+                            <h3 class="text-3xl md:text-5xl mb-6 leading-tight" style="font-family:'DM Serif Display',serif;font-style:italic;color:var(--color-secondary)">Priestory plné charakteru.</h3>
+                            <p class="text-base leading-relaxed mb-6" style="color:var(--color-muted)">
+                                Špecializujeme sa na obklady a dlažby, ponúkajúc široký výber materiálov pre elegantný a praktický dizajn. Realizujeme kúpeľne a wellness priestory, kde kombinujeme luxus s relaxáciou.
+                            </p>
+                            <p class="text-base leading-relaxed mb-10" style="color:var(--color-muted)">
+                                Pracujeme s prírodným a umelým kameňom, čím oživujeme každý priestor a dodávame mu jedinečný charakter.
+                            </p>
+                            <a href="#kontakt" class="inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-widest group transition-colors" style="color:var(--color-primary)">
+                                <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Nezáväzný dopyt">Nezáväzný dopyt</span></span>
+                                <span class="w-8 h-[1px] transition-all duration-300 group-hover:w-16" style="background-color:var(--color-primary)"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RECENZIE -->
+            <section class="py-24 md:py-40" style="background-color:#1a1a18">
+                <div class="mx-auto w-[95vw] px-4 md:px-8">
+                    <div class="reveal-on-scroll mb-16 text-center">
+                        <div class="flex items-center justify-center gap-4 mb-6">
+                            <span class="divider-line"></span>
+                            <span class="text-[11px] font-semibold tracking-[0.3em] uppercase" style="color:var(--color-primary)">Recenzie</span>
+                            <span class="divider-line"></span>
+                        </div>
+                        <h2 class="text-4xl md:text-6xl text-white" style="font-family:'DM Serif Display',serif;font-style:italic">Čo hovoria klienti</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="reveal-on-scroll p-8" style="background-color:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08)">
+                            <div class="flex gap-1 mb-6">
+                                <span class="star text-lg">★</span><span class="star text-lg">★</span><span class="star text-lg">★</span><span class="star text-lg">★</span><span class="star text-lg">★</span>
+                            </div>
+                            <p class="text-white/70 text-sm font-light leading-relaxed mb-8 italic">
+                                „S firmou Bomati sme realizovali výstavbu nášho rodinného domu v Poprade a ich prístup bol prvotriedny od začiatku až do konca. Oceňujem najmä ich schopnosť riešiť komplexné stavebné a inžinierske výzvy."
+                            </p>
+                            <div>
+                                <p class="text-white text-sm font-semibold">Peter Horváth</p>
+                                <p class="text-[11px] uppercase tracking-widest mt-1" style="color:rgba(198,155,91,0.6)">Rodinný dom · Poprad</p>
+                            </div>
+                        </div>
+
+                        <div class="reveal-on-scroll p-8" style="background-color:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);transition-delay:150ms">
+                            <div class="flex gap-1 mb-6">
+                                <span class="star text-lg">★</span><span class="star text-lg">★</span><span class="star text-lg">★</span><span class="star text-lg">★</span><span class="star text-lg">★</span>
+                            </div>
+                            <p class="text-white/70 text-sm font-light leading-relaxed mb-8 italic">
+                                „V spolupráci s Bomati sme premenili našu predstavu o dokonalej kúpeľni na realitu. Ich zmysel pre detail, široký výber kvalitných obkladov a dlažieb, a schopnosť kombinovať funkčnosť s estetikou boli presne tým, čo sme hľadali."
+                            </p>
+                            <div>
+                                <p class="text-white text-sm font-semibold">Martina Hlaváčová</p>
+                                <p class="text-[11px] uppercase tracking-widest mt-1" style="color:rgba(198,155,91,0.6)">Kúpeľňa · Interiér</p>
+                            </div>
+                        </div>
+
+                        <div class="reveal-on-scroll p-8" style="background-color:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);transition-delay:300ms">
+                            <div class="flex gap-1 mb-6">
+                                <span class="star text-lg">★</span><span class="star text-lg">★</span><span class="star text-lg">★</span><span class="star text-lg">★</span><span class="star text-lg">★</span>
+                            </div>
+                            <p class="text-white/70 text-sm font-light leading-relaxed mb-8 italic">
+                                „Na odporúčanie sme oslovili Bomati pre kompletnú rekonštrukciu kancelárskych priestorov. Profesionálny prístup, inovatívne návrhy a exteriérové práce s prírodným kameňom dodali budove jedinečný charakter."
+                            </p>
+                            <div>
+                                <p class="text-white text-sm font-semibold">Lukáš Sedlák</p>
+                                <p class="text-[11px] uppercase tracking-widest mt-1" style="color:rgba(198,155,91,0.6)">Kancelárske priestory</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- REALIZÁCIE / GALLERY -->
+            <section id="realizacie" class="py-24 md:py-40">
+                <div class="mx-auto w-[95vw] px-4 md:px-8">
+                    <div class="reveal-on-scroll mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
+                        <div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <span class="divider-line"></span>
+                                <span class="text-[11px] font-semibold tracking-[0.3em] uppercase" style="color:var(--color-primary)">Ukážky prác</span>
+                            </div>
+                            <h2 class="text-4xl md:text-6xl" style="font-family:'DM Serif Display',serif;font-style:italic;color:var(--color-secondary)">Realizované projekty</h2>
+                        </div>
+                        <p class="text-sm font-light max-w-xs" style="color:var(--color-muted)">Fotografie niekedy povedia viac než slová</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+                        <div class="reveal-on-scroll image-reveal-wrapper shadow-md group" style="aspect-ratio:3/4">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="LenkaBretzova_interier1_2024-6-scaled.jpg" alt="Realizácia" class="image-reveal-img w-full h-full object-cover">
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper shadow-md group md:mt-10" style="aspect-ratio:3/4;transition-delay:100ms">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="LenkaBretzova_bytPoprad_2025-7-scaled.jpg" alt="Realizácia" class="image-reveal-img w-full h-full object-cover">
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper shadow-md group md:mt-20" style="aspect-ratio:3/4;transition-delay:200ms">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="LenkaBretzova_interier2_2024-4-scaled.jpg" alt="Realizácia" class="image-reveal-img w-full h-full object-cover">
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper shadow-md group" style="aspect-ratio:3/4;transition-delay:80ms">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="LenkaBretzova_interier5_2024-1-scaled.jpg" alt="Realizácia" class="image-reveal-img w-full h-full object-cover">
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper shadow-md group md:mt-10" style="aspect-ratio:3/4;transition-delay:180ms">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="brusenie-chaty-exterier-13.jpg" alt="Realizácia" class="image-reveal-img w-full h-full object-cover">
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper shadow-md group md:mt-20" style="aspect-ratio:3/4;transition-delay:280ms">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="strbske-pleso-stavebna-firma-realizacia-13.jpg" alt="Realizácia" class="image-reveal-img w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER / KONTAKT -->
+            <footer id="kontakt" class="pt-24 md:pt-40 pb-12 relative overflow-hidden" style="background-color:#1a1a18">
+                <div class="absolute inset-0 z-0 pointer-events-none" style="background:radial-gradient(ellipse at 20% 80%, rgba(198,155,91,0.06) 0%, transparent 50%)"></div>
+
+                <div class="relative z-10 mx-auto w-[95vw] px-4 md:px-8">
+                    <!-- CTA -->
+                    <div class="reveal-on-scroll mb-20 pb-20 text-center" style="border-bottom:1px solid rgba(255,255,255,0.06)">
+                        <h2 class="text-4xl md:text-6xl text-white mb-6" style="font-family:'DM Serif Display',serif;font-style:italic">Máte víziu?<br><span style="color:var(--color-primary)">Zrealizujeme ju.</span></h2>
+                        <p class="text-white/50 text-base font-light max-w-xl mx-auto mb-10 leading-relaxed">
+                            Každý projekt je pre nás unikátny. Naša spolupráca začína pochopením vašich potrieb, čo nám umožňuje navrhnúť riešenia šité na mieru.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="tel:+421910966472" class="inline-flex items-center justify-center px-10 py-4 text-sm font-semibold tracking-wider uppercase transition-all hover:opacity-90" style="background-color:var(--color-primary);color:#1a1a18">
+                                <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Zavolajte nám">Zavolajte nám</span></span>
+                            </a>
+                            <a href="mailto:info@bomati.sk" class="inline-flex items-center justify-center px-10 py-4 border border-white/20 text-white text-sm font-medium tracking-wider uppercase hover:bg-white/10 transition-all">
+                                <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Napíšte nám">Napíšte nám</span></span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Footer grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                        <div>
+                            <span class="text-xl font-bold text-white tracking-wide uppercase block mb-6" style="font-family:'DM Serif Display',serif;letter-spacing:0.1em">BOMA<span style="color:var(--color-primary)">TI</span></span>
+                            <p class="text-white/40 text-sm font-light leading-relaxed">Stavebné práce, interiérový dizajn a povrchové úpravy. Od roku 2017.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-[11px] font-semibold uppercase tracking-[0.2em] mb-6 text-white/30">Navigácia</h4>
+                            <ul class="space-y-3">
+                                <li><a href="#top" class="text-white/50 hover:text-white text-sm transition-colors block group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Domov">Domov</span></span></a></li>
+                                <li><a href="#onas" class="text-white/50 hover:text-white text-sm transition-colors block group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="O nás">O nás</span></span></a></li>
+                                <li><a href="#sluzby" class="text-white/50 hover:text-white text-sm transition-colors block group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Služby">Služby</span></span></a></li>
+                                <li><a href="#realizacie" class="text-white/50 hover:text-white text-sm transition-colors block group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Realizácie">Realizácie</span></span></a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-[11px] font-semibold uppercase tracking-[0.2em] mb-6 text-white/30">Služby</h4>
+                            <ul class="space-y-3 text-sm text-white/40 font-light">
+                                <li>Výstavba domov na kľúč</li>
+                                <li>Obklady a dlažby</li>
+                                <li>Kúpeľne & Wellness</li>
+                                <li>Prírodný kameň</li>
+                                <li>Rekonštrukcie</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-[11px] font-semibold uppercase tracking-[0.2em] mb-6 text-white/30">Kontakt</h4>
+                            <ul class="space-y-3 text-sm text-white/50 font-light">
+                                <li><a href="tel:+421910966472" class="hover:text-white transition-colors">+421 910 966 472</a></li>
+                                <li><a href="mailto:info@bomati.sk" class="hover:text-white transition-colors">info@bomati.sk</a></li>
+                                <li class="pt-1 leading-relaxed text-white/30">Tvarožnianska 2620/13<br>060 01 Kežmarok</li>
+                            </ul>
+                            <button id="footer-cookie-btn" class="mt-6 text-white/20 text-[11px] uppercase tracking-widest hover:text-white/50 transition-colors flex items-center gap-2">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                Nastavenia cookies
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4" style="border-top:1px solid rgba(255,255,255,0.05)">
+                        <p class="text-[11px] text-white/20">© 2024 Bomati, s. r. o. Všetky práva vyhradené.</p>
+                        <div class="flex gap-6 text-[11px] text-white/20">
+                            <a href="#" class="hover:text-white/40 transition-colors">Ochrana osobných údajov</a>
+                            <a href="#" class="hover:text-white/40 transition-colors">Zásady cookies</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </main>
+
+    <!-- COOKIE CONSENT BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 inset-x-0 z-[70] shadow-2xl" style="background-color:#1a1a18;border-top:1px solid rgba(198,155,91,0.2)">
+        <div class="w-[95vw] mx-auto px-4 md:px-8 py-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+            <div class="flex-1">
+                <p class="text-white text-sm font-semibold mb-1">Táto stránka používa cookies</p>
+                <p class="text-white/40 text-xs font-light leading-relaxed max-w-xl">
+                    Používame nevyhnutné cookies pre správne fungovanie stránky a analytické cookies na zlepšenie vašej skúsenosti. Môžete si vybrať, ktoré cookies prijmete.
+                </p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3 flex-shrink-0">
+                <button id="cookie-settings-btn" class="text-white/50 text-xs uppercase tracking-[0.15em] font-semibold border border-white/15 px-5 py-3 hover:bg-white/5 transition-colors">
+                    Nastavenia
+                </button>
+                <button id="cookie-reject-btn" class="text-white/50 text-xs uppercase tracking-[0.15em] font-semibold border border-white/15 px-5 py-3 hover:bg-white/5 transition-colors">
+                    Odmietnuť
+                </button>
+                <button id="cookie-accept-btn" class="text-xs uppercase tracking-[0.15em] font-semibold px-6 py-3 hover:opacity-90 transition-opacity" style="background-color:var(--color-primary);color:#1a1a18">
+                    Prijať všetky
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- COOKIE REVISIT BUTTON -->
+    <button id="cookie-revisit-btn" class="fixed bottom-6 left-6 z-[65] w-10 h-10 flex items-center justify-center hover:bg-white/10 transition-colors shadow-lg" style="background-color:#1a1a18;border:1px solid rgba(198,155,91,0.3)" title="Nastavenia cookies" aria-label="Nastavenia cookies">
+        <svg class="w-4 h-4" style="color:rgba(198,155,91,0.6)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+    </button>
+
+    <script>
+        // Lenis
+        const lenis = new Lenis({ duration: 1.3, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+        function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        // Header
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 60); }, { passive: true });
+
+        // Menu
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        document.querySelectorAll('.menu-link').forEach(l => l.addEventListener('click', closeMenu));
+        function openMenu() { document.body.classList.add('menu-open'); document.body.style.overflow = 'hidden'; lenis.stop(); }
+        function closeMenu() { document.body.classList.remove('menu-open'); document.body.style.overflow = ''; lenis.start(); }
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+
+        // Reveal on scroll
+        const revealObs = new IntersectionObserver(entries => {
+            entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-visible'); revealObs.unobserve(en.target); } });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObs.observe(el));
+
+        // Image reveal
+        const imgObs = new IntersectionObserver(entries => {
+            entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-revealed'); imgObs.unobserve(en.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.image-reveal-wrapper').forEach(el => imgObs.observe(el));
+
+        // Parallax
+        window.addEventListener('scroll', () => {
+            const hp = document.querySelector('.hero-parallax');
+            if (hp) hp.style.transform = 'translateY(' + (window.scrollY * 0.12) + 'px)';
+        }, { passive: true });
+
+        // Cookie consent
+        const cookieBanner = document.getElementById('cookie-banner');
+        const cookieRevisitBtn = document.getElementById('cookie-revisit-btn');
+        const footerCookieBtn = document.getElementById('footer-cookie-btn');
+
+        function showBanner() {
+            cookieBanner.classList.add('is-visible');
+            cookieRevisitBtn.classList.remove('is-visible');
+        }
+        function hideBanner() {
+            cookieBanner.classList.remove('is-visible');
+            cookieRevisitBtn.classList.add('is-visible');
+        }
+        function acceptCookies() { localStorage.setItem('bomati_cookies', 'accepted'); hideBanner(); }
+        function rejectCookies() { localStorage.setItem('bomati_cookies', 'rejected'); hideBanner(); }
+
+        if (!localStorage.getItem('bomati_cookies')) {
+            setTimeout(showBanner, 800);
+        } else {
+            cookieRevisitBtn.classList.add('is-visible');
+        }
+
+        document.getElementById('cookie-accept-btn').addEventListener('click', acceptCookies);
+        document.getElementById('cookie-reject-btn').addEventListener('click', rejectCookies);
+        document.getElementById('cookie-settings-btn').addEventListener('click', showBanner);
+        cookieRevisitBtn.addEventListener('click', showBanner);
+        footerCookieBtn.addEventListener('click', showBanner);
+    </script>
+
+</body>
+</html>

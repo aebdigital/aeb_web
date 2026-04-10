@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOUW Group s.r.o. | Murárstvo, Inštalácie, Elektro – Stará Ľubovňa</title>
+    <script>if(window.location.protocol!=='file:'){document.write('<base href="/templates/bouwgroup/">')}</script>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="BOUW Group s.r.o. — realizácia hrubých stavieb, vodoinštalácie, montérske a elektro práce. Stará Ľubovňa.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Outfit:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: '#059669', light: '#10B981', dark: '#047857' },
+                        secondary: '#111827',
+                        foreground: '#111827',
+                        muted: '#6b7280',
+                        light: '#f9fafb',
+                        border: '#e5e7eb',
+                    },
+                    fontFamily: { sans: ['Inter','sans-serif'], heading: ['Outfit','sans-serif'] },
+                    fontSize: { '10xl': '7.5rem', '11xl': '9rem' },
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+    <style>
+        :root { --color-primary: #059669; --color-secondary: #111827; }
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-stopped { overflow: hidden; }
+        body { background-color: #fff; color: #111827; font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
+        .site-header { transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .site-header.scrolled { background-color: rgba(17,24,39,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(5,150,105,0.15); }
+        .hover-split-text { padding-right: 0.2em; position: relative; overflow: hidden; display: inline-block; vertical-align: top; }
+        .hover-split-text-inner { display: block; transition: transform 0.5s cubic-bezier(0.76,0,0.24,1); }
+        .hover-split-text-inner::after { content: attr(data-text); position: absolute; top: 110%; left: 0; width: 100%; line-height: inherit; }
+        .group:hover .hover-split-text-inner, .hover-split-text:hover .hover-split-text-inner { transform: translateY(-100%); }
+        .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+        .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+        .image-reveal-wrapper { position: relative; overflow: hidden; }
+        .image-reveal-shutter { position: absolute; inset: 0; background-color: var(--color-secondary); z-index: 10; transition: transform 1.2s cubic-bezier(0.76,0,0.24,1); }
+        .image-reveal-wrapper.is-revealed .image-reveal-shutter { transform: translateY(-100%); }
+        .image-reveal-img { transform: scale(1.2); filter: grayscale(100%); transition: transform 1.8s cubic-bezier(0.76,0,0.24,1), filter 1.8s cubic-bezier(0.76,0,0.24,1); }
+        .image-reveal-wrapper.is-revealed .image-reveal-img { transform: scale(1); filter: grayscale(0%); }
+        .image-reveal-wrapper:hover .image-reveal-img { transform: scale(1.05); filter: grayscale(0%); }
+        #menu-overlay { transform: translateY(-100%); transition: transform 0.8s cubic-bezier(0.76,0,0.24,1); }
+        body.menu-open #menu-overlay { transform: translateY(0); }
+        .fade-up { opacity: 0; transform: translateY(30px); animation: fade-up-anim 0.7s ease-out forwards; }
+        .fade-up-1 { animation-delay: 0.1s; } .fade-up-2 { animation-delay: 0.2s; } .fade-up-3 { animation-delay: 0.3s; } .fade-up-4 { animation-delay: 0.4s; }
+        @keyframes fade-up-anim { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .text-outline { -webkit-text-stroke: 1px rgba(255,255,255,0.2); color: transparent; }
+        .fill-text-animation { position: relative; background: linear-gradient(to right, white 50%, rgba(255,255,255,0.2) 50%); background-size: 200% 100%; background-position: 100% 0; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: fill-text 2s cubic-bezier(0.165,0.84,0.44,1) forwards; animation-delay: 1.2s; }
+        @keyframes fill-text { to { background-position: 0% 0; } }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+    <header id="site-header" class="site-header fixed top-0 left-0 right-0 z-50 bg-transparent">
+        <div class="mx-auto w-[95vw] flex items-center justify-between h-16 md:h-24 px-6 md:px-10">
+            <a href="#"><span class="text-xl md:text-3xl font-black tracking-tighter text-white uppercase italic">BOUW<span class="text-primary">Group</span></span></a>
+            <button id="menu-toggle" class="text-white text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 group">
+                <div class="w-4 flex flex-col gap-1"><span class="w-full h-[1.5px] bg-white"></span><span class="w-full h-[1.5px] bg-white"></span></div>
+                <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Menu">Menu</span></span>
+            </button>
+        </div>
+    </header>
+
+    <div id="menu-overlay" class="fixed top-0 inset-x-0 h-screen md:h-[80vh] z-[60] bg-secondary flex flex-col overflow-hidden shadow-2xl border-b border-primary/20">
+        <div class="absolute inset-0 z-0 pointer-events-none opacity-30" style="background-image:url('texture.svg');background-size:cover;filter:invert(1)"></div>
+        <div class="relative z-10 mx-auto w-[95vw] flex items-center justify-between h-24 px-6 md:px-10">
+            <span class="text-xl md:text-3xl font-black tracking-tighter text-white uppercase italic">BOUW<span class="text-primary">Group</span></span>
+            <button id="menu-close" class="text-white text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 group">
+                <span class="relative w-4 h-4 flex items-center justify-center"><span class="absolute w-full h-[1.5px] bg-white rotate-45"></span><span class="absolute w-full h-[1.5px] bg-white -rotate-45"></span></span>
+                <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Zavrieť">Zavrieť</span></span>
+            </button>
+        </div>
+        <div class="relative z-10 flex-1 flex items-center pb-8 overflow-y-auto">
+            <div class="mx-auto w-[95vw] px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-20 py-10 md:py-0">
+                <div class="hidden md:flex flex-col">
+                    <span class="text-white/20 text-xs uppercase tracking-widest block mb-8">Kontakt</span>
+                    <div class="mb-12">
+                        <p class="text-white text-3xl font-black mb-4 tracking-tighter uppercase italic">BOUW Group s.r.o.</p>
+                        <p class="text-white/40 text-sm font-light leading-relaxed max-w-xs">Realizácia hrubých stavieb, vodoinštalácie, kurenárstvo a elektro práce. Stará Ľubovňa.</p>
+                    </div>
+                    <div>
+                        <span class="text-primary/60 text-[10px] uppercase tracking-[0.2em] block mb-2 font-bold">Telefón</span>
+                        <p class="text-white text-2xl font-light italic">+421 948 792 010</p>
+                    </div>
+                </div>
+                <nav class="flex flex-col gap-6 items-center md:items-start">
+                    <span class="text-white/20 text-xs uppercase tracking-widest block mb-4">Navigácia</span>
+                    <div class="flex flex-col gap-4">
+                        <a href="#top" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Úvod">Úvod</span></span></a>
+                        <a href="#sluzby" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Služby">Služby</span></span></a>
+                        <a href="#projekty" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Projekty">Projekty</span></span></a>
+                        <a href="#kontakt" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kontakt">Kontakt</span></span></a>
+                    </div>
+                </nav>
+                <div class="hidden lg:flex flex-col justify-end items-end text-right">
+                    <div class="text-white/5 text-[13rem] font-black leading-none absolute -bottom-20 -right-20">BG</div>
+                    <div class="relative z-10">
+                        <p class="text-primary text-5xl font-black italic mb-2">Na<br><span class="text-2xl not-italic uppercase opacity-40">kľúč</span></p>
+                        <p class="text-white/40 text-sm uppercase tracking-widest font-bold">Komplexná stavba</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section id="top" class="sticky top-0 h-screen w-full flex items-center overflow-hidden z-0">
+            <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="hero-parallax relative w-full h-full scale-110">
+                    <img src="IMG-0397.webp" alt="BOUW Group stavby" class="w-full h-full object-cover">
+                </div>
+            </div>
+            <div class="absolute inset-0 bg-black/30"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-secondary/40 via-transparent to-transparent"></div>
+            <div class="relative z-10 w-[95vw] mx-auto px-6 md:px-10">
+                <div class="max-w-5xl">
+                    <p class="fade-up text-primary text-sm font-black tracking-[0.4em] uppercase mb-8">Stará Ľubovňa · Murárstvo · Inštalácie · Elektro</p>
+                    <h1 class="fade-up fade-up-1 text-7xl md:text-10xl lg:text-11xl font-black text-white leading-[0.85] tracking-tighter uppercase italic font-heading">
+                        Staviame<br><span class="fill-text-animation">na kľúč!</span>
+                    </h1>
+                    <p class="fade-up fade-up-2 mt-12 text-lg md:text-2xl text-white/70 font-light max-w-2xl leading-relaxed">
+                        Realizácia hrubých stavieb, vodoinštalácie, kurenárstvo, montérske a elektro práce. Všetko pod jednou strechou.
+                    </p>
+                    <div class="fade-up fade-up-3 mt-16 flex flex-col sm:flex-row gap-6">
+                        <a href="#kontakt" class="group inline-flex items-center justify-center px-12 py-5 bg-primary text-white text-sm font-black rounded-none hover:scale-105 transition-all duration-300">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Začať projekt">Začať projekt</span></span>
+                        </a>
+                        <a href="#sluzby" class="group inline-flex items-center justify-center px-12 py-5 border-2 border-white/20 text-white text-sm font-bold rounded-none hover:bg-white/10 transition-all duration-300">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Naše služby">Naše služby</span></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="relative z-10 bg-white">
+
+            <section id="sluzby" class="py-28 md:py-36 bg-secondary relative overflow-hidden text-white">
+                <div class="absolute inset-0 z-0">
+                    <img src="IMG-0485.webp" class="w-full h-full object-cover opacity-20 grayscale" alt="">
+                    <div class="absolute inset-0 bg-secondary/80"></div>
+                </div>
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="reveal-on-scroll mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
+                        <div>
+                            <p class="text-xs font-black tracking-[0.3em] uppercase text-primary mb-6">Naše Služby</p>
+                            <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase italic">Čo robíme<span class="text-primary">.</span></h2>
+                        </div>
+                        <p class="text-white/60 max-w-md font-light">Komplexné stavebné služby od základov po strechu — o všetko sa postaráme.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="reveal-on-scroll relative min-h-[450px] flex flex-col justify-end p-10 overflow-hidden group">
+                            <img src="8473.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Hrubá stavba">
+                            <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <span class="text-primary text-xs font-black tracking-widest uppercase mb-4 block">01 / Produkcia</span>
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none">Hrubá<br>stavba</h3>
+                                <ul class="space-y-3 text-white/70 font-medium text-xs tracking-wide">
+                                    <li>Základy & zemné práce</li>
+                                    <li>Murárske & tesárske práce</li>
+                                    <li>Stropy, krovy & strechy</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll relative min-h-[450px] flex flex-col justify-end p-10 overflow-hidden group" style="transition-delay:150ms">
+                            <img src="IMG-0405.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Inštalácie">
+                            <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <span class="text-primary text-xs font-black tracking-widest uppercase mb-4 block">02 / Inštalácie</span>
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none">Voda<br>& Kúrenie</h3>
+                                <ul class="space-y-3 text-white/70 font-medium text-xs tracking-wide">
+                                    <li>Vodoinštalácie & kanalizácia</li>
+                                    <li>Ústredné kúrenie & radiátory</li>
+                                    <li>Klimatizácia & vzduchotechnika</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll relative min-h-[450px] flex flex-col justify-end p-10 overflow-hidden group" style="transition-delay:300ms">
+                            <img src="IMG-0143.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Elektro">
+                            <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <span class="text-primary text-xs font-black tracking-widest uppercase mb-4 block">03 / Elektro</span>
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none">Elektro<br>práce</h3>
+                                <ul class="space-y-3 text-white/70 font-medium text-xs tracking-wide">
+                                    <li>Silnoprúdové inštalácie</li>
+                                    <li>Slaboproúd & dátové rozvody</li>
+                                    <li>Rozvádzače & meranie</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-28 md:py-36 bg-secondary relative overflow-hidden text-white">
+                <div class="absolute inset-0 z-0">
+                    <img src="IMG-0139.webp" class="w-full h-full object-cover opacity-10 grayscale" alt="">
+                    <div class="absolute inset-0 bg-secondary/85"></div>
+                </div>
+                <div class="mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                        <div class="reveal-on-scroll">
+                            <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase italic mb-12">Fázy projektu</h2>
+                            <div class="space-y-12">
+                                <div class="relative pl-16">
+                                    <div class="absolute left-0 top-0 text-7xl font-black text-white/5 leading-none">01</div>
+                                    <h4 class="text-2xl font-black uppercase text-primary mb-4">Hrubá stavba</h4>
+                                    <p class="text-white/50 font-light leading-relaxed">Základy, murárske práce, stropné konštrukcie a krov. Stavba pripravená na ďalšiu fázu.</p>
+                                </div>
+                                <div class="relative pl-16">
+                                    <div class="absolute left-0 top-0 text-7xl font-black text-white/5 leading-none">02</div>
+                                    <h4 class="text-2xl font-black uppercase text-primary mb-4">Inštalácie</h4>
+                                    <p class="text-white/50 font-light leading-relaxed">Rozvody vody, kanalizácie, kúrenia a elektriky. Všetky inštalácie podľa platných noriem.</p>
+                                </div>
+                                <div class="relative pl-16">
+                                    <div class="absolute left-0 top-0 text-7xl font-black text-white/5 leading-none">03</div>
+                                    <h4 class="text-2xl font-black uppercase text-primary mb-4">Dokončovacie práce</h4>
+                                    <p class="text-white/50 font-light leading-relaxed">Omietky, obklady, podlahy, maľby a záverečné upratovanie. Odovzdanie hotového diela.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll">
+                            <div class="image-reveal-wrapper rounded-none aspect-[4/5] shadow-2xl skew-y-2">
+                                <div class="image-reveal-shutter"></div>
+                                <img src="IMG-20230123-WA0000.webp" alt="BOUW Group realizácia" class="image-reveal-img w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projekty" class="py-28 md:py-36 bg-white overflow-hidden">
+                <div class="mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="reveal-on-scroll mb-20 text-center">
+                        <h2 class="text-5xl md:text-8xl font-black text-secondary tracking-tighter uppercase italic mb-8">Projekty<span class="text-primary">.</span></h2>
+                        <p class="text-muted max-w-2xl mx-auto font-light lg:text-xl">Výber z našich realizácií v Starej Ľubovni a okolí.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg group">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="IMG-0485.webp" alt="Projekt 1" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-10 text-center"><p class="text-white text-sm font-bold uppercase tracking-widest italic">Hrubá stavba</p></div>
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg md:mt-12 group" style="transition-delay:150ms">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="IMG-20230123-WA0008.webp" alt="Projekt 2" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-10 text-center"><p class="text-white text-sm font-bold uppercase tracking-widest italic">Inštalácie</p></div>
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg md:mt-24 group" style="transition-delay:300ms">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="IMG-20230123-WA0030.webp" alt="Projekt 3" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-10 text-center"><p class="text-white text-sm font-bold uppercase tracking-widest italic">Montérske práce</p></div>
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg group" style="transition-delay:100ms">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="image_6487327-6.webp" alt="Projekt 4" class="image-reveal-img w-full h-full object-cover">
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg md:mt-12 group" style="transition-delay:250ms">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="IMG-0143.webp" alt="Projekt 5" class="image-reveal-img w-full h-full object-cover">
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg md:mt-24 group" style="transition-delay:400ms">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="IMG-0139.webp" alt="Projekt 6" class="image-reveal-img w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer id="kontakt" class="bg-secondary text-white pt-28 md:pt-40 relative overflow-hidden">
+                <div class="absolute inset-0 z-0 pointer-events-none opacity-20" style="background-image:url('texture.svg');background-size:cover;filter:invert(1)"></div>
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10 pb-20 md:pb-32">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                        <div>
+                            <h2 class="text-5xl md:text-8xl font-black tracking-tighter uppercase mb-20 italic">Kontakt<span class="text-primary">.</span></h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                <div>
+                                    <p class="text-white/20 text-[10px] font-bold tracking-widest uppercase mb-4">Kontakt</p>
+                                    <p class="text-2xl font-black mb-1">BOUW Group s.r.o.</p>
+                                    <a href="tel:+421948792010" class="text-2xl font-light hover:text-primary transition-colors block">+421 948 792 010</a>
+                                    <p class="text-base font-light mt-2 opacity-40">Stará Ľubovňa</p>
+                                </div>
+                                <div class="flex flex-col justify-end">
+                                    <p class="text-white/20 text-[10px] font-bold tracking-widest uppercase mb-4 italic">© 2025 BOUW Group s.r.o.</p>
+                                    <nav class="flex gap-4">
+                                        <a href="#top" class="text-[10px] font-bold hover:text-primary uppercase tracking-widest">Úvod</a>
+                                        <a href="#projekty" class="text-[10px] font-bold hover:text-primary uppercase tracking-widest">Projekty</a>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="bg-white/5 border border-white/10 p-10 md:p-16">
+                                <h3 class="text-2xl font-black uppercase mb-10 italic">Naše práce</h3>
+                                <p class="text-white/40 font-light mb-12 leading-relaxed">Hrubá stavba, vodoinštalácie, kurenárstvo, elektro a montérske práce. Kvalita a termíny sú našou prioritou.</p>
+                                <div class="flex flex-wrap gap-3">
+                                    <span class="px-6 py-2 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-primary">Murárstvo</span>
+                                    <span class="px-6 py-2 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-primary">Inštalácie</span>
+                                    <span class="px-6 py-2 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-primary">Elektro</span>
+                                    <span class="px-6 py-2 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-primary">Na kľúč</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-32 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold text-white/5 tracking-widest uppercase">
+                        <p>BOUW Group s.r.o. | Stará Ľubovňa</p>
+                        <p>All Rights Reserved 2025</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        const lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), touchMultiplier: 2 });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); } requestAnimationFrame(raf);
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 50); });
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        function openMenu() { document.body.classList.add('menu-open'); document.body.style.overflow = 'hidden'; lenis.stop(); }
+        function closeMenu() { document.body.classList.remove('menu-open'); document.body.style.overflow = ''; lenis.start(); }
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        document.querySelectorAll('.menu-link').forEach(l => l.addEventListener('click', closeMenu));
+        const revealObs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('is-visible'); revealObs.unobserve(e.target); } }); }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObs.observe(el));
+        const imgObs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('is-revealed'); imgObs.unobserve(e.target); } }); }, { threshold: 0.1 });
+        document.querySelectorAll('.image-reveal-wrapper').forEach(el => imgObs.observe(el));
+        window.addEventListener('scroll', () => {
+            const hp = document.querySelector('.hero-parallax');
+            if(hp) hp.style.transform = `translateY(${window.scrollY * 0.1}px)`;
+        });
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+</body>
+</html>

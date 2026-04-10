@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZEM-BAU SK s.r.o.</title>
+    <title>Jakubasek - Štrk, kamenivo, potery a omietky</title>
     <script>
         // Dynamic base tag to support both Production rewrites and Local file preview
         if (window.location.protocol !== 'file:') {
-            document.write('<base href="/templates/zembau/">');
+            document.write('<base href="/templates/jakubasek/">');
         }
     </script>
     <meta name="robots" content="noindex, nofollow">
-    <meta name="description" content="ZEM-BAU SK s.r.o. - Realizácia inžinierskych sietí, vodovodov, kanalizácií, a kompletných stavieb.">
+    <meta name="description" content="Predaj štrku, kameniva, realizácia strojových poterov, omietok, pancierových podláh a gabiónových plotov od roku 2003.">
     
     <!-- Google Fonts: Inter & Outfit for thickness -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,9 +26,9 @@
                 extend: {
                     colors: {
                         primary: {
-                            DEFAULT: '#036939', // Custom Green
-                            light: '#048c4b',
-                            dark: '#024b29',
+                            DEFAULT: '#d97706', // Amber-600 / Earthy Sand Color
+                            light: '#f59e0b',
+                            dark: '#b45309',
                         },
                         secondary: '#111827', // Deep Navy/Black
                         foreground: '#111827',
@@ -59,9 +59,9 @@
     <style>
         /* Base styles */
         :root {
-            --color-primary: #036939;
-            --color-primary-light: #048c4b;
-            --color-primary-dark: #024b29;
+            --color-primary: #d97706;
+            --color-primary-light: #f59e0b;
+            --color-primary-dark: #b45309;
             --color-secondary: #111827;
             --color-background: #ffffff;
             --color-foreground: #111827;
@@ -89,7 +89,7 @@
         body {
             background-color: var(--color-background);
             color: var(--color-foreground);
-            font-family: 'Manrope', sans-serif;
+            font-family: 'Inter', sans-serif;
             margin: 0;
             overflow-x: hidden;
         }
@@ -163,12 +163,6 @@
             transform: scale(1);
             filter: grayscale(0%);
         }
-        .image-reveal-wrapper.grayscale-permanent .image-reveal-img {
-            filter: grayscale(100%);
-        }
-        .image-reveal-wrapper.grayscale-permanent.is-revealed .image-reveal-img {
-            filter: grayscale(100%);
-        }
         .image-reveal-wrapper:hover .image-reveal-img {
             transform: scale(1.05);
             filter: grayscale(0%);
@@ -207,11 +201,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .text-outline {
-            -webkit-text-stroke: 1px rgba(255,255,255,0.2);
-            color: transparent;
-        }
-
         .fill-text-animation {
             position: relative;
             background: linear-gradient(to right, white 50%, rgba(255,255,255,0.2) 50%);
@@ -235,7 +224,7 @@
         <div class="mx-auto w-[95vw] flex items-center justify-between h-16 md:h-24 px-6 md:px-10">
             <div class="flex items-center">
                 <a href="#" class="flex items-center">
-                    <span class="text-xl md:text-3xl font-black tracking-tighter text-white uppercase italic">ZEM-BAU</span>
+                    <span class="text-xl md:text-3xl font-black tracking-tighter text-white uppercase italic">JAKUB<span class="text-primary">ASEK</span></span>
                 </a>
             </div>
             <div class="flex justify-end items-center">
@@ -259,7 +248,7 @@
 
         <div class="relative z-10 mx-auto w-[95vw] flex items-center justify-between h-24 px-6 md:px-10">
             <div class="flex items-center">
-                <span class="text-xl md:text-3xl font-black tracking-tighter text-white uppercase italic">ZEM-BAU</span>
+                <span class="text-xl md:text-3xl font-black tracking-tighter text-white uppercase italic">JAKUB<span class="text-primary">ASEK</span></span>
             </div>
             <div class="flex justify-end">
                 <button id="menu-close" class="text-white transition-colors text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 group">
@@ -276,18 +265,19 @@
 
         <div class="relative z-10 flex-1 flex items-center pb-8 overflow-y-auto">
             <div class="mx-auto w-[95vw] px-6 md:px-10 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-20 py-10 md:py-0">
+                <!-- Column 1: Info -->
                 <div class="hidden md:flex flex-col">
-                    <span class="text-white/20 text-xs uppercase tracking-widest block mb-8">Kontakt</span>
+                    <span class="text-white/20 text-xs uppercase tracking-widest block mb-8">Kontakt & Podpora</span>
                     <div class="mb-12">
-                        <p class="text-white text-3xl font-black mb-4 tracking-tighter uppercase italic">ZEM-BAU SK s.r.o.</p>
+                        <p class="text-white text-3xl font-black mb-4 tracking-tighter uppercase italic">Jaroslav Jakubašek</p>
                         <p class="text-white/40 text-sm font-light leading-relaxed max-w-xs">
-                            Realizácia inžinierskych sietí a kompletné stavby.
+                            Štrk, kamenivo, potery a omietky na vysokej úrovni od roku 2003.
                         </p>
                     </div>
                     <div>
-                        <span class="text-primary/60 text-[10px] uppercase tracking-[0.2em] block mb-2 font-bold">Stanislav Hreha</span>
-                        <p class="text-white text-2xl font-light italic">0905 253 465</p>
-                        <p class="text-white/40 text-lg font-light">hreha@zembau.sk</p>
+                        <span class="text-primary/60 text-[10px] uppercase tracking-[0.2em] block mb-2 font-bold">Zavolajte Nám</span>
+                        <p class="text-white text-2xl font-light italic">+421 948 300 988</p>
+                        <p class="text-white/40 text-lg font-light mb-4 text-primary transition-colors hover:text-white">jaroslavjakubasek@gmail.com</p>
                     </div>
                 </div>
 
@@ -295,27 +285,30 @@
                 <nav class="flex flex-col gap-6 items-center md:items-start">
                     <span class="text-white/20 text-xs uppercase tracking-widest block mb-4">Navigácia</span>
                     <div class="flex flex-col gap-4">
-                        <a href="#onas" class="menu-link text-3xl lg:text-5xl text-white block group font-black uppercase italic tracking-tighter">
-                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="O nás">O nás</span></span></a><a href="#kariera" class="menu-link text-3xl lg:text-5xl text-white block group font-black uppercase italic tracking-tighter"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kariéra">Kariéra</span></span></a><a href="#certifikaty" class="menu-link text-3xl lg:text-5xl text-white block group font-black uppercase italic tracking-tighter"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Oprávnenia a certifikáty">Oprávnenia a certifikáty</span></span>
+                        <a href="#top" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Úvod">Úvod</span></span>
                         </a>
-                        <a href="#sluzby" class="menu-link text-3xl lg:text-5xl text-white block group font-black uppercase italic tracking-tighter">
+                        <a href="#onas" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="O nás">O nás</span></span>
+                        </a>
+                        <a href="#sluzby" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Naše služby">Naše služby</span></span>
+                        </a>
+                        <a href="#referencie" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter">
                             <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Referencie">Referencie</span></span>
                         </a>
-                        <a href="#stroje" class="menu-link text-3xl lg:text-5xl text-white block group font-black uppercase italic tracking-tighter">
-                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Stroje">Stroje</span></span>
-                        </a>
-                        <a href="#kontakt" class="menu-link text-3xl lg:text-5xl text-white block group font-black uppercase italic tracking-tighter">
-                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kontakty">Kontakty</span></span>
+                        <a href="#kontakt" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kontakt">Kontakt</span></span>
                         </a>
                     </div>
                 </nav>
 
                 <!-- Column 3: Stats/Extra -->
                 <div class="hidden lg:flex flex-col justify-end items-end text-right">
-                    <div class="text-white/5 text-[15rem] font-black leading-none absolute -bottom-20 -right-20">ZB</div>
+                    <div class="text-white/5 text-[15rem] font-black leading-none absolute -bottom-20 -right-20">21</div>
                     <div class="relative z-10">
-                        <p class="text-primary text-6xl font-black italic mb-2">2014</p>
-                        <p class="text-white/40 text-sm uppercase tracking-widest font-bold">Rok Založenia</p>
+                        <p class="text-primary text-6xl font-black italic mb-2">2003</p>
+                        <p class="text-white/40 text-sm uppercase tracking-widest font-bold">Rok založenia</p>
                     </div>
                 </div>
             </div>
@@ -328,54 +321,70 @@
         <!-- HERO SECTION -->
         <section id="top" class="sticky top-0 h-screen w-full flex items-center overflow-hidden z-0">
             <div class="parallax-container absolute inset-0 overflow-hidden pointer-events-none">
-                <div class="parallax-target hero-parallax relative w-full h-full scale-110 bg-primary/20 flex items-center justify-center" data-speed="0.1">
-                    <div class="absolute inset-0 opacity-10" style="background-image: url('texture.svg'); background-size: cover;"></div>
+                <div class="parallax-target hero-parallax relative w-full h-full scale-110" data-speed="0.1">
+                    <img src="hero.webp" alt="Štrk a Kamenivo Jakubasek" class="w-full h-full object-cover">
                 </div>
             </div>
             
-            <div class="absolute inset-0 bg-black/50"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-black/60"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-secondary/80 via-transparent to-transparent"></div>
 
             <div class="relative z-10 w-[95vw] mx-auto px-6 md:px-10">
                 <div class="max-w-5xl">
                     <p class="fade-up text-primary text-sm font-black tracking-[0.4em] uppercase mb-8">
-                        Inžinierske siete · Vnútorné inštalácie · Kompletné stavby
+                        Kamenivo · Potery · Profesionálne omietky
                     </p>
                     <h1 class="fade-up fade-up-1 text-7xl md:text-10xl lg:text-11xl font-black text-white leading-[0.85] tracking-tighter uppercase italic font-heading pr-4">
-                        ZEM-BAU<br><span class="text-primary italic">SK s.r.o.</span>
+                        Staviame na <br><span class="fill-text-animation">Kvalite.</span>
                     </h1>
-                    <p class="fade-up fade-up-2 mt-12 text-lg md:text-2xl text-white/70 font-light max-w-2xl leading-relaxed">
-                        Kvalita, na ktorú sa môžete spoľahnúť. Spájame dlhoročné skúsenosti s modernými postupmi pre vaše stavebné projekty.
+                    <p class="fade-up fade-up-2 mt-12 text-lg md:text-2xl text-white/70 font-light max-w-3xl leading-relaxed">
+                        Zabezpečujeme predaj a dovoz štrku a kameniva, profesionálne strojové potery, pancierové podlahy, omietky a gabiónové ploty s viac ako dvomi dekádami skúseností na trhu.
                     </p>
                     <div class="fade-up fade-up-3 mt-16 flex flex-col sm:flex-row gap-6">
                         <a href="#kontakt" class="group inline-flex items-center justify-center px-12 py-5 bg-primary text-white text-sm font-black rounded-none hover:bg-primary-dark transition-all duration-300">
-                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kontakt">Kontakt</span></span>
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kontaktovať nás">Kontaktovať nás</span></span>
                         </a>
-                        <a href="#onas" class="group inline-flex items-center justify-center px-12 py-5 border-2 border-white/20 text-white text-sm font-bold rounded-none hover:bg-white/10 transition-all duration-300">
-                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="O nás">O nás</span></span></a><a href="#kariera" class="menu-link text-3xl lg:text-5xl text-white block group font-black uppercase italic tracking-tighter"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kariéra">Kariéra</span></span></a><a href="#certifikaty" class="menu-link text-3xl lg:text-5xl text-white block group font-black uppercase italic tracking-tighter"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Oprávnenia a certifikáty">Oprávnenia a certifikáty</span></span>
+                        <a href="#sluzby" class="group inline-flex items-center justify-center px-12 py-5 border-2 border-white/20 text-white text-sm font-bold rounded-none hover:bg-white/10 transition-all duration-300">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Naše služby">Naše služby</span></span>
                         </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ABOUT US -->
+        <!-- MAIN LAYOVER -->
         <div class="relative z-10 bg-white">
+            
+            <!-- ABOUT US SECTION -->
             <section id="onas" class="py-28 md:py-36 bg-light relative overflow-hidden text-secondary">
-                <div class="mx-auto w-[95vw] px-6 md:px-10 max-w-5xl">
-                    <div class="reveal-on-scroll">
-                        <p class="text-xs font-black tracking-[0.3em] uppercase text-primary mb-6">O Nás</p>
-                        <h2 class="text-4xl md:text-6xl font-black tracking-tighter uppercase italic mb-12">ZEM-BAU SK<span class="text-primary"> s.r.o.</span></h2>
-                        <div class="space-y-8 text-lg text-secondary/70 font-light leading-relaxed">
-                            <p>
-                                Firma ZEM-BAU SK s. r. o., nepíše dlhú históriu, nakoľko jej vznik sa datuje od septembra 2014. Nadviazali sme však na dlhoročný chod firmy DEMOLÁCIE a ZEMNÉ PRÁCE – Stanislav Hreha, ktorý ako živnostník vykonával práce už od roku 1991 a na skúsenosti našich pracovníkov firmy v danom odvetví. Založená firma konateľom Stanislavom Hrehom fungujeme s podmienkou napĺňať cieľ daný pri našom vzniku.
-                            </p>
+                <div class="mx-auto w-[95vw] px-6 md:px-10 max-w-6xl">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center border border-black/5 bg-white p-10 md:p-20 shadow-xl">
+                        <div class="reveal-on-scroll">
+                            <p class="text-xs font-black tracking-[0.3em] uppercase text-primary mb-6">O nás</p>
+                            <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-secondary tracking-tighter uppercase italic mb-8">Od roku 2003<span class="text-primary">.</span></h2>
+                            <div class="space-y-6 text-lg text-secondary/70 font-light leading-relaxed">
+                                <p>
+                                    Na trhu pôsobíme od roku 2003. Sme spoločnosť zaoberajúca sa predajom Štrku, kameniva, piesku a okrasného kameňa. 
+                                </p>
+                                <p>
+                                    Ďalšie naše činnosti, ktoré zabezpečujeme našim klientom sú strojové betónové potery, alebo polystyrén betón či spadové potery, strojové omietky sadrové a vápenno cementové.
+                                </p>
+                                <p>
+                                    Ďalšou našou činnosťou je realizácia gabionových plotov a múrov. Veríme, že s našou prácou budete spokojný.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll relative">
+                            <div class="image-reveal-wrapper rounded-none aspect-square shadow-lg">
+                                <div class="image-reveal-shutter"></div>
+                                <img src="about.webp" alt="Jaroslav Jakubasek Práce" class="image-reveal-img w-full h-full object-cover">
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- SERVICES HORIZONTAL -->
+            <!-- SERVICES SECTION -->
             <section id="sluzby" class="py-28 md:py-36 bg-secondary relative overflow-hidden text-white">
                 <!-- Background Image -->
                 <div class="absolute inset-0 z-0 bg-secondary flex items-center justify-center">
@@ -385,39 +394,70 @@
                 <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10">
                     <div class="reveal-on-scroll mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
                         <div>
-                            <p class="text-xs font-black tracking-[0.3em] uppercase text-primary mb-6">Naše Činnosti</p>
-                            <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase italic">Čo robíme<span class="text-primary">.</span></h2>
+                            <p class="text-xs font-black tracking-[0.3em] uppercase text-primary mb-6">Naše služby</p>
+                            <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase italic">Čo ponúkame<span class="text-primary">.</span></h2>
                         </div>
+                        <p class="text-white/60 font-light max-w-md">Od predaja štrku, cez realizáciu kvalitných poterov, až po unikátne gabionové ploty.</p>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         <!-- Card 1 -->
-                        <div class="reveal-on-scroll relative min-h-[450px] flex flex-col justify-end p-10 overflow-hidden group bg-white/5 border border-white/10">
+                        <div class="reveal-on-scroll relative min-h-[400px] flex flex-col justify-end p-10 overflow-hidden group bg-white/5 border border-white/10 hover:border-primary/50 transition-colors">
                             <div class="relative z-10">
-                                <span class="text-primary text-xs font-black tracking-widest uppercase mb-4 block">01 / Siete</span>
-                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none">Inžinierske<br>Siete</h3>
+                                <span class="text-primary text-[10px] font-black tracking-widest uppercase mb-4 block">01</span>
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none tracking-tighter">Štrk a Kamenivo</h3>
                                 <p class="text-white/70 font-medium text-sm tracking-wide leading-relaxed">
-                                    Hlavným nosným produktom firmy sú realizácie inžinierskych sietí vodovodov, kanalizácií, STL a NTL plynovodov, VN, NN rozvodov, kde si zakladáme na dlhoročných odborných skúsenostiach či už riadiacich, ako aj poverených pracovníkoch našej firmy.
+                                    Zabezpečujeme prepravu a dovoz štrkov, pieskov, kameniva a okrasného kameniva. Neváhajte nás kontaktovať.
                                 </p>
                             </div>
                         </div>
                         <!-- Card 2 -->
-                        <div class="reveal-on-scroll relative min-h-[450px] flex flex-col justify-end p-10 overflow-hidden group bg-white/5 border border-white/10" style="transition-delay: 150ms;">
+                        <div class="reveal-on-scroll relative min-h-[400px] flex flex-col justify-end p-10 overflow-hidden group bg-white/5 border border-white/10 hover:border-primary/50 transition-colors" style="transition-delay: 100ms;">
                             <div class="relative z-10">
-                                <span class="text-primary text-xs font-black tracking-widest uppercase mb-4 block">02 / Inštalácie</span>
-                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none">Vnútorné<br>Inštalácie</h3>
+                                <span class="text-primary text-[10px] font-black tracking-widest uppercase mb-4 block">02</span>
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none tracking-tighter">Betónové potery</h3>
                                 <p class="text-white/70 font-medium text-sm tracking-wide leading-relaxed">
-                                    Taktiež sa v širokom rozsahu zaoberáme vnútornými inštaláciami ZTI, UVK, ELI rozvodov v budovách a stavbách v pozemnom staviteľstve, kde sa snažíme využívať pri inštaláciách ekologické, inovatívne prvky ako napríklad tepelné čerpadlá, solárne kolektory a podobne.
+                                    Rovný poter Vám ušetrí ďalšie peniaze. Zabezpečujeme potery na tej najlepšej úrovni. Neváhajte nás kontaktovať.
                                 </p>
                             </div>
                         </div>
                         <!-- Card 3 -->
-                        <div class="reveal-on-scroll relative min-h-[450px] flex flex-col justify-end p-10 overflow-hidden group bg-white/5 border border-white/10" style="transition-delay: 300ms;">
+                        <div class="reveal-on-scroll relative min-h-[400px] flex flex-col justify-end p-10 overflow-hidden group bg-white/5 border border-white/10 hover:border-primary/50 transition-colors" style="transition-delay: 200ms;">
                             <div class="relative z-10">
-                                <span class="text-primary text-xs font-black tracking-widest uppercase mb-4 block">03 / Stavba</span>
-                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none">Kompletné<br>Stavby</h3>
+                                <span class="text-primary text-[10px] font-black tracking-widest uppercase mb-4 block">03</span>
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none tracking-tighter">Pancierové podlahy</h3>
                                 <p class="text-white/70 font-medium text-sm tracking-wide leading-relaxed">
-                                    Realizujeme aj kompletné stavby od zakladania stavieb, realizácie výstavby hrubej stavby, cez dokončovacie interiérové práce a v neposlednom rade terénne úpravy vrátane povrchových úprav, oplotení, oporných múrov a podobne.
+                                    Sú vysokopevnostné liaté, leštené betónové povrchy v hrúbke 12 - 15 cm. Vhodné do garážov, dielní, a hál.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="reveal-on-scroll relative min-h-[400px] flex flex-col justify-end p-10 overflow-hidden group bg-white/5 border border-white/10 hover:border-primary/50 transition-colors" style="transition-delay: 100ms;">
+                            <div class="relative z-10">
+                                <span class="text-primary text-[10px] font-black tracking-widest uppercase mb-4 block">04</span>
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none tracking-tighter">Špedícia & Logistika</h3>
+                                <p class="text-white/70 font-medium text-sm tracking-wide leading-relaxed">
+                                    Vnútroštátna a medzinárodná preprava sypkých materiálov. Prepravu ponúkame s 25t vyklopnými návesmi.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Card 5 -->
+                        <div class="reveal-on-scroll relative min-h-[400px] flex flex-col justify-end p-10 overflow-hidden group bg-white/5 border border-white/10 hover:border-primary/50 transition-colors" style="transition-delay: 200ms;">
+                            <div class="relative z-10">
+                                <span class="text-primary text-[10px] font-black tracking-widest uppercase mb-4 block">05</span>
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none tracking-tighter">Gabiónové ploty</h3>
+                                <p class="text-white/70 font-medium text-sm tracking-wide leading-relaxed">
+                                    Ponúkame realizáciu Gabiónových plotov a múrov. Sú vyrobené z pevných sietí a napĺňané prírodným kameňom.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Card 6 -->
+                        <div class="reveal-on-scroll relative min-h-[400px] flex flex-col justify-end p-10 overflow-hidden group bg-white/5 border border-white/10 hover:border-primary/50 transition-colors" style="transition-delay: 300ms;">
+                            <div class="relative z-10">
+                                <span class="text-primary text-[10px] font-black tracking-widest uppercase mb-4 block">06</span>
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none tracking-tighter">Strojové omietky</h3>
+                                <p class="text-white/70 font-medium text-sm tracking-wide leading-relaxed">
+                                    Zabezpečujeme realizáciu stabilných a profesionálnych strojových omietok, ktoré vyrovnajú každú nerovnosť. 
                                 </p>
                             </div>
                         </div>
@@ -425,77 +465,81 @@
                 </div>
             </section>
 
+            <!-- WORK (REFERENCIE) -->
+            <section id="referencie" class="py-28 md:py-36 bg-white overflow-hidden text-secondary">
+                <div class="mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="reveal-on-scroll mb-20">
+                        <h2 class="text-5xl md:text-8xl font-black text-secondary tracking-tighter uppercase italic mb-8">Naša práca<span class="text-primary">.</span></h2>
+                    </div>
 
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[4/3] shadow-lg group">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="service1.webp" alt="Naša práca 1" class="image-reveal-img w-full h-full object-cover">
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[4/3] shadow-lg group md:mt-12" style="transition-delay: 150ms;">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="service2.webp" alt="Naša práca 2" class="image-reveal-img w-full h-full object-cover">
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[4/3] shadow-lg group md:mt-24" style="transition-delay: 300ms;">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="service3.webp" alt="Naša práca 3" class="image-reveal-img w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <!-- FOOTER WRAPPER -->
             <footer id="kontakt" class="bg-secondary text-white pt-28 md:pt-40 relative overflow-hidden">
                 <!-- Texture background -->
-                <div class="absolute inset-0 z-0 pointer-events-none opacity-10" style="background-image: url('texture.svg'); background-size: cover; filter: invert(1);"></div>
+                <div class="absolute inset-0 z-0 pointer-events-none opacity-20" style="background-image: url('texture.svg'); background-size: cover; filter: invert(1);"></div>
                 
                 <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10 pb-20 md:pb-32">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
                         <div>
-                            <h2 class="text-5xl md:text-8xl font-black tracking-tighter uppercase mb-20 italic">Kontakty<span class="text-primary">.</span></h2>
+                            <h2 class="text-5xl md:text-8xl font-black tracking-tighter uppercase mb-20 italic">Kontakt<span class="text-primary">.</span></h2>
                             
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-12">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                                 <div>
-                                    <p class="text-white/20 text-[10px] font-bold tracking-widest uppercase mb-4">Konateľ firmy</p>
-                                    <p class="text-2xl font-black mb-1">Stanislav Hreha</p>
-                                    <a href="tel:0905253465" class="text-2xl font-light hover:text-primary transition-colors">0905 253 465</a>
-                                    <a href="mailto:hreha@zembau.sk" class="text-lg font-light block hover:text-primary transition-colors opacity-40 italic mt-2">hreha@zembau.sk</a>
+                                    <p class="text-white/20 text-[10px] font-bold tracking-widest uppercase mb-4">Meno a Adresa</p>
+                                    <p class="text-2xl font-black mb-1">Jaroslav Jakubašek</p>
+                                    <p class="text-white/60 font-light mt-4">Rovná 8, Dlhá Lúka</p>
+                                    <p class="text-white/60 font-light leading-relaxed">085 01 Bardejov</p>
                                 </div>
-                                <div>
-                                    <p class="text-white/20 text-[10px] font-bold tracking-widest uppercase mb-4">Obchodno - Technické Oddelenie</p>
-                                    <p class="text-2xl font-black mb-1">Ing. Tipul Jaroslav</p>
-                                    <a href="tel:0905338672" class="text-2xl font-light hover:text-primary transition-colors">0905 338 672</a>
-                                    <a href="mailto:zembau@zembau.sk" class="text-lg font-light block hover:text-primary transition-colors opacity-40 italic mt-2">zembau@zembau.sk</a>
-                                </div>
-                                <div>
-                                    <p class="text-white/20 text-[10px] font-bold tracking-widest uppercase mb-4">Príprava a Výroba</p>
-                                    <p class="text-2xl font-black mb-1">Ing. Patarák Slavomír</p>
-                                    <a href="tel:0907555036" class="text-2xl font-light hover:text-primary transition-colors">0907 555 036</a>
-                                    <a href="mailto:vyroba@zembau.sk" class="text-lg font-light block hover:text-primary transition-colors opacity-40 italic mt-2">vyroba@zembau.sk</a>
-                                </div>
-                                <div>
-                                    <p class="text-white/20 text-[10px] font-bold tracking-widest uppercase mb-4">Projekcia</p>
-                                    <p class="text-2xl font-black mb-1">Ing. Benka Goč Miroslav</p>
-                                    <a href="tel:0907695374" class="text-2xl font-light hover:text-primary transition-colors">0907 695 374</a>
-                                    <a href="mailto:projekcia@zembau.sk" class="text-lg font-light block hover:text-primary transition-colors opacity-40 italic mt-2">projekcia@zembau.sk</a>
+                                <div class="flex flex-col">
+                                    <p class="text-white/20 text-[10px] font-bold tracking-widest uppercase mb-4">Kontakt na nás</p>
+                                    <a href="tel:+421948300988" class="text-2xl font-light hover:text-primary transition-colors">+421 948 300 988</a>
+                                    <a href="mailto:jaroslavjakubasek@gmail.com" class="text-lg font-light block hover:text-primary transition-colors opacity-40 italic mt-2">jaroslavjakubasek@gmail.com</a>
                                 </div>
                             </div>
                         </div>
 
                         <div class="flex flex-col">
                            <div class="bg-white/5 border border-white/10 p-10 md:p-16 rounded-none backdrop-blur-3xl h-full flex flex-col justify-center">
-                                <h3 class="text-2xl font-black uppercase mb-8 italic">Sídlo spoločnosti</h3>
-                                <div class="text-white/70 font-light space-y-4 mb-12">
-                                    <p class="text-xl font-bold text-white tracking-wide uppercase">ZEM-BAU SK s. r. o.</p>
-                                    <p>Giraltovská 4483<br>085 01 Bardejov</p>
-                                </div>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
-                                    <div>
-                                        <p class="text-white/40 uppercase tracking-widest text-[10px] font-bold mb-1">IČO</p>
-                                        <p class="font-medium text-white">47 907 959</p>
+                                <h3 class="text-2xl font-black uppercase mb-10 italic">Napíšte nám</h3>
+                                <form class="flex flex-col gap-6 w-full">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <input type="text" placeholder="Meno *" required class="bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-primary transition-colors rounded-none outline-none">
+                                        <input type="email" placeholder="E-mail *" required class="bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-primary transition-colors rounded-none outline-none">
                                     </div>
-                                    <div>
-                                        <p class="text-white/40 uppercase tracking-widest text-[10px] font-bold mb-1">IČ DPH</p>
-                                        <p class="font-medium text-white">SK 202 413 6884</p>
+                                    <textarea placeholder="..napíšte nám *" rows="3" required class="bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-primary transition-colors resize-none rounded-none outline-none"></textarea>
+                                    <div class="mt-4">
+                                        <button type="submit" class="group inline-flex items-center justify-center px-10 py-4 bg-primary text-white text-sm font-black rounded-none hover:bg-primary-dark transition-all duration-300">
+                                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Poslať">Poslať</span></span>
+                                        </button>
                                     </div>
-                                    <div class="sm:col-span-2">
-                                        <p class="text-white/40 uppercase tracking-widest text-[10px] font-bold mb-1">IBAN</p>
-                                        <p class="font-medium text-white break-all">SK 5175 0000 0000 40 2063 4578</p>
-                                    </div>
-                                    <div class="sm:col-span-2 mt-4">
-                                        <p class="text-white/30 text-xs italic leading-relaxed">Spoločnosť ZEM-BAU SK s. r. o. je zapísaná v Obchodnom registri Okresného súdu Prešov, oddiel Sro, vložke číslo 30821/P</p>
-                                    </div>
-                                </div>
+                                </form>
                            </div>
                         </div>
                     </div>
 
                     <div class="mt-32 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold text-white/5 tracking-widest uppercase">
-                        <p>ZEM-BAU SK s.r.o. | Kompletné Stavebné a Inžinierske Činnosti</p>
-                        <p>© 2023 zembau.sk</p>
+                        <div class="flex gap-6">
+                            <a href="#onas" class="hover:text-primary transition-colors">O nás</a>
+                            <a href="#sluzby" class="hover:text-primary transition-colors">Naše služby</a>
+                            <a href="#referencie" class="hover:text-primary transition-colors">Referencie</a>
+                        </div>
+                        <p>© Jakubasek | Všetky práva vyhradené</p>
                     </div>
                 </div>
             </footer>

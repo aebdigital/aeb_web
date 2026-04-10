@@ -322,3 +322,153 @@
   from = "/jmstrechy7"
   to = "/templates/jmstrechy7/index.html"
   status = 200
+
+[[redirects]]
+  from = "/pvwin"
+  to = "/templates/pvwin/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/pemtrade"
+  to = "/templates/pemtrade/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/ekoploty"
+  to = "/templates/ekoploty/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/ivpstavby"
+  to = "/templates/ivpstavby/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/tisplus"
+  to = "/templates/tisplus/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/az-real"
+  to = "/templates/az-real/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/stavbyjaniss"
+  to = "/templates/stavbyjaniss/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/timbed"
+  to = "/templates/timbed/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/brunelstav"
+  to = "/templates/brunelstav/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/jakubasek"
+  to = "/templates/jakubasek/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/rambet"
+  to = "/templates/rambet/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/zembau"
+  to = "/templates/zembau/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/sperostav"
+  to = "/templates/sperostav/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/pestastav"
+  to = "/templates/pestastav/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/gekotech"
+  to = "/templates/gekotech/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/bautop"
+  to = "/templates/bautop/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/bouwgroup"
+  to = "/templates/bouwgroup/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/matfiakdistribution"
+  to = "/templates/matfiakdistribution/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/armakov"
+  to = "/templates/armakov/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/petruslm"
+  to = "/templates/petruslm/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/podlahovecentrumbj"
+  to = "/templates/podlahovecentrumbj/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/rbltrade"
+  to = "/templates/rbltrade/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/riaplast"
+  to = "/templates/riaplast/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/granila"
+  to = "/templates/granila/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/pavstav"
+  to = "/templates/pavstav/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/pvbstav"
+  to = "/templates/pvbstav/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/vialle"
+  to = "/templates/vialle/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/md-project"
+  to = "/templates/md-project/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/izobetonlevice"
+  to = "/templates/izobetonlevice/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/bomati"
+  to = "/templates/bomati/index.html"
+  status = 200

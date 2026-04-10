@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AZ-Real | Stavebná činnosť, upratovanie a požičovňa náradia</title>
+    <script>
+        if (window.location.protocol !== 'file:') {
+            document.write('<base href="/templates/az-real/">');
+        }
+    </script>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="AZ-Real — stavebná činnosť, výkopové práce a stavby na kľúč. Upratovacia činnosť. Požičovňa stavebného náradia a strojov.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Outfit:wght@300;400;600;900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: '#0891b2', light: '#06b6d4', dark: '#0e7490' },
+                        secondary: '#111827',
+                        foreground: '#111827',
+                        muted: '#6b7280',
+                        light: '#f9fafb',
+                        border: '#e5e7eb',
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Outfit', 'sans-serif'] },
+                    fontSize: { '10xl': '7.5rem', '11xl': '9rem' },
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+    <style>
+        :root { --color-primary: #0891b2; --color-secondary: #111827; }
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-stopped { overflow: hidden; }
+        body { background-color: #fff; color: #111827; font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
+        .site-header { transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .site-header.scrolled { background-color: rgba(17,24,39,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(8,145,178,0.15); }
+        .hover-split-text { padding-right: 0.2em; position: relative; overflow: hidden; display: inline-block; vertical-align: top; }
+        .hover-split-text-inner { display: block; transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1); }
+        .hover-split-text-inner::after { content: attr(data-text); position: absolute; top: 110%; left: 0; width: 100%; line-height: inherit; }
+        .group:hover .hover-split-text-inner, .hover-split-text:hover .hover-split-text-inner { transform: translateY(-100%); }
+        .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+        .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+        .image-reveal-wrapper { position: relative; overflow: hidden; }
+        .image-reveal-shutter { position: absolute; inset: 0; background-color: var(--color-secondary); z-index: 10; transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1); }
+        .image-reveal-wrapper.is-revealed .image-reveal-shutter { transform: translateY(-100%); }
+        .image-reveal-img { transform: scale(1.2); filter: grayscale(100%); transition: transform 1.8s cubic-bezier(0.76, 0, 0.24, 1), filter 1.8s cubic-bezier(0.76, 0, 0.24, 1); }
+        .image-reveal-wrapper.is-revealed .image-reveal-img { transform: scale(1); filter: grayscale(0%); }
+        .image-reveal-wrapper:hover .image-reveal-img { transform: scale(1.05); filter: grayscale(0%); }
+        #menu-overlay { transform: translateY(-100%); transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1); }
+        body.menu-open #menu-overlay { transform: translateY(0); }
+        .fade-up { opacity: 0; transform: translateY(30px); animation: fade-up-anim 0.7s ease-out forwards; }
+        .fade-up-1 { animation-delay: 0.1s; } .fade-up-2 { animation-delay: 0.2s; } .fade-up-3 { animation-delay: 0.3s; } .fade-up-4 { animation-delay: 0.4s; }
+        @keyframes fade-up-anim { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .fill-text-animation { position: relative; background: linear-gradient(to right, white 50%, rgba(255,255,255,0.2) 50%); background-size: 200% 100%; background-position: 100% 0; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: fill-text 2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; animation-delay: 1.2s; }
+        @keyframes fill-text { to { background-position: 0% 0; } }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+    <header id="site-header" class="site-header fixed top-0 left-0 right-0 z-50 bg-transparent">
+        <div class="mx-auto w-[95vw] flex items-center justify-between h-16 md:h-24 px-6 md:px-10">
+            <a href="#" class="flex items-center">
+                <span class="text-xl md:text-3xl font-black tracking-tighter text-white uppercase italic font-heading">AZ<span class="text-primary">REAL</span></span>
+            </a>
+            <button id="menu-toggle" class="text-white transition-colors text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 backdrop-blur-sm group">
+                <div class="w-4 flex flex-col gap-1"><span class="w-full h-[1.5px] bg-white"></span><span class="w-full h-[1.5px] bg-white"></span></div>
+                <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Menu">Menu</span></span>
+            </button>
+        </div>
+    </header>
+
+    <div id="menu-overlay" class="fixed top-0 inset-x-0 h-screen md:h-[80vh] z-[60] bg-secondary flex flex-col overflow-hidden shadow-2xl border-b border-primary/20">
+        <div class="absolute inset-0 z-0 pointer-events-none opacity-5" style="background: repeating-linear-gradient(90deg, rgba(8,145,178,0.4) 0px, rgba(8,145,178,0.4) 1px, transparent 1px, transparent 80px), repeating-linear-gradient(0deg, rgba(8,145,178,0.4) 0px, rgba(8,145,178,0.4) 1px, transparent 1px, transparent 80px);"></div>
+        <div class="relative z-10 mx-auto w-[95vw] flex items-center justify-between h-24 px-6 md:px-10">
+            <span class="text-xl md:text-3xl font-black tracking-tighter text-white uppercase italic font-heading">AZ<span class="text-primary">REAL</span></span>
+            <button id="menu-close" class="text-white text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 group">
+                <span class="relative w-4 h-4 flex items-center justify-center"><span class="absolute w-full h-[1.5px] bg-white rotate-45"></span><span class="absolute w-full h-[1.5px] bg-white -rotate-45"></span></span>
+                <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Zavrieť">Zavrieť</span></span>
+            </button>
+        </div>
+        <div class="relative z-10 flex-1 flex items-center pb-8 overflow-y-auto">
+            <div class="mx-auto w-[95vw] px-6 md:px-10 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-20 py-10 md:py-0">
+                <div class="hidden md:flex flex-col">
+                    <span class="text-white/20 text-xs uppercase tracking-widest block mb-8">Kontakt</span>
+                    <div class="mb-8">
+                        <p class="text-white text-3xl font-black mb-4 tracking-tighter uppercase italic font-heading">AZ-Real</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <span class="text-primary/70 text-[10px] uppercase tracking-[0.2em] block mb-1 font-bold">Stavby & Požičovňa</span>
+                            <a href="tel:+421907789219" class="text-white text-lg font-light italic block hover:text-primary transition-colors">+421 907 789 219</a>
+                        </div>
+                        <div>
+                            <span class="text-primary/70 text-[10px] uppercase tracking-[0.2em] block mb-1 font-bold">Upratovanie</span>
+                            <a href="tel:+421908756269" class="text-white text-lg font-light italic block hover:text-primary transition-colors">+421 908 756 269</a>
+                        </div>
+                    </div>
+                </div>
+                <nav class="flex flex-col gap-6 items-center md:items-start">
+                    <span class="text-white/20 text-xs uppercase tracking-widest block mb-4">Navigácia</span>
+                    <div class="flex flex-col gap-4">
+                        <a href="#top" class="menu-link text-4xl lg:text-6xl text-white block font-black uppercase italic tracking-tighter font-heading"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Úvod">Úvod</span></span></a>
+                        <a href="#sluzby" class="menu-link text-4xl lg:text-6xl text-white block font-black uppercase italic tracking-tighter font-heading"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Služby">Služby</span></span></a>
+                        <a href="#galeria" class="menu-link text-4xl lg:text-6xl text-white block font-black uppercase italic tracking-tighter font-heading"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Galéria">Galéria</span></span></a>
+                        <a href="#kontakt" class="menu-link text-4xl lg:text-6xl text-white block font-black uppercase italic tracking-tighter font-heading"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kontakt">Kontakt</span></span></a>
+                    </div>
+                </nav>
+                <div class="hidden lg:flex flex-col justify-end items-end text-right">
+                    <div class="text-white/5 text-[13rem] font-black leading-none absolute -bottom-12 -right-8 font-heading">AZ</div>
+                    <div class="relative z-10 space-y-8">
+                        <div>
+                            <p class="text-primary text-4xl font-black italic mb-1 font-heading">Stavby</p>
+                            <p class="text-white/40 text-xs uppercase tracking-widest font-bold">Na kľúč</p>
+                        </div>
+                        <div>
+                            <p class="text-primary text-4xl font-black italic mb-1 font-heading">Prenájom</p>
+                            <p class="text-white/40 text-xs uppercase tracking-widest font-bold">Náradia & strojov</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- HERO -->
+        <section id="top" class="sticky top-0 h-screen w-full flex items-center overflow-hidden z-0">
+            <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="hero-parallax relative w-full h-full scale-110">
+                    <img src="339469142_1122834329113782_1873910441176459548_n-e1682525564640.jpg" alt="AZ-Real stavebná činnosť" class="w-full h-full object-cover">
+                </div>
+            </div>
+            <div class="absolute inset-0 bg-black/55"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-secondary/70 via-transparent to-transparent"></div>
+            <div class="relative z-10 w-[95vw] mx-auto px-6 md:px-10">
+                <div class="max-w-5xl">
+                    <p class="fade-up text-primary text-sm font-black tracking-[0.4em] uppercase mb-8">Stavby · Upratovanie · Požičovňa náradia</p>
+                    <h1 class="fade-up fade-up-1 text-6xl md:text-9xl lg:text-10xl font-black text-white leading-[0.85] tracking-tighter uppercase italic font-heading">
+                        Stavby &<br><span class="fill-text-animation">prenájom.</span>
+                    </h1>
+                    <p class="fade-up fade-up-2 mt-12 text-lg md:text-2xl text-white/70 font-light max-w-2xl leading-relaxed">
+                        Stavebná činnosť od výkopov po <span class="text-white font-normal">stavby na kľúč</span>. Upratovanie a dezinfekcia. Požičovňa stavebného náradia a strojov.
+                    </p>
+                    <div class="fade-up fade-up-3 mt-14 flex flex-col sm:flex-row gap-4">
+                        <a href="#kontakt" class="inline-flex items-center justify-center gap-3 bg-primary text-white font-bold text-sm tracking-[0.15em] uppercase px-10 py-5 rounded-none transition-all duration-300 hover:bg-primary-light group">
+                            <span>Kontaktujte nás</span>
+                            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
+                        <a href="tel:+421907789219" class="inline-flex items-center justify-center gap-3 border border-white/30 text-white font-medium text-sm tracking-[0.1em] uppercase px-10 py-5 rounded-none transition-all duration-300 hover:bg-white/10">+421 907 789 219</a>
+                    </div>
+                </div>
+            </div>
+            <div class="fade-up fade-up-4 absolute bottom-8 right-8 md:right-12 flex items-center gap-3 text-white/30 text-[10px] tracking-[0.3em] uppercase">
+                <span>Scroll</span><div class="w-px h-12 bg-white/20"></div>
+            </div>
+        </section>
+
+        <!-- TRUST BAND -->
+        <section class="relative z-10 bg-white border-b border-border">
+            <div class="w-[95vw] mx-auto px-6 md:px-10 py-8">
+                <div class="flex flex-wrap items-center justify-center md:justify-between gap-6 text-sm text-muted">
+                    <div class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Výkopové práce & zemina</span></div>
+                    <div class="hidden md:block w-px h-5 bg-border"></div>
+                    <div class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Stavby na kľúč</span></div>
+                    <div class="hidden md:block w-px h-5 bg-border"></div>
+                    <div class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Dezinfekcia priestorov</span></div>
+                    <div class="hidden md:block w-px h-5 bg-border"></div>
+                    <div class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Prenájom náradia a strojov</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section id="sluzby" class="relative z-10 bg-secondary py-24 md:py-40 overflow-hidden">
+            <div class="w-[95vw] mx-auto px-6 md:px-10">
+                <div class="reveal-on-scroll flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-20">
+                    <div>
+                        <p class="text-primary/60 text-xs font-bold tracking-[0.3em] uppercase mb-5">Naše služby</p>
+                        <h2 class="text-5xl md:text-7xl font-black text-white uppercase italic tracking-tighter leading-none font-heading">Čo<br>robíme.</h2>
+                    </div>
+                    <p class="text-white/40 text-base font-light max-w-sm leading-relaxed">Tri divízie pod jednou firmou — stavby, upratovanie a prenájom náradia.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/5">
+                    <div class="reveal-on-scroll bg-secondary group flex flex-col min-h-[450px] border-t-4 border-primary overflow-hidden cursor-default">
+                        <div class="image-reveal-wrapper flex-1 overflow-hidden">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="vykopove%20prace.jpg" alt="Stavebná činnosť" class="image-reveal-img w-full h-full object-cover min-h-[280px]">
+                        </div>
+                        <div class="p-8 flex flex-col gap-4">
+                            <div class="flex items-start justify-between gap-4">
+                                <h3 class="text-white text-2xl font-black uppercase italic tracking-tight font-heading">Stavebná činnosť</h3>
+                                <span class="text-primary text-3xl font-black mt-[-4px] font-heading">01</span>
+                            </div>
+                            <p class="text-white/50 text-sm leading-relaxed">Dovoz sypkých materiálov, výkopové práce v úzkych aj väčších priestoroch, stavebné práce od zakladania po stavby na kľúč.</p>
+                            <p class="text-white/30 text-xs"><a href="mailto:marian.vican@gmail.com" class="hover:text-primary transition-colors">marian.vican@gmail.com</a> · +421 907 789 219</p>
+                        </div>
+                    </div>
+                    <div class="reveal-on-scroll bg-secondary group flex flex-col min-h-[450px] border-t-4 border-primary overflow-hidden cursor-default">
+                        <div class="image-reveal-wrapper flex-1 overflow-hidden">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="339285088_1664018190713203_6256787015127016329_n-e1682525973535.jpg" alt="Upratovacia činnosť" class="image-reveal-img w-full h-full object-cover min-h-[280px]">
+                        </div>
+                        <div class="p-8 flex flex-col gap-4">
+                            <div class="flex items-start justify-between gap-4">
+                                <h3 class="text-white text-2xl font-black uppercase italic tracking-tight font-heading">Upratovanie</h3>
+                                <span class="text-primary text-3xl font-black mt-[-4px] font-heading">02</span>
+                            </div>
+                            <p class="text-white/50 text-sm leading-relaxed">Pravidelný servis domácností a firiem, dezinfekcia priestorov, umývanie okien, tepovanie a ďalšie typy upratovacích služieb.</p>
+                            <p class="text-white/30 text-xs"><a href="mailto:az.real.vh@gmail.com" class="hover:text-primary transition-colors">az.real.vh@gmail.com</a> · +421 908 756 269</p>
+                        </div>
+                    </div>
+                    <div class="reveal-on-scroll bg-secondary group flex flex-col min-h-[450px] border-t-4 border-primary overflow-hidden cursor-default">
+                        <div class="image-reveal-wrapper flex-1 overflow-hidden">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="stavebne%20prace.jpg" alt="Požičovňa náradia" class="image-reveal-img w-full h-full object-cover min-h-[280px]">
+                        </div>
+                        <div class="p-8 flex flex-col gap-4">
+                            <div class="flex items-start justify-between gap-4">
+                                <h3 class="text-white text-2xl font-black uppercase italic tracking-tight font-heading">Požičovňa náradia</h3>
+                                <span class="text-primary text-3xl font-black mt-[-4px] font-heading">03</span>
+                            </div>
+                            <p class="text-white/50 text-sm leading-relaxed">Prenájom stavebného náradia a strojov — výkopy, úprava terénu, hutnenie, vŕtačky, zbíjačky, lasere a mnohé iné.</p>
+                            <p class="text-white/30 text-xs"><a href="mailto:marian.vican@gmail.com" class="hover:text-primary transition-colors">marian.vican@gmail.com</a> · +421 907 789 219</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section class="relative z-10 bg-white py-24 md:py-40">
+            <div class="w-[95vw] mx-auto px-6 md:px-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                    <div class="reveal-on-scroll order-2 lg:order-1">
+                        <p class="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-6">O nás</p>
+                        <h2 class="text-4xl md:text-6xl font-black uppercase italic tracking-tighter leading-none mb-8 font-heading">Vítame vás<br>na stránke<br>AZ-Real.</h2>
+                        <div class="space-y-5 text-muted text-base font-light leading-relaxed">
+                            <p><strong class="text-foreground font-semibold">AZ-Real</strong> je firma, ktorá sa zaoberá stavebnou činnosťou, upratovacími službami a prenájmom stavebného náradia a strojov.</p>
+                            <p>V oblasti stavebníctva ponúkame dovoz sypkých materiálov, výkopové práce v úzkych aj väčších priestoroch a komplexné stavebné práce <strong class="text-foreground font-semibold">od zakladania až po stavby na kľúč</strong>.</p>
+                            <p>Naša požičovňa disponuje rôznymi strojmi na výkopy, úpravu terénu a hutnenie, ale taktiež aj menším náradím ako vŕtačky, zbíjačky a lasere.</p>
+                        </div>
+                    </div>
+                    <div class="reveal-on-scroll order-1 lg:order-2">
+                        <div class="image-reveal-wrapper aspect-[4/5] skew-y-2 overflow-hidden">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="339395101_549684733713742_2675785519058913072_n-e1682526009223.jpg" alt="AZ-Real práce" class="image-reveal-img w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALLERY -->
+        <section id="galeria" class="relative z-10 bg-light py-24 md:py-40">
+            <div class="w-[95vw] mx-auto px-6 md:px-10">
+                <div class="reveal-on-scroll mb-16">
+                    <p class="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-5">Galéria</p>
+                    <h2 class="text-5xl md:text-7xl font-black uppercase italic tracking-tighter leading-none font-heading">Naše<br>realizácie.</h2>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
+                    <div class="reveal-on-scroll image-reveal-wrapper aspect-[3/4] overflow-hidden mt-0 group"><div class="image-reveal-shutter"></div><img src="IMG-5436-1-e1682526676535.jpg" alt="Realizácia" class="image-reveal-img w-full h-full object-cover"><div class="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/30 transition-all duration-500 flex items-end p-5"><span class="text-white text-sm font-bold uppercase italic font-heading opacity-0 group-hover:opacity-100 transition-opacity duration-300">Realizácia</span></div></div>
+                    <div class="reveal-on-scroll image-reveal-wrapper aspect-[3/4] overflow-hidden mt-0 md:mt-12 group"><div class="image-reveal-shutter"></div><img src="bazen-e1682525922424.jpeg" alt="Realizácia" class="image-reveal-img w-full h-full object-cover"><div class="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/30 transition-all duration-500 flex items-end p-5"><span class="text-white text-sm font-bold uppercase italic font-heading opacity-0 group-hover:opacity-100 transition-opacity duration-300">Realizácia</span></div></div>
+                    <div class="reveal-on-scroll image-reveal-wrapper aspect-[3/4] overflow-hidden mt-0 md:mt-24 group"><div class="image-reveal-shutter"></div><img src="339469142_1122834329113782_1873910441176459548_n-e1682525564640.jpg" alt="Realizácia" class="image-reveal-img w-full h-full object-cover"><div class="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/30 transition-all duration-500 flex items-end p-5"><span class="text-white text-sm font-bold uppercase italic font-heading opacity-0 group-hover:opacity-100 transition-opacity duration-300">Realizácia</span></div></div>
+                    <div class="reveal-on-scroll image-reveal-wrapper aspect-[3/4] overflow-hidden mt-0 group"><div class="image-reveal-shutter"></div><img src="339285088_1664018190713203_6256787015127016329_n-e1682525973535.jpg" alt="Realizácia" class="image-reveal-img w-full h-full object-cover"><div class="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/30 transition-all duration-500 flex items-end p-5"><span class="text-white text-sm font-bold uppercase italic font-heading opacity-0 group-hover:opacity-100 transition-opacity duration-300">Realizácia</span></div></div>
+                    <div class="reveal-on-scroll image-reveal-wrapper aspect-[3/4] overflow-hidden mt-0 md:mt-12 group"><div class="image-reveal-shutter"></div><img src="339395101_549684733713742_2675785519058913072_n-e1682526009223.jpg" alt="Realizácia" class="image-reveal-img w-full h-full object-cover"><div class="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/30 transition-all duration-500 flex items-end p-5"><span class="text-white text-sm font-bold uppercase italic font-heading opacity-0 group-hover:opacity-100 transition-opacity duration-300">Realizácia</span></div></div>
+                    <div class="reveal-on-scroll image-reveal-wrapper aspect-[3/4] overflow-hidden mt-0 md:mt-24 group"><div class="image-reveal-shutter"></div><img src="stavebne%20prace.jpg" alt="Stavebné práce" class="image-reveal-img w-full h-full object-cover"><div class="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/30 transition-all duration-500 flex items-end p-5"><span class="text-white text-sm font-bold uppercase italic font-heading opacity-0 group-hover:opacity-100 transition-opacity duration-300">Stavebné práce</span></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="kontakt" class="relative z-10 bg-secondary py-24 md:py-40">
+            <div class="w-[95vw] mx-auto px-6 md:px-10">
+                <div class="reveal-on-scroll mb-16">
+                    <p class="text-primary/60 text-xs font-bold tracking-[0.3em] uppercase mb-6">Kontakt</p>
+                    <h2 class="text-5xl md:text-7xl font-black text-white uppercase italic tracking-tighter leading-none font-heading">Kontaktujte<br>nás.</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5">
+                    <div class="reveal-on-scroll bg-secondary p-10 md:p-12 flex flex-col gap-6">
+                        <p class="text-primary/60 text-xs font-bold tracking-[0.3em] uppercase">Stavebná činnosť & Požičovňa</p>
+                        <div class="space-y-4">
+                            <div>
+                                <span class="text-white/20 text-[10px] uppercase tracking-[0.2em] font-bold block mb-1">E-mail</span>
+                                <a href="mailto:marian.vican@gmail.com" class="text-white text-lg font-light hover:text-primary transition-colors">marian.vican@gmail.com</a>
+                            </div>
+                            <div>
+                                <span class="text-white/20 text-[10px] uppercase tracking-[0.2em] font-bold block mb-1">Telefón</span>
+                                <a href="tel:+421907789219" class="text-white text-2xl font-light hover:text-primary transition-colors">+421 907 789 219</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reveal-on-scroll bg-secondary p-10 md:p-12 flex flex-col gap-6 border-t md:border-t-0 md:border-l border-white/5">
+                        <p class="text-primary/60 text-xs font-bold tracking-[0.3em] uppercase">Upratovacia činnosť</p>
+                        <div class="space-y-4">
+                            <div>
+                                <span class="text-white/20 text-[10px] uppercase tracking-[0.2em] font-bold block mb-1">E-mail</span>
+                                <a href="mailto:az.real.vh@gmail.com" class="text-white text-lg font-light hover:text-primary transition-colors">az.real.vh@gmail.com</a>
+                            </div>
+                            <div>
+                                <span class="text-white/20 text-[10px] uppercase tracking-[0.2em] font-bold block mb-1">Telefón</span>
+                                <a href="tel:+421908756269" class="text-white text-2xl font-light hover:text-primary transition-colors">+421 908 756 269</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="relative z-10 bg-secondary border-t border-white/5 py-16">
+        <div class="w-[95vw] mx-auto px-6 md:px-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+                <div>
+                    <span class="text-2xl font-black tracking-tighter text-white uppercase italic font-heading block mb-6">AZ<span class="text-primary">REAL</span></span>
+                    <p class="text-white/30 text-sm font-light leading-relaxed max-w-xs">Stavebná činnosť, upratovanie a požičovňa náradia.</p>
+                    <div class="flex flex-wrap gap-2 mt-6">
+                        <span class="text-[10px] uppercase tracking-widest text-primary/50 border border-primary/20 px-2 py-1 font-bold">Stavby</span>
+                        <span class="text-[10px] uppercase tracking-widest text-primary/50 border border-primary/20 px-2 py-1 font-bold">Upratovanie</span>
+                        <span class="text-[10px] uppercase tracking-widest text-primary/50 border border-primary/20 px-2 py-1 font-bold">Požičovňa</span>
+                    </div>
+                </div>
+                <div>
+                    <span class="text-white/20 text-[10px] uppercase tracking-[0.2em] font-bold block mb-6">Navigácia</span>
+                    <nav class="flex flex-col gap-3">
+                        <a href="#top" class="text-white/50 text-sm hover:text-white transition-colors">Úvod</a>
+                        <a href="#sluzby" class="text-white/50 text-sm hover:text-white transition-colors">Služby</a>
+                        <a href="#galeria" class="text-white/50 text-sm hover:text-white transition-colors">Galéria</a>
+                        <a href="#kontakt" class="text-white/50 text-sm hover:text-white transition-colors">Kontakt</a>
+                    </nav>
+                </div>
+                <div>
+                    <span class="text-white/20 text-[10px] uppercase tracking-[0.2em] font-bold block mb-6">Kontakt</span>
+                    <div class="space-y-4 text-white/40 text-sm font-light">
+                        <div>
+                            <p class="text-white/20 text-[10px] uppercase tracking-widest font-bold mb-1">Stavby & Požičovňa</p>
+                            <p><a href="tel:+421907789219" class="hover:text-white transition-colors">+421 907 789 219</a></p>
+                            <p><a href="mailto:marian.vican@gmail.com" class="hover:text-white transition-colors">marian.vican@gmail.com</a></p>
+                        </div>
+                        <div>
+                            <p class="text-white/20 text-[10px] uppercase tracking-widest font-bold mb-1">Upratovanie</p>
+                            <p><a href="tel:+421908756269" class="hover:text-white transition-colors">+421 908 756 269</a></p>
+                            <p><a href="mailto:az.real.vh@gmail.com" class="hover:text-white transition-colors">az.real.vh@gmail.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-white/20 text-xs">© 2025 AZ-Real. Všetky práva vyhradené.</p>
+                <p class="text-white/10 text-xs">Slovensko</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const lenis = new Lenis();
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+        const siteHeader = document.getElementById('site-header');
+        window.addEventListener('scroll', () => { siteHeader.classList.toggle('scrolled', window.scrollY > 60); });
+        document.getElementById('menu-toggle').addEventListener('click', () => document.body.classList.add('menu-open'));
+        document.getElementById('menu-close').addEventListener('click', () => document.body.classList.remove('menu-open'));
+        document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => document.body.classList.remove('menu-open')));
+        const revealObserver = new IntersectionObserver((entries) => { entries.forEach((entry, i) => { if (entry.isIntersecting) { entry.target.style.transitionDelay = `${(i % 4) * 80}ms`; entry.target.classList.add('is-visible'); revealObserver.unobserve(entry.target); } }); }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
+        const imageObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-revealed'); imageObserver.unobserve(entry.target); } }); }, { threshold: 0.1 });
+        document.querySelectorAll('.image-reveal-wrapper').forEach(el => imageObserver.observe(el));
+        const heroParallax = document.querySelector('.hero-parallax');
+        window.addEventListener('scroll', () => { if (!heroParallax) return; heroParallax.style.transform = `translateY(${window.pageYOffset * 0.15}px) scale(1.1)`; }, { passive: true });
+    </script>
+</body>
+</html>

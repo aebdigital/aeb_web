@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPERO-STAV s.r.o. | Stavebná spoločnosť od roku 2013</title>
+    <script>
+        if (window.location.protocol !== 'file:') {
+            document.write('<base href="/templates/sperostav/">');
+        }
+    </script>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="SPERO-STAV s.r.o. — kompletné stavebné práce od roku 2013. Domy na kľúč, murárske práce, rekonštrukcie, zateplenie, pokrývačské a tesárske práce.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Outfit:wght@300;400;600;900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: '#fbbf24', light: '#fcd34d', dark: '#b45309' },
+                        secondary: '#111827',
+                        muted: '#6b7280',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    fontSize: {
+                        '10xl': '7.5rem',
+                        '11xl': '9rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --color-primary: #fbbf24;
+            --color-primary-dark: #b45309;
+            --color-secondary: #111827;
+            --color-muted: #6b7280;
+        }
+
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+
+        body {
+            background-color: #ffffff;
+            color: #111827;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .site-header {
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .site-header.scrolled {
+            background-color: rgba(17,24,39,0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .hover-split-text {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .hover-split-text-inner {
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .hover-split-text-inner::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 110%;
+            left: 0;
+            width: 100%;
+            line-height: inherit;
+        }
+        .group:hover .hover-split-text-inner,
+        .hover-split-text:hover .hover-split-text-inner {
+            transform: translateY(-100%);
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .image-reveal-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+        .image-reveal-shutter {
+            position: absolute;
+            inset: 0;
+            background-color: #111827;
+            z-index: 10;
+            transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .image-reveal-wrapper.is-revealed .image-reveal-shutter {
+            transform: translateY(-100%);
+        }
+        .image-reveal-img {
+            transform: scale(1.2);
+            filter: grayscale(100%);
+            transition: transform 1.8s cubic-bezier(0.76, 0, 0.24, 1), filter 1.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .image-reveal-wrapper.is-revealed .image-reveal-img {
+            transform: scale(1);
+            filter: grayscale(0%);
+        }
+        .image-reveal-wrapper:hover .image-reveal-img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        #menu-overlay {
+            transform: translateY(-100%);
+            transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        body.menu-open #menu-overlay { transform: translateY(0); }
+
+        .parallax-container {
+            position: relative;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .parallax-target {
+            width: 100%;
+            height: 100%;
+            will-change: transform;
+        }
+
+        .fade-up { opacity: 0; transform: translateY(30px); animation: fade-up-anim 0.7s ease-out forwards; }
+        .fade-up-1 { animation-delay: 0.1s; }
+        .fade-up-2 { animation-delay: 0.2s; }
+        .fade-up-3 { animation-delay: 0.3s; }
+        .fade-up-4 { animation-delay: 0.4s; }
+        @keyframes fade-up-anim {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fill-text-animation {
+            position: relative;
+            background: linear-gradient(to right, white 50%, rgba(255,255,255,0.2) 50%);
+            background-size: 200% 100%;
+            background-position: 100% 0;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fill-text 2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+            animation-delay: 1.2s;
+        }
+        @keyframes fill-text {
+            to { background-position: 0% 0; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+    <!-- HEADER -->
+    <header id="site-header" class="site-header fixed top-0 left-0 right-0 z-50 bg-transparent">
+        <div class="mx-auto w-[95vw] flex items-center justify-between h-16 md:h-24 px-6 md:px-10">
+            <a href="#" class="flex items-center">
+                <span class="text-xl md:text-3xl font-black tracking-tighter text-white uppercase italic font-heading">SPERO<span style="color:var(--color-primary)">STAV</span></span>
+            </a>
+            <button id="menu-toggle" class="text-white text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 group transition-colors">
+                <div class="w-4 flex flex-col gap-1">
+                    <span class="w-full h-[1.5px] bg-white"></span>
+                    <span class="w-full h-[1.5px] bg-white"></span>
+                </div>
+                <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Menu">Menu</span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MENU OVERLAY -->
+    <div id="menu-overlay" class="fixed top-0 inset-x-0 h-screen md:h-[80vh] z-[60] flex flex-col overflow-hidden shadow-2xl" style="background-color:#111827;border-bottom:1px solid rgba(251,191,36,0.2)">
+        <div class="absolute inset-0 z-0 pointer-events-none opacity-30" style="background-image:url('texture.svg');background-size:cover;filter:invert(1)"></div>
+
+        <div class="relative z-10 mx-auto w-[95vw] flex items-center justify-between h-24 px-6 md:px-10">
+            <span class="text-xl md:text-3xl font-black tracking-tighter text-white uppercase italic font-heading">SPERO<span style="color:var(--color-primary)">STAV</span></span>
+            <button id="menu-close" class="text-white text-xs tracking-[0.2em] font-medium uppercase border border-white/20 rounded-none px-5 py-2.5 flex items-center gap-3 hover:bg-white/10 group transition-colors">
+                <span class="relative w-4 h-4 flex items-center justify-center">
+                    <span class="absolute w-full h-[1.5px] bg-white rotate-45"></span>
+                    <span class="absolute w-full h-[1.5px] bg-white -rotate-45"></span>
+                </span>
+                <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Zavrieť">Zavrieť</span></span>
+            </button>
+        </div>
+
+        <div class="relative z-10 flex-1 flex items-center pb-8 overflow-y-auto">
+            <div class="mx-auto w-[95vw] px-6 md:px-10 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-20 py-10 md:py-0">
+                <!-- Info -->
+                <div class="hidden md:flex flex-col">
+                    <span class="text-white/20 text-xs uppercase tracking-widest block mb-8">Kontakt & Info</span>
+                    <div class="mb-12">
+                        <p class="text-white text-3xl font-black mb-4 tracking-tighter uppercase italic font-heading">SPERO-STAV s.r.o.</p>
+                        <p class="text-white/40 text-sm font-light leading-relaxed max-w-xs">Kompletné stavebné práce na slovenskom trhu od roku 2013.</p>
+                    </div>
+                    <div>
+                        <span class="text-[10px] uppercase tracking-[0.2em] block mb-2 font-bold" style="color:rgba(251,191,36,0.6)">Telefón</span>
+                        <a href="tel:+421911308298" class="text-white text-2xl font-light italic block hover:text-primary transition-colors">+421 (0)911 308 298</a>
+                        <a href="mailto:sperostav@sperostav.sk" class="text-white/40 text-lg font-light block mt-1 hover:text-white transition-colors">sperostav@sperostav.sk</a>
+                    </div>
+                </div>
+
+                <!-- Nav -->
+                <nav class="flex flex-col gap-6 items-center md:items-start">
+                    <span class="text-white/20 text-xs uppercase tracking-widest block mb-4">Navigácia</span>
+                    <div class="flex flex-col gap-4">
+                        <a href="#top" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter font-heading hover:text-primary transition-colors"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Úvod">Úvod</span></span></a>
+                        <a href="#onas" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter font-heading hover:text-primary transition-colors"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="O nás">O nás</span></span></a>
+                        <a href="#sluzby" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter font-heading hover:text-primary transition-colors"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Služby">Služby</span></span></a>
+                        <a href="#projekty" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter font-heading hover:text-primary transition-colors"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Realizácie">Realizácie</span></span></a>
+                        <a href="#kontakt" class="menu-link text-4xl lg:text-6xl text-white block group font-black uppercase italic tracking-tighter font-heading hover:text-primary transition-colors"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kontakt">Kontakt</span></span></a>
+                    </div>
+                </nav>
+
+                <!-- Stats -->
+                <div class="hidden lg:flex flex-col justify-end items-end text-right">
+                    <div class="text-[15rem] font-black leading-none absolute -bottom-20 -right-20 font-heading" style="color:rgba(255,255,255,0.04)">SS</div>
+                    <div class="relative z-10">
+                        <p class="text-6xl font-black italic mb-2 font-heading" style="color:var(--color-primary)">2013 <span class="text-2xl not-italic uppercase opacity-40">rok vzniku</span></p>
+                        <p class="text-white/40 text-sm uppercase tracking-widest font-bold">Stavebná spoločnosť</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- HERO -->
+        <section id="top" class="sticky top-0 h-screen w-full flex items-center overflow-hidden z-0">
+            <div class="parallax-container absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="parallax-target hero-parallax relative w-full h-full scale-110" data-speed="0.1">
+                    <img src="sperostav_stavebna.jpg" alt="SPERO-STAV stavebné práce" class="w-full h-full object-cover">
+                </div>
+            </div>
+            <div class="absolute inset-0 bg-black/40"></div>
+            <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(17,24,39,0.5),transparent 60%)"></div>
+
+            <div class="relative z-10 w-[95vw] mx-auto px-6 md:px-10">
+                <div class="max-w-5xl">
+                    <p class="fade-up text-sm font-black tracking-[0.4em] uppercase mb-8" style="color:var(--color-primary)">
+                        Stavebná spoločnosť · Od roku 2013
+                    </p>
+                    <h1 class="fade-up fade-up-1 text-7xl md:text-[7.5rem] lg:text-[9rem] font-black text-white leading-[0.85] tracking-tighter uppercase italic font-heading pr-4">
+                        Realizátor<br><span class="fill-text-animation">Vašich stavieb.</span>
+                    </h1>
+                    <p class="fade-up fade-up-2 mt-12 text-lg md:text-2xl text-white/70 font-light max-w-2xl leading-relaxed">
+                        Poskytujeme kompletné stavebné práce — od hrubých stavieb a rekonštrukcií až po domy na kľúč.
+                    </p>
+                    <div class="fade-up fade-up-3 mt-16 flex flex-col sm:flex-row gap-6">
+                        <a href="#kontakt" class="group inline-flex items-center justify-center px-12 py-5 text-secondary text-sm font-black rounded-none hover:scale-105 transition-all duration-300" style="background-color:var(--color-primary);color:#111827">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Dopytovať sa">Dopytovať sa</span></span>
+                        </a>
+                        <a href="#sluzby" class="group inline-flex items-center justify-center px-12 py-5 border-2 border-white/20 text-white text-sm font-bold rounded-none hover:bg-white/10 transition-all duration-300">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Naše služby">Naše služby</span></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="relative z-10 bg-white">
+
+            <!-- SERVICES -->
+            <section id="sluzby" class="py-28 md:py-36 relative overflow-hidden text-white" style="background-color:#111827">
+                <div class="absolute inset-0 z-0">
+                    <img src="stavba_domu_33-675x675.jpg" class="w-full h-full object-cover opacity-20 grayscale" alt="">
+                    <div class="absolute inset-0" style="background-color:rgba(17,24,39,0.8)"></div>
+                </div>
+
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="reveal-on-scroll mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
+                        <div>
+                            <p class="text-xs font-black tracking-[0.3em] uppercase mb-6" style="color:var(--color-primary)">Naše Služby</p>
+                            <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase italic font-heading">Čo robíme<span style="color:var(--color-primary)">.</span></h2>
+                        </div>
+                        <p class="text-white/60 max-w-md font-light">Poskytujeme kompletné stavebné práce prostredníctvom vlastných zamestnancov a rokmi overených subdodávateľov.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="reveal-on-scroll relative min-h-[450px] flex flex-col justify-end p-10 overflow-hidden group">
+                            <img src="stavba_na_kluc_24-675x675.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Domy na kľúč">
+                            <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(17,24,39,1) 0%,rgba(17,24,39,0.4) 50%,transparent 100%)"></div>
+                            <div class="relative z-10">
+                                <span class="text-xs font-black tracking-widest uppercase mb-4 block" style="color:var(--color-primary)">01 / Výstavba</span>
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none font-heading">Domy<br>na kľúč</h3>
+                                <ul class="space-y-3 text-white/70 font-medium text-xs tracking-wide">
+                                    <li>Hrubá stavba & Základy</li>
+                                    <li>Holodom & Inštalácie</li>
+                                    <li>Kompletné dokončenie</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="reveal-on-scroll relative min-h-[450px] flex flex-col justify-end p-10 overflow-hidden group" style="transition-delay:150ms">
+                            <img src="Zateplenie_domu08-750x750.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Rekonštrukcie a zateplenie">
+                            <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(17,24,39,1) 0%,rgba(17,24,39,0.4) 50%,transparent 100%)"></div>
+                            <div class="relative z-10">
+                                <span class="text-xs font-black tracking-widest uppercase mb-4 block" style="color:var(--color-primary)">02 / Obnova</span>
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none font-heading">Rekonštrukcie<br>& Zateplenie</h3>
+                                <ul class="space-y-3 text-white/70 font-medium text-xs tracking-wide">
+                                    <li>Komplexné rekonštrukcie</li>
+                                    <li>Zatepľovacie systémy</li>
+                                    <li>Nadstavovanie podlaží</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="reveal-on-scroll relative min-h-[450px] flex flex-col justify-end p-10 overflow-hidden group" style="transition-delay:300ms">
+                            <img src="stavba_domu_33-675x675.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Murárske a tesárske práce">
+                            <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(17,24,39,1) 0%,rgba(17,24,39,0.4) 50%,transparent 100%)"></div>
+                            <div class="relative z-10">
+                                <span class="text-xs font-black tracking-widest uppercase mb-4 block" style="color:var(--color-primary)">03 / Remeslo</span>
+                                <h3 class="text-3xl font-black text-white uppercase italic mb-6 leading-none font-heading">Murárske<br>& Tesárske</h3>
+                                <ul class="space-y-3 text-white/70 font-medium text-xs tracking-wide">
+                                    <li>Murárske práce (Ytong, HELUZ)</li>
+                                    <li>Tesárske práce & Krovy</li>
+                                    <li>Pokrývačské práce</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- All services tags -->
+                    <div class="reveal-on-scroll mt-20 pt-16" style="border-top:1px solid rgba(255,255,255,0.1)">
+                        <p class="text-xs font-black tracking-[0.3em] uppercase mb-8" style="color:var(--color-primary)">Všetky služby</p>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-6 py-3 border border-white/10 text-[11px] font-bold uppercase tracking-widest text-white/60">Domy na kľúč</span>
+                            <span class="px-6 py-3 border border-white/10 text-[11px] font-bold uppercase tracking-widest text-white/60">Murárske práce</span>
+                            <span class="px-6 py-3 border border-white/10 text-[11px] font-bold uppercase tracking-widest text-white/60">Kladenie dlažby</span>
+                            <span class="px-6 py-3 border border-white/10 text-[11px] font-bold uppercase tracking-widest text-white/60">Rekonštrukcie</span>
+                            <span class="px-6 py-3 border border-white/10 text-[11px] font-bold uppercase tracking-widest text-white/60">Zatepľovanie</span>
+                            <span class="px-6 py-3 border border-white/10 text-[11px] font-bold uppercase tracking-widest text-white/60">Búracie práce</span>
+                            <span class="px-6 py-3 border border-white/10 text-[11px] font-bold uppercase tracking-widest text-white/60">Sadrokartón</span>
+                            <span class="px-6 py-3 border border-white/10 text-[11px] font-bold uppercase tracking-widest text-white/60">Pokrývačstvo</span>
+                            <span class="px-6 py-3 border border-white/10 text-[11px] font-bold uppercase tracking-widest text-white/60">Tesárske práce</span>
+                            <span class="px-6 py-3 border border-white/10 text-[11px] font-bold uppercase tracking-widest text-white/60">Zemné práce</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ABOUT / O NÁS -->
+            <section id="onas" class="py-28 md:py-36 relative overflow-hidden text-white" style="background-color:#111827">
+                <div class="absolute inset-0 z-0">
+                    <img src="sperostav_stavebna.jpg" class="w-full h-full object-cover opacity-10 grayscale" alt="">
+                    <div class="absolute inset-0" style="background-color:rgba(17,24,39,0.85)"></div>
+                </div>
+                <div class="mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                        <div class="reveal-on-scroll">
+                            <p class="text-xs font-black tracking-[0.3em] uppercase mb-6" style="color:var(--color-primary)">Od roku 2013</p>
+                            <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase italic mb-12 font-heading">Na stavebnom<br>trhu.</h2>
+                            <div class="space-y-12">
+                                <div class="relative pl-16">
+                                    <div class="absolute left-0 top-0 text-7xl font-black leading-none font-heading" style="color:rgba(255,255,255,0.05)">01</div>
+                                    <h4 class="text-2xl font-black uppercase mb-4 font-heading" style="color:var(--color-primary)">Skúsenosti</h4>
+                                    <p class="text-white/50 font-light leading-relaxed">Už niekoľko rokov poskytujeme stavebné práce prostredníctvom vlastných zamestnancov a rokmi overených subdodávateľov, za ktorých plne zodpovedáme.</p>
+                                </div>
+                                <div class="relative pl-16">
+                                    <div class="absolute left-0 top-0 text-7xl font-black leading-none font-heading" style="color:rgba(255,255,255,0.05)">02</div>
+                                    <h4 class="text-2xl font-black uppercase mb-4 font-heading" style="color:var(--color-primary)">Kvalita</h4>
+                                    <p class="text-white/50 font-light leading-relaxed">Zodpovedný prístup a neustále vzdelávanie sa nám umožňuje udržiavať vysokú úroveň realizovaných služieb pri každom projekte.</p>
+                                </div>
+                                <div class="relative pl-16">
+                                    <div class="absolute left-0 top-0 text-7xl font-black leading-none font-heading" style="color:rgba(255,255,255,0.05)">03</div>
+                                    <h4 class="text-2xl font-black uppercase mb-4 font-heading" style="color:var(--color-primary)">Inšpirácia</h4>
+                                    <p class="text-white/50 font-light leading-relaxed italic">„Nič veľké nebolo nikdy dosiahnuté bez nadšenia." — R. W. Emerson</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll">
+                            <div class="image-reveal-wrapper rounded-none aspect-[4/5] shadow-2xl skew-y-2">
+                                <div class="image-reveal-shutter"></div>
+                                <img src="stavba_na_kluc_24-675x675.jpg" alt="SPERO-STAV výstavba" class="image-reveal-img w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROJECTS / REALIZÁCIE -->
+            <section id="projekty" class="py-28 md:py-36 bg-white overflow-hidden">
+                <div class="mx-auto w-[95vw] px-6 md:px-10">
+                    <div class="reveal-on-scroll mb-20 text-center">
+                        <h2 class="text-5xl md:text-8xl font-black text-secondary tracking-tighter uppercase italic mb-8 font-heading">Realizácie<span style="color:var(--color-primary)">.</span></h2>
+                        <p class="max-w-2xl mx-auto font-light lg:text-xl" style="color:var(--color-muted)">Pozrite si výsledky našej precíznej práce priamo v teréne.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg group">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="bungalov1_5-1000x562.jpg" alt="Bungalov" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-10 text-center" style="background-color:rgba(17,24,39,0.85)">
+                                <p class="text-white text-sm font-bold uppercase tracking-widest italic">Bungalov na kľúč</p>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg md:mt-12 group" style="transition-delay:150ms">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="bungalov2_5-1000x562.jpg" alt="Rodinný dom" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-10 text-center" style="background-color:rgba(17,24,39,0.85)">
+                                <p class="text-white text-sm font-bold uppercase tracking-widest italic">Rodinný dom s garážou</p>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg md:mt-24 group" style="transition-delay:300ms">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="stavba_na_kluc_24-675x675.jpg" alt="Stavba na kľúč" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-10 text-center" style="background-color:rgba(17,24,39,0.85)">
+                                <p class="text-white text-sm font-bold uppercase tracking-widest italic">Stavba na kľúč</p>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg group" style="transition-delay:100ms">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="Zateplenie_domu08-750x750.jpg" alt="Zateplenie domu" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-10 text-center" style="background-color:rgba(17,24,39,0.85)">
+                                <p class="text-white text-sm font-bold uppercase tracking-widest italic">Zateplenie fasády</p>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg md:mt-12 group" style="transition-delay:250ms">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="stavba_domu_33-675x675.jpg" alt="Stavba domu" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-10 text-center" style="background-color:rgba(17,24,39,0.85)">
+                                <p class="text-white text-sm font-bold uppercase tracking-widest italic">Murárske práce</p>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll image-reveal-wrapper rounded-none aspect-[3/4] shadow-lg md:mt-24 group" style="transition-delay:400ms">
+                            <div class="image-reveal-shutter"></div>
+                            <img src="dom01-150x150.jpg" alt="Rodinný dom" class="image-reveal-img w-full h-full object-cover">
+                            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-10 text-center" style="background-color:rgba(17,24,39,0.85)">
+                                <p class="text-white text-sm font-bold uppercase tracking-widest italic">Rodinný dom</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER / KONTAKT -->
+            <footer id="kontakt" class="text-white pt-28 md:pt-40 relative overflow-hidden" style="background-color:#111827">
+                <div class="absolute inset-0 z-0 pointer-events-none opacity-20" style="background-image:url('texture.svg');background-size:cover;filter:invert(1)"></div>
+
+                <div class="relative z-10 mx-auto w-[95vw] px-6 md:px-10 pb-20 md:pb-32">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                        <div>
+                            <h2 class="text-5xl md:text-8xl font-black tracking-tighter uppercase mb-20 italic font-heading">Kontakt<span style="color:var(--color-primary)">.</span></h2>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                <div>
+                                    <p class="text-[10px] font-bold tracking-widest uppercase mb-4" style="color:rgba(255,255,255,0.2)">Kontakt</p>
+                                    <p class="text-2xl font-black mb-1">SPERO-STAV s.r.o.</p>
+                                    <a href="tel:+421911308298" class="text-2xl font-light hover:text-primary transition-colors block" style="color:white">+421 (0)911 308 298</a>
+                                    <a href="mailto:sperostav@sperostav.sk" class="text-lg font-light block hover:opacity-100 transition-opacity italic mt-2" style="color:rgba(255,255,255,0.4)">sperostav@sperostav.sk</a>
+                                </div>
+                                <div class="flex flex-col justify-end">
+                                    <p class="text-[10px] font-bold tracking-widest uppercase mb-4 italic" style="color:rgba(255,255,255,0.2)">© 2025 SPERO-STAV s.r.o.</p>
+                                    <nav class="flex gap-4">
+                                        <a href="#top" class="text-[10px] font-bold uppercase tracking-widest hover:text-primary transition-colors" style="color:rgba(255,255,255,0.5)">Úvod</a>
+                                        <a href="#projekty" class="text-[10px] font-bold uppercase tracking-widest hover:text-primary transition-colors" style="color:rgba(255,255,255,0.5)">Realizácie</a>
+                                        <a href="#sluzby" class="text-[10px] font-bold uppercase tracking-widest hover:text-primary transition-colors" style="color:rgba(255,255,255,0.5)">Služby</a>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col">
+                            <div class="p-10 md:p-16 rounded-none" style="background-color:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1)">
+                                <h3 class="text-2xl font-black uppercase mb-10 italic font-heading">Zaujali vás naše služby?</h3>
+                                <p class="font-light mb-12 leading-relaxed" style="color:rgba(255,255,255,0.4)">Realizujeme kompletné stavebné práce od búracích prác cez rekonštrukcie až po výstavbu domov na kľúč. Kontaktujte nás pre nezáväznú cenovú ponuku.</p>
+                                <div class="flex flex-wrap gap-3">
+                                    <span class="px-6 py-2 border border-white/10 text-[10px] font-bold uppercase tracking-widest" style="color:var(--color-primary)">Výstavba</span>
+                                    <span class="px-6 py-2 border border-white/10 text-[10px] font-bold uppercase tracking-widest" style="color:var(--color-primary)">Rekonštrukcia</span>
+                                    <span class="px-6 py-2 border border-white/10 text-[10px] font-bold uppercase tracking-widest" style="color:var(--color-primary)">Zateplenie</span>
+                                    <span class="px-6 py-2 border border-white/10 text-[10px] font-bold uppercase tracking-widest" style="color:var(--color-primary)">Strecha</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-32 pt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold uppercase tracking-widest" style="border-top:1px solid rgba(255,255,255,0.05);color:rgba(255,255,255,0.05)">
+                        <p>SPERO-STAV s.r.o. | Kompletné Stavebné Práce od roku 2013</p>
+                        <p>All Rights Reserved 2025</p>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </main>
+
+    <script>
+        // Lenis
+        const lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), touchMultiplier: 2 });
+        function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        // Header
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 50); });
+
+        // Menu
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        document.querySelectorAll('.menu-link').forEach(l => l.addEventListener('click', closeMenu));
+        function openMenu() { document.body.classList.add('menu-open'); document.body.style.overflow = 'hidden'; lenis.stop(); }
+        function closeMenu() { document.body.classList.remove('menu-open'); document.body.style.overflow = ''; lenis.start(); }
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+
+        // Reveal
+        const revealObs = new IntersectionObserver(entries => {
+            entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-visible'); revealObs.unobserve(en.target); } });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObs.observe(el));
+
+        // Image reveal
+        const imgObs = new IntersectionObserver(entries => {
+            entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-revealed'); imgObs.unobserve(en.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.image-reveal-wrapper').forEach(el => imgObs.observe(el));
+
+        // Parallax
+        window.addEventListener('scroll', () => {
+            const hp = document.querySelector('.hero-parallax');
+            if (hp) hp.style.transform = 'translateY(' + (window.scrollY * 0.1) + 'px)';
+        });
+
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+</body>
+</html>
