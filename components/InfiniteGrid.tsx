@@ -48,6 +48,8 @@ const portfolioItemsData: PortfolioItem[] = [
   { link: 'https://autopozicovnamichalovce.sk/', image: '/sources/aeb-portfolio/autopozicovnamichalovce.sk.webp', alt: 'Autopožičovňa Michalovce' },
   { link: 'https://max4.sk/', image: '/sources/aeb-portfolio/max4.sk.webp', alt: 'Max4' },
   { link: 'https://zivyklubzdravia.sk/', image: '/sources/aeb-portfolio/zivyklubzdravia.sk.webp', alt: 'Živý Klub Zdravia' },
+  { link: 'https://fidocalcul.sk/', image: '/sources/aeb-portfolio/fidocalcul.sk.webp', alt: 'Fidocalcul' },
+  { link: 'https://zelenebyvanie.sk/', image: '/sources/aeb-portfolio/zelenebyvanie.sk.webp', alt: 'Zelené Bývanie' },
 ];
 
 const itemWidth = 300;
