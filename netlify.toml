@@ -477,3 +477,18 @@
   from = "/bomati"
   to = "/templates/bomati/index.html"
   status = 200
+
+[[redirects]]
+  from = "/mikulek"
+  to = "/templates/mikulek/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/davstav"
+  to = "/templates/davstav/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/atstav"
+  to = "/templates/atstav/index.html"
+  status = 200
