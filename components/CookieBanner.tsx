@@ -36,7 +36,7 @@ export function CookieBanner() {
       <div className="container flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="cookie-content flex-1 text-center md:text-left">
           <h4 className="text-xl font-bold mb-2">🍪 Cookies na našej stránke</h4>
-          <p className="text-gray-light text-sm">Používame cookies na zlepšenie vašej používateľskej skúsenosti a na analýzu návštevnosti. Kliknutím na "Súhlasím" súhlasíte s používaním všetkých cookies.</p>
+          <p className="text-gray-light text-sm">Používame cookies na zlepšenie vašej používateľskej skúsenosti a na analýzu návštevnosti. Kliknutím na „Súhlasím“ súhlasíte s používaním všetkých cookies.</p>
         </div>
         <div className="cookie-buttons flex flex-col md:flex-row gap-3">
           <button onClick={acceptAllCookies} className="cookie-btn btn btn-primary !bg-accent-teal !text-white text-sm px-6 py-2 rounded-full">Súhlasím</button>

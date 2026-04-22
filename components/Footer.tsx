@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaGithub, FaHome, FaBriefcase, FaCogs, FaUsers, FaBlog, FaEnvelope, FaCookieBite } from 'react-icons/fa';
-import Image from "next/image";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaGithub, FaCookieBite } from 'react-icons/fa';
 import { useCookieConsent } from './CookieConsentProvider'; // Import the hook
 
 export function Footer() {
@@ -53,11 +52,12 @@ export function Footer() {
             <div className="footer-column">
               <h4 className="text-xl">Služby</h4>
               <ul>
-                <li className="mb-2"><Link href="/sluzby#webove-stranky" className="text-gray-light hover:text-primary-purple transition-colors text-base">Webové stránky</Link></li>
-                <li className="mb-2"><Link href="/sluzby#webove-aplikacie" className="text-gray-light hover:text-primary-purple transition-colors text-base">Webové aplikácie</Link></li>
-                <li className="mb-2"><Link href="/sluzby#e-shopy" className="text-gray-light hover:text-primary-purple transition-colors text-base">E-shopy</Link></li>
-                <li className="mb-2"><Link href="/sluzby#digital-marketing" className="text-gray-light hover:text-primary-purple transition-colors text-base">Digital Marketing</Link></li>
-                <li className="mb-2"><Link href="/sluzby#email-marketing" className="text-gray-light hover:text-primary-purple transition-colors text-base">Email Marketing</Link></li>
+                <li className="mb-2"><Link href="/tvorba-web-stranok-bratislava" className="text-gray-light hover:text-primary-purple transition-colors text-base">Web stránky Bratislava</Link></li>
+                <li className="mb-2"><Link href="/tvorba-web-stranok" className="text-gray-light hover:text-primary-purple transition-colors text-base">Tvorba web stránok</Link></li>
+                <li className="mb-2"><Link href="/tvorba-eshopu" className="text-gray-light hover:text-primary-purple transition-colors text-base">Tvorba e-shopu</Link></li>
+                <li className="mb-2"><Link href="/web-aplikacie" className="text-gray-light hover:text-primary-purple transition-colors text-base">Webové aplikácie</Link></li>
+                <li className="mb-2"><Link href="/seo-optimalizacia" className="text-gray-light hover:text-primary-purple transition-colors text-base">SEO optimalizácia</Link></li>
+                <li className="mb-2"><Link href="/tvorba-web-stranok-cena" className="text-gray-light hover:text-primary-purple transition-colors text-base">Cena web stránky</Link></li>
               </ul>
             </div>
 
@@ -76,7 +76,7 @@ export function Footer() {
 
         <div className="footer-bottom flex flex-col md:flex-row justify-between items-center mt-12 pt-6 border-t border-white/[0.1] text-base">
           <div className="footer-copyright mb-4 md:mb-0">
-            <p className="text-base">&copy; 2025 AEB Digital</p>
+            <p className="text-base">&copy; 2026 AEB Digital</p>
           </div>
           <div className="footer-legal flex space-x-4">
             <Link href="/ochrana-osobnych-udajov" className="text-gray-light hover:text-primary-purple transition-colors text-base">Ochrana súkromia</Link>

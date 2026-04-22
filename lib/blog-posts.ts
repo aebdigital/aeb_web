@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 export interface BlogPostData {
   slug: string;
   metadata: {
@@ -270,7 +268,7 @@ return <article>{post.content}</article>;
       description: "Kompletný guide pre SEO stratégiu v roku 2025. Keyword research, technické SEO, content stratégia, Core Web Vitals a analytics. Praktické tipy od expertov.",
       keywords: "SEO stratégia 2025, keyword research, technické SEO, content marketing, Google algoritmus, Core Web Vitals, SEO audit, vyhľadávače",
       canonicalUrl: "https://aebdigital.sk/blog/seo-strategia-2025",
-      ogImage: "/sources/techstack/1f4ac.svg",
+      ogImage: "/sources/social-media.webp",
       ogImageAlt: "5 krokov k úspešnej SEO stratégii v roku 2025",
       author: "AEB Digital",
       datePublished: "10. január 2025",
@@ -381,7 +379,7 @@ return <article>{post.content}</article>;
       description: "Kompletný guide pre optimalizáciu výkonu webových stránok. Core Web Vitals, lazy loading, CDN, image optimization a pokročilé techniky pre rýchlejší web.",
       keywords: "optimalizácia webu, rýchlosť načítania, Core Web Vitals, lazy loading, CDN, image optimization, web performance, PageSpeed Insights, LCP, FID, CLS",
       canonicalUrl: "https://aebdigital.sk/blog/web-optimalizacia-rychlost",
-      ogImage: "/sources/techstack/HTML5_logo_and_wordmark.svg.webp",
+      ogImage: "/sources/web-design.webp",
       ogImageAlt: "Ako optimalizovať rýchlosť načítania webu v roku 2025",
       author: "AEB Digital",
       datePublished: "3. január 2025",

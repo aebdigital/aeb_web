@@ -2,17 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { BackgroundTextAnimation } from "@/components/BackgroundTextAnimation";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ContactInfoSection } from "@/components/ContactInfoSection";
+import { ReviewsSlider } from "@/components/ReviewsSlider";
 
 
 export default function Home() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [activeCursor, setActiveCursor] = useState<string | null>(null);
-  const cursorRef = useRef<HTMLDivElement>(null);
   const mousePos = useRef({ x: 0, y: 0 });
   const cursorActualPos = useRef({ x: 0, y: 0 });
 
@@ -48,240 +46,143 @@ export default function Home() {
     };
   }, []);
 
+  const containerRef = useRef<HTMLDivElement>(null);
+  
   useEffect(() => {
     // GSAP Animations for AEB Digital Website
     gsap.registerPlugin(ScrollTrigger);
-    // ... (rest of GSAP logic remains same)
 
     const isMobileDevice = () => {
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
         window.innerWidth <= 768;
     };
 
-    if (isMobileDevice()) {
-      console.log('📱 Mobile device detected - GSAP animations disabled for performance');
+    if (isMobileDevice() || !containerRef.current) {
+      console.log('📱 Mobile device detected or container not ready - GSAP animations disabled for performance');
       return;
     }
 
-    // 1. HERO SECTION ANIMATIONS
-    // Hero title animation
-    const heroTitle = document.querySelector('.hero h1, .heading-large');
-    if (heroTitle) {
-      gsap.fromTo(heroTitle,
-        {
-          opacity: 0,
-          y: 50
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          ease: "power2.out",
-          delay: 0.2
-        }
-      );
-    }
+    // Scope all selectors to the container
+    const mm = gsap.matchMedia();
 
-    // Hero subtitle animation
-    const heroSubtitle = document.querySelector('.hero .subheading, .subheading');
-    if (heroSubtitle) {
-      gsap.fromTo(heroSubtitle,
-        {
-          opacity: 0,
-          scale: 0.8
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.8,
-          ease: "back.out(1.7)",
-          delay: 0.6
-        }
-      );
-    }
+    mm.add("(min-width: 769px)", () => {
+      // 1. HERO SECTION ANIMATIONS
+      const heroTitle = containerRef.current?.querySelector('.hero h1, .heading-large');
+      if (heroTitle) {
+        gsap.fromTo(heroTitle,
+          { opacity: 0, y: 50 },
+          { opacity: 1, y: 0, duration: 0.9, ease: "power2.out", delay: 0.2 }
+        );
+      }
 
-    // Hero buttons animation
-    const heroButtons = document.querySelectorAll('.hero-buttons .btn');
-    if (heroButtons.length > 0) {
-      gsap.fromTo(heroButtons,
-        {
-          opacity: 0,
-          scale: 0.8
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.8,
-          ease: "back.out(1.7)",
-          stagger: 0.2,
-          delay: 0.8
-        }
-      );
-    }
+      const heroSubtitle = containerRef.current?.querySelector('.hero .subheading, .subheading');
+      if (heroSubtitle) {
+        gsap.fromTo(heroSubtitle,
+          { opacity: 0, scale: 0.8 },
+          { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.7)", delay: 0.6 }
+        );
+      }
 
-    // Photo sliders section animation (immediate load)
-    const photoSlidersSection = document.querySelector('.photo-sliders');
-    if (photoSlidersSection) {
-      gsap.fromTo(photoSlidersSection,
-        {
-          opacity: 0,
-          y: 50
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.0,
-          ease: "power2.out",
-          delay: 1.2 // Load after hero animations complete
-        }
-      );
-    }
+      const heroButtons = containerRef.current?.querySelectorAll('.hero-buttons .btn');
+      if (heroButtons && heroButtons.length > 0) {
+        gsap.fromTo(heroButtons,
+          { opacity: 0, scale: 0.8 },
+          { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.7)", stagger: 0.2, delay: 0.8 }
+        );
+      }
 
-    // Background sliders animation (if present)
-    const bgSliders = document.querySelectorAll('.hero-slider');
-    bgSliders.forEach((slider, index) => {
-      gsap.fromTo(slider,
-        {
-          opacity: 0,
-          y: 100
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.2,
-          ease: "power2.out",
-          delay: 0.3 + (index * 0.2)
-        }
-      );
-    });
+      const bgSliders = containerRef.current?.querySelectorAll('.hero-slider');
+      bgSliders?.forEach((slider, index) => {
+        gsap.fromTo(slider,
+          { opacity: 0, y: 100 },
+          { opacity: 1, y: 0, duration: 1.2, ease: "power2.out", delay: 0.3 + (index * 0.2) }
+        );
+      });
 
-    // Text reveal animations
-    const headings = document.querySelectorAll('h1, h2, h3');
-    headings.forEach(heading => {
-      // Skip hero headings and service-main h2 elements
-      if (!heading.closest('.hero') && !heading.closest('.service-main')) {
-        gsap.fromTo(heading,
-          {
-            opacity: 0,
-            y: 30
-          },
+      const photoSlidersSection = containerRef.current?.querySelector('.photo-sliders');
+      if (photoSlidersSection) {
+        gsap.fromTo(photoSlidersSection,
+          { opacity: 0, y: 50 },
+          { opacity: 1, y: 0, duration: 1.0, ease: "power2.out", delay: 1.2 }
+        );
+      }
+
+      // Text reveal animations only for headings within the container
+      const headings = containerRef.current?.querySelectorAll('h1, h2, h3');
+      headings?.forEach(heading => {
+        if (!heading.closest('.hero') && !heading.closest('.service-main')) {
+          gsap.fromTo(heading,
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: heading,
+                start: 'top 90%',
+                toggleActions: 'play none none none'
+              }
+            }
+          );
+        }
+      });
+
+      const heroVideo = containerRef.current?.querySelector('.hero-video');
+      if (heroVideo) {
+        gsap.to(heroVideo, {
+          yPercent: 30,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true
+          }
+        });
+      }
+
+      const portfolioItems = containerRef.current?.querySelectorAll('.portfolio-item, .portfolio-item-carousel, .portfolio-item-apple');
+      portfolioItems?.forEach((item, index) => {
+        gsap.fromTo(item,
+          { opacity: 0, scale: 0.8, y: 20 },
           {
             opacity: 1,
+            scale: 1,
             y: 0,
             duration: 0.6,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: heading,
-              start: 'top 90%',
-              toggleActions: 'play none none none' // Don't reverse on scroll up
-            }
+              trigger: item,
+              start: 'top 95%',
+              toggleActions: 'play none none none'
+            },
+            delay: index * 0.05
           }
         );
-      }
-    });
-
-    // Hero Video Parallax Effect
-    const heroVideo = document.querySelector('.hero-video');
-    if (heroVideo) {
-      gsap.to(heroVideo, {
-        yPercent: 30,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.hero',
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true
-        }
-      });
-    }
-
-    // Generic section animations - REMOVED to prevent white gaps
-    // Portfolio items animation
-    const portfolioItems = document.querySelectorAll('.portfolio-item, .portfolio-item-carousel, .portfolio-item-apple');
-    portfolioItems.forEach((item, index) => {
-      gsap.fromTo(item,
-        {
-          opacity: 0,
-          scale: 0.8,
-          y: 20
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: item,
-            start: 'top 95%', // Trigger earlier to reduce delay
-            toggleActions: 'play none none none' // Don't reverse on scroll up
-          },
-          delay: index * 0.05 // Reduce stagger delay
-        }
-      );
-    });
-
-    // CTA button hover animations
-    const ctaButtons = document.querySelectorAll('.btn, .cta-btn');
-    ctaButtons.forEach(button => {
-      const tl = gsap.timeline({ paused: true });
-
-      tl.to(button, {
-        scale: 1.05,
-        duration: 0.3,
-        ease: "power2.out"
       });
 
-      button.addEventListener('mouseenter', () => tl.play());
-      button.addEventListener('mouseleave', () => tl.reverse());
-    });
-
-    // Service Images Zoom Effect
-    const serviceImages = gsap.utils.toArray('.service-image');
-    serviceImages.forEach((imageContainer) => {
-      const img = (imageContainer as HTMLElement).querySelector('img');
-      if (img) {
-        ScrollTrigger.create({
-          trigger: imageContainer as HTMLElement,
-          start: 'top bottom',
-          end: 'bottom top', // Continue zooming until image leaves viewport
-          scrub: true,
-          onUpdate: (self) => {
-            // Zoom from 2.5 down to 1.0
-            const scale = 2.5 - (self.progress * 1.5);
-            gsap.set(img, { scale: scale });
-          }
+      const statBoxes = containerRef.current?.querySelectorAll('.stat-box-animate');
+      if (statBoxes && statBoxes.length > 0) {
+        statBoxes.forEach((box, index) => {
+          gsap.to(box, {
+            y: -15,
+            duration: 1.2,
+            ease: "sine.inOut",
+            repeat: -1,
+            yoyo: true,
+            delay: index * 0.2
+          });
         });
       }
     });
-
-    // Stats box animation - smooth continuous bounce
-    const statBoxes = document.querySelectorAll('.stat-box-animate');
-    if (statBoxes.length > 0) {
-      statBoxes.forEach((box, index) => {
-        gsap.to(box, {
-          y: -15,
-          duration: 1.2,
-          ease: "sine.inOut",
-          repeat: -1,
-          yoyo: true,
-          delay: index * 0.2 // Stagger the bounce
-        });
-      });
-    }
-
-    // Performance Optimization
-    // Refresh ScrollTrigger on window resize
-    const handleResize = () => {
-      ScrollTrigger.refresh();
-    };
-    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      mm.revert();
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
-  }, []); // Empty dependency array means this runs once on mount
+  }, []);
+ // Empty dependency array means this runs once on mount
 
 
   const clientLogos = [
@@ -362,7 +263,7 @@ export default function Home() {
   ];
 
   return (
-    <>
+    <div ref={containerRef}>
       {/* Custom Cursor */}
       <div
         className={`gallery-custom-cursor fixed pointer-events-none z-[9999] transition-opacity duration-300 ${activeCursor === 'gallery' ? 'opacity-100' : 'opacity-0'}`}
@@ -391,19 +292,22 @@ export default function Home() {
         <div className="container relative z-30 text-left">
           <div className="hero-content text-white max-w-4xl">
             <h1 className="heading-large text-left mb-8 md:mb-6">
-              Tvoríme digitálne riešenia pre váš úspech
+              Tvorba web stránok na mieru v Bratislave
             </h1>
 
             <p className="subheading text-left max-w-2xl mr-auto text-white mb-10 md:mb-12">
-              Od kreatívneho dizajnu po technické riešenia - všetko pod jednou strechou
+              Navrhujeme rýchle firemné weby, e-shopy a aplikácie, ktoré majú jasnú štruktúru, SEO základ a pripravenú cestu ku kontaktu.
             </p>
 
-            <div className="hero-buttons flex justify-start space-x-4 mt-12 md:mt-10">
-              <Link href="/portfolio" className="btn btn-secondary">
+            <div className="hero-buttons flex flex-wrap justify-start gap-4 mt-12 md:mt-10">
+              <Link href="/tvorba-web-stranok-bratislava" className="btn btn-secondary">
                 <span className="btn-text-container">
-                  <span className="btn-text btn-text-visible">Portfólio</span>
+                  <span className="btn-text btn-text-visible">Weby v Bratislave</span>
                   <span className="btn-text btn-text-hidden">VIAC</span>
                 </span>
+              </Link>
+              <Link href="/portfolio" className="btn btn-primary">
+                Portfólio
               </Link>
             </div>
           </div>
@@ -443,7 +347,13 @@ export default function Home() {
                   onMouseEnter={() => setActiveCursor('gallery')}
                   onMouseLeave={() => setActiveCursor(null)}
                 >
-                  <Image src={item.imgSrc} alt={item.alt} layout="fill" objectFit="cover" className={`gallery-bg-image transform transition-transform duration-500 group-hover:scale-105 ${index < 2 ? 'object-left' : ''}`} />
+                  <Image
+                    src={item.imgSrc}
+                    alt={item.alt}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className={`gallery-bg-image object-cover transform transition-transform duration-500 group-hover:scale-105 ${index < 2 ? 'object-left' : ''}`}
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-opacity duration-300"></div>
                   <div className="gallery-category-container absolute bottom-0 left-0 w-full p-3 md:p-6 flex flex-col justify-end z-10 bg-black/40 backdrop-blur-md border-t border-white/10">
                     <h3 className="gallery-category text-white text-lg md:text-2xl font-bold mb-1 md:mb-2">{item.category}</h3>
@@ -455,6 +365,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Reviews Slider Section */}
+      <ReviewsSlider />
 
       {/* Services Section */}
       <section id="services" className="services-two-column relative z-40 pt-0 pb-20">
@@ -523,7 +436,7 @@ export default function Home() {
               { src: "/sources/email-market.webp", alt: "Email Marketing" },
             ].map((image, index) => (
               <div className="service-image" key={index}>
-                <Image src={image.src} alt={image.alt} fill className="object-cover" />
+                <Image src={image.src} alt={image.alt} fill sizes="50vw" className="object-cover" />
               </div>
             ))}
           </div>
@@ -571,7 +484,7 @@ export default function Home() {
             <div key={index} className="mb-12">
               {/* Image first on mobile - edge to edge */}
               <div className="relative h-[300px] w-full mb-6 overflow-hidden">
-                <Image src={service.image.src} alt={service.image.alt} layout="fill" objectFit="cover" className="w-full h-full" />
+                <Image src={service.image.src} alt={service.image.alt} fill sizes="100vw" className="object-cover" />
               </div>
               {/* Text content - with padding */}
               <div className="service-text text-center px-4">
@@ -617,6 +530,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

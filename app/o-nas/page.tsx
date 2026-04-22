@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { BackgroundTextAnimation } from "@/components/BackgroundTextAnimation";
 import { ContactForm } from "@/components/ContactForm";
 import { FAQSection } from "@/components/FAQSection";
 import { Footer } from "@/components/Footer";
@@ -52,7 +51,7 @@ function StorySection({ label, title, leadText, paragraph, imageSrc, imageAlt, r
         <p className="text-base text-white/[0.8] leading-relaxed">{paragraph}</p>
       </div>
       <div className={`story-image rounded-none overflow-hidden shadow-xl transform transition-transform duration-300 hover:-translate-y-1 ${reverse ? 'md:order-1' : 'md:order-2'}`}>
-        <Image src={imageSrc} alt={imageAlt} width={800} height={400} layout="responsive" objectFit="cover" />
+        <Image src={imageSrc} alt={imageAlt} width={800} height={400} className="h-auto w-full object-cover" sizes="(min-width: 768px) 50vw, 100vw" />
       </div>
     </div>
   );

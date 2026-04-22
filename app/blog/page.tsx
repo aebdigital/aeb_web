@@ -61,7 +61,7 @@ const blogPosts: BlogPost[] = [
   },
   {
     slug: "seo-strategia-2025",
-    imageSrc: "/sources/techstack/1f4ac.svg",
+    imageSrc: "/sources/social-media.webp",
     imageAlt: "Digital marketing",
     category: "Marketing",
     date: "10. január 2025",
@@ -91,7 +91,7 @@ const blogPosts: BlogPost[] = [
   },
   {
     slug: "web-optimalizacia-rychlost",
-    imageSrc: "/sources/techstack/HTML5_logo_and_wordmark.svg.webp",
+    imageSrc: "/sources/web-design.webp",
     imageAlt: "Webové stránky",
     category: "Vývoj",
     date: "3. január 2025",
@@ -106,7 +106,7 @@ function BlogPostCard({ post }: { post: BlogPost }) {
     <article className="blog-post rounded-[20px] overflow-hidden bg-white/[0.05] border border-white/[0.1] transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.08] hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
       <Link href={`/blog/${post.slug}`}>
         <div className="post-image relative h-48 w-full">
-          <Image src={post.imageSrc} alt={post.imageAlt} layout="fill" objectFit="contain" className="transition-transform duration-300 hover:scale-105" />
+          <Image src={post.imageSrc} alt={post.imageAlt} fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-contain transition-transform duration-300 hover:scale-105" />
           <div className="post-category absolute bottom-2 left-2 bg-accent-teal text-white text-xs font-semibold px-3 py-1 rounded-full">
             {post.category}
           </div>

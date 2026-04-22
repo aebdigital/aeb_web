@@ -36,10 +36,11 @@ interface ServiceItemProps {
   features: string[];
   imageSrc: string;
   imageAlt: string;
+  detailHref?: string;
   reverse?: boolean;
 }
 
-function ServiceSection({ id, title, description, features, imageSrc, imageAlt, reverse = false }: ServiceItemProps) {
+function ServiceSection({ id, title, description, features, imageSrc, imageAlt, detailHref, reverse = false }: ServiceItemProps) {
   return (
     <section id={id} className={`services-page-section ${reverse ? 'reverse' : ''}`}>
       {/* Desktop Layout */}
@@ -59,7 +60,10 @@ function ServiceSection({ id, title, description, features, imageSrc, imageAlt, 
               ))}
             </div>
 
-            <Link href="/kontakt" className="btn btn-primary">Získať ponuku</Link>
+            <div className="flex flex-wrap gap-4">
+              {detailHref ? <Link href={detailHref} className="btn btn-secondary">Zistiť viac</Link> : null}
+              <Link href="/kontakt" className="btn btn-primary">Získať ponuku</Link>
+            </div>
           </div>
         </div>
         {/* Image Column - 50vw, touching edge */}
@@ -86,7 +90,10 @@ function ServiceSection({ id, title, description, features, imageSrc, imageAlt, 
             ))}
           </div>
 
-          <Link href="/kontakt" className="btn btn-primary">Získať ponuku</Link>
+          <div className="flex flex-wrap gap-4">
+            {detailHref ? <Link href={detailHref} className="btn btn-secondary">Zistiť viac</Link> : null}
+            <Link href="/kontakt" className="btn btn-primary">Získať ponuku</Link>
+          </div>
         </div>
       </div>
     </section>
@@ -167,6 +174,7 @@ export default function ServicesPage() {
         features={["Responzívny dizajn", "SEO optimalizácia", "Rýchle načítanie", "CMS systém", "Technická podpora", "SSL certifikáty", "Hosting a domény", "Google Analytics"]}
         imageSrc="/sources/web-design.webp"
         imageAlt="Webové stránky"
+        detailHref="/tvorba-web-stranok"
       />
 
       <ServiceSection
@@ -176,6 +184,7 @@ export default function ServicesPage() {
         features={["React & Vue.js", "Node.js backend", "Real-time funkcionalita", "API integrácie", "Škálovateľnosť", "Progressive Web Apps", "Databázy & Cloud", "Automatizácia"]}
         imageSrc="/sources/services/aplikacie.webp"
         imageAlt="Webové aplikácie"
+        detailHref="/web-aplikacie"
         reverse
       />
 
@@ -186,6 +195,7 @@ export default function ServicesPage() {
         features={["WooCommerce & Shopify", "Platobné brány", "Správa skladov", "Analytics a reporting", "Mobilná optimalizácia", "Inventory management", "Multi-channel predaj", "Email marketing integrácia"]}
         imageSrc="/sources/Gemini_Generated_Image_lxz7dglxz7dglxz7.webp"
         imageAlt="E-shopy"
+        detailHref="/tvorba-eshopu"
       />
 
       <ServiceSection
@@ -195,6 +205,7 @@ export default function ServicesPage() {
         features={["Správa sociálnych médií", "Google Ads & Facebook Ads", "Tvorba obsahu", "Email marketing", "SEO optimalizácia", "Influencer marketing", "Conversion optimization", "Marketing automation"]}
         imageSrc="/sources/social-media.webp"
         imageAlt="Digital Marketing"
+        detailHref="/seo-optimalizacia"
         reverse
       />
 

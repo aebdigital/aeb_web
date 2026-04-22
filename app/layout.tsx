@@ -41,7 +41,7 @@ const siteUrl = "https://aebdigital.sk";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Tvorba webových stránok Bratislava | Web dizajn & E-shopy | AEB Digital",
+    default: "Tvorba web stránok na mieru Bratislava | Web dizajn & E-shopy | AEB Digital",
     template: "%s | AEB Digital",
   },
   description: "Profesionálna tvorba webových stránok, e-shopov a webových aplikácií v Bratislave. 120+ úspešných projektov, 5+ rokov skúseností. Responzívny dizajn, SEO optimalizácia, moderné technológie. Bezplatná konzultácia!",
@@ -87,22 +87,22 @@ export const metadata: Metadata = {
     locale: "sk_SK",
     url: siteUrl,
     siteName: "AEB Digital",
-    title: "Tvorba webových stránok Bratislava | Web dizajn & E-shopy | AEB Digital",
+    title: "Tvorba web stránok na mieru Bratislava | Web dizajn & E-shopy | AEB Digital",
     description: "Profesionálna tvorba webových stránok, e-shopov a webových aplikácií v Bratislave. 120+ úspešných projektov. Bezplatná konzultácia!",
     images: [
       {
-        url: "/sources/og-image.jpg",
-        width: 1200,
-        height: 630,
+        url: "/sources/hero-poster.jpg",
+        width: 1920,
+        height: 1080,
         alt: "AEB Digital - Tvorba webových stránok Bratislava",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tvorba webových stránok Bratislava | AEB Digital",
+    title: "Tvorba web stránok na mieru Bratislava | AEB Digital",
     description: "Profesionálna tvorba webových stránok, e-shopov a aplikácií. 120+ úspešných projektov. Bezplatná konzultácia!",
-    images: ["/sources/og-image.jpg"],
+    images: ["/sources/hero-poster.jpg"],
     creator: "@aebdigital",
   },
   robots: {
@@ -134,9 +134,6 @@ export const metadata: Metadata = {
     title: "AEB Digital",
     statusBarStyle: "default",
     capable: true,
-  },
-  verification: {
-    google: "your-google-verification-code",
   },
   category: "technology",
 };
@@ -218,11 +215,6 @@ const localBusinessSchema = {
     },
   ],
   priceRange: "€€",
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.9",
-    reviewCount: "120",
-  },
 };
 
 const websiteSchema = {
@@ -236,14 +228,6 @@ const websiteSchema = {
     "@id": `${siteUrl}/#organization`,
   },
   inLanguage: "sk-SK",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${siteUrl}/blog?q={search_term_string}`,
-    },
-    "query-input": "required name=search_term_string",
-  },
 };
 
 const professionalServiceSchema = {
@@ -332,8 +316,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema) }}
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="alternate" hrefLang="sk-SK" href="https://aebdigital.sk" />
         <link rel="alternate" hrefLang="cs-CZ" href="https://aebdigital.cz" />
         <link rel="alternate" hrefLang="de-AT" href="https://aebdigital.at" />

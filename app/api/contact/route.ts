@@ -1,15 +1,86 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+const DEFAULT_ALLOWED_ORIGINS = ['https://aebdigital.sk', 'https://www.aebdigital.sk'];
+const LOCAL_ORIGIN_PATTERN = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
+
+function configuredAllowedOrigins(): Set<string> {
+  const envOrigins = process.env.CONTACT_ALLOWED_ORIGINS
+    ?.split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean) || [];
+
+  return new Set([...DEFAULT_ALLOWED_ORIGINS, ...envOrigins]);
+}
+
+function allowedCorsOrigin(origin: string | null): string | null {
+  if (!origin) return null;
+
+  if (configuredAllowedOrigins().has(origin)) {
+    return origin;
+  }
+
+  if (process.env.NODE_ENV !== 'production' && LOCAL_ORIGIN_PATTERN.test(origin)) {
+    return origin;
+  }
+
+  return null;
+}
+
+function createJsonHeaders(request: NextRequest) {
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    Vary: 'Origin',
+  };
+
+  const origin = allowedCorsOrigin(request.headers.get('origin'));
+  if (origin) {
+    headers['Access-Control-Allow-Origin'] = origin;
+    headers['Access-Control-Allow-Methods'] = 'POST, OPTIONS';
+    headers['Access-Control-Allow-Headers'] = 'Content-Type';
+  }
+
+  return headers;
+}
+
+function hasBlockedOrigin(request: NextRequest): boolean {
+  const origin = request.headers.get('origin');
+  return Boolean(origin && !allowedCorsOrigin(origin));
+}
+
+function toStringField(value: unknown): string {
+  return typeof value === 'string' ? value : '';
+}
+
+function escapeHtml(value: unknown): string {
+  return String(value ?? '').replace(/[&<>"']/g, (char) => {
+    switch (char) {
+      case '&':
+        return '&amp;';
+      case '<':
+        return '&lt;';
+      case '>':
+        return '&gt;';
+      case '"':
+        return '&quot;';
+      case "'":
+        return '&#39;';
+      default:
+        return char;
+    }
+  });
+}
+
+function cleanEmailSubject(value: string): string {
+  return value.replace(/[\r\n]+/g, ' ').trim().slice(0, 120);
+}
+
 // Utility function to verify Cloudflare Turnstile token
 async function verifyTurnstile(token: string, ip?: string): Promise<boolean> {
   const secretKey = process.env.TURNSTILE_SECRET_KEY;
 
   if (!secretKey) {
     console.error('TURNSTILE_SECRET_KEY is not configured.');
-    // In a production scenario, you might want to return false here
-    // to prevent forms from being submitted without proper CAPTCHA.
-    // For development, we might allow it to proceed.
-    return true; // Allowing submission if key is missing (fail-open)
+    return process.env.NODE_ENV !== 'production';
   }
 
   try {
@@ -64,11 +135,47 @@ function isGibberish(text: string): boolean {
   return false;
 }
 
-// Simple in-memory rate limiting wrappers (will reset on Vercel instance reboot, but still helpful)
+// Durable rate limiting is used in production when UPSTASH_REDIS_REST_URL/TOKEN are configured.
+// Development falls back to in-memory counters so the form remains easy to test locally.
 const ipRateLimit = new Map<string, { count: number; lastReset: number }>();
 const emailRateLimit = new Map<string, { count: number; lastReset: number }>();
 const RATE_LIMIT_MAX = 3; // Max submissions per hour per IP/Email
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
+const RATE_LIMIT_WINDOW_SECONDS = RATE_LIMIT_WINDOW / 1000;
+
+function rateLimitKey(scope: 'ip' | 'email', value: string): string {
+  return `aeb:contact:${scope}:${Buffer.from(value || 'unknown').toString('base64url')}`;
+}
+
+async function checkDurableRateLimit(scope: 'ip' | 'email', value: string): Promise<boolean | null> {
+  const redisUrl = process.env.UPSTASH_REDIS_REST_URL?.replace(/\/$/, '');
+  const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+
+  if (!redisUrl || !redisToken) {
+    return null;
+  }
+
+  const key = rateLimitKey(scope, value);
+  const response = await fetch(`${redisUrl}/pipeline`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${redisToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify([
+      ['INCR', key],
+      ['EXPIRE', key, RATE_LIMIT_WINDOW_SECONDS, 'NX'],
+    ]),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Durable rate limit failed with status ${response.status}`);
+  }
+
+  const result = (await response.json()) as Array<{ result?: unknown }>;
+  const count = Number(result?.[0]?.result ?? 0);
+  return count <= RATE_LIMIT_MAX;
+}
 
 function checkRateLimit(map: Map<string, { count: number; lastReset: number }>, key: string): boolean {
   const now = Date.now();
@@ -92,21 +199,54 @@ function checkRateLimit(map: Map<string, { count: number; lastReset: number }>, 
   return true;
 }
 
+async function checkContactRateLimit(
+  scope: 'ip' | 'email',
+  map: Map<string, { count: number; lastReset: number }>,
+  key: string
+): Promise<boolean> {
+  try {
+    const durableResult = await checkDurableRateLimit(scope, key);
+    if (durableResult !== null) {
+      return durableResult;
+    }
+  } catch (error) {
+    console.error('Durable rate limiting error:', error);
+    if (process.env.NODE_ENV === 'production') {
+      return false;
+    }
+  }
+
+  if (process.env.NODE_ENV === 'production') {
+    console.warn('UPSTASH_REDIS_REST_URL/TOKEN are not configured; using in-memory contact rate limiting fallback.');
+  }
+
+  return checkRateLimit(map, key);
+}
+
 export async function POST(request: NextRequest) {
-  // Set CORS headers for Vercel deployment if needed, or rely on Next.js default behavior
-  const headers = {
-    'Content-Type': 'application/json',
-    // 'Access-Control-Allow-Origin': '*', // Consider restricting to specific origins
-    // 'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    // 'Access-Control-Allow-Headers': 'Content-Type',
-  };
+  const headers = createJsonHeaders(request);
+
+  if (hasBlockedOrigin(request)) {
+    return NextResponse.json(
+      {
+        error: 'Nepovolený pôvod požiadavky.',
+        details: 'Origin is not allowed.',
+      },
+      { status: 403, headers }
+    );
+  }
 
   try {
     const data = await request.json();
-    const { name, email, message, turnstileToken, website, startTime } = data;
+    const name = toStringField(data.name).trim();
+    const email = toStringField(data.email).trim();
+    const message = toStringField(data.message).trim();
+    const turnstileToken = toStringField(data.turnstileToken);
+    const website = toStringField(data.website);
+    const startTime = Number(data.startTime);
 
     // Fast submission block (bots typically submit instantly)
-    if (startTime && Date.now() - startTime < 3000) {
+    if (Number.isFinite(startTime) && Date.now() - startTime < 3000) {
       console.warn(`Fast submission detected. Bot suspected.`);
       return NextResponse.json(
         {
@@ -145,7 +285,12 @@ export async function POST(request: NextRequest) {
     const ip = request.headers.get('x-forwarded-for') || request.headers.get('client-ip') || 'Unknown IP';
 
     // Rate Limiting Check
-    if (!checkRateLimit(ipRateLimit, ip) || !checkRateLimit(emailRateLimit, email)) {
+    const [ipAllowed, emailAllowed] = await Promise.all([
+      checkContactRateLimit('ip', ipRateLimit, ip),
+      checkContactRateLimit('email', emailRateLimit, email || 'unknown'),
+    ]);
+
+    if (!ipAllowed || !emailAllowed) {
       console.warn(`Rate limit exceeded for IP: ${ip} or Email: ${email}`);
       return NextResponse.json(
         {
@@ -236,11 +381,23 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const referer = request.headers.get('referer') || 'Unknown';
+    const submittedIp = request.headers.get('x-forwarded-for') || request.headers.get('client-ip') || 'Unknown';
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safePhone = escapeHtml(phone);
+    const safeSubject = escapeHtml(subject);
+    const safeBudget = escapeHtml(budget);
+    const safeMessage = escapeHtml(cleanMessage).replace(/\n/g, '<br>');
+    const safeReferer = escapeHtml(referer);
+    const safeSubmittedIp = escapeHtml(submittedIp);
+    const sentAt = new Date().toLocaleString('sk-SK', { timeZone: 'Europe/Bratislava' });
+
     const emailPayload = {
       api_key: SMTP2GO_API_KEY,
       to: [BUSINESS_EMAIL],
       sender: SMTP2GO_FROM_EMAIL,
-      subject: `Nová správa z kontaktného formulára - ${name}`,
+      subject: `Nová správa z kontaktného formulára - ${cleanEmailSubject(name)}`,
       text_body: `
 Nová správa z kontaktného formulára AEB Digital
 
@@ -251,9 +408,9 @@ Správa:
 ${message}
 
 ---
-Odoslané z: ${request.headers.get('referer') || 'Unknown'}
-IP adresa: ${request.headers.get('x-forwarded-for') || request.headers.get('client-ip') || 'Unknown'}
-Čas: ${new Date().toLocaleString('sk-SK', { timeZone: 'Europe/Bratislava' })}
+Odoslané z: ${referer}
+IP adresa: ${submittedIp}
+Čas: ${sentAt}
       `,
       html_body: `
 <!DOCTYPE html>
@@ -341,32 +498,32 @@ IP adresa: ${request.headers.get('x-forwarded-for') || request.headers.get('clie
     <div class="form-container">
       <div class="form-group">
         <div class="label">Meno *</div>
-        <div class="value">${name}</div>
+        <div class="value">${safeName}</div>
       </div>
       <div class="form-group">
         <div class="label">Email *</div>
-        <div class="value"><a href="mailto:${email}">${email}</a></div>
+        <div class="value"><a href="mailto:${safeEmail}">${safeEmail}</a></div>
       </div>
       ${phone ? `<div class="form-group">
         <div class="label">Telefón</div>
-        <div class="value">${phone}</div>
+        <div class="value">${safePhone}</div>
       </div>` : ''}
       ${subject ? `<div class="form-group">
         <div class="label">Typ projektu *</div>
-        <div class="value">${subject}</div>
+        <div class="value">${safeSubject}</div>
       </div>` : ''}
       ${budget ? `<div class="form-group">
         <div class="label">Rozpočet</div>
-        <div class="value">${budget}</div>
+        <div class="value">${safeBudget}</div>
       </div>` : ''}
       <div class="form-group">
         <div class="label">Správa *</div>
-        <div class="message-box">${cleanMessage.replace(/\n/g, '<br>')}</div>
+        <div class="message-box">${safeMessage}</div>
       </div>
       <div class="footer">
-        <p>Odoslané z: ${request.headers.get('referer') || 'Unknown'}<br>
-        IP: ${request.headers.get('x-forwarded-for') || request.headers.get('client-ip') || 'Unknown'}<br>
-        ${new Date().toLocaleString('sk-SK', { timeZone: 'Europe/Bratislava' })}</p>
+        <p>Odoslané z: ${safeReferer}<br>
+        IP: ${safeSubmittedIp}<br>
+        ${escapeHtml(sentAt)}</p>
       </div>
     </div>
   </div>
@@ -406,12 +563,13 @@ IP adresa: ${request.headers.get('x-forwarded-for') || request.headers.get('clie
         { status: 500, headers }
       );
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error processing contact form:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Internal server error.';
     return NextResponse.json(
       {
         error: 'Nastala chyba pri spracovaní vašej správy.',
-        details: error.message || 'Internal server error.',
+        details: errorMessage,
       },
       { status: 500, headers }
     );
@@ -419,11 +577,18 @@ IP adresa: ${request.headers.get('x-forwarded-for') || request.headers.get('clie
 }
 
 // Handle OPTIONS requests for CORS preflight
-export async function OPTIONS() {
+export async function OPTIONS(request: NextRequest) {
+  const origin = request.headers.get('origin');
+  if (origin && !allowedCorsOrigin(origin)) {
+    return new NextResponse(null, { status: 403, headers: { Vary: 'Origin' } });
+  }
+
+  const allowedOrigin = allowedCorsOrigin(origin);
   const headers = {
-    'Access-Control-Allow-Origin': '*', // Adjust as needed for your deployment
+    ...(allowedOrigin ? { 'Access-Control-Allow-Origin': allowedOrigin } : {}),
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
+    Vary: 'Origin',
   };
   return new NextResponse(null, { status: 204, headers });
 }

@@ -165,7 +165,7 @@ export function InfiniteGrid() {
   }, [getMatrixItem, createTileElement]);
 
 
-  const animate = useCallback(() => {
+  const animate = useCallback(function animateFrame() {
     if (!isDragging.current) {
       gridOffset.current.x += velocity.current.x;
       gridOffset.current.y += velocity.current.y;
@@ -184,10 +184,10 @@ export function InfiniteGrid() {
     if (isDragging.current || Math.abs(velocity.current.x) > 0.1 || Math.abs(velocity.current.y) > 0.1) {
       updateTiles();
     }
-    animationFrameRef.current = requestAnimationFrame(animate);
+    animationFrameRef.current = requestAnimationFrame(animateFrame);
   }, [updateTiles]);
 
-  const onMouseDown = useCallback((e: React.MouseEvent) => {
+  const onMouseDown = useCallback((e: MouseEvent) => {
     isDragging.current = true;
     if (containerRef.current) containerRef.current.style.cursor = 'grabbing';
     lastMousePos.current.x = e.clientX;
@@ -201,7 +201,7 @@ export function InfiniteGrid() {
     }
   }, []);
 
-  const onMouseMove = useCallback((e: React.MouseEvent) => {
+  const onMouseMove = useCallback((e: MouseEvent) => {
     if (!isDragging.current) return;
     const dx = e.clientX - lastMousePos.current.x;
     const dy = e.clientY - lastMousePos.current.y;
@@ -242,8 +242,8 @@ export function InfiniteGrid() {
 
     const container = containerRef.current;
     if (container) {
-      container.addEventListener('mousedown', onMouseDown as any);
-      container.addEventListener('mousemove', onMouseMove as any);
+      container.addEventListener('mousedown', onMouseDown);
+      container.addEventListener('mousemove', onMouseMove);
       container.addEventListener('mouseup', onMouseUp);
       container.addEventListener('mouseleave', onMouseUp);
       container.style.cursor = 'grab';
@@ -254,8 +254,8 @@ export function InfiniteGrid() {
         cancelAnimationFrame(animationFrameRef.current);
       }
       if (container) {
-        container.removeEventListener('mousedown', onMouseDown as any);
-        container.removeEventListener('mousemove', onMouseMove as any);
+        container.removeEventListener('mousedown', onMouseDown);
+        container.removeEventListener('mousemove', onMouseMove);
         container.removeEventListener('mouseup', onMouseUp);
         container.removeEventListener('mouseleave', onMouseUp);
       }
@@ -269,7 +269,7 @@ export function InfiniteGrid() {
         {portfolioItemsData.map((item, index) => (
           <div className="portfolio-item-apple w-full" key={index}>
             <a href={item.link} target="_blank" rel="noopener noreferrer" className="block w-full h-full">
-              <Image src={item.image} alt={item.alt} width={300} height={188} layout="responsive" className="rounded-none shadow-lg" />
+              <Image src={item.image} alt={item.alt} width={300} height={188} className="h-auto w-full rounded-none shadow-lg" sizes="100vw" />
             </a>
           </div>
         ))}
@@ -302,7 +302,7 @@ export function InfiniteGrid() {
             }}
           >
             <a href={itemData.link} target="_blank" rel="noopener noreferrer" className="block w-full h-full">
-              <Image src={itemData.image} alt={itemData.alt} layout="fill" objectFit="cover" className="rounded-none" />
+              <Image src={itemData.image} alt={itemData.alt} fill sizes="300px" className="rounded-none object-cover" />
             </a>
           </div>
         );

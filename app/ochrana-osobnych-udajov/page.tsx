@@ -35,7 +35,7 @@ export default function PrivacyPolicyPage() {
             E-mail: peter@aebdig.com<br/>
             Tel.: +421 908 507 131</p>
 
-            <p className="mb-8">Tieto Zásady ochrany osobných údajov (ďalej len „Zásady") popisujú, aké osobné údaje spracúvame v súvislosti s používaním našej webovej stránky a kontaktných formulárov.</p>
+            <p className="mb-8">Tieto Zásady ochrany osobných údajov (ďalej len „Zásady“) popisujú, aké osobné údaje spracúvame v súvislosti s používaním našej webovej stránky a kontaktných formulárov.</p>
 
             <hr className="my-8 border-gray-medium"/>
 
@@ -81,7 +81,7 @@ export default function PrivacyPolicyPage() {
             <ul className="list-disc list-inside mb-4 pl-4 text-gray-light">
               <li>Prístup k osobným údajom, ktoré spracúvame</li>
               <li>Oprava nepresných alebo neúplných údajov</li>
-              <li>Vymazanie („právo zabudnutia"), ak na spracovanie už nie je právny základ</li>
+              <li>Vymazanie („právo zabudnutia“), ak na spracovanie už nie je právny základ</li>
               <li>Obmedzenie spracovania</li>
               <li>Prenosnosť údajov</li>
               <li>Odvolanie súhlasu – stane sa účinným dňom odvolania</li>

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { Turnstile } from '@marsidev/react-turnstile';
 
 export function ContactForm() {
@@ -64,7 +63,7 @@ export function ContactForm() {
     }
 
     // Email validation
-    const emailRegex = /^[^S@]+@[^S@]+\.[^S@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       showMessage('Prosím zadajte platný email.', 'error');
       setLoading(false);
