@@ -67,6 +67,7 @@ type PlacesConfig = {
 };
 
 const DEFAULT_PROFILE_PHOTO_URL = "https://lh3.googleusercontent.com/a/default-user=s48-c";
+const DEFAULT_GOOGLE_PLACE_ID = "ChIJhXf9XG4abEcRV084_9Bv_3Q";
 const CACHE_HEADERS = {
   "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
 };
@@ -164,20 +165,12 @@ function getBusinessProfileConfig(): { config?: BusinessProfileConfig; missing: 
 
 function getPlacesConfig(): { config?: PlacesConfig; missing: string[] } {
   const apiKey = firstEnvValue(["GOOGLE_PLACES_API_KEY", "GOOGLE_MAPS_API_KEY", "GOOGLE_API_KEY"]);
-  const placeId = process.env.GOOGLE_PLACE_ID?.trim();
-  const hasAnyPlacesConfig = Boolean(apiKey || placeId);
 
-  if (!hasAnyPlacesConfig) {
+  if (!apiKey) {
     return { missing: [] };
   }
 
-  const missing: string[] = [];
-  if (!apiKey) missing.push("GOOGLE_PLACES_API_KEY or GOOGLE_MAPS_API_KEY");
-  if (!placeId) missing.push("GOOGLE_PLACE_ID");
-
-  if (missing.length > 0 || !apiKey || !placeId) {
-    return { missing };
-  }
+  const placeId = process.env.GOOGLE_PLACE_ID?.trim() || DEFAULT_GOOGLE_PLACE_ID;
 
   return {
     config: {

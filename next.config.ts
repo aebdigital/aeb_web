@@ -11,7 +11,7 @@ const contentSecurityPolicy = [
   "style-src 'self' 'unsafe-inline'",
   "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com",
   "connect-src 'self' https://challenges.cloudflare.com ws: wss: http://localhost:* http://127.0.0.1:*",
-  "frame-src https://challenges.cloudflare.com",
+  "frame-src https://challenges.cloudflare.com https://www.google.com",
   "media-src 'self' blob:",
   "manifest-src 'self'",
   "upgrade-insecure-requests",
@@ -19,15 +19,15 @@ const contentSecurityPolicy = [
 
 const templateContentSecurityPolicy = [
   "default-src 'self'",
-  "base-uri 'none'",
+  "base-uri 'self'",
   "object-src 'none'",
   "frame-ancestors 'none'",
   "form-action 'none'",
-  "img-src 'self' data: blob:",
-  "font-src 'self' data:",
-  "style-src 'self' 'unsafe-inline'",
-  "script-src 'self'",
-  "connect-src 'self'",
+  "img-src 'self' data: blob: https:",
+  "font-src 'self' data: https://fonts.gstatic.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+  "connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com",
   "media-src 'self' blob:",
 ].join("; ");
 
@@ -78,6 +78,10 @@ const nextConfig: NextConfig = {
         headers: securityHeaders,
       },
       {
+        source: "/:path(abbainovator|agim|alumsist|alurenostav|armakov|atstav|austav|avrekon|az-real|bautop|betcon|bma-dk|bomati|bomif|bosolutions|bouwgroup|brunelstav|bsltrading|darton|davstav|dclpartners|dmbauteam|dobritesari|dzatko-junior|ebendomy|efektivnestavby|ekodat|ekoploty|ellio|espron|gekotech|granila|hirver|hnlstavby|hurtstav|hydrotunel|inrestsro|ivpstavby|izobetonlevice|jakubasek|jmstrechy7|klimaelektro|kmdstav|kosap|kostelansky|kronostav|la-ma|likvidaciaazbestu|matfiakdistribution|md-project|mikulek|miroslavholecvykopoveprace|mkem|mmsadrokartony|modularnastavba|montter|odes|pavstav|pemtrade|pestastav|petruslm|pkprojekt|plasttime|podlahovecentrumbj|poterymm|pramo|premona-nitra|purdom|pvbstav|pvwin|rambet|rbltrade|redosi_group|reinter|revast|riaplast|riljak|roneprojekt|sochabau|soki|soldout|soultrade|sperostav|stamaxplus|starbuilding|stavba-domu-na-kluc|stavbyjaniss|stavferka|stavmixv-naj|timbed|tisplus|tostav|vialle|vo-vyske|windoo|zamkovadlazbamartin|zembau)",
+        headers: templateSecurityHeaders,
+      },
+      {
         source: "/templates/:path*",
         headers: templateSecurityHeaders,
       },
@@ -86,7 +90,7 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: '/:slug(alumsist|atstav|austav|avrekon|bomif|davstav|dobritesari|efektivnestavby|ellio|hurtstav|hydrotunel|inrestsro|kosap|kostelansky|kronostav|la-ma|mikulek|miroslavholecvykopoveprace|mmsadrokartony|poterymm|pramo|premona-nitra|purdom|redosi_group|revast|soki|soultrade|stamaxplus|starbuilding|stavferka|vo-vyske|zamkovadlazbamartin)',
+        source: '/:slug(abbainovator|agim|alumsist|alurenostav|armakov|atstav|austav|avrekon|az-real|bautop|betcon|bma-dk|bomati|bomif|bosolutions|bouwgroup|brunelstav|bsltrading|darton|davstav|dclpartners|dmbauteam|dobritesari|dzatko-junior|ebendomy|efektivnestavby|ekodat|ekoploty|ellio|espron|gekotech|granila|hirver|hnlstavby|hurtstav|hydrotunel|inrestsro|ivpstavby|izobetonlevice|jakubasek|jmstrechy7|klimaelektro|kmdstav|kosap|kostelansky|kronostav|la-ma|likvidaciaazbestu|matfiakdistribution|md-project|mikulek|miroslavholecvykopoveprace|mkem|mmsadrokartony|modularnastavba|montter|odes|pavstav|pemtrade|pestastav|petruslm|pkprojekt|plasttime|podlahovecentrumbj|poterymm|pramo|premona-nitra|purdom|pvbstav|pvwin|rambet|rbltrade|redosi_group|reinter|revast|riaplast|riljak|roneprojekt|sochabau|soki|soldout|soultrade|sperostav|stamaxplus|starbuilding|stavba-domu-na-kluc|stavbyjaniss|stavferka|stavmixv-naj|timbed|tisplus|tostav|vialle|vo-vyske|windoo|zamkovadlazbamartin|zembau)',
         destination: '/templates/:slug/index.html',
       },
     ];

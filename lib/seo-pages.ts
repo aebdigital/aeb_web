@@ -27,6 +27,7 @@ export type ServicePage = {
   sections: SeoSection[];
   deliverables: string[];
   faqs: SeoFaq[];
+  showGMB?: boolean;
 };
 
 export type CaseStudy = {
@@ -52,123 +53,81 @@ export const servicePages: Record<string, ServicePage> = {
     title: "Tvorba web stránok Bratislava",
     metaTitle: "Tvorba web stránok na mieru Bratislava | AEB Digital",
     description:
-      "Tvorba web stránok na mieru v Bratislave: rýchly responzívny web, SEO základ, moderný dizajn, analytika, technická podpora a jasný proces od návrhu po spustenie.",
+      "Špecializovaná tvorba web stránok na mieru v Bratislave. Od rýchlych firemných webov po komplexné Next.js aplikácie a e-shopy. Získajte #1 v lokálnom vyhľadávaní.",
     keywords: [
       "tvorba web stránok Bratislava",
-      "tvorba web stránok na mieru Bratislava",
-      "web dizajn Bratislava",
-      "webová stránka pre firmu",
-      "SEO optimalizácia Bratislava",
+      "webdesign Bratislava",
+      "webdizajn Bratislava",
+      "web stránka Bratislava cena",
+      "tvorba webu Bratislava",
+      "tvorba web stránok na mieru",
     ],
-    eyebrow: "SEO landing page pre Bratislavu",
-    heroTitle: "Tvorba web stránok na mieru v Bratislave",
+    eyebrow: "Lokálny expert pre Bratislavu",
+    heroTitle: "Tvorba web stránok v Bratislave, ktoré prinášajú reálne výsledky",
     heroLead:
-      "Navrhujeme a vyvíjame firemné weby, ktoré vyzerajú profesionálne, načítajú sa rýchlo a majú pripravený základ pre Google. Každý web staviame podľa cieľov firmy, obsahu, zákazníkov a obchodného procesu.",
+      "Nestačí len byť online. V Bratislave súperíte s najlepšími. Staviame weby na Next.js, ktoré sú rýchlejšie ako u konkurencie, technicky čisté pre Google a dizajnovo pripravené presvedčiť vašich zákazníkov.",
     heroImage: "/sources/web-design.webp",
-    heroAlt: "Tvorba web stránok na mieru Bratislava",
+    heroAlt: "Profesionálna tvorba web stránok Bratislava",
     highlights: [
-      { value: "SK", label: "slovenský obsah a lokálne SEO" },
-      { value: "SEO", label: "metadata, štruktúra a interné linkovanie" },
-      { value: "CWV", label: "výkon a Core Web Vitals od začiatku" },
-      { value: "1:1", label: "návrh podľa reálneho zadania" },
+      { value: "LOC", label: "miestna znalosť trhu v BA" },
+      { value: "CMS", label: "Next.js & Full-stack riešenia" },
+      { value: "SEO", label: "dominancia v lokálnom hľadaní" },
+      { value: "5+", label: "rokov overenej praxe tímu" },
     ],
     sections: [
       {
-        title: "Prečo nestačí iba pekná stránka",
+        title: "Prečo nie sme len ďalšia agentúra v Bratislave",
         body: [
-          "Moderný firemný web musí robiť viac než len dobre vyzerať. Pre firmu v Bratislave je web často prvý kontakt so zákazníkom, prvý dôkaz dôveryhodnosti a zároveň miesto, kde sa rozhoduje, či človek odošle dopyt alebo odíde ku konkurencii. Preto pri tvorbe web stránok riešime vizuál, texty, štruktúru, rýchlosť, mobilnú verziu, meranie konverzií a SEO ako jeden celok.",
-          "Najväčšia chyba pri tvorbe webu je začať dizajnom bez stratégie. Ak nie je jasné, aké služby majú rankovať, kto je ideálny zákazník, aké otázky si kladie pred kontaktom a ktoré dôkazy potrebuje vidieť, web môže byť pekný, ale nebude predávať. Pri návrhu preto najprv riešime obsahovú mapu, kľúčové slová, konkurenčné stránky a cestu používateľa.",
-          "Pre Bratislavu je konkurencia silná hlavne pri frázach ako tvorba web stránok, web dizajn, tvorba e-shopu a SEO optimalizácia. Nestačí mať tieto slová v päte alebo v jednom nadpise. Stránka potrebuje prirodzený obsah, samostatné service pages, lokálne signály, kvalitné portfólio, prípadové štúdie a technicky čistý kód.",
+          "Trh v Bratislave je presýtený všeobecnými vizitkami, ktoré sa pomaly načítavajú a v Google sa strácajú na desiatych stranách. My k tvorbe webu pristupujeme opačne. Web nie je cieľ, ale nástroj na získavanie dopytov. Každý náš kód, každý H1 nadpis a každá schéma je navrhnutá tak, aby ste prekonali lokálnu konkurenciu.",
+          "Prechádzame od jednoduchých WordPress šablón k moderným, vysoko-výkonným Next.js aplikáciám. Pre vás to znamená bleskovú rýchlosť načítania (Core Web Vitals), lepšie pozície v Google a bezpečnosť, ktorú bežné riešenia neponúkajú. Vaša firma v Bratislave si zaslúži technologický náskok.",
         ],
       },
       {
-        title: "Čo znamená web na mieru",
+        title: "Konkrétna stratégia pre vaše podnikanie",
         body: [
-          "Web na mieru neznamená len iné farby a vlastné logo. Znamená, že štruktúra stránky vychádza z konkrétnej služby, predajného procesu a typu klienta. Iný web potrebuje stavebná firma, iný lekárska ambulancia, iný e-shop a iný B2B dodávateľ. Spoločné majú len to, že návštevník musí rýchlo pochopiť, čo ponúkate, prečo vám má veriť a ako vás kontaktovať.",
-          "Pri každom projekte pripravujeme informačnú architektúru: hlavné služby, podstránky, CTA prvky, FAQ, kontaktné miesta, galérie, referencie a interné prelinkovanie. Tento základ pomáha ľuďom aj vyhľadávačom. Google vie lepšie pochopiť, ktoré témy sú na webe dôležité, a návštevník sa nestratí medzi všeobecnými sekciami.",
-          "Technicky používame moderné riešenia podľa potreby projektu. Pre rýchle prezentačné weby je vhodný Next.js alebo optimalizovaný WordPress. Pre e-shopy riešime WooCommerce, Shopify alebo riešenie na mieru. Pri aplikáciách používame React, Node.js, databázy, API integrácie a bezpečné formuláre.",
+          "Či hľadáte 'webdesign Bratislava' pre malú firmu alebo komplexný 'e-shop na mieru', naša stratégia je rovnaká: pochopiť dopyt. Analyzujeme, čo vaši zákazníci v Bratislave a okolí reálne hľadajú, aké majú obavy a čo ich presvedčí k akcii. Tento výskum následne premeníme na obsahovú architektúru webu.",
+          "Cena web stránky v Bratislave je často otázkou: Prečo platiť viac? Rozdiel je v návratnosti. Lacný web bez SEO a stratégie sú vyhodené peniaze. My staviame weby, ktoré sú indexované správne od prvého dňa a rastú spolu s vaším biznisom.",
         ],
         bullets: [
-          "návrh štruktúry podľa služieb a obchodných cieľov",
-          "responzívny dizajn pre mobil, tablet aj desktop",
-          "SEO title, meta description, H1-H3 štruktúra a interné odkazy",
-          "kontaktné formuláre, analytika, cookies a meranie dopytov",
-          "technický základ pripravený na ďalší rast obsahu",
+          "analýza lokálnej konkurencie a kľúčových slov v BA",
+          "technické SEO (SSR, Metadata, JSON-LD) zabudované priamo v kóde",
+          "profesionálny dizajn na mieru bez zbytočných šablón",
+          "jasný merací plán dopytov a konverzií",
         ],
       },
       {
-        title: "Lokálne SEO pre Bratislavu",
+        title: "Náš proces: Od živnosti po agentúrnu kvalitu",
         body: [
-          "Ak chcete získavať dopyty v Bratislave, web musí jasne hovoriť, že službu poskytujete práve tu. Lokálny signál tvorí title, H1, obsah, kontaktné údaje, schema markup, Google Business Profile, recenzie a prirodzené zmienky v texte. Nie je dobré umelo opakovať názov mesta v každej vete. Dôležitejšie je, aby stránka odpovedala na reálne otázky ľudí, ktorí hľadajú dodávateľa webu v Bratislave.",
-          "Na stránke preto odporúčame mať sekcie o procese spolupráce, cenových faktoroch, portfóliu, technológiách, podpore po spustení a najčastejších otázkach. Súčasne treba vytvoriť samostatné stránky pre hlavné služby: tvorba web stránok, tvorba e-shopu, webové aplikácie, SEO optimalizácia a cena tvorby web stránky. Tak vznikne tematický cluster, ktorý je silnejší než jedna preplnená homepage.",
-          "Lokálne SEO nie je jednorazová úprava. Po spustení je potrebné sledovať Google Search Console, dopĺňať obsah podľa reálnych vyhľadávaní, získavať recenzie, publikovať prípadové štúdie a budovať relevantné odkazy. Web potom rastie prirodzene a každá nová stránka podporuje hlavné obchodné výrazy.",
-        ],
-      },
-      {
-        title: "Rýchlosť, technická kvalita a dôvera",
-        body: [
-          "Rýchlosť webu je dnes súčasť SEO aj obchodného výkonu. Pomalý web znižuje dôveru, zhoršuje konverzie a na mobile môže znamenať, že človek ani neuvidí vašu ponuku. Preto optimalizujeme obrázky, fonty, skripty, lazy loading, caching a štruktúru komponentov. Pri Next.js riešime aj správne metadata, Open Graph obrázky, sitemap, robots a bezpečnostné hlavičky.",
-          "Dôvera nevzniká iba pekným dizajnom. Potrebujete ukázať konkrétne práce, vysvetliť proces, uviesť kontakty, odpovedať na otázky a zobraziť recenzie. Ak zákazník porovnáva viaceré agentúry, rozhoduje sa podľa kombinácie odbornosti, ceny, rýchlosti komunikácie a dôkazov, že podobný projekt už zvládnete.",
-        ],
-      },
-      {
-        title: "Ako prebieha spolupráca",
-        body: [
-          "Začíname krátkou konzultáciou, kde si prejdeme služby, cieľ, konkurenciu, rozpočet a termín. Následne pripravíme návrh štruktúry a odporúčanie technológie. Pri väčších projektoch dopĺňame wireframe, obsahový plán a návrh SEO landing pages. Až potom ide dizajn a vývoj.",
-          "Počas vývoja riešime responzívne zobrazenie, technické SEO, formuláre, rýchlosť, analytiku a obsah. Pred spustením testujeme mobil, desktop, základné Core Web Vitals, odosielanie formulárov, meta tagy, sitemap, indexáciu a presmerovania. Po spustení vieme pokračovať údržbou, SEO obsahom, reklamami alebo vývojom nových funkcií.",
-        ],
-        bullets: [
-          "úvodná konzultácia a audit konkurencie",
-          "návrh štruktúry, obsahu a kľúčových stránok",
-          "dizajn, vývoj, testovanie a technické SEO",
-          "spustenie, meranie a ďalšie vylepšovanie podľa dát",
-        ],
-      },
-      {
-        title: "Obsah, ktorý má šancu rankovať",
-        body: [
-          "Pre dobré pozície nestačí mať homepage. Potrebujete konkrétne podstránky, ktoré odpovedajú na konkrétne vyhľadávania. Stránka o cene má riešiť faktory ceny, orientačné balíky a rozdiel medzi lacným a kvalitným webom. Stránka o e-shope má riešiť platobné brány, dopravu, sklad, produkty, analytiku a správu objednávok. Stránka o SEO má riešiť technický audit, obsah, linkbuilding a meranie.",
-          "Takéto stránky medzi sebou prelinkujeme a napojíme na portfólio aj prípadové štúdie. Vznikne web, ktorý nie je len vizitkou, ale obchodným systémom. Pre AEB Digital je práve tento typ štruktúry najlepšia šanca dostať sa vyššie na výrazy okolo tvorby web stránok v Bratislave.",
+          "Náš tím sa formoval viac ako 5 rokov na stovkách projektov ako tím špecializovaných živnostníkov. Dnes v rámci AEB Digital spájame túto senioritu do jedného celku. Vieme, čo funguje pre bratislavské firmy, pretože sme s nimi vyrástli.",
+          "S klientom sa radi stretneme osobne v Bratislave, prejdeme si zadanie a navrhneme riešenie, ktoré dáva zmysel vášmu rozpočtu. Či je to jednoduchý jednostránkový web alebo robustný portál, proces je transparentný a zameraný na výsledok.",
         ],
       },
     ],
     deliverables: [
-      "SEO title, meta description a Open Graph nastavenia",
-      "H1-H3 štruktúra pripravená pre hlavné kľúčové slová",
-      "responzívny dizajn a optimalizované obrázky",
-      "kontaktný formulár s ochranou proti spamu",
-      "Google Analytics, Search Console a meranie dopytov",
-      "sitemap, robots, canonical URL a základný schema markup",
-      "sekcie pre referencie, recenzie, FAQ a prípadové štúdie",
-      "technická podpora po spustení",
+      "Plne responzívny web postavený na Next.js alebo optimalizovanom CMS",
+      "Kompletné nastavenie meta tagov, titulkov a štruktúrovaných dát",
+      "Integrácia Google Business Profile a Mapy",
+      "Vysoké skóre v Google Lighthouse (Performance & SEO)",
+      "Základné zaškolenie do správy obsahu",
     ],
     faqs: [
       {
-        question: "Koľko stojí tvorba web stránky v Bratislave?",
+        question: "Aké drahé je webové riešenie v Bratislave?",
         answer:
-          "Cena závisí od rozsahu, dizajnu, počtu podstránok, obsahu, jazykov, formulárov, CMS a SEO požiadaviek. Jednoduchý firemný web je lacnejší než rozsiahly web s prípadovými štúdiami, blogom, integráciami a pokročilou analytikou.",
+          "Cena sa odvíja od vašich cieľov. Malý prezentačný web začína na nižších stovkách eur, kým komplexné Next.js riešenia s pokročilým SEO sú investíciou v tisícoch. Vždy sa snažíme nájsť riešenie s najlepším pomerom cena/výkon pre vašu aktuálnu fázu rastu.",
       },
       {
-        question: "Ako dlho trvá tvorba webu na mieru?",
+        question: "Prečo mi nestačí lacný WordPress za 200€?",
         answer:
-          "Menší firemný web vieme pripraviť približne za 2 až 4 týždne, väčší projekt alebo e-shop spravidla trvá 4 až 8 týždňov. Presný harmonogram závisí najmä od rozsahu obsahu a rýchlosti spätnej väzby.",
+          "Lacný web často trpí pomalým načítaním, bezpečnostnými rizikami a takmer nulovým SEO. V prostredí Bratislavy vás konkurencia, ktorá investovala do technickej kvality, rýchlo predbehne v organických výsledkoch vyhľadávania.",
       },
       {
-        question: "Bude web pripravený pre Google?",
+        question: "Viete mi pomôcť s Google Business profilom?",
         answer:
-          "Áno. Riešime technické SEO, metadata, nadpisy, interné linkovanie, sitemap, rýchlosť a základný schema markup. Pre lepšie pozície odporúčame pokračovať aj obsahom, recenziami a linkbuildingom.",
-      },
-      {
-        question: "Viete pridať Google recenzie?",
-        answer:
-          "Áno, recenzie vieme zobrazovať z Google Business Profile cez API, ak sú správne pripravené prístupy a miesto v Google profile. Na webe ich zobrazujeme tak, aby podporili dôveru aj konverzie.",
-      },
-      {
-        question: "Robíte aj údržbu po spustení?",
-        answer:
-          "Áno. Vieme zabezpečiť aktualizácie, bezpečnostné kontroly, nové sekcie, SEO obsah, meranie konverzií aj technickú podporu.",
+          "Áno, nastavenie GMB a jeho integrácia s webom je kľúčová pre lokálne SEO. Pomôžeme vám ho optimalizovať tak, aby ste sa zobrazovali v prvej trojke na Google mapách.",
       },
     ],
+    showGMB: true,
   },
   "tvorba-web-stranok": {
     slug: "tvorba-web-stranok",

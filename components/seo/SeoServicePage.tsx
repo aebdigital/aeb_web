@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { caseStudies, featuredCaseStudySlugs, type ServicePage } from "@/lib/seo-pages";
+import { GMBWidget } from "@/components/GMBWidget";
 
 type SeoServicePageProps = {
   page: ServicePage;
@@ -28,9 +29,8 @@ export function SeoServicePage({ page }: SeoServicePageProps) {
       url: "https://aebdigital.sk",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Bottova 5",
         addressLocality: "Bratislava",
-        postalCode: "811 09",
+        addressRegion: "Bratislavský kraj",
         addressCountry: "SK",
       },
     },
@@ -195,6 +195,12 @@ export function SeoServicePage({ page }: SeoServicePageProps) {
               </div>
             ))}
           </div>
+
+          {page.showGMB && (
+            <div className="mt-20">
+              <GMBWidget className="max-w-4xl mx-auto" />
+            </div>
+          )}
         </div>
       </section>
 

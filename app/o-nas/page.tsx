@@ -3,6 +3,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { FAQSection } from "@/components/FAQSection";
 import { Footer } from "@/components/Footer";
 import { TechnologiesShowcase } from "@/components/TechnologiesShowcase";
+import { GMBWidget } from "@/components/GMBWidget";
 import { FaRocket, FaHeart, FaHandshake, FaAward } from 'react-icons/fa';
 import type { Metadata } from "next";
 
@@ -100,22 +101,28 @@ export default function AboutUsPage() {
           <div className="about-layout">
             <StorySection
               label="Náš príbeh"
-              title="Tvoríme digitálne zážitky, ktoré inšpirujú"
-              leadText="Sme mladý, dynamický tím s viac ako 5-ročnými skúsenosťami v oblasti digitálnych technológií. Začínali sme ako malá agentúra s veľkými snami."
-              paragraph="Dnes máme za sebou 120+ spokojných klientov a pokračujeme v inšpirovaní ďalších po celom Slovensku. Každý projekt riešime s individuálnym prístupom a dôrazom na detail."
+              title="Od jednoduchých webov k bleskurýchlym aplikáciám"
+              leadText="AEB Digital nie je nováčikom na trhu, hoci naša s.r.o. bola oficiálne založená v roku 2025. Náš tím tvoria experti, ktorí sa téme venujú viac ako 5 rokov."
+              paragraph="Naša cesta začala tvorbou jednoduchých landing pages na WordPress. Postupne sme však narážali na limity šablón – v rýchlosti, bezpečnosti a možnostiach SEO. Práve preto sme sa rozhodli pre technologický skok. Dnes staviame moderné Full-stack riešenia na Next.js, ktoré ponúkajú nekompromisný výkon a škálovateľnosť pre e-shopy aj komplexné webové aplikácie."
               imageSrc="/sources/email-market.webp"
-              imageAlt="AEB Digital práca"
+              imageAlt="AEB Digital evolúcia technológií"
             />
             <StorySection
-              label="Naša filozofia"
-              title="Kvalita a inovácie na prvom mieste"
-              leadText="Veríme, že každý projekt je jedinečný a zaslúži si individuálny prístup. Používame najnovšie technológie a trendy, ale nikdy nezabudneme na základné princípy kvalitnej práce."
-              paragraph="Naším cieľom nie je len vytvoriť funkčné riešenie, ale pomôcť vašej firme dosiahnuť skutočný úspech v digitálnom svete."
+              label="Naša expertíza"
+              title="5+ rokov budovania digitálnej dôvery"
+              leadText="Staviame na pevných základoch. Väčšina našich členov pôsobila roky ako špecializovaní živnostníci na stovkách individuálnych projektov."
+              paragraph="Spojením našich skúseností do AEB Digital sme vytvorili jednotné zázemie pre klientov, ktorí hľadajú viac než len vizitku. Či ide o e-shop na mieru, klientský portál alebo SEO dominanciu v Bratislave, pristupujeme ku každému zadaniu s dátovou precíznosťou a seniorným nadhľadom. Sme váš partner, ktorý rozumie, ako technológia premieňa návštevníkov na zákazníkov."
               imageSrc="/sources/social-media.webp"
-              imageAlt="Digitálne riešenia"
+              imageAlt="Profesionálne digitálne riešenia"
               reverse
             />
           </div>
+        </div>
+      </section>
+      
+      <section className="pb-20 relative z-10">
+        <div className="container">
+          <GMBWidget className="max-w-4xl mx-auto" />
         </div>
       </section>
 

@@ -17,12 +17,19 @@ function LanguageSwitcher({ className = "", currentLang, getLocalizedHref }: Lan
       <span className="text-white/30">|</span>
       <a href={getLocalizedHref('cz')} className={`transition-colors ${currentLang === 'cz' ? 'text-white font-bold' : 'text-white/60 hover:text-white'}`}>CZ</a>
       <span className="text-white/30">|</span>
+      <a href={getLocalizedHref('at')} className={`transition-colors ${currentLang === 'at' ? 'text-white font-bold' : 'text-white/60 hover:text-white'}`}>DE</a>
+      <span className="text-white/30">|</span>
       <a href={getLocalizedHref('en')} className={`transition-colors ${currentLang === 'en' ? 'text-white font-bold' : 'text-white/60 hover:text-white'}`}>EN</a>
     </div>
   );
 }
 
 const serviceDropdownLinks = [
+  {
+    href: "/tvorba-web-stranok-bratislava",
+    label: "Web stránky Bratislava",
+    description: "Lokálna SEO landing page pre BA",
+  },
   {
     href: "/tvorba-web-stranok",
     label: "Tvorba web stránok",
@@ -89,6 +96,12 @@ export function Header() {
       '/blog': { sk: '/blog', cz: '/blog', at: '/blog', en: '/blog' },
       '/kontakt': { sk: '/kontakt', cz: '/contact', at: '/contact', en: '/contact' },
       '/contact': { sk: '/kontakt', cz: '/contact', at: '/contact', en: '/contact' },
+      '/tvorba-web-stranok-bratislava': { sk: '/tvorba-web-stranok-bratislava', cz: '/tvorba-webovych-stranek-bratislava', at: '/webseiten-erstellen-bratislava', en: '/website-development-bratislava' },
+      '/tvorba-web-stranok': { sk: '/tvorba-web-stranok', cz: '/tvorba-webovych-stranek', at: '/webseiten-erstellen', en: '/website-development' },
+      '/tvorba-eshopu': { sk: '/tvorba-eshopu', cz: '/tvorba-eshopu', at: '/online-shop-erstellen', en: '/ecommerce-development' },
+      '/web-aplikacie': { sk: '/web-aplikacie', cz: '/webove-aplikace', at: '/webanwendungen', en: '/web-applications' },
+      '/seo-optimalizacia': { sk: '/seo-optimalizacia', cz: '/seo-optimalizace', at: '/seo-optimierung', en: '/seo-services' },
+      '/tvorba-web-stranok-cena': { sk: '/tvorba-web-stranok-cena', cz: '/cena-webovych-stranek', at: '/webseite-kosten', en: '/website-pricing' },
     };
 
     const exactMatch = pathMaps[pathname];

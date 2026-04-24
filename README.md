@@ -48,9 +48,12 @@ GOOGLE_REVIEWS_PAGE_SIZE=20
 If the Business Profile variables are not present, the route can fall back to public Google Places reviews:
 
 ```bash
-GOOGLE_PLACE_ID=
+GOOGLE_PLACE_ID=ChIJhXf9XG4abEcRV084_9Bv_3Q
 GOOGLE_MAPS_API_KEY=
+NEXT_PUBLIC_GOOGLE_MAPS_EMBED_API_KEY=
 ```
+
+`GOOGLE_MAPS_API_KEY` is used server-side for live Places reviews. `NEXT_PUBLIC_GOOGLE_MAPS_EMBED_API_KEY` is optional and only needed if you want the Google map embed inside the Google Business widget instead of the built-in Bratislava service-area placeholder.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
