@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ReviewsSlider } from "@/components/ReviewsSlider";
-import { motion } from "framer-motion";
 
 
 export default function Home() {
@@ -293,11 +292,11 @@ export default function Home() {
         <div className="container relative z-30 text-left">
           <div className="hero-content text-white max-w-4xl">
             <h1 className="heading-large text-left mb-8 md:mb-6">
-              Zrubový nábytok a stavby z dreva na mieru
+              Tvorba web stránok na mieru v Bratislave
             </h1>
 
             <p className="subheading text-left max-w-2xl mr-auto text-white mb-10 md:mb-12">
-              Ručná výroba zrubového nábytku a drevených stavieb s dôrazom na kvalitu, trvácnosť a slovenskú tradíciu.
+              Navrhujeme rýchle firemné weby, e-shopy a aplikácie, ktoré majú jasnú štruktúru, SEO základ a pripravenú cestu ku kontaktu.
             </p>
 
             <div className="hero-buttons flex flex-wrap justify-start gap-4 mt-12 md:mt-10">
@@ -509,70 +508,6 @@ export default function Home() {
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-
-      {/* About Section - Pedrostol */}
-      <section id="o-nas" className="py-24 bg-[#fcfaf7] overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="relative"
-            >
-              <div className="aspect-[4/5] relative overflow-hidden shadow-2xl">
-                <Image
-                  src="/templates/pedrostol/Stavby-z-dreva-8.jpg"
-                  alt="Pedrostol výroba"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </div>
-              <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-[#b48454] p-8 hidden md:flex flex-col justify-center items-center text-white text-center">
-                <span className="text-4xl font-bold mb-1">15+</span>
-                <span className="text-[10px] uppercase tracking-widest font-semibold leading-tight">Rokov skúseností</span>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            >
-              <div className="flex items-center gap-4 mb-6">
-                <span className="w-10 h-[1px] bg-[#b48454]"></span>
-                <span className="text-[11px] font-semibold tracking-[0.3em] uppercase text-[#b48454]">O nás</span>
-              </div>
-              <h2 className="text-4xl md:text-6xl text-[#1c1917] mb-8" style={{ fontFamily: '"DM Serif Display", serif', fontStyle: 'italic' }}>
-                Kvalita v každom detaile, tradícia v každom kuse dreva
-              </h2>
-              <div className="space-y-6 text-[#1c1917]/70 text-lg leading-relaxed">
-                <p>
-                  Sme rodinná stolárska firma s dlhoročnou tradíciou, ktorá sa špecializuje na prácu s masívnym drevom. Naším cieľom je prinášať do vašich domovov kus prírody v tej najčistejšej a najkrajšej podobe.
-                </p>
-                <p>
-                  Každý projekt pre nás predstavuje novú výzvu a príležitosť ukázať majstrovstvo našich stolárov. Či už ide o zrubový nábytok, stavby z dreva alebo interiérové doplnky, kladieme dôraz na precíznosť, trvácnosť a individuálny prístup k potrebám klienta.
-                </p>
-              </div>
-              <div className="mt-12">
-                <Link href="#contact" className="inline-flex items-center gap-4 text-[#1c1917] group">
-                  <span className="text-xs font-bold uppercase tracking-widest border-b border-[#1c1917] pb-1 group-hover:border-[#b48454] transition-colors">Zistiť viac o nás</span>
-                  <div className="w-10 h-10 rounded-full border border-[#1c1917]/10 flex items-center justify-center group-hover:bg-[#b48454] group-hover:border-[#b48454] group-hover:text-white transition-all">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform group-hover:translate-x-1 transition-transform">
-                      <path d="M3.75 9H14.25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M9 3.75L14.25 9L9 14.25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                </Link>
-              </div>
-            </motion.div>
-          </div>
         </div>
       </section>
 

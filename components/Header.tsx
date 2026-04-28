@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { useLenis } from "@/components/LenisProvider";
 
 type LanguageSwitcherProps = {
   className?: string;
@@ -25,11 +24,37 @@ function LanguageSwitcher({ className = "", currentLang, getLocalizedHref }: Lan
   );
 }
 
-// Simplified navigation for Pedrostol
-const navLinks = [
-  { href: "/", label: "Domov" },
-  { href: "#portfolio", label: "Galéria" },
-  { href: "#contact", label: "Kontakt" },
+const serviceDropdownLinks = [
+  {
+    href: "/tvorba-web-stranok-bratislava",
+    label: "Web stránky Bratislava",
+    description: "Lokálna SEO landing page pre BA",
+  },
+  {
+    href: "/tvorba-web-stranok",
+    label: "Tvorba web stránok",
+    description: "Firemné weby, UX, SEO základ",
+  },
+  {
+    href: "/tvorba-eshopu",
+    label: "Tvorba e-shopu",
+    description: "E-commerce, platby, produkty",
+  },
+  {
+    href: "/web-aplikacie",
+    label: "Webové aplikácie",
+    description: "React, API, dashboardy, portály",
+  },
+  {
+    href: "/seo-optimalizacia",
+    label: "SEO optimalizácia",
+    description: "Audit, obsah, technické SEO",
+  },
+  {
+    href: "/tvorba-web-stranok-cena",
+    label: "Cena web stránky",
+    description: "Rozpočet, rozsah a faktory ceny",
+  },
 ];
 
 export function Header() {
@@ -90,26 +115,7 @@ export function Header() {
     return pathname === path;
   };
 
-  const lenis = useLenis();
-
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith("#")) {
-      e.preventDefault();
-      const targetId = href.replace("#", "");
-      const element = document.getElementById(targetId);
-      if (element) {
-        lenis?.scrollTo(element, { offset: -80, duration: 1.5 });
-      } else if (pathname !== "/") {
-        // If we are not on homepage, navigate to homepage with hash
-        window.location.href = `/${href}`;
-      }
-    } else if (href === "/" && pathname === "/") {
-      e.preventDefault();
-      lenis?.scrollTo(0, { duration: 1.2 });
-    }
-  };
-
-  const isServicePath = false; // No longer using services dropdown
+  const isServicePath = pathname === "/sluzby" || serviceDropdownLinks.some((link) => pathname === link.href);
 
   return (
     <>
@@ -127,15 +133,40 @@ export function Header() {
                 </nav>
               </div>
 
-              {/* Simplified Header for Pedrostol - No dropdowns */}
+              {/* The actual Dropdown - positioned absolutely relative to the container */}
               <div className="hidden md:block absolute left-0 top-0 w-full h-full pointer-events-none px-4">
                 <div className="flex justify-between items-center h-12 md:h-16">
                   <div className="flex items-center gap-4 md:gap-6 pointer-events-none">
-                     <div className="logo text-[38px] opacity-0 pointer-events-none">PEDROSTOL</div>
+                     <div className="logo text-[38px] opacity-0 pointer-events-none">AEB DIGITAL</div>
                      <nav className="flex space-x-6">
-                        {navLinks.map((link) => (
-                          <div key={link.href} className="text-xl opacity-0 py-2">{link.label}</div>
-                        ))}
+                        <div className="text-xl opacity-0 pointer-events-none">Portfólio</div>
+                        <div className="relative group pointer-events-auto">
+                        <div className="text-xl opacity-0 py-2">Služby</div>
+                        <div className={`absolute left-0 top-full pt-4 transition-all duration-200 ${isServicesHovered ? 'visible opacity-100' : 'invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100'}`}>
+                          <div
+                            className="w-[420px] border border-white/15 bg-black p-3 shadow-2xl backdrop-blur-md pointer-events-auto"
+                            onMouseEnter={() => setIsServicesHovered(true)}
+                            onMouseLeave={() => setIsServicesHovered(false)}
+                          >
+                            <Link
+                              href="/sluzby"
+                              className="block border-b border-white/10 px-4 py-3 text-base font-bold text-white transition-colors hover:bg-white/10"
+                            >
+                              Prehľad služieb
+                            </Link>
+                            {serviceDropdownLinks.map((link) => (
+                              <Link
+                                key={link.href}
+                                href={link.href}
+                                className="block px-4 py-3 transition-colors hover:bg-white/10"
+                              >
+                                <span className="block text-base font-bold text-white">{link.label}</span>
+                                <span className="mt-1 block text-sm leading-relaxed text-white/65">{link.description}</span>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
                     </nav>
                   </div>
                 </div>
@@ -153,24 +184,37 @@ export function Header() {
                 {/* Logo */}
                 <div className="logo-container">
                   <Link href="/" className="logo text-white text-[38px] font-[family-name:var(--font-anton)] font-bold uppercase tracking-wide">
-                    PEDROSTOL
+                    AEB DIGITAL
                   </Link>
                 </div>
 
                 {/* Navigation */}
                 <nav className="hidden md:flex items-center space-x-6">
                   <ul className="nav-menu flex space-x-6">
-                    {navLinks.map((link) => (
-                      <li key={link.href}>
-                        <Link 
-                          href={link.href} 
-                          onClick={(e) => scrollToSection(e as any, link.href)}
-                          className={`text-xl text-white nav-link-underline transition-colors ${isActive(link.href) ? 'active' : ''}`}
-                        >
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
+                    <li>
+                      <Link href="/portfolio" className={`text-xl text-white nav-link-underline transition-colors ${isActive('/portfolio') ? 'active' : ''}`}>
+                        Portfólio
+                      </Link>
+                    </li>
+                    <li
+                      className="relative group"
+                      onMouseEnter={() => setIsServicesHovered(true)}
+                      onMouseLeave={() => setIsServicesHovered(false)}
+                    >
+                      <Link href="/sluzby" className={`text-xl text-white nav-link-underline transition-colors ${isServicePath ? 'active' : ''}`}>
+                        Služby
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/o-nas" className={`text-xl text-white nav-link-underline transition-colors ${isActive('/o-nas') ? 'active' : ''}`}>
+                        O nás
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/blog" className={`text-xl text-white nav-link-underline transition-colors ${isActive('/blog') ? 'active' : ''}`}>
+                        Blog
+                      </Link>
+                    </li>
                   </ul>
                 </nav>
               </div>
@@ -229,7 +273,7 @@ export function Header() {
         <div className="mobile-menu-header flex justify-between items-center p-2 mx-auto w-[95%] border-b border-white/10 relative z-10">
           <div className="mobile-logo">
             <Link href="/" className="text-white text-[38px] font-[family-name:var(--font-anton)] font-bold leading-tight">
-              PEDROSTOL
+              AEB DIGITAL
             </Link>
           </div>
           <button
@@ -242,20 +286,43 @@ export function Header() {
         </div>
         <div className="mobile-menu-nav-container px-4 py-2 relative z-10">
           <ul className="flex flex-col">
-            {navLinks.map((link) => (
-              <li key={link.href} className="border-b border-white/10">
-                <Link 
-                  href={link.href} 
-                  className={`block text-white text-3xl py-4 ${isActive(link.href) ? 'active' : ''}`} 
-                  onClick={(e) => {
-                    scrollToSection(e as any, link.href);
-                    toggleMobileMenu();
-                  }}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            <li className="border-b border-white/10">
+              <Link href="/portfolio" className={`block text-white text-3xl py-4 ${isActive('/portfolio') ? 'active' : ''}`} onClick={toggleMobileMenu}>
+                Portfólio
+              </Link>
+            </li>
+            <li className="border-b border-white/10">
+              <Link href="/sluzby" className={`block text-white text-3xl py-4 ${isActive('/sluzby') ? 'active' : ''}`} onClick={toggleMobileMenu}>
+                Služby
+              </Link>
+              <div className="pb-4">
+                {serviceDropdownLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`block py-2 pl-4 text-xl text-white/75 ${isActive(link.href) ? 'active text-white' : ''}`}
+                    onClick={toggleMobileMenu}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </li>
+            <li className="border-b border-white/10">
+              <Link href="/o-nas" className={`block text-white text-3xl py-4 ${isActive('/o-nas') ? 'active' : ''}`} onClick={toggleMobileMenu}>
+                O nás
+              </Link>
+            </li>
+            <li className="border-b border-white/10">
+              <Link href="/blog" className={`block text-white text-3xl py-4 ${isActive('/blog') ? 'active' : ''}`} onClick={toggleMobileMenu}>
+                Blog
+              </Link>
+            </li>
+            <li className="border-b border-white/10">
+              <Link href="/kontakt" className={`block text-white text-3xl py-4 ${isActive('/kontakt') ? 'active' : ''}`} onClick={toggleMobileMenu}>
+                Kontakt
+              </Link>
+            </li>
           </ul>
           <div className="mt-8 flex justify-center pb-8">
             <LanguageSwitcher currentLang="sk" className="text-xl space-x-6" getLocalizedHref={getLocalizedHref} />

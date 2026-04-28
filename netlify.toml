@@ -513,3 +513,8 @@
   from = "/pedrostol"
   to = "/templates/pedrostol/index.html"
   status = 200
+
+[[redirects]]
+  from = "/pedrostol/galeria"
+  to = "/templates/pedrostol/galeria.html"
+  status = 200
