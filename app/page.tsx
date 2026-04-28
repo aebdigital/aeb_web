@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ReviewsSlider } from "@/components/ReviewsSlider";
+import { motion } from "framer-motion";
 
 
 export default function Home() {
@@ -511,10 +512,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Hero Section */}
-      <section id="home">
-        <HeroBlending />
-      </section>
 
       {/* About Section - Pedrostol */}
       <section id="o-nas" className="py-24 bg-[#fcfaf7] overflow-hidden">
