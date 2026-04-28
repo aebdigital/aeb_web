@@ -164,7 +164,7 @@ function getBusinessProfileConfig(): { config?: BusinessProfileConfig; missing: 
 }
 
 function getPlacesConfig(): { config?: PlacesConfig; missing: string[] } {
-  const apiKey = firstEnvValue(["GOOGLE_PLACES_API_KEY", "GOOGLE_MAPS_API_KEY", "GOOGLE_API_KEY"]);
+  const apiKey = firstEnvValue(["GOOGLE_PLACES_API_KEY", "GOOGLE_MAPS_API_KEY", "GOOGLE_API_KEY", "NEXT_PUBLIC_GOOGLE_PLACES_API_KEY"]);
 
   if (!apiKey) {
     return { missing: [] };
