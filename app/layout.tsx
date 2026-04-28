@@ -40,7 +40,6 @@ const siteUrl = "https://aebdigital.sk";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  robots: { index: false, follow: false },
   title: {
     default: "Tvorba web stránok na mieru Bratislava | Web dizajn & E-shopy | AEB Digital",
     template: "%s | AEB Digital",
@@ -107,11 +106,11 @@ export const metadata: Metadata = {
     creator: "@aebdigital",
   },
   robots: {
-    index: true,
-    follow: true,
+    index: false,
+    follow: false,
     googleBot: {
-      index: true,
-      follow: true,
+      index: false,
+      follow: false,
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
