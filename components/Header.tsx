@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { useLenis } from "@/components/LenisProvider";
 
 type LanguageSwitcherProps = {
   className?: string;
