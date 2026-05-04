@@ -524,3 +524,13 @@
   from = "/pedrostol/galeria"
   to = "/templates/pedrostol/galeria.html"
   status = 200
+
+[[redirects]]
+  from = "/foltin"
+  to = "/templates/foltin/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/foltin/galeria"
+  to = "/templates/foltin/galeria.html"
+  status = 200
