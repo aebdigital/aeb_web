@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stolárstvo Foltín | Zákazkové stolárstvo od roku 1998</title>
+    <meta name="robots" content="noindex">
+    <script>
+        if (window.location.protocol !== 'file:') {
+            document.write('<base href="/templates/foltin/">');
+        }
+    </script>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Stolárstvo Foltín — Zákazkové stolárstvo od roku 1998. Kvalitné eurookná, dvere, kuchyne a nábytok na mieru.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: '#c0a080', light: '#dcc6ac', dark: '#a37e58' },
+                        secondary: '#1c1917',
+                        muted: '#6b6b6b',
+                    },
+                    fontFamily: {
+                        heading: ['"DM Serif Display"', 'Georgia', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --color-primary: #c0a080;
+            --color-primary-dark: #a37e58;
+            --color-secondary: #1c1917;
+            --color-muted: #6b6b6b;
+            --color-bg: #fcfaf7;
+        }
+
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-secondary);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .site-header { transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .site-header.scrolled {
+            background-color: rgba(28,25,23,0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .hover-split-text {
+            position: relative; overflow: hidden;
+            display: inline-block; vertical-align: top;
+        }
+        .hover-split-text-inner {
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .hover-split-text-inner::after {
+            content: attr(data-text);
+            position: absolute; top: 110%; left: 0;
+            width: 100%; line-height: inherit;
+        }
+        .group:hover .hover-split-text-inner,
+        .hover-split-text:hover .hover-split-text-inner { transform: translateY(-100%); }
+
+        .reveal-on-scroll {
+            opacity: 0; transform: translateY(28px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+        .image-reveal-wrapper { position: relative; overflow: hidden; }
+        .image-reveal-shutter {
+            position: absolute; inset: 0;
+            background-color: var(--color-secondary); z-index: 10;
+            transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .image-reveal-wrapper.is-revealed .image-reveal-shutter { transform: translateY(-100%); }
+        .image-reveal-img {
+            transform: scale(1.15);
+            transition: transform 1.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .image-reveal-wrapper.is-revealed .image-reveal-img { transform: scale(1); }
+        .image-reveal-wrapper:hover .image-reveal-img { transform: scale(1.05); }
+
+        #menu-overlay {
+            transform: translateY(-100%);
+            transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        body.menu-open #menu-overlay { transform: translateY(0); }
+
+        .fade-up { opacity: 0; transform: translateY(30px); animation: fade-up-anim 0.8s ease-out forwards; }
+        .fade-up-1 { animation-delay: 0.15s; }
+        .fade-up-2 { animation-delay: 0.3s; }
+        .fade-up-3 { animation-delay: 0.45s; }
+        @keyframes fade-up-anim {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cookie consent */
+        #cookie-banner {
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        #cookie-banner.is-visible { transform: translateY(0); }
+        #cookie-revisit-btn {
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        #cookie-revisit-btn.is-visible { opacity: 1; pointer-events: auto; }
+
+        /* Divider line */
+        .divider-line {
+            width: 40px; height: 1px;
+            background-color: var(--color-primary);
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+    <header id="site-header" class="site-header fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="mx-auto w-[95vw] flex items-center justify-between h-16 md:h-24 px-4 md:px-8">
+            <a href="#" class="flex items-center">
+                <span class="text-xl md:text-2xl font-bold text-white tracking-wide uppercase" style="font-family:'DM Serif Display',serif;letter-spacing:0.1em">FOLTÍN<span style="color:var(--color-primary)">STOLÁRSTVO</span></span>
+            </a>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-10">
+                <a href="index.html" class="nav-link text-white text-[11px] tracking-[0.25em] font-semibold uppercase hover:text-primary transition-colors">Domov</a>
+                <a href="galeria.html" class="nav-link text-white text-[11px] tracking-[0.25em] font-semibold uppercase hover:text-primary transition-colors">Galéria</a>
+                <a href="#ponuka" class="nav-link text-white text-[11px] tracking-[0.25em] font-semibold uppercase hover:text-primary transition-colors">Ponuka</a>
+                <a href="#kontakt" class="nav-link text-white text-[11px] tracking-[0.25em] font-semibold uppercase hover:text-primary transition-colors">Kontakt</a>
+            </nav>
+
+            <div class="flex items-center gap-6">
+                <a href="#kontakt" class="text-white text-[10px] tracking-[0.2em] font-bold uppercase border border-white/20 px-6 py-3 flex items-center hover:bg-primary hover:text-secondary hover:border-primary transition-all duration-300">
+                    Dopyt
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section id="top" class="sticky top-0 h-screen w-full flex items-end overflow-hidden z-0">
+            <div class="absolute inset-0">
+                <div class="hero-parallax w-full h-[115%] -top-[15%] absolute">
+                    <img src="eurookna-01.jpg" alt="Stolárstvo Foltín Hero" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute inset-0 bg-black/50"></div>
+                <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(28,25,23,0.9) 0%,rgba(28,25,23,0.3) 50%,transparent 100%)"></div>
+            </div>
+
+            <div class="relative z-10 w-[95vw] mx-auto px-4 md:px-8 pb-16 md:pb-24">
+                <div class="max-w-4xl">
+                    <div class="fade-up flex items-center gap-4 mb-8">
+                        <span class="divider-line"></span>
+                        <span class="text-[11px] font-semibold tracking-[0.3em] uppercase" style="color:var(--color-primary)">Tradičné remeslo od roku 1998</span>
+                    </div>
+                    <h1 class="fade-up fade-up-1 text-5xl md:text-7xl lg:text-8xl text-white leading-[1.0] mb-8" style="font-family:'DM Serif Display',serif;font-style:italic;letter-spacing:-0.02em">
+                        Zákazkové<br>stolárstvo<br><span style="color:var(--color-primary)">na mieru</span>
+                    </h1>
+                    <p class="fade-up fade-up-2 text-lg md:text-xl text-white/70 font-light max-w-2xl leading-relaxed mb-12">
+                        Kvalitou sme si získali stálu klientelu na území celého Slovenska. Poskytujeme odbornú montáž, poradenstvo a taktiež pozáručný servis.
+                    </p>
+                    <div class="fade-up fade-up-3 flex flex-col sm:flex-row gap-4">
+                        <a href="#kontakt" class="group inline-flex items-center justify-center px-10 py-4 text-secondary text-sm font-semibold tracking-wider uppercase transition-all duration-300 hover:opacity-90" style="background-color:var(--color-primary);color:#1c1917">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Cenová ponuka">Cenová ponuka</span></span>
+                        </a>
+                        <a href="#ponuka" class="group inline-flex items-center justify-center px-10 py-4 border border-white/25 text-white text-sm font-medium tracking-wider uppercase hover:bg-white/10 transition-all duration-300">
+                            <span class="hover-split-text"><span class="hover-split-text-inner" data-text="Naša ponuka">Naša ponuka</span></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="relative z-10" style="background-color:var(--color-bg)">
+
+            <!-- O NÁS / INTRODUCTION -->
+            <section id="onas" class="py-24 md:py-40">
+                <div class="mx-auto w-[95vw] px-4 md:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center">
+                        <div class="reveal-on-scroll">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="divider-line"></span>
+                                <span class="text-[11px] font-semibold tracking-[0.3em] uppercase" style="color:var(--color-primary)">Kto sme</span>
+                            </div>
+                            <h2 class="text-4xl md:text-6xl mb-8 leading-tight" style="font-family:'DM Serif Display',serif;font-style:italic;color:var(--color-secondary)">
+                                Kvalita, ktorú<br>preveril čas.
+                            </h2>
+                            <p class="text-base leading-relaxed mb-6" style="color:var(--color-muted)">
+                                Hlavnú produkciu tvoria eurookná, vchodové a interiérové dvere. Popri tejto činnosti vyrábame kuchynské linky na mieru, vstavané skrine, rôzny nábytok, záhradné posedenia, tiež atypické prepravné obaly a debnenia na stroje a palety.
+                            </p>
+                            <p class="text-base leading-relaxed mb-8" style="color:var(--color-muted)">
+                                Ak máte záujem o cenovú ponuku, neváhajte a kontaktujte nás. Tešíme sa na Vás.
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="px-5 py-2.5 text-[11px] font-semibold uppercase tracking-widest border" style="border-color:var(--color-primary);color:var(--color-primary)">Eurookná</span>
+                                <span class="px-5 py-2.5 text-[11px] font-semibold uppercase tracking-widest border" style="border-color:var(--color-primary);color:var(--color-primary)">Dvere</span>
+                                <span class="px-5 py-2.5 text-[11px] font-semibold uppercase tracking-widest border" style="border-color:var(--color-primary);color:var(--color-primary)">Kuchyne</span>
+                                <span class="px-5 py-2.5 text-[11px] font-semibold uppercase tracking-widest border" style="border-color:var(--color-primary);color:var(--color-primary)">Nábytok</span>
+                            </div>
+                        </div>
+                        <div class="reveal-on-scroll" style="transition-delay:200ms">
+                            <div class="image-reveal-wrapper shadow-2xl" style="aspect-ratio:4/5">
+                                <div class="image-reveal-shutter"></div>
+                                <img src="vchodove.jpg" alt="Vchodové dvere Foltín" class="image-reveal-img w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PONUKA -->
+            <section id="ponuka" class="py-24 md:py-40" style="background-color:rgba(28,25,23,0.02)">
+                <div class="mx-auto w-[95vw] px-4 md:px-8">
+                    <div class="reveal-on-scroll mb-16 text-center">
+                        <div class="flex items-center justify-center gap-4 mb-6">
+                            <span class="divider-line"></span>
+                            <span class="text-[11px] font-semibold tracking-[0.3em] uppercase" style="color:var(--color-primary)">Naša ponuka</span>
+                            <span class="divider-line"></span>
+                        </div>
+                        <h2 class="text-4xl md:text-6xl" style="font-family:'DM Serif Display',serif;font-style:italic;color:var(--color-secondary)">Čomu sa venujeme</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Eurookná -->
+                        <div class="reveal-on-scroll group bg-white shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden flex flex-col">
+                            <div class="aspect-[16/10] overflow-hidden">
+                                <img src="eurookna-02.jpg" alt="Eurookná" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            </div>
+                            <div class="p-8 flex-1">
+                                <h3 class="text-2xl mb-4" style="font-family:'DM Serif Display',serif;font-style:italic">Eurookná</h3>
+                                <p class="text-muted text-sm leading-relaxed mb-6">Drevené eurookná stále patria k moderným nadčasovým stavebným prvkom. Vyrábame ich na zákazku, podľa najvyšších požiadaviek našich klientov.</p>
+                                <span class="text-[10px] font-bold tracking-widest uppercase text-primary border-b border-primary/30 pb-1">Zobraziť viac</span>
+                            </div>
+                        </div>
+
+                        <!-- Vchodové dvere -->
+                        <div class="reveal-on-scroll group bg-white shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden flex flex-col" style="transition-delay:100ms">
+                            <div class="aspect-[16/10] overflow-hidden">
+                                <img src="vchodove.jpg" alt="Vchodové dvere" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            </div>
+                            <div class="p-8 flex-1">
+                                <h3 class="text-2xl mb-4" style="font-family:'DM Serif Display',serif;font-style:italic">Vchodové dvere</h3>
+                                <p class="text-muted text-sm leading-relaxed mb-6">Sú vždy vstupnou bránou do domu. Hlavný dôraz kladieme na kvalitu, bezpečnosť a funkčnosť vchodových dverí.</p>
+                                <span class="text-[10px] font-bold tracking-widest uppercase text-primary border-b border-primary/30 pb-1">Zobraziť viac</span>
+                            </div>
+                        </div>
+
+                        <!-- Interiérové dvere -->
+                        <div class="reveal-on-scroll group bg-white shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden flex flex-col" style="transition-delay:200ms">
+                            <div class="aspect-[16/10] overflow-hidden">
+                                <img src="ina-stolarska-vyroba-ico-1.jpg" alt="Interiérové dvere" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            </div>
+                            <div class="p-8 flex-1">
+                                <h3 class="text-2xl mb-4" style="font-family:'DM Serif Display',serif;font-style:italic">Interiérové dvere</h3>
+                                <p class="text-muted text-sm leading-relaxed mb-6">Vyrábané presne podľa Vašich predstáv: presklené, kazetové, plné, moderné, komplety so zárubňou.</p>
+                                <span class="text-[10px] font-bold tracking-widest uppercase text-primary border-b border-primary/30 pb-1">Zobraziť viac</span>
+                            </div>
+                        </div>
+
+                        <!-- Kuchyne -->
+                        <div class="reveal-on-scroll group bg-white shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden flex flex-col">
+                            <div class="aspect-[16/10] overflow-hidden">
+                                <img src="kuchyne-ico-1.jpg" alt="Kuchyne" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            </div>
+                            <div class="p-8 flex-1">
+                                <h3 class="text-2xl mb-4" style="font-family:'DM Serif Display',serif;font-style:italic">Kuchyne</h3>
+                                <p class="text-muted text-sm leading-relaxed mb-6">Kuchyne vyrábame moderné aj rustikálne. Používame moderné drevotrieskové dosky aj masív.</p>
+                                <span class="text-[10px] font-bold tracking-widest uppercase text-primary border-b border-primary/30 pb-1">Zobraziť viac</span>
+                            </div>
+                        </div>
+
+                        <!-- Nábytok -->
+                        <div class="reveal-on-scroll group bg-white shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden flex flex-col" style="transition-delay:100ms">
+                            <div class="aspect-[16/10] overflow-hidden">
+                                <img src="nabytok-ico-1.jpg" alt="Nábytok" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            </div>
+                            <div class="p-8 flex-1">
+                                <h3 class="text-2xl mb-4" style="font-family:'DM Serif Display',serif;font-style:italic">Nábytok</h3>
+                                <p class="text-muted text-sm leading-relaxed mb-6">Vstavané skrine, kompletné zariadenie izieb, komody, obývacie sektory a postele.</p>
+                                <span class="text-[10px] font-bold tracking-widest uppercase text-primary border-b border-primary/30 pb-1">Zobraziť viac</span>
+                            </div>
+                        </div>
+
+                        <!-- Záhrada a ihrisko -->
+                        <div class="reveal-on-scroll group bg-white shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden flex flex-col" style="transition-delay:200ms">
+                            <div class="aspect-[16/10] overflow-hidden">
+                                <img src="zahrada-ico-2.jpg" alt="Záhrada" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            </div>
+                            <div class="p-8 flex-1">
+                                <h3 class="text-2xl mb-4" style="font-family:'DM Serif Display',serif;font-style:italic">Záhrada a ihrisko</h3>
+                                <p class="text-muted text-sm leading-relaxed mb-6">Funkčné aj okrasné výrobky pre váš exteriér a detské ihriská.</p>
+                                <span class="text-[10px] font-bold tracking-widest uppercase text-primary border-b border-primary/30 pb-1">Zobraziť viac</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional services -->
+                    <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                         <div class="reveal-on-scroll p-8 border border-secondary/5 bg-white/50 backdrop-blur-sm">
+                            <h4 class="text-xl mb-3" style="font-family:'DM Serif Display',serif;font-style:italic">Schody</h4>
+                            <p class="text-muted text-sm">Špecifický doplnok interiéru na mieru akýmkoľvek požiadavkám.</p>
+                         </div>
+                         <div class="reveal-on-scroll p-8 border border-secondary/5 bg-white/50 backdrop-blur-sm" style="transition-delay:100ms">
+                            <h4 class="text-xl mb-3" style="font-family:'DM Serif Display',serif;font-style:italic">Bedne a palety</h4>
+                            <p class="text-muted text-sm">Atypické prepravné obaly a debnenia na stroje a palety.</p>
+                         </div>
+                         <div class="reveal-on-scroll p-8 border border-secondary/5 bg-white/50 backdrop-blur-sm" style="transition-delay:200ms">
+                            <h4 class="text-xl mb-3" style="font-family:'DM Serif Display',serif;font-style:italic">Iné výrobky</h4>
+                            <p class="text-muted text-sm">Rôzne stolárske výrobky pre špecifické využitie.</p>
+                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA SECTION -->
+            <section class="py-24 md:py-32" style="background-color:var(--color-secondary)">
+                <div class="mx-auto w-[95vw] px-4 md:px-8 text-center">
+                    <div class="reveal-on-scroll max-w-3xl mx-auto">
+                        <h2 class="text-4xl md:text-6xl text-white mb-8" style="font-family:'DM Serif Display',serif;font-style:italic">Získajte cenovú ponuku</h2>
+                        <p class="text-white/60 text-lg mb-12">Ak máte záujem o naše služby, neváhajte nás kontaktovať. Radi vám poradíme a pripravíme návrh na mieru.</p>
+                        <a href="#kontakt" class="inline-flex items-center justify-center px-12 py-5 bg-primary text-secondary text-sm font-bold uppercase tracking-widest hover:bg-primary-light transition-all duration-300">
+                            Kontaktujte nás
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER / KONTAKT -->
+            <footer id="kontakt" class="pt-24 pb-12 relative overflow-hidden" style="background-color:#1c1917">
+                <div class="relative z-10 mx-auto w-[95vw] px-4 md:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                        <div class="lg:col-span-1">
+                            <span class="text-xl font-bold text-white tracking-wide uppercase block mb-6" style="font-family:'DM Serif Display',serif;letter-spacing:0.1em">FOLTÍN<span style="color:var(--color-primary)">STOLÁRSTVO</span></span>
+                            <p class="text-white/40 text-sm font-light leading-relaxed">Zákazkové stolárstvo od roku 1998. Kvalita a precíznosť v každom detaile.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-[11px] font-semibold uppercase tracking-[0.2em] mb-6 text-white/30">Navigácia</h4>
+                            <ul class="space-y-3">
+                                <li><a href="#top" class="text-white/50 hover:text-white text-sm transition-colors block group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Domov">Domov</span></span></a></li>
+                                <li><a href="#ponuka" class="text-white/50 hover:text-white text-sm transition-colors block group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Ponuka">Ponuka</span></span></a></li>
+                                <li><a href="#kontakt" class="text-white/50 hover:text-white text-sm transition-colors block group"><span class="hover-split-text"><span class="hover-split-text-inner" data-text="Kontakt">Kontakt</span></span></a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-[11px] font-semibold uppercase tracking-[0.2em] mb-6 text-white/30">Produkcia</h4>
+                            <ul class="space-y-3 text-sm text-white/40 font-light">
+                                <li>Eurookná</li>
+                                <li>Vchodové dvere</li>
+                                <li>Interiérové dvere</li>
+                                <li>Kuchyne na mieru</li>
+                                <li>Nábytok a skrine</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-[11px] font-semibold uppercase tracking-[0.2em] mb-6 text-white/30">Kontakt</h4>
+                            <ul class="space-y-3 text-sm text-white/50 font-light">
+                                <li>Stoltin s.r.o.</li>
+                                <li>Slovenská republika</li>
+                                <li class="pt-4 text-[10px] text-white/20 uppercase tracking-widest">Vytvorili NaozajKreatívni.sk</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4" style="border-top:1px solid rgba(255,255,255,0.05)">
+                        <p class="text-[11px] text-white/20">2015 Stoltin s.r.o. Všetky práva vyhradené.</p>
+                        <div class="flex gap-6 text-[11px] text-white/20">
+                            <a href="#" class="hover:text-white/40 transition-colors">Ochrana osobných údajov</a>
+                            <a href="#" class="hover:text-white/40 transition-colors">Späť hore</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </main>
+
+    <!-- COOKIE CONSENT BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 inset-x-0 z-[70] shadow-2xl" style="background-color:#1c1917;border-top:1px solid rgba(192,160,128,0.2)">
+        <div class="w-[95vw] mx-auto px-4 md:px-8 py-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+            <div class="flex-1">
+                <p class="text-white text-sm font-semibold mb-1">Táto stránka používa cookies</p>
+                <p class="text-white/40 text-xs font-light leading-relaxed max-w-xl">
+                    Používame nevyhnutné cookies pre správne fungovanie stránky.
+                </p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3 flex-shrink-0">
+                <button id="cookie-accept-btn" class="text-xs uppercase tracking-[0.15em] font-semibold px-6 py-3 hover:opacity-90 transition-opacity" style="background-color:var(--color-primary);color:#1c1917">
+                    Prijať všetky
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Lenis
+        const lenis = new Lenis({ duration: 1.3, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+        function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        // Header
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => { 
+            header.classList.toggle('scrolled', window.scrollY > 100); 
+        }, { passive: true });
+
+        // Reveal on scroll
+        const revealObs = new IntersectionObserver(entries => {
+            entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-visible'); revealObs.unobserve(en.target); } });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObs.observe(el));
+
+        // Image reveal
+        const imgObs = new IntersectionObserver(entries => {
+            entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-revealed'); imgObs.unobserve(en.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.image-reveal-wrapper').forEach(el => imgObs.observe(el));
+
+        // Parallax
+        window.addEventListener('scroll', () => {
+            const hp = document.querySelector('.hero-parallax');
+            if (hp) hp.style.transform = 'translateY(' + (window.scrollY * 0.12) + 'px)';
+        }, { passive: true });
+
+        // Cookie consent
+        const cookieBanner = document.getElementById('cookie-banner');
+        function hideBanner() { cookieBanner.classList.remove('is-visible'); }
+        if (!localStorage.getItem('foltin_cookies')) {
+            setTimeout(() => cookieBanner.classList.add('is-visible'), 800);
+        }
+        document.getElementById('cookie-accept-btn').addEventListener('click', () => {
+            localStorage.setItem('foltin_cookies', 'accepted');
+            hideBanner();
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    lenis.scrollTo(target);
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
